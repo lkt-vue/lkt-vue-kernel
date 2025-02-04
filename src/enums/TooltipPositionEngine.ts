@@ -1,4 +1,4 @@
 export enum TooltipPositionEngine {
-  Fixed = 'fixed',
-  Absolute = 'absolute',
+    Fixed = 'fixed',
+    Absolute = 'absolute',
 }

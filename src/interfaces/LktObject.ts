@@ -1,3 +1,3 @@
 export interface LktObject {
-  [key: string]: any;
+    [key: string | number]: any;
 }

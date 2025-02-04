@@ -1,7 +1,7 @@
-import { LktObject } from './../interfaces/LktObject.ts';
-import { FieldType } from './../enums/FieldType.ts';
-import { ValidFieldValue } from './../types/ValidFieldValue.ts';
-import { Option } from '../instances/Option.ts';
+import {LktObject} from './../interfaces/LktObject.ts';
+import {FieldType} from './../enums/FieldType.ts';
+import {ValidFieldValue} from './../types/ValidFieldValue.ts';
+import {Option} from '../instances/Option.ts';
 
 export interface FieldConfig {
     modelValue: ValidFieldValue
@@ -14,7 +14,7 @@ export interface FieldConfig {
     labelIconAtEnd?: boolean
     name?: string
     autocomplete?: boolean
-    disabled?: boolean|Function
+    disabled?: boolean | Function
     readonly?: boolean
     readMode?: boolean
     allowReadModeSwitch?: boolean

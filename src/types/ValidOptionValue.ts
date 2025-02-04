@@ -1,4 +1,4 @@
 export type ValidOptionValue =
-  string
-  | number
-  | undefined;
+    string
+    | number
+    | undefined;
