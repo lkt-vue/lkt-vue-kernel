@@ -1,0 +1,35 @@
+{
+  "name": "lkt-ts-interfaces",
+  "version": "1.0.5",
+  "description": "LKT TS Interfaces",
+  "keywords": [
+    "lkt",
+    "lkt-web-tech",
+    "ts",
+    "typescript",
+    "js",
+    "javascript"
+  ],
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts"
+  },
+  "author": "Antonio Ibáñez",
+  "devDependencies": {
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

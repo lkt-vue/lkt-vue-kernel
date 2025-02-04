@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "target": "ESNext",           // Genera código moderno
+    "module": "ESNext",           // Usa el sistema de módulos ESM
+    "declaration": true,          // Genera declaraciones de tipos
+    "declarationMap": true,       // Incluye mapas para las declaraciones
+    "outDir": "dist",             // Carpeta de salida
+    "strict": true,               // Habilita verificaciones estrictas
+    "moduleResolution": "node",   // Resuelve módulos de manera compatible con Node.js
+    "esModuleInterop": true,      // Facilita la interoperabilidad con CommonJS
+    "skipLibCheck": true,         // Omite la verificación de tipos en bibliotecas externas
+    "sourceMap": true             // Genera mapas de origen para depuración
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
