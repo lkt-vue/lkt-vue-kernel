@@ -136,6 +136,29 @@ interface FieldConfig {
     optionValueType?: string;
 }
 
+type EmptyModalKey = '_';
+
+type ValidModalKey = string | EmptyModalKey;
+
+interface ModalConfig {
+    size?: string;
+    preTitle?: string;
+    preTitleIcon?: string;
+    title?: string;
+    closeIcon?: string;
+    closeConfirm?: string;
+    closeConfirmKey?: string;
+    showClose?: boolean;
+    disabledClose?: boolean;
+    disabledVeilClick?: boolean;
+    hiddenFooter?: boolean;
+    modalName?: string;
+    modalKey?: ValidModalKey;
+    zIndex?: number;
+    beforeClose?: Function;
+    item?: LktObject;
+}
+
 declare enum TooltipLocationY {
     Top = "top",
     Bottom = "bottom",
@@ -185,4 +208,4 @@ declare const enum ButtonType {
     HiddenSwitch = "hidden-switch"
 }
 
-export { ButtonType, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Option, type OptionConfig, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidFieldValue, type ValidOptionValue };
+export { ButtonType, type EmptyModalKey, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, type ModalConfig, Option, type OptionConfig, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidFieldValue, type ValidModalKey, type ValidOptionValue };
