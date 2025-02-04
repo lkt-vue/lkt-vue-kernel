@@ -1,7 +1,7 @@
 {
-  "name": "lkt-ts-interfaces",
-  "version": "1.0.5",
-  "description": "LKT TS Interfaces",
+  "name": "lkt-vue-kernel",
+  "version": "1.0.0",
+  "description": "LKT Vue Kernel",
   "keywords": [
     "lkt",
     "lkt-web-tech",
