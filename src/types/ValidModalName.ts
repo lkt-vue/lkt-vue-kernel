@@ -1,0 +1,1 @@
+export type ValidModalName = string | Function | undefined;

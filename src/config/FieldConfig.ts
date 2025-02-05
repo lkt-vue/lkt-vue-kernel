@@ -2,11 +2,15 @@ import {LktObject} from './../interfaces/LktObject.ts';
 import {FieldType} from './../enums/FieldType.ts';
 import {ValidFieldValue} from './../types/ValidFieldValue.ts';
 import {Option} from '../instances/Option.ts';
+import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
+import {ValidTabIndex} from "../types/ValidTabIndex.ts";
+import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
+import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 
 export interface FieldConfig {
-    modelValue: ValidFieldValue
+    modelValue?: ValidFieldValue
     type?: FieldType
-    valid?: boolean
+    valid?: boolean|undefined
     placeholder?: string
     searchPlaceholder?: string
     label?: string
@@ -18,7 +22,7 @@ export interface FieldConfig {
     readonly?: boolean
     readMode?: boolean
     allowReadModeSwitch?: boolean
-    tabindex?: number
+    tabindex?: ValidTabIndex
     mandatory?: boolean
     showPassword?: boolean
     canClear?: boolean
@@ -29,33 +33,33 @@ export interface FieldConfig {
     mandatoryMessage?: string
     infoMessage?: string
     errorMessage?: string
-    min?: number | string | undefined
-    max?: number | string | undefined
+    min?: ValidFieldMinMax
+    max?: ValidFieldMinMax
     step?: number | string
     enableAutoNumberFix?: boolean
     emptyValueSlot?: string
-    optionSlot?: string
-    valueSlot?: string
-    editSlot?: string
+    optionSlot?: string|undefined
+    valueSlot?: string|undefined
+    editSlot?: string|undefined
     slotData?: LktObject
     resource?: string
     resourceData?: LktObject
     validationResource?: string
     validationResourceData?: LktObject
     autoValidation?: boolean
-    autoValidationType?: 'focus' | 'blur' | 'always'
+    autoValidationType?: FieldAutoValidationTrigger
     validationStack?: string
-    minNumbers?: number | string | undefined
-    maxNumbers?: number | string | undefined
-    minChars?: number | string | undefined
-    maxChars?: number | string | undefined
-    minUpperChars?: number | string | undefined
-    maxUpperChars?: number | string | undefined
-    minLowerChars?: number | string | undefined
-    maxLowerChars?: number | string | undefined
-    minSpecialChars?: number | string | undefined
-    maxSpecialChars?: number | string | undefined
-    checkEqualTo?: number | string | undefined
+    minNumbers?: ValidFieldMinMax
+    maxNumbers?: ValidFieldMinMax
+    minChars?: ValidFieldMinMax
+    maxChars?: ValidFieldMinMax
+    minUpperChars?: ValidFieldMinMax
+    maxUpperChars?: ValidFieldMinMax
+    minLowerChars?: ValidFieldMinMax
+    maxLowerChars?: ValidFieldMinMax
+    minSpecialChars?: ValidFieldMinMax
+    maxSpecialChars?: ValidFieldMinMax
+    checkEqualTo?: ValidFieldMinMax
     featuredButton?: string
     infoButtonEllipsis?: boolean
     fileName?: string
@@ -63,15 +67,15 @@ export interface FieldConfig {
     customButtonClass?: string
     options?: string | Option[]
     multiple?: boolean
-    multipleDisplay?: LktObject
-    multipleDisplayEdition?: LktObject
+    multipleDisplay?: MultipleOptionsDisplay
+    multipleDisplayEdition?: MultipleOptionsDisplay
     searchable?: boolean
     autoloadOptionsResource?: boolean | 'feed'
     optionsDownload?: string | Function
     optionsModal?: string | Function
     optionsModalData?: LktObject | Function
     optionsIcon?: string | Function
-    optionsLabelFormatter?: Function
+    optionsLabelFormatter?: Function|undefined
     optionsResource?: string
     optionsResourceData?: LktObject
     icon?: string | Function

@@ -1,7 +1,7 @@
 import {LktObject} from "../interfaces/LktObject.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 
-export interface ModalConfig {
+export interface ModalConfig extends LktObject {
     size?: string
     preTitle?: string
     preTitleIcon?: string

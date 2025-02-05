@@ -1,0 +1,1 @@
+export type ValidColSpan = Function | boolean | number | undefined;

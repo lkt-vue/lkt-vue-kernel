@@ -1,0 +1,1 @@
+export type ValidTabIndex = string | number | undefined;

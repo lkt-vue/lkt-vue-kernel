@@ -1,5 +1,8 @@
+import { RouteLocationRaw } from 'vue-router';
+import { VueElement } from 'vue';
+
 interface LktObject {
-    [key: string]: any;
+    [key: string | number]: any;
 }
 
 declare enum FieldType {
@@ -37,28 +40,51 @@ interface OptionConfig {
 }
 
 declare class LktItem implements LktObject {
+    lktAllowUndefinedProps: string[];
+    lktExcludedProps: string[];
     lktDateProps: string[];
     lktStrictItem: boolean;
-    feed(data?: LktObject): void;
+    constructor(data?: LktObject);
+    feed(data?: LktObject, target?: this): void;
     assignProp(key: string, value: any): void;
 }
+
+type ValidModalName = string | Function | undefined;
 
 declare class Option extends LktItem implements OptionConfig {
     value: ValidOptionValue;
     label: string;
-    data?: LktObject;
-    disabled?: boolean;
-    group?: string;
-    icon?: string;
-    modal?: string | Function;
+    data: LktObject;
+    disabled: boolean;
+    group: string;
+    icon: string;
+    modal: ValidModalName;
+    constructor(data?: LktObject);
 }
 
 type ValidFieldValue = string | number | boolean | LktObject | Option[];
 
+declare enum MultipleOptionsDisplay {
+    List = "list",
+    Inline = "inline",
+    Count = "count"
+}
+
+type ValidTabIndex = string | number | undefined;
+
+declare enum FieldAutoValidationTrigger {
+    None = "",
+    Focus = "focus",
+    Blur = "blur",
+    Always = "always"
+}
+
+type ValidFieldMinMax = number | string | undefined;
+
 interface FieldConfig {
-    modelValue: ValidFieldValue;
+    modelValue?: ValidFieldValue;
     type?: FieldType;
-    valid?: boolean;
+    valid?: boolean | undefined;
     placeholder?: string;
     searchPlaceholder?: string;
     label?: string;
@@ -70,7 +96,7 @@ interface FieldConfig {
     readonly?: boolean;
     readMode?: boolean;
     allowReadModeSwitch?: boolean;
-    tabindex?: number;
+    tabindex?: ValidTabIndex;
     mandatory?: boolean;
     showPassword?: boolean;
     canClear?: boolean;
@@ -81,33 +107,33 @@ interface FieldConfig {
     mandatoryMessage?: string;
     infoMessage?: string;
     errorMessage?: string;
-    min?: number | string | undefined;
-    max?: number | string | undefined;
+    min?: ValidFieldMinMax;
+    max?: ValidFieldMinMax;
     step?: number | string;
     enableAutoNumberFix?: boolean;
     emptyValueSlot?: string;
-    optionSlot?: string;
-    valueSlot?: string;
-    editSlot?: string;
+    optionSlot?: string | undefined;
+    valueSlot?: string | undefined;
+    editSlot?: string | undefined;
     slotData?: LktObject;
     resource?: string;
     resourceData?: LktObject;
     validationResource?: string;
     validationResourceData?: LktObject;
     autoValidation?: boolean;
-    autoValidationType?: 'focus' | 'blur' | 'always';
+    autoValidationType?: FieldAutoValidationTrigger;
     validationStack?: string;
-    minNumbers?: number | string | undefined;
-    maxNumbers?: number | string | undefined;
-    minChars?: number | string | undefined;
-    maxChars?: number | string | undefined;
-    minUpperChars?: number | string | undefined;
-    maxUpperChars?: number | string | undefined;
-    minLowerChars?: number | string | undefined;
-    maxLowerChars?: number | string | undefined;
-    minSpecialChars?: number | string | undefined;
-    maxSpecialChars?: number | string | undefined;
-    checkEqualTo?: number | string | undefined;
+    minNumbers?: ValidFieldMinMax;
+    maxNumbers?: ValidFieldMinMax;
+    minChars?: ValidFieldMinMax;
+    maxChars?: ValidFieldMinMax;
+    minUpperChars?: ValidFieldMinMax;
+    maxUpperChars?: ValidFieldMinMax;
+    minLowerChars?: ValidFieldMinMax;
+    maxLowerChars?: ValidFieldMinMax;
+    minSpecialChars?: ValidFieldMinMax;
+    maxSpecialChars?: ValidFieldMinMax;
+    checkEqualTo?: ValidFieldMinMax;
     featuredButton?: string;
     infoButtonEllipsis?: boolean;
     fileName?: string;
@@ -115,15 +141,15 @@ interface FieldConfig {
     customButtonClass?: string;
     options?: string | Option[];
     multiple?: boolean;
-    multipleDisplay?: LktObject;
-    multipleDisplayEdition?: LktObject;
+    multipleDisplay?: MultipleOptionsDisplay;
+    multipleDisplayEdition?: MultipleOptionsDisplay;
     searchable?: boolean;
     autoloadOptionsResource?: boolean | 'feed';
     optionsDownload?: string | Function;
     optionsModal?: string | Function;
     optionsModalData?: LktObject | Function;
     optionsIcon?: string | Function;
-    optionsLabelFormatter?: Function;
+    optionsLabelFormatter?: Function | undefined;
     optionsResource?: string;
     optionsResourceData?: LktObject;
     icon?: string | Function;
@@ -138,9 +164,9 @@ interface FieldConfig {
 
 type EmptyModalKey = '_';
 
-type ValidModalKey = string | EmptyModalKey;
+type ValidModalKey = string | Function | EmptyModalKey;
 
-interface ModalConfig {
+interface ModalConfig extends LktObject {
     size?: string;
     preTitle?: string;
     preTitleIcon?: string;
@@ -195,17 +221,359 @@ interface TooltipConfig {
     locationX?: TooltipLocationX;
 }
 
+declare enum AnchorType {
+    Href = "href",// Vanilla JS+HTML anchor
+    RouterLink = "router-link",// For vue-router integration
+    RouterLinkBack = "router-link-back",// For vue-router back navigation
+    Mail = "mail",// Triggers OS mail integration
+    Tel = "tel",// Triggers OS phone integration
+    Tab = "tab",// New tab, similar to target="_blank"
+    Download = "download",// Download link
+    Action = "action",// Performs an action, without route changes
+    Legacy = ""
+}
+
+interface AnchorConfig {
+    type?: AnchorType;
+    to?: RouteLocationRaw | string;
+    class?: string;
+    isActive?: boolean;
+    downloadFileName?: string;
+    disabled?: boolean;
+    onClick?: Function | undefined;
+    confirmModal?: ValidModalName;
+    confirmModalKey?: ValidModalKey;
+    confirmData?: ModalConfig;
+    imposter?: boolean;
+}
+
+interface DragConfig {
+    isDraggable?: boolean | Function;
+    isValid?: Function;
+    canRender?: boolean | Function;
+    dragKey?: string;
+}
+
+declare const enum ButtonType {
+    Button = "button",// Default
+    Submit = "submit",// Form submit
+    Reset = "reset",
+    Anchor = "anchor",// Turns on anchor mode
+    Content = "content",// No click event
+    Switch = "switch",// Has a visible boolean state
+    HiddenSwitch = "hidden-switch",// Has a hidden boolean state
+    Split = "split",// Split button, content always generated
+    SplitLazy = "split-lazy",// Split button, contents generated after first open
+    SplitEver = "split-ever",// Split button, contents generated each time it's clicked
+    Tooltip = "tooltip",// Tooltip button, content always generated
+    TooltipLazy = "tooltip-lazy",// Tooltip button, contents generated after first open
+    TooltipEver = "tooltip-ever"
+}
+
+declare enum ToggleMode {
+    Lazy = "lazy",
+    Ever = "ever"
+}
+
+declare class Anchor extends LktItem implements AnchorConfig {
+    lktAllowUndefinedProps: string[];
+    type: AnchorType;
+    to?: RouteLocationRaw | string;
+    class: string;
+    isActive: boolean;
+    downloadFileName: string;
+    disabled: boolean;
+    onClick: Function | undefined;
+    confirmModal: ValidModalName;
+    confirmModalKey: ValidModalKey;
+    confirmData: LktObject;
+    imposter: boolean;
+    constructor(data?: Partial<AnchorConfig>);
+    getHref(): string;
+}
+
+interface ButtonConfig {
+    type?: ButtonType;
+    checked?: boolean;
+    openTooltip?: boolean;
+    name?: string;
+    text?: string | number;
+    icon?: string;
+    class?: string;
+    containerClass?: string;
+    palette?: string;
+    value?: string;
+    disabled?: boolean;
+    loading?: boolean;
+    wrapContent?: boolean;
+    anchor?: AnchorConfig | Anchor;
+    resource?: string;
+    resourceData?: LktObject;
+    modal?: ValidModalName;
+    modalKey?: ValidModalKey;
+    modalData?: ModalConfig;
+    confirmModal?: ValidModalName;
+    confirmModalKey?: ValidModalKey;
+    confirmData?: ModalConfig;
+    iconDot?: boolean | string | number;
+    iconEnd?: string;
+    img?: string;
+    split?: boolean | ToggleMode;
+    splitIcon?: string;
+    tooltip?: boolean | ToggleMode;
+    tooltipEngine?: TooltipPositionEngine;
+    showTooltipOnHover?: boolean;
+    showTooltipOnHoverDelay?: number;
+    hideTooltipOnLeave?: boolean;
+    tooltipWindowMargin?: number;
+    tooltipReferrerMargin?: number;
+    tooltipClass?: string;
+    tooltipLocationY?: string;
+    tooltipLocationX?: string;
+    splitClass?: string;
+    clickRef?: Element | VueElement;
+    tabindex?: ValidTabIndex;
+    isAnchor?: boolean;
+    onClickTo?: string;
+    onClickToExternal?: boolean;
+    download?: boolean;
+    downloadFileName?: string;
+    newTab?: boolean;
+    showSwitch?: boolean;
+    hiddenSwitch?: boolean;
+}
+
 declare class LktStrictItem extends LktItem {
     lktStrictItem: boolean;
 }
 
-declare const enum ButtonType {
-    Button = "button",
-    Submit = "submit",
-    Reset = "reset",
-    Content = "content",
-    Switch = "switch",
-    HiddenSwitch = "hidden-switch"
+declare class Field extends LktItem implements FieldConfig {
+    modelValue: ValidFieldValue;
+    type: FieldType;
+    valid: boolean | undefined;
+    placeholder: string;
+    searchPlaceholder: string;
+    label: string;
+    labelIcon: string;
+    labelIconAtEnd: boolean;
+    name: string;
+    autocomplete: boolean;
+    disabled: boolean;
+    readonly: boolean;
+    readMode: boolean;
+    allowReadModeSwitch: boolean;
+    tabindex: ValidTabIndex;
+    mandatory: boolean;
+    showPassword: boolean;
+    canClear: boolean;
+    canUndo: boolean;
+    canI18n: boolean;
+    canStep: boolean;
+    mandatoryMessage: string;
+    infoMessage: string;
+    errorMessage: string;
+    min: ValidFieldMinMax;
+    max: ValidFieldMinMax;
+    step: number | string;
+    enableAutoNumberFix: boolean;
+    emptyValueSlot: string;
+    optionSlot: undefined;
+    valueSlot: undefined;
+    editSlot: undefined;
+    slotData: LktObject;
+    resource: string;
+    resourceData: LktObject;
+    validationResource: string;
+    validationResourceData: LktObject;
+    autoValidation: boolean;
+    autoValidationType: FieldAutoValidationTrigger;
+    validationStack: string;
+    minNumbers: ValidFieldMinMax;
+    maxNumbers: ValidFieldMinMax;
+    minChars: ValidFieldMinMax;
+    maxChars: ValidFieldMinMax;
+    minUpperChars: ValidFieldMinMax;
+    maxUpperChars: ValidFieldMinMax;
+    minLowerChars: ValidFieldMinMax;
+    maxLowerChars: ValidFieldMinMax;
+    minSpecialChars: ValidFieldMinMax;
+    maxSpecialChars: ValidFieldMinMax;
+    checkEqualTo: ValidFieldMinMax;
+    featuredButton: string;
+    infoButtonEllipsis: boolean;
+    fileName: string;
+    customButtonText: string;
+    customButtonClass: string;
+    options: string | Option[];
+    multiple: boolean;
+    multipleDisplay: MultipleOptionsDisplay;
+    multipleDisplayEdition: MultipleOptionsDisplay;
+    searchable: boolean;
+    autoloadOptionsResource: boolean | 'feed';
+    optionsDownload: string | Function;
+    optionsModal: string | Function;
+    optionsModalData: LktObject | Function;
+    optionsIcon: string | Function;
+    optionsLabelFormatter: undefined;
+    optionsResource: string;
+    optionsResourceData: LktObject;
+    icon: string | Function;
+    download: string | Function;
+    modal: string | Function;
+    modalKey: string | number | Function;
+    modalData: LktObject;
+    data: LktObject;
+    constructor(data?: FieldConfig);
 }
 
-export { ButtonType, type EmptyModalKey, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, type ModalConfig, Option, type OptionConfig, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidFieldValue, type ValidModalKey, type ValidOptionValue };
+declare enum ColumnType {
+    None = "",
+    Field = "field",
+    Button = "button",
+    Anchor = "anchor",
+    Text = "text",
+    Number = "number",
+    Check = "check",
+    Switch = "switch",
+    Select = "select",
+    Email = "email",
+    Tel = "tel",
+    File = "file",
+    Link = "link",
+    Action = "action",
+    Integer = "int",
+    Float = "float"
+}
+
+type ValidSafeStringValue = string | ((...args: any[]) => string) | undefined | SafeString;
+
+declare class SafeString {
+    private readonly value;
+    constructor(input: ValidSafeStringValue);
+    getValue(...args: any[]): string;
+}
+
+type ValidColSpan = Function | boolean | number | undefined;
+
+declare class Button extends LktItem implements ButtonConfig {
+    lktAllowUndefinedProps: string[];
+    type: ButtonType;
+    name: string;
+    palette: string;
+    onClickTo: string;
+    onClickToExternal: boolean;
+    class: string;
+    containerClass: string;
+    value: string;
+    disabled: boolean;
+    loading: boolean;
+    wrapContent: boolean;
+    split: boolean;
+    splitIcon: string;
+    isAnchor: boolean;
+    resource: string;
+    resourceData: LktObject;
+    modal: ValidModalName;
+    modalKey: ValidModalKey;
+    modalData: ModalConfig;
+    confirmModal: ValidModalName;
+    confirmModalKey: ValidModalKey;
+    confirmData: ModalConfig;
+    text: string;
+    icon: string;
+    iconDot: boolean;
+    iconEnd: string;
+    img: string;
+    newTab: boolean;
+    download: boolean;
+    downloadFileName: string;
+    tooltip: boolean;
+    showTooltipOnHoverDelay: number;
+    tooltipWindowMargin: number;
+    tooltipReferrerMargin: number;
+    tooltipLocationY: string;
+    tooltipLocationX: string;
+    checked: boolean;
+    clickRef?: Element | VueElement;
+    openTooltip: boolean;
+    tabindex: ValidTabIndex;
+    anchor?: AnchorConfig | Anchor;
+    tooltipEngine?: TooltipPositionEngine;
+    showTooltipOnHover?: boolean;
+    hideTooltipOnLeave?: boolean;
+    tooltipClass?: string;
+    splitClass?: string;
+    constructor(data?: ButtonConfig);
+}
+
+interface ColumnConfig {
+    type: ColumnType;
+    key: string;
+    label: string;
+    sortable: boolean;
+    hidden: boolean;
+    editable: boolean;
+    formatter?: Function | undefined;
+    checkEmpty?: Function | undefined;
+    colspan?: ValidColSpan;
+    preferSlot?: Function | boolean;
+    isForRowKey?: boolean;
+    extractTitleFromColumn?: string;
+    slotData?: LktObject;
+    field?: Field | FieldConfig | undefined;
+    anchor?: Anchor | AnchorConfig | undefined;
+    button?: Button | ButtonConfig | undefined;
+    link?: ValidSafeStringValue | SafeString;
+    action?: Function;
+}
+
+declare class Column extends LktItem implements ColumnConfig {
+    lktExcludedProps: string[];
+    lktAllowUndefinedProps: string[];
+    type: ColumnType;
+    key: string;
+    label: string;
+    sortable: boolean;
+    hidden: boolean;
+    editable: boolean;
+    formatter: Function | undefined;
+    checkEmpty: Function | undefined;
+    colspan: ValidColSpan;
+    preferSlot: Function | boolean;
+    isForRowKey: boolean;
+    extractTitleFromColumn: string;
+    slotData: LktObject;
+    field: Field | FieldConfig | undefined;
+    anchor: Anchor | AnchorConfig | undefined;
+    button: Button | ButtonConfig | undefined;
+    link: ValidSafeStringValue | SafeString | undefined;
+    action?: Function;
+    constructor(data: ColumnConfig);
+    getHref(item: LktObject): string;
+    doAction(item: LktObject): any;
+}
+
+declare enum ModalType {
+    Modal = "modal",
+    Confirm = "confirm"
+}
+
+declare enum SortDirection {
+    Asc = "asc",
+    Desc = "desc"
+}
+
+declare enum TableType {
+    Table = "table",
+    Item = "item",
+    Ul = "ul",
+    Ol = "ol"
+}
+
+/**
+ * Export common interfaces
+ */
+
+declare function getDefaultValues<T>(cls: new () => T): T;
+
+export { Anchor, type AnchorConfig, AnchorType, Button, type ButtonConfig, ButtonType, Column, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, SafeString, SortDirection, TableType, ToggleMode, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidTabIndex, getDefaultValues };

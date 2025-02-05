@@ -1,6 +1,6 @@
 {
   "name": "lkt-vue-kernel",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "LKT Vue Kernel",
   "keywords": [
     "lkt",
@@ -13,7 +13,9 @@
   "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.js"
@@ -31,5 +33,10 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "lkt-string-tools": "^1.0.8",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   }
 }
