@@ -24,6 +24,8 @@ export {Field} from './instances/Field.ts';
 export {Column} from './instances/Column.ts';
 export {Anchor} from './instances/Anchor.ts';
 export {Button} from './instances/Button.ts';
+export {Tooltip} from './instances/Tooltip.ts';
+export {Modal} from './instances/Modal.ts';
 
 /**
  * Export enums
@@ -65,16 +67,53 @@ export {SafeString} from './value-objects/SafeString.ts';
 //     return instance as T;
 // }
 
-function getDefaultValues<T, U>(cls: new () => T, interfaceType: U): Partial<U> {
-    const instance = new cls();
-    const result: Partial<U> = {};
+// export function getDefaultValues<T, U>(cls: new () => T, interfaceType: U): Partial<U> {
+//     const instance = new cls();
+//     const result: Partial<U> = {};
+//
+//     // Recorremos las claves de la interfaz y extraemos los valores por defecto solo para las propiedades que están en la interfaz
+//     //@ts-ignore
+//     for (const key of Object.keys(instance)) {
+//         if (!key.startsWith('lkt')) {
+//             //@ts-ignore
+//             if (key in interfaceType) {
+//                 result[key as keyof U] = (instance as any)[key];
+//             }
+//         }
+//     }
+//
+//     return result;
+// }
 
-    // Recorremos las claves de la interfaz y extraemos los valores por defecto solo para las propiedades que están en la interfaz
-    //@ts-ignore
-    for (const key of Object.keys(instance)) {
+// export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
+//     const instance = new cls();
+//     const result: Partial<T> = {};
+//
+//     // Filtrar solo las propiedades que están en lktDefaultValues
+//     for (const key of cls.lktDefaultValues) {
+//         // @ts-ignore
+//         if (key in instance) {
+//             result[key] = instance[key];
+//         }
+//     }
+//
+//     return result;
+// }
+
+export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
+    const instance = new cls();
+    const result: Partial<T> = {};
+
+    // Verifica que `lktDefaultValues` sea iterable
+    if (!Array.isArray(cls.lktDefaultValues)) {
+        throw new Error("lktDefaultValues must be a keys array.");
+    }
+
+    // Filtrar solo las propiedades que están en lktDefaultValues
+    for (const key of cls.lktDefaultValues) {
         //@ts-ignore
-        if (key in interfaceType) {
-            result[key as keyof U] = (instance as any)[key];
+        if (key in instance) {
+            result[key] = instance[key];
         }
     }
 

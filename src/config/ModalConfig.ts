@@ -1,5 +1,6 @@
 import {LktObject} from "../interfaces/LktObject.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
+import {ValidModalName} from "../types/ValidModalName.ts";
 
 export interface ModalConfig extends LktObject {
     size?: string
@@ -7,15 +8,15 @@ export interface ModalConfig extends LktObject {
     preTitleIcon?: string
     title?: string
     closeIcon?: string
-    closeConfirm?: string
-    closeConfirmKey?: string
+    closeConfirm?: ValidModalName
+    closeConfirmKey?: ValidModalKey
     showClose?: boolean
     disabledClose?: boolean
     disabledVeilClick?: boolean
     hiddenFooter?: boolean
-    modalName?: string
+    modalName?: ValidModalName
     modalKey?: ValidModalKey
     zIndex?: number
-    beforeClose?: Function
+    beforeClose?: Function | undefined
     item?: LktObject
 }

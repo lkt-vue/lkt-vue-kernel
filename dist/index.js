@@ -4,11 +4,12 @@ var skipDataProps = [
   "lktStrictItem",
   "lktExcludedProps"
 ];
-var LktItem = class {
-  lktAllowUndefinedProps = [];
-  lktExcludedProps = [];
-  lktDateProps = [];
-  lktStrictItem = false;
+var LktItem = class _LktItem {
+  static lktAllowUndefinedProps = [];
+  static lktExcludedProps = [];
+  static lktDateProps = [];
+  static lktStrictItem = false;
+  static lktDefaultValues = [];
   constructor(data) {
   }
   feed(data = {}, target = this) {
@@ -16,9 +17,9 @@ var LktItem = class {
     for (const [key, value] of Object.entries(data)) target.assignProp(key, value);
   }
   assignProp(key, value) {
-    if (skipDataProps.includes(key) || this.lktExcludedProps.includes(key)) return;
-    if (this.lktStrictItem && !this.hasOwnProperty(key)) return;
-    if (this.lktDateProps.includes(key)) {
+    if (skipDataProps.includes(key) || _LktItem.lktExcludedProps.includes(key)) return;
+    if (_LktItem.lktStrictItem && !this.hasOwnProperty(key)) return;
+    if (_LktItem.lktDateProps.includes(key)) {
       this[key] = new Date(value);
       return;
     }
@@ -228,8 +229,21 @@ var AnchorType = /* @__PURE__ */ ((AnchorType2) => {
 
 // src/instances/Anchor.ts
 var Anchor = class extends LktItem {
-  lktAllowUndefinedProps = [
+  static lktAllowUndefinedProps = [
     "onClick"
+  ];
+  static lktDefaultValues = [
+    "type",
+    "to",
+    "class",
+    "isActive",
+    "downloadFileName",
+    "disabled",
+    "onClick",
+    "confirmModal",
+    "confirmModalKey",
+    "confirmData",
+    "imposter"
   ];
   type = "router-link" /* RouterLink */;
   to = "";
@@ -414,6 +428,103 @@ var Column = class extends LktItem {
   }
 };
 
+// src/enums/TooltipLocationY.ts
+var TooltipLocationY = /* @__PURE__ */ ((TooltipLocationY2) => {
+  TooltipLocationY2["Top"] = "top";
+  TooltipLocationY2["Bottom"] = "bottom";
+  TooltipLocationY2["Center"] = "center";
+  TooltipLocationY2["ReferrerCenter"] = "referrer-center";
+  return TooltipLocationY2;
+})(TooltipLocationY || {});
+
+// src/enums/TooltipLocationX.ts
+var TooltipLocationX = /* @__PURE__ */ ((TooltipLocationX2) => {
+  TooltipLocationX2["Left"] = "left";
+  TooltipLocationX2["Right"] = "right";
+  TooltipLocationX2["Center"] = "center";
+  TooltipLocationX2["LeftCorner"] = "left-corner";
+  TooltipLocationX2["RightCorner"] = "right-corner";
+  return TooltipLocationX2;
+})(TooltipLocationX || {});
+
+// src/instances/Tooltip.ts
+var Tooltip = class extends LktItem {
+  static lktDefaultValues = [
+    "modelValue",
+    "alwaysOpen",
+    "class",
+    "text",
+    "icon",
+    "iconAtEnd",
+    "engine",
+    "referrerWidth",
+    "referrerMargin",
+    "windowMargin",
+    "referrer",
+    "locationY",
+    "locationX"
+  ];
+  modelValue = false;
+  alwaysOpen = false;
+  class = "";
+  text = "";
+  icon = "";
+  iconAtEnd = false;
+  engine = "fixed" /* Fixed */;
+  referrerWidth = false;
+  referrerMargin = 0;
+  windowMargin = 0;
+  referrer = void 0;
+  locationY = "bottom" /* Bottom */;
+  locationX = "left-corner" /* LeftCorner */;
+  constructor(data = {}) {
+    super();
+    this.feed(data);
+  }
+};
+
+// src/instances/Modal.ts
+var Modal = class extends LktItem {
+  static lktDefaultValues = [
+    "size",
+    "preTitle",
+    "preTitleIcon",
+    "title",
+    "closeIcon",
+    "closeConfirm",
+    "closeConfirmKey",
+    "showClose",
+    "disabledClose",
+    "disabledVeilClick",
+    "hiddenFooter",
+    "modalName",
+    "modalKey",
+    "zIndex",
+    "beforeClose",
+    "item"
+  ];
+  size = "";
+  preTitle = "";
+  preTitleIcon = "";
+  title = "";
+  closeIcon = "";
+  closeConfirm = "";
+  closeConfirmKey = "_";
+  showClose = true;
+  disabledClose = false;
+  disabledVeilClick = false;
+  hiddenFooter = false;
+  modalName = "";
+  modalKey = "_";
+  zIndex = 500;
+  beforeClose = void 0;
+  item = {};
+  constructor(data = {}) {
+    super();
+    this.feed(data);
+  }
+};
+
 // src/enums/ModalType.ts
 var ModalType = /* @__PURE__ */ ((ModalType2) => {
   ModalType2["Modal"] = "modal";
@@ -444,29 +555,19 @@ var ToggleMode = /* @__PURE__ */ ((ToggleMode2) => {
   return ToggleMode2;
 })(ToggleMode || {});
 
-// src/enums/TooltipLocationY.ts
-var TooltipLocationY = /* @__PURE__ */ ((TooltipLocationY2) => {
-  TooltipLocationY2["Top"] = "top";
-  TooltipLocationY2["Bottom"] = "bottom";
-  TooltipLocationY2["Center"] = "center";
-  TooltipLocationY2["ReferrerCenter"] = "referrer-center";
-  return TooltipLocationY2;
-})(TooltipLocationY || {});
-
-// src/enums/TooltipLocationX.ts
-var TooltipLocationX = /* @__PURE__ */ ((TooltipLocationX2) => {
-  TooltipLocationX2["Left"] = "left";
-  TooltipLocationX2["Right"] = "right";
-  TooltipLocationX2["Center"] = "center";
-  TooltipLocationX2["LeftCorner"] = "left-corner";
-  TooltipLocationX2["RightCorner"] = "right-corner";
-  return TooltipLocationX2;
-})(TooltipLocationX || {});
-
 // src/index.ts
 function getDefaultValues(cls) {
   const instance = new cls();
-  return instance;
+  const result = {};
+  if (!Array.isArray(cls.lktDefaultValues)) {
+    throw new Error("lktDefaultValues must be a keys array.");
+  }
+  for (const key of cls.lktDefaultValues) {
+    if (key in instance) {
+      result[key] = instance[key];
+    }
+  }
+  return result;
 }
 export {
   Anchor,
@@ -480,6 +581,7 @@ export {
   FieldType,
   LktItem,
   LktStrictItem,
+  Modal,
   ModalType,
   MultipleOptionsDisplay,
   Option,
@@ -487,6 +589,7 @@ export {
   SortDirection,
   TableType,
   ToggleMode,
+  Tooltip,
   TooltipLocationX,
   TooltipLocationY,
   TooltipPositionEngine,

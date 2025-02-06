@@ -11,25 +11,25 @@ import {Button} from "../instances/Button.ts";
 import {SafeString} from "../value-objects/SafeString.ts";
 
 export interface ColumnConfig {
-    type: ColumnType;
-    key: string;
-    label: string;
-    sortable: boolean;
-    hidden: boolean;
-    editable: boolean;
-    formatter?: Function | undefined;
-    checkEmpty?: Function | undefined;
-    colspan?: ValidColSpan;
-    preferSlot?: Function | boolean;
-    isForRowKey?: boolean;
-    extractTitleFromColumn?: string;
-    slotData?: LktObject;
+    type: ColumnType
+    key: string
+    label: string
+    sortable: boolean
+    hidden: boolean
+    editable: boolean
+    formatter?: Function | undefined
+    checkEmpty?: Function | undefined
+    colspan?: ValidColSpan
+    preferSlot?: Function | boolean
+    isForRowKey?: boolean
+    extractTitleFromColumn?: string
+    slotData?: LktObject
 
-    field?: Field|FieldConfig | undefined;
-    anchor?: Anchor|AnchorConfig | undefined;
-    button?: Button|ButtonConfig | undefined;
+    field?: Field|FieldConfig | undefined
+    anchor?: Anchor|AnchorConfig | undefined
+    button?: Button|ButtonConfig | undefined
 
     // Old props (To Be Removed)
-    link?: ValidSafeStringValue|SafeString; // Replaced with anchor integration
-    action?: Function; // Replaced with button integration
+    link?: ValidSafeStringValue|SafeString // Replaced with anchor integration
+    action?: Function // Replaced with button integration
 }

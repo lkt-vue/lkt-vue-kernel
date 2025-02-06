@@ -8,10 +8,11 @@ const skipDataProps: string[] = [
 
 export class LktItem implements LktObject {
 
-    lktAllowUndefinedProps: string[] = [];
-    lktExcludedProps: string[] = [];
-    lktDateProps: string[] = [];
-    lktStrictItem: boolean = false;
+    static lktAllowUndefinedProps: string[] = [];
+    static lktExcludedProps: string[] = [];
+    static lktDateProps: string[] = [];
+    static lktStrictItem: boolean = false;
+    static lktDefaultValues: (keyof LktObject)[] = [];
 
     constructor(data?: LktObject) {
     }
@@ -22,13 +23,13 @@ export class LktItem implements LktObject {
     }
 
     assignProp(key: string, value: any) {
-        if (skipDataProps.includes(key) || this.lktExcludedProps.includes(key)) return;
+        if (skipDataProps.includes(key) || LktItem.lktExcludedProps.includes(key)) return;
         // if (typeof value === 'undefined') {
         //     if (!this.lktAllowUndefinedProps.includes(key)) return;
         // }
-        if (this.lktStrictItem && !this.hasOwnProperty(key)) return;
+        if (LktItem.lktStrictItem && !this.hasOwnProperty(key)) return;
 
-        if (this.lktDateProps.includes(key)) {
+        if (LktItem.lktDateProps.includes(key)) {
             (this as any)[key] = new Date(value);
             return;
         }

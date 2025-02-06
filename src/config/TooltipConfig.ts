@@ -5,15 +5,15 @@ import {TooltipPositionEngine} from '../enums/TooltipPositionEngine.ts';
 export interface TooltipConfig {
     modelValue?: boolean
     alwaysOpen?: boolean
-    class?: string,
-    text?: string,
-    icon?: string,
-    iconAtEnd?: boolean,
-    engine?: TooltipPositionEngine,
+    class?: string
+    text?: string
+    icon?: string
+    iconAtEnd?: boolean
+    engine?: TooltipPositionEngine
     referrerMargin?: number | string
     windowMargin?: number | string
-    referrerWidth?: boolean,
-    referrer: HTMLElement,
+    referrerWidth?: boolean
+    referrer?: HTMLElement|undefined
     locationY?: TooltipLocationY
     locationX?: TooltipLocationX
 }

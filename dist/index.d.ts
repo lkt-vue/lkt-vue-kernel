@@ -40,10 +40,11 @@ interface OptionConfig {
 }
 
 declare class LktItem implements LktObject {
-    lktAllowUndefinedProps: string[];
-    lktExcludedProps: string[];
-    lktDateProps: string[];
-    lktStrictItem: boolean;
+    static lktAllowUndefinedProps: string[];
+    static lktExcludedProps: string[];
+    static lktDateProps: string[];
+    static lktStrictItem: boolean;
+    static lktDefaultValues: (keyof LktObject)[];
     constructor(data?: LktObject);
     feed(data?: LktObject, target?: this): void;
     assignProp(key: string, value: any): void;
@@ -172,16 +173,16 @@ interface ModalConfig extends LktObject {
     preTitleIcon?: string;
     title?: string;
     closeIcon?: string;
-    closeConfirm?: string;
-    closeConfirmKey?: string;
+    closeConfirm?: ValidModalName;
+    closeConfirmKey?: ValidModalKey;
     showClose?: boolean;
     disabledClose?: boolean;
     disabledVeilClick?: boolean;
     hiddenFooter?: boolean;
-    modalName?: string;
+    modalName?: ValidModalName;
     modalKey?: ValidModalKey;
     zIndex?: number;
-    beforeClose?: Function;
+    beforeClose?: Function | undefined;
     item?: LktObject;
 }
 
@@ -216,7 +217,7 @@ interface TooltipConfig {
     referrerMargin?: number | string;
     windowMargin?: number | string;
     referrerWidth?: boolean;
-    referrer: HTMLElement;
+    referrer?: HTMLElement | undefined;
     locationY?: TooltipLocationY;
     locationX?: TooltipLocationX;
 }
@@ -276,7 +277,8 @@ declare enum ToggleMode {
 }
 
 declare class Anchor extends LktItem implements AnchorConfig {
-    lktAllowUndefinedProps: string[];
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof AnchorConfig)[];
     type: AnchorType;
     to?: RouteLocationRaw | string;
     class: string;
@@ -553,6 +555,45 @@ declare class Column extends LktItem implements ColumnConfig {
     doAction(item: LktObject): any;
 }
 
+declare class Tooltip extends LktItem implements TooltipConfig {
+    static lktDefaultValues: (keyof TooltipConfig)[];
+    modelValue: boolean;
+    alwaysOpen: boolean;
+    class: string;
+    text: string;
+    icon: string;
+    iconAtEnd: boolean;
+    engine: TooltipPositionEngine;
+    referrerWidth: boolean;
+    referrerMargin: number | string;
+    windowMargin: number | string;
+    referrer: HTMLElement | undefined;
+    locationY: TooltipLocationY;
+    locationX: TooltipLocationX;
+    constructor(data?: FieldConfig);
+}
+
+declare class Modal extends LktItem implements ModalConfig {
+    static lktDefaultValues: (keyof ModalConfig)[];
+    size: string;
+    preTitle: string;
+    preTitleIcon: string;
+    title: string;
+    closeIcon: string;
+    closeConfirm: ValidModalName;
+    closeConfirmKey: ValidModalKey;
+    showClose: boolean;
+    disabledClose: boolean;
+    disabledVeilClick: boolean;
+    hiddenFooter: boolean;
+    modalName: ValidModalName;
+    modalKey: ValidModalKey;
+    zIndex: number;
+    beforeClose: Function | undefined;
+    item: LktObject;
+    constructor(data?: FieldConfig);
+}
+
 declare enum ModalType {
     Modal = "modal",
     Confirm = "confirm"
@@ -574,6 +615,9 @@ declare enum TableType {
  * Export common interfaces
  */
 
-declare function getDefaultValues<T>(cls: new () => T): T;
+declare function getDefaultValues<T>(cls: {
+    new (): T;
+    lktDefaultValues: (keyof T)[];
+}): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, Button, type ButtonConfig, ButtonType, Column, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, SafeString, SortDirection, TableType, ToggleMode, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidTabIndex, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, Button, type ButtonConfig, ButtonType, Column, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, SafeString, SortDirection, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidTabIndex, getDefaultValues };

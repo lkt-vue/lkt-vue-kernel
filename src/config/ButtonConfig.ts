@@ -11,48 +11,48 @@ import {Anchor} from "../instances/Anchor.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 
 export interface ButtonConfig {
-    type?: ButtonType,
+    type?: ButtonType
     checked?: boolean
     openTooltip?: boolean
-    name?: string,
-    text?: string | number,
-    icon?: string,
-    class?: string,
-    containerClass?: string,
-    palette?: string,
-    value?: string,
-    disabled?: boolean,
-    loading?: boolean,
-    wrapContent?: boolean,
+    name?: string
+    text?: string | number
+    icon?: string
+    class?: string
+    containerClass?: string
+    palette?: string
+    value?: string
+    disabled?: boolean
+    loading?: boolean
+    wrapContent?: boolean
 
     // Anchor integration
-    anchor?: AnchorConfig|Anchor,
+    anchor?: AnchorConfig|Anchor
 
     // HTTP integration
-    resource?: string,
+    resource?: string
     resourceData?: LktObject
 
     // Modal integration
-    modal?: ValidModalName,
-    modalKey?: ValidModalKey,
+    modal?: ValidModalName
+    modalKey?: ValidModalKey
     modalData?: ModalConfig
-    confirmModal?: ValidModalName,
-    confirmModalKey?: ValidModalKey,
-    confirmData?: ModalConfig,
+    confirmModal?: ValidModalName
+    confirmModalKey?: ValidModalKey
+    confirmData?: ModalConfig
 
     // Icon and img
-    iconDot?: boolean | string | number,
-    iconEnd?: string,
-    img?: string,
+    iconDot?: boolean | string | number
+    iconEnd?: string
+    img?: string
 
     // Tooltip and split
-    split?: boolean | ToggleMode,
-    splitIcon?: string,
-    tooltip?: boolean | ToggleMode,
-    tooltipEngine?: TooltipPositionEngine,
-    showTooltipOnHover?: boolean,
-    showTooltipOnHoverDelay?: number,
-    hideTooltipOnLeave?: boolean,
+    split?: boolean | ToggleMode
+    splitIcon?: string
+    tooltip?: boolean | ToggleMode
+    tooltipEngine?: TooltipPositionEngine
+    showTooltipOnHover?: boolean
+    showTooltipOnHoverDelay?: number
+    hideTooltipOnLeave?: boolean
     tooltipWindowMargin?: number
     tooltipReferrerMargin?: number
     tooltipClass?: string
@@ -63,14 +63,14 @@ export interface ButtonConfig {
     tabindex?: ValidTabIndex
 
     // Old anchor mode (To Be Removed)
-    isAnchor?: boolean,
-    onClickTo?: string,
-    onClickToExternal?: boolean,
-    download?: boolean,
-    downloadFileName?: string,
-    newTab?: boolean,
+    isAnchor?: boolean
+    onClickTo?: string
+    onClickToExternal?: boolean
+    download?: boolean
+    downloadFileName?: string
+    newTab?: boolean
 
     // Old switch mode (To Be Removed)
-    showSwitch?: boolean,
-    hiddenSwitch?: boolean,
+    showSwitch?: boolean
+    hiddenSwitch?: boolean
 }

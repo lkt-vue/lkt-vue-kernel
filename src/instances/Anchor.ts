@@ -8,8 +8,22 @@ import {LktObject} from "../interfaces/LktObject.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
-    lktAllowUndefinedProps: string[] = [
+    static lktAllowUndefinedProps: string[] = [
         'onClick',
+    ];
+
+    static lktDefaultValues: (keyof AnchorConfig)[] = [
+        'type',
+        'to',
+        'class',
+        'isActive',
+        'downloadFileName',
+        'disabled',
+        'onClick',
+        'confirmModal',
+        'confirmModalKey',
+        'confirmData',
+        'imposter',
     ];
 
     type: AnchorType = AnchorType.RouterLink;
