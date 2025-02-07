@@ -87,7 +87,7 @@ export class Field extends LktItem implements FieldConfig {
     modalData: LktObject = {};
     data: LktObject = {};
 
-    constructor(data: FieldConfig = {}) {
+    constructor(data: Partial<FieldConfig> = {}) {
         super();
         this.feed(data);
     }

@@ -13,7 +13,7 @@ export class Option extends LktItem implements OptionConfig {
     icon: string = '';
     modal: ValidModalName = '';
 
-    constructor(data: LktObject = {}) {
+    constructor(data: Partial<OptionConfig> = {}) {
         super();
         this.feed(data);
     }

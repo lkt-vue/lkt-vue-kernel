@@ -60,7 +60,7 @@ declare class Option extends LktItem implements OptionConfig {
     group: string;
     icon: string;
     modal: ValidModalName;
-    constructor(data?: LktObject);
+    constructor(data?: Partial<OptionConfig>);
 }
 
 type ValidFieldValue = string | number | boolean | LktObject | Option[];
@@ -246,11 +246,14 @@ interface AnchorConfig {
     confirmModalKey?: ValidModalKey;
     confirmData?: ModalConfig;
     imposter?: boolean;
+    external?: boolean;
 }
 
+type ValidDrag = boolean | ((item: LktObject) => boolean);
+
 interface DragConfig {
-    isDraggable?: boolean | Function;
-    isValid?: Function;
+    isDraggable?: ValidDrag;
+    isValid?: ValidDrag;
     canRender?: boolean | Function;
     dragKey?: string;
 }
@@ -290,8 +293,9 @@ declare class Anchor extends LktItem implements AnchorConfig {
     confirmModalKey: ValidModalKey;
     confirmData: LktObject;
     imposter: boolean;
-    constructor(data?: Partial<AnchorConfig>);
+    external: boolean;
     getHref(): string;
+    constructor(data?: Partial<AnchorConfig>);
 }
 
 interface ButtonConfig {
@@ -335,19 +339,36 @@ interface ButtonConfig {
     splitClass?: string;
     clickRef?: Element | VueElement;
     tabindex?: ValidTabIndex;
-    isAnchor?: boolean;
-    onClickTo?: string;
-    onClickToExternal?: boolean;
-    download?: boolean;
-    downloadFileName?: string;
-    newTab?: boolean;
-    showSwitch?: boolean;
-    hiddenSwitch?: boolean;
 }
 
-declare class LktStrictItem extends LktItem {
-    lktStrictItem: boolean;
+declare enum ColumnType {
+    None = "",
+    Field = "field",
+    Button = "button",
+    Anchor = "anchor",
+    Text = "text",
+    Number = "number",
+    Check = "check",
+    Switch = "switch",
+    Select = "select",
+    Email = "email",
+    Tel = "tel",
+    File = "file",
+    Link = "link",
+    Action = "action",
+    Integer = "int",
+    Float = "float"
 }
+
+type ValidColSpan = Function | boolean | number | undefined;
+
+declare class SafeString {
+    private readonly value;
+    constructor(input: ValidSafeStringValue);
+    getValue(...args: any[]): string;
+}
+
+type ValidSafeStringValue = string | ((...args: any[]) => string) | undefined | SafeString;
 
 declare class Field extends LktItem implements FieldConfig {
     modelValue: ValidFieldValue;
@@ -425,45 +446,15 @@ declare class Field extends LktItem implements FieldConfig {
     modalKey: string | number | Function;
     modalData: LktObject;
     data: LktObject;
-    constructor(data?: FieldConfig);
+    constructor(data?: Partial<FieldConfig>);
 }
-
-declare enum ColumnType {
-    None = "",
-    Field = "field",
-    Button = "button",
-    Anchor = "anchor",
-    Text = "text",
-    Number = "number",
-    Check = "check",
-    Switch = "switch",
-    Select = "select",
-    Email = "email",
-    Tel = "tel",
-    File = "file",
-    Link = "link",
-    Action = "action",
-    Integer = "int",
-    Float = "float"
-}
-
-type ValidSafeStringValue = string | ((...args: any[]) => string) | undefined | SafeString;
-
-declare class SafeString {
-    private readonly value;
-    constructor(input: ValidSafeStringValue);
-    getValue(...args: any[]): string;
-}
-
-type ValidColSpan = Function | boolean | number | undefined;
 
 declare class Button extends LktItem implements ButtonConfig {
     lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof ButtonConfig)[];
     type: ButtonType;
     name: string;
     palette: string;
-    onClickTo: string;
-    onClickToExternal: boolean;
     class: string;
     containerClass: string;
     value: string;
@@ -472,7 +463,6 @@ declare class Button extends LktItem implements ButtonConfig {
     wrapContent: boolean;
     split: boolean;
     splitIcon: string;
-    isAnchor: boolean;
     resource: string;
     resourceData: LktObject;
     modal: ValidModalName;
@@ -486,9 +476,6 @@ declare class Button extends LktItem implements ButtonConfig {
     iconDot: boolean;
     iconEnd: string;
     img: string;
-    newTab: boolean;
-    download: boolean;
-    downloadFileName: string;
     tooltip: boolean;
     showTooltipOnHoverDelay: number;
     tooltipWindowMargin: number;
@@ -505,7 +492,7 @@ declare class Button extends LktItem implements ButtonConfig {
     hideTooltipOnLeave?: boolean;
     tooltipClass?: string;
     splitClass?: string;
-    constructor(data?: ButtonConfig);
+    constructor(data?: Partial<ButtonConfig>);
 }
 
 interface ColumnConfig {
@@ -529,9 +516,17 @@ interface ColumnConfig {
     action?: Function;
 }
 
+declare enum TableType {
+    Table = "table",
+    Item = "item",
+    Ul = "ul",
+    Ol = "ol"
+}
+
 declare class Column extends LktItem implements ColumnConfig {
     lktExcludedProps: string[];
     lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof ColumnConfig)[];
     type: ColumnType;
     key: string;
     label: string;
@@ -550,9 +545,101 @@ declare class Column extends LktItem implements ColumnConfig {
     button: Button | ButtonConfig | undefined;
     link: ValidSafeStringValue | SafeString | undefined;
     action?: Function;
-    constructor(data: ColumnConfig);
+    constructor(data?: Partial<ColumnConfig>);
     getHref(item: LktObject): string;
     doAction(item: LktObject): any;
+}
+
+declare enum TablePermission {
+    Create = "create",
+    Update = "update",// Save changes
+    Edit = "edit",// Displays edit button
+    Drop = "drop",// Displays drop button
+    Sort = "sort",// Sort
+    InlineEdit = "inline-edit",// Be able to edit columns inside the table
+    InlineCreate = "inline-create",// Be able to append a new editable row (needs InlineEdit in order to be editable)
+    ModalCreate = "modal-create",// Be able to append a new row after save a modal form
+    InlineCreateEver = "inline-create-ever"
+}
+
+type ValidTablePermission = TablePermission | string;
+
+interface HeaderConfig {
+    tag?: string;
+    class?: string;
+    text?: string;
+    icon?: string;
+}
+
+interface TableConfig {
+    modelValue: LktObject[];
+    type?: TableType;
+    columns: Column[];
+    resource?: string;
+    noResultsText?: string;
+    filters?: LktObject[];
+    hideEmptyColumns?: boolean;
+    itemDisplayChecker?: Function;
+    loading?: boolean;
+    page?: number;
+    perms?: ValidTablePermission[];
+    editMode?: boolean;
+    dataStateConfig?: LktObject;
+    sortable?: boolean;
+    sorter?: Function;
+    initialSorting?: boolean;
+    draggableChecker?: Function;
+    checkValidDrag?: Function;
+    renderDrag?: boolean | Function;
+    disabledDrag?: boolean | Function;
+    draggableItemKey?: string;
+    header?: HeaderConfig;
+    title?: string;
+    titleTag?: string;
+    titleIcon?: string;
+    headerClass?: string;
+    saveButton?: ButtonConfig;
+    createButton?: ButtonConfig;
+    dropButton?: ButtonConfig;
+    wrapContentTag?: string;
+    wrapContentClass?: string;
+    itemsContainerClass?: string;
+    hiddenSave?: boolean;
+    saveDisabled?: boolean;
+    saveValidator?: Function;
+    saveConfirm?: string;
+    confirmData?: LktObject;
+    saveResource?: string;
+    saveResourceData?: LktObject;
+    saveTooltipEngine?: string;
+    splitSave?: boolean;
+    saveText?: string;
+    createText?: string;
+    createIcon?: string;
+    createRoute?: string;
+    dropText?: string;
+    dropIcon?: string;
+    editText?: string;
+    editIcon?: string;
+    editLink?: string;
+    editModeText?: string;
+    switchEditionEnabled?: boolean;
+    createDisabled?: boolean;
+    dropConfirm?: string;
+    dropResource?: string;
+    addNavigation?: boolean;
+    createEnabledValidator?: Function;
+    newValueGenerator?: Function;
+    requiredItemsForTopCreate?: number;
+    requiredItemsForBottomCreate?: number;
+    slotItemVar?: string;
+    modal?: string;
+    modalData?: LktObject;
+    itemMode?: boolean;
+}
+
+declare class LktStrictItem extends LktItem {
+    lktStrictItem: boolean;
 }
 
 declare class Tooltip extends LktItem implements TooltipConfig {
@@ -570,7 +657,7 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     referrer: HTMLElement | undefined;
     locationY: TooltipLocationY;
     locationX: TooltipLocationX;
-    constructor(data?: FieldConfig);
+    constructor(data?: Partial<TooltipConfig>);
 }
 
 declare class Modal extends LktItem implements ModalConfig {
@@ -591,7 +678,75 @@ declare class Modal extends LktItem implements ModalConfig {
     zIndex: number;
     beforeClose: Function | undefined;
     item: LktObject;
-    constructor(data?: FieldConfig);
+    constructor(data?: Partial<ModalConfig>);
+}
+
+declare class Table extends LktItem implements TableConfig {
+    static lktDefaultValues: (keyof TableConfig)[];
+    modelValue: LktObject[];
+    type?: TableType;
+    columns: Column[];
+    resource?: string;
+    noResultsText?: string;
+    filters?: LktObject[];
+    hideEmptyColumns?: boolean;
+    itemDisplayChecker?: Function;
+    loading?: boolean;
+    page?: number;
+    perms?: ValidTablePermission[];
+    editMode?: boolean;
+    dataStateConfig?: LktObject;
+    sortable?: boolean;
+    sorter?: Function;
+    initialSorting?: boolean;
+    draggableChecker?: Function;
+    checkValidDrag?: Function;
+    renderDrag?: boolean | Function;
+    disabledDrag?: boolean | Function;
+    draggableItemKey?: string;
+    header?: HeaderConfig;
+    title?: string;
+    titleTag?: string;
+    titleIcon?: string;
+    headerClass?: string;
+    saveButton?: ButtonConfig;
+    createButton?: ButtonConfig;
+    dropButton?: ButtonConfig;
+    wrapContentTag?: string;
+    wrapContentClass?: string;
+    itemsContainerClass?: string;
+    hiddenSave?: boolean;
+    saveDisabled?: boolean;
+    saveValidator?: Function;
+    saveConfirm?: string;
+    confirmData?: LktObject;
+    saveResource?: string;
+    saveResourceData?: LktObject;
+    saveTooltipEngine?: string;
+    splitSave?: boolean;
+    saveText?: string;
+    createText?: string;
+    createIcon?: string;
+    createRoute?: string;
+    dropText?: string;
+    dropIcon?: string;
+    editText?: string;
+    editIcon?: string;
+    editLink?: string;
+    editModeText?: string;
+    switchEditionEnabled?: boolean;
+    createDisabled?: boolean;
+    dropConfirm?: string;
+    dropResource?: string;
+    addNavigation?: boolean;
+    createEnabledValidator?: Function;
+    newValueGenerator?: Function;
+    requiredItemsForTopCreate?: number;
+    requiredItemsForBottomCreate?: number;
+    slotItemVar?: string;
+    modal?: string;
+    modalData?: LktObject;
+    constructor(data?: Partial<TableConfig>);
 }
 
 declare enum ModalType {
@@ -604,13 +759,6 @@ declare enum SortDirection {
     Desc = "desc"
 }
 
-declare enum TableType {
-    Table = "table",
-    Item = "item",
-    Ul = "ul",
-    Ol = "ol"
-}
-
 /**
  * Export common interfaces
  */
@@ -620,4 +768,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, Button, type ButtonConfig, ButtonType, Column, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, SafeString, SortDirection, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidTabIndex, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, SafeString, SortDirection, Table, type TableConfig, TablePermission, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidTabIndex, getDefaultValues };

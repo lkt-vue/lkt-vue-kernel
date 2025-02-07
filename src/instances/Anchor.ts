@@ -24,6 +24,7 @@ export class Anchor extends LktItem implements AnchorConfig {
         'confirmModalKey',
         'confirmData',
         'imposter',
+        'external',
     ];
 
     type: AnchorType = AnchorType.RouterLink;
@@ -37,11 +38,7 @@ export class Anchor extends LktItem implements AnchorConfig {
     confirmModalKey: ValidModalKey = '_';
     confirmData: LktObject = {};
     imposter: boolean = false;
-
-    constructor(data: Partial<AnchorConfig> = {}) {
-        super();
-        this.feed(data);
-    }
+    external: boolean = false;
 
     getHref() {
         let href = '';
@@ -62,5 +59,10 @@ export class Anchor extends LktItem implements AnchorConfig {
 
         if (typeof this.to === 'string' && this.to !== '') return this.to;
         return '';
+    }
+
+    constructor(data: Partial<AnchorConfig> = {}) {
+        super();
+        this.feed(data);
     }
 }

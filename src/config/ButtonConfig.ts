@@ -61,16 +61,4 @@ export interface ButtonConfig {
     splitClass?: string
     clickRef?: Element | VueElement
     tabindex?: ValidTabIndex
-
-    // Old anchor mode (To Be Removed)
-    isAnchor?: boolean
-    onClickTo?: string
-    onClickToExternal?: boolean
-    download?: boolean
-    downloadFileName?: string
-    newTab?: boolean
-
-    // Old switch mode (To Be Removed)
-    showSwitch?: boolean
-    hiddenSwitch?: boolean
 }

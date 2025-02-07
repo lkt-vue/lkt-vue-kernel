@@ -1,6 +1,8 @@
+import {ValidDrag} from "../types/ValidDrag.ts";
+
 export interface DragConfig {
-    isDraggable?: boolean|Function
-    isValid?: Function
+    isDraggable?: ValidDrag
+    isValid?: ValidDrag
     canRender?: boolean|Function
     dragKey?: string
 }

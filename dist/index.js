@@ -243,7 +243,8 @@ var Anchor = class extends LktItem {
     "confirmModal",
     "confirmModalKey",
     "confirmData",
-    "imposter"
+    "imposter",
+    "external"
   ];
   type = "router-link" /* RouterLink */;
   to = "";
@@ -256,10 +257,7 @@ var Anchor = class extends LktItem {
   confirmModalKey = "_";
   confirmData = {};
   imposter = false;
-  constructor(data = {}) {
-    super();
-    this.feed(data);
-  }
+  external = false;
   getHref() {
     let href = "";
     if (typeof this.to === "string") href = this.to;
@@ -276,6 +274,10 @@ var Anchor = class extends LktItem {
     }
     if (typeof this.to === "string" && this.to !== "") return this.to;
     return "";
+  }
+  constructor(data = {}) {
+    super();
+    this.feed(data);
   }
 };
 
@@ -316,11 +318,51 @@ var Button = class extends LktItem {
     "showTooltipOnHover",
     "hideTooltipOnLeave"
   ];
+  static lktDefaultValues = [
+    "type",
+    "name",
+    "palette",
+    "class",
+    "containerClass",
+    "value",
+    "disabled",
+    "loading",
+    "wrapContent",
+    "split",
+    "splitIcon",
+    "resource",
+    "resourceData",
+    "modal",
+    "modalKey",
+    "modalData",
+    "confirmModal",
+    "confirmModalKey",
+    "confirmData",
+    "text",
+    "icon",
+    "iconDot",
+    "iconEnd",
+    "img",
+    "tooltip",
+    "showTooltipOnHoverDelay",
+    "tooltipWindowMargin",
+    "tooltipReferrerMargin",
+    "tooltipLocationY",
+    "tooltipLocationX",
+    "checked",
+    "clickRef",
+    "openTooltip",
+    "tabindex",
+    "anchor",
+    "tooltipEngine",
+    "showTooltipOnHover",
+    "hideTooltipOnLeave",
+    "tooltipClass",
+    "splitClass"
+  ];
   type = "button" /* Button */;
   name = generateRandomString2(10);
   palette = "";
-  onClickTo = "";
-  onClickToExternal = false;
   class = "";
   containerClass = "";
   value = "";
@@ -329,23 +371,19 @@ var Button = class extends LktItem {
   wrapContent = false;
   split = false;
   splitIcon = "";
-  isAnchor = false;
   resource = "";
-  resourceData = () => ({});
+  resourceData = {};
   modal = "";
   modalKey = "_";
-  modalData = () => ({});
+  modalData = {};
   confirmModal = "";
   confirmModalKey = "_";
-  confirmData = () => ({});
+  confirmData = {};
   text = "";
   icon = "";
   iconDot = false;
   iconEnd = "";
   img = "";
-  newTab = false;
-  download = false;
-  downloadFileName = "";
   tooltip = false;
   showTooltipOnHoverDelay = 0;
   tooltipWindowMargin = 0;
@@ -382,6 +420,26 @@ var Column = class extends LktItem {
     "link",
     "action"
   ];
+  static lktDefaultValues = [
+    "type",
+    "key",
+    "label",
+    "sortable",
+    "hidden",
+    "editable",
+    "formatter",
+    "checkEmpty",
+    "colspan",
+    "preferSlot",
+    "isForRowKey",
+    "extractTitleFromColumn",
+    "slotData",
+    "field",
+    "anchor",
+    "button",
+    "link",
+    "action"
+  ];
   type = "" /* None */;
   key = "";
   label = "";
@@ -400,7 +458,7 @@ var Column = class extends LktItem {
   button = void 0;
   link = void 0;
   action = void 0;
-  constructor(data) {
+  constructor(data = {}) {
     super();
     this.feed(data);
     switch (this.type) {
@@ -525,6 +583,159 @@ var Modal = class extends LktItem {
   }
 };
 
+// src/enums/TableType.ts
+var TableType = /* @__PURE__ */ ((TableType2) => {
+  TableType2["Table"] = "table";
+  TableType2["Item"] = "item";
+  TableType2["Ul"] = "ul";
+  TableType2["Ol"] = "ol";
+  return TableType2;
+})(TableType || {});
+
+// src/instances/Table.ts
+var Table = class extends LktItem {
+  static lktDefaultValues = [
+    "modelValue",
+    "type",
+    "columns",
+    "resource",
+    "noResultsText",
+    "filters",
+    "hideEmptyColumns",
+    "itemDisplayChecker",
+    "loading",
+    "page",
+    "perms",
+    "editMode",
+    "dataStateConfig",
+    "sortable",
+    "sorter",
+    "initialSorting",
+    "draggableChecker",
+    "checkValidDrag",
+    "renderDrag",
+    "disabledDrag",
+    "draggableItemKey",
+    "header",
+    "title",
+    "titleTag",
+    "titleIcon",
+    "headerClass",
+    "saveButton",
+    "createButton",
+    "dropButton",
+    "wrapContentTag",
+    "wrapContentClass",
+    "itemsContainerClass",
+    "hiddenSave",
+    "saveDisabled",
+    "saveValidator",
+    "saveConfirm",
+    "confirmData",
+    "saveResource",
+    "saveResourceData",
+    "saveTooltipEngine",
+    "splitSave",
+    "saveText",
+    "createText",
+    "createIcon",
+    "createRoute",
+    "dropText",
+    "dropIcon",
+    "editText",
+    "editIcon",
+    "editLink",
+    "editModeText",
+    "switchEditionEnabled",
+    "createDisabled",
+    "dropConfirm",
+    "dropResource",
+    "addNavigation",
+    "createEnabledValidator",
+    "newValueGenerator",
+    "requiredItemsForTopCreate",
+    "requiredItemsForBottomCreate",
+    "slotItemVar",
+    "modal",
+    "modalData"
+  ];
+  // Data
+  modelValue = [];
+  type = "table" /* Table */;
+  columns = [];
+  resource = "";
+  noResultsText = "";
+  filters = [];
+  // Data visualization
+  hideEmptyColumns = false;
+  itemDisplayChecker = void 0;
+  // State
+  loading = false;
+  page = 1;
+  perms = [];
+  editMode = false;
+  dataStateConfig = {};
+  // Sort
+  sortable = false;
+  sorter = void 0;
+  initialSorting = false;
+  // Drag (Old)
+  draggableChecker;
+  checkValidDrag;
+  renderDrag;
+  disabledDrag;
+  draggableItemKey;
+  // New proposed prop: header
+  header;
+  // Replaces:
+  title = "";
+  titleTag = "h2";
+  titleIcon = "";
+  headerClass = "";
+  // New proposed prop: saveButton
+  saveButton = {};
+  createButton = {};
+  dropButton = {};
+  wrapContentTag = "div";
+  wrapContentClass = "";
+  itemsContainerClass = "";
+  hiddenSave = false;
+  saveDisabled = false;
+  saveValidator = void 0;
+  saveConfirm = "";
+  confirmData = {};
+  saveResource = "";
+  saveResourceData = {};
+  saveTooltipEngine = "absolute" /* Absolute */;
+  splitSave = false;
+  saveText = "";
+  createText = "";
+  createIcon = "";
+  createRoute = "";
+  dropText = "";
+  dropIcon = "";
+  editText = "";
+  editIcon = "";
+  editLink = "";
+  editModeText = "";
+  switchEditionEnabled = false;
+  createDisabled = false;
+  dropConfirm = "";
+  dropResource = "";
+  addNavigation = false;
+  createEnabledValidator = void 0;
+  newValueGenerator = void 0;
+  requiredItemsForTopCreate = 0;
+  requiredItemsForBottomCreate = 0;
+  slotItemVar = "item";
+  modal = "";
+  modalData = {};
+  constructor(data = {}) {
+    super();
+    this.feed(data);
+  }
+};
+
 // src/enums/ModalType.ts
 var ModalType = /* @__PURE__ */ ((ModalType2) => {
   ModalType2["Modal"] = "modal";
@@ -539,14 +750,19 @@ var SortDirection = /* @__PURE__ */ ((SortDirection2) => {
   return SortDirection2;
 })(SortDirection || {});
 
-// src/enums/TableType.ts
-var TableType = /* @__PURE__ */ ((TableType2) => {
-  TableType2["Table"] = "table";
-  TableType2["Item"] = "item";
-  TableType2["Ul"] = "ul";
-  TableType2["Ol"] = "ol";
-  return TableType2;
-})(TableType || {});
+// src/enums/TablePermission.ts
+var TablePermission = /* @__PURE__ */ ((TablePermission2) => {
+  TablePermission2["Create"] = "create";
+  TablePermission2["Update"] = "update";
+  TablePermission2["Edit"] = "edit";
+  TablePermission2["Drop"] = "drop";
+  TablePermission2["Sort"] = "sort";
+  TablePermission2["InlineEdit"] = "inline-edit";
+  TablePermission2["InlineCreate"] = "inline-create";
+  TablePermission2["ModalCreate"] = "modal-create";
+  TablePermission2["InlineCreateEver"] = "inline-create-ever";
+  return TablePermission2;
+})(TablePermission || {});
 
 // src/enums/ToggleMode.ts
 var ToggleMode = /* @__PURE__ */ ((ToggleMode2) => {
@@ -587,6 +803,8 @@ export {
   Option,
   SafeString,
   SortDirection,
+  Table,
+  TablePermission,
   TableType,
   ToggleMode,
   Tooltip,

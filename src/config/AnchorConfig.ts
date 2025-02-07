@@ -16,4 +16,5 @@ export interface AnchorConfig {
     confirmModalKey?: ValidModalKey
     confirmData?: ModalConfig
     imposter?: boolean
+    external?: boolean
 }

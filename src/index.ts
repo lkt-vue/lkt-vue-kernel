@@ -13,6 +13,8 @@ export {TooltipConfig} from './config/TooltipConfig.ts';
 export {AnchorConfig} from './config/AnchorConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
 export {ButtonConfig} from './config/ButtonConfig.ts';
+export {ColumnConfig} from './config/ColumnConfig.ts';
+export {TableConfig} from './config/TableConfig.ts';
 
 /**
  * Export instances
@@ -26,6 +28,7 @@ export {Anchor} from './instances/Anchor.ts';
 export {Button} from './instances/Button.ts';
 export {Tooltip} from './instances/Tooltip.ts';
 export {Modal} from './instances/Modal.ts';
+export {Table} from './instances/Table.ts';
 
 /**
  * Export enums
@@ -39,6 +42,7 @@ export {ModalType} from './enums/ModalType.ts';
 export {MultipleOptionsDisplay} from './enums/MultipleOptionsDisplay.ts';
 export {SortDirection} from './enums/SortDirection.ts';
 export {TableType} from './enums/TableType.ts';
+export {TablePermission} from './enums/TablePermission.ts';
 export {ToggleMode} from './enums/ToggleMode.ts';
 export {TooltipLocationY} from './enums/TooltipLocationY.ts';
 export {TooltipLocationX} from './enums/TooltipLocationX.ts';

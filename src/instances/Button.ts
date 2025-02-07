@@ -22,11 +22,52 @@ export class Button extends LktItem implements ButtonConfig {
         'hideTooltipOnLeave',
     ];
 
+    static lktDefaultValues: (keyof ButtonConfig)[] = [
+        'type',
+        'name',
+        'palette',
+        'class',
+        'containerClass',
+        'value',
+        'disabled',
+        'loading',
+        'wrapContent',
+        'split',
+        'splitIcon',
+        'resource',
+        'resourceData',
+        'modal',
+        'modalKey',
+        'modalData',
+        'confirmModal',
+        'confirmModalKey',
+        'confirmData',
+        'text',
+        'icon',
+        'iconDot',
+        'iconEnd',
+        'img',
+        'tooltip',
+        'showTooltipOnHoverDelay',
+        'tooltipWindowMargin',
+        'tooltipReferrerMargin',
+        'tooltipLocationY',
+        'tooltipLocationX',
+        'checked',
+        'clickRef',
+        'openTooltip',
+        'tabindex',
+        'anchor',
+        'tooltipEngine',
+        'showTooltipOnHover',
+        'hideTooltipOnLeave',
+        'tooltipClass',
+        'splitClass',
+    ];
+
     type: ButtonType = ButtonType.Button;
     name: string = generateRandomString(10);
     palette: string = '';
-    onClickTo: string = '';
-    onClickToExternal: boolean = false;
     class: string = '';
     containerClass: string = '';
     value: string = '';
@@ -35,23 +76,19 @@ export class Button extends LktItem implements ButtonConfig {
     wrapContent: boolean = false;
     split: boolean = false;
     splitIcon: string = '';
-    isAnchor: boolean = false;
     resource: string = '';
-    resourceData: LktObject = () => ({});
+    resourceData: LktObject = {};
     modal: ValidModalName = '';
     modalKey: ValidModalKey = '_';
-    modalData: ModalConfig = () => ({});
+    modalData: ModalConfig = {};
     confirmModal: ValidModalName = '';
     confirmModalKey: ValidModalKey = '_';
-    confirmData: ModalConfig = () => ({});
+    confirmData: ModalConfig = {};
     text: string = '';
     icon: string = '';
     iconDot: boolean = false;
     iconEnd: string = '';
     img: string = '';
-    newTab: boolean = false;
-    download: boolean = false;
-    downloadFileName: string = '';
     tooltip: boolean = false;
     showTooltipOnHoverDelay: number = 0;
     tooltipWindowMargin: number = 0;
@@ -70,7 +107,7 @@ export class Button extends LktItem implements ButtonConfig {
     tooltipClass?: string = '';
     splitClass?: string = '';
 
-    constructor(data: ButtonConfig = {}) {
+    constructor(data: Partial<ButtonConfig> = {}) {
         super();
         this.feed(data);
         this.anchor = new Anchor(data.anchor);

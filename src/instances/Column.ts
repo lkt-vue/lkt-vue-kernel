@@ -26,6 +26,27 @@ export class Column extends LktItem implements ColumnConfig{
         'action',
     ];
 
+    static lktDefaultValues: (keyof ColumnConfig)[] = [
+        'type',
+        'key',
+        'label',
+        'sortable',
+        'hidden',
+        'editable',
+        'formatter',
+        'checkEmpty',
+        'colspan',
+        'preferSlot',
+        'isForRowKey',
+        'extractTitleFromColumn',
+        'slotData',
+        'field',
+        'anchor',
+        'button',
+        'link',
+        'action',
+    ];
+
     type: ColumnType = ColumnType.None;
     key: string = '';
     label: string = '';
@@ -46,7 +67,7 @@ export class Column extends LktItem implements ColumnConfig{
     link: ValidSafeStringValue|SafeString|undefined = undefined;
     action?: Function = undefined;
 
-    constructor(data: ColumnConfig) {
+    constructor(data: Partial<ColumnConfig> = {}) {
         super();
         this.feed(data);
 

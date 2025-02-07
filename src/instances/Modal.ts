@@ -1,4 +1,3 @@
-import {FieldConfig} from "../config/FieldConfig.ts";
 import {LktItem} from "./LktItem.ts";
 import {ModalConfig} from "../config/ModalConfig.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
@@ -43,7 +42,7 @@ export class Modal extends LktItem implements ModalConfig {
     beforeClose: Function | undefined = undefined;
     item: LktObject = {};
 
-    constructor(data: FieldConfig = {}) {
+    constructor(data: Partial<ModalConfig> = {}) {
         super();
         this.feed(data);
     }

@@ -37,7 +37,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     locationY: TooltipLocationY = TooltipLocationY.Bottom;
     locationX: TooltipLocationX = TooltipLocationX.LeftCorner;
 
-    constructor(data: FieldConfig = {}) {
+    constructor(data: Partial<TooltipConfig> = {}) {
         super();
         this.feed(data);
     }
