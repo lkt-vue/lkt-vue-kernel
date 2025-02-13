@@ -8,6 +8,7 @@ export {LktObject} from './interfaces/LktObject.ts';
  */
 export {FieldConfig} from './config/FieldConfig.ts';
 export {OptionConfig} from './config/OptionConfig.ts';
+export {ModalCallbackConfig} from './config/ModalCallbackConfig.ts';
 export {ModalConfig} from './config/ModalConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
 export {AnchorConfig} from './config/AnchorConfig.ts';
@@ -38,6 +39,7 @@ export {ButtonType} from './enums/ButtonType.ts';
 export {ColumnType} from './enums/ColumnType.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
 export {FieldType} from './enums/FieldType.ts';
+export {ModalCallbackAction} from './enums/ModalCallbackAction.ts';
 export {ModalType} from './enums/ModalType.ts';
 export {MultipleOptionsDisplay} from './enums/MultipleOptionsDisplay.ts';
 export {SortDirection} from './enums/SortDirection.ts';

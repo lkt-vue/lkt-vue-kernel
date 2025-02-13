@@ -753,6 +753,16 @@ var Table = class extends LktItem {
   }
 };
 
+// src/enums/ModalCallbackAction.ts
+var ModalCallbackAction = /* @__PURE__ */ ((ModalCallbackAction2) => {
+  ModalCallbackAction2["Refresh"] = "refresh";
+  ModalCallbackAction2["Close"] = "close";
+  ModalCallbackAction2["ReOpen"] = "reOpen";
+  ModalCallbackAction2["Exec"] = "exec";
+  ModalCallbackAction2["Open"] = "open";
+  return ModalCallbackAction2;
+})(ModalCallbackAction || {});
+
 // src/enums/ModalType.ts
 var ModalType = /* @__PURE__ */ ((ModalType2) => {
   ModalType2["Modal"] = "modal";
@@ -823,6 +833,7 @@ export {
   LktItem,
   LktStrictItem,
   Modal,
+  ModalCallbackAction,
   ModalType,
   MultipleOptionsDisplay,
   Option,
