@@ -35,10 +35,10 @@ export interface ButtonConfig {
     // Modal integration
     modal?: ValidModalName
     modalKey?: ValidModalKey
-    modalData?: ModalConfig
+    modalData?: Partial<ModalConfig>
     confirmModal?: ValidModalName
     confirmModalKey?: ValidModalKey
-    confirmData?: ModalConfig
+    confirmData?: Partial<ModalConfig>
 
     // Icon and img
     iconDot?: boolean | string | number
@@ -61,4 +61,10 @@ export interface ButtonConfig {
     splitClass?: string
     clickRef?: Element | VueElement
     tabindex?: ValidTabIndex
+
+    // Extract data
+    prop?: LktObject
+
+    // Event management
+    onClick?: Function|undefined
 }

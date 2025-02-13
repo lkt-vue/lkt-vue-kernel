@@ -4,6 +4,7 @@ import {Column} from "../instances/Column.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
+import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
 
 export interface TableConfig {
 
@@ -18,6 +19,7 @@ export interface TableConfig {
     // Data visualization
     hideEmptyColumns?: boolean
     itemDisplayChecker?: Function
+    rowDisplayType?: ValidTableRowTypeValue // Replaced with diferent 'type' values
 
     // State
     loading?: boolean
@@ -93,7 +95,6 @@ export interface TableConfig {
 
     // Old and deprecated props (to be removed)
     itemMode?: boolean // Replaced with diferent 'type' values
-    // rowDisplayType?: RowDisplayType|Function // Replaced with diferent 'type' values
 }
 
 

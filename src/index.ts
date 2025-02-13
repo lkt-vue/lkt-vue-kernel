@@ -43,6 +43,7 @@ export {MultipleOptionsDisplay} from './enums/MultipleOptionsDisplay.ts';
 export {SortDirection} from './enums/SortDirection.ts';
 export {TableType} from './enums/TableType.ts';
 export {TablePermission} from './enums/TablePermission.ts';
+export {TableRowType} from './enums/TableRowType.ts';
 export {ToggleMode} from './enums/ToggleMode.ts';
 export {TooltipLocationY} from './enums/TooltipLocationY.ts';
 export {TooltipLocationX} from './enums/TooltipLocationX.ts';
@@ -51,20 +52,33 @@ export {TooltipPositionEngine} from './enums/TooltipPositionEngine.ts';
 /**
  * Export types
  */
+export {BeforeCloseModalData} from './types/BeforeCloseModalData.ts';
+export {ScanPropTarget} from './types/ScanPropTarget.ts';
 export {EmptyModalKey} from './types/EmptyModalKey.ts';
+export {ValidBeforeCloseModal} from './types/ValidBeforeCloseModal.ts';
 export {ValidFieldValue} from './types/ValidFieldValue.ts';
 export {ValidModalKey} from './types/ValidModalKey.ts';
 export {ValidModalName} from './types/ValidModalName.ts';
 export {ValidOptionValue} from './types/ValidOptionValue.ts';
 export {ValidColSpan} from './types/ValidColSpan.ts';
 export {ValidFieldMinMax} from './types/ValidFieldMinMax.ts';
-export {ValidTabIndex} from './types/ValidTabIndex.ts';
 export {ValidSafeStringValue} from './types/ValidSafeStringValue.ts';
+export {ValidScanPropTarget} from './types/ValidScanPropTarget.ts';
+export {ValidTabIndex} from './types/ValidTabIndex.ts';
+export {ValidTablePermission} from './types/ValidTablePermission.ts';
+export {ValidTableRowTypeValue} from './types/ValidTableRowTypeValue.ts';
 
 /**
  * Export value objects
  */
 export {SafeString} from './value-objects/SafeString.ts';
+
+/**
+ * Export functions
+ */
+export {extractPropValue} from "./functions/extract-data-functions.ts";
+
+
 
 // export function getDefaultValues<T>(cls: new () => T): T {
 //     const instance = new cls();

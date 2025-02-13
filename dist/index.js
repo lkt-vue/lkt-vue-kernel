@@ -358,7 +358,9 @@ var Button = class extends LktItem {
     "showTooltipOnHover",
     "hideTooltipOnLeave",
     "tooltipClass",
-    "splitClass"
+    "splitClass",
+    "prop",
+    "onClick"
   ];
   type = "button" /* Button */;
   name = generateRandomString2(10);
@@ -400,6 +402,9 @@ var Button = class extends LktItem {
   hideTooltipOnLeave = void 0;
   tooltipClass = "";
   splitClass = "";
+  prop = {};
+  // Event management
+  onClick = void 0;
   constructor(data = {}) {
     super();
     this.feed(data);
@@ -577,6 +582,8 @@ var Modal = class extends LktItem {
   zIndex = 500;
   beforeClose = void 0;
   item = {};
+  confirmButton = {};
+  cancelButton = {};
   constructor(data = {}) {
     super();
     this.feed(data);
@@ -591,6 +598,15 @@ var TableType = /* @__PURE__ */ ((TableType2) => {
   TableType2["Ol"] = "ol";
   return TableType2;
 })(TableType || {});
+
+// src/enums/TableRowType.ts
+var TableRowType = /* @__PURE__ */ ((TableRowType2) => {
+  TableRowType2[TableRowType2["Auto"] = 0] = "Auto";
+  TableRowType2[TableRowType2["PreferItem"] = 1] = "PreferItem";
+  TableRowType2[TableRowType2["PreferCustomItem"] = 2] = "PreferCustomItem";
+  TableRowType2[TableRowType2["PreferColumns"] = 3] = "PreferColumns";
+  return TableRowType2;
+})(TableRowType || {});
 
 // src/instances/Table.ts
 var Table = class extends LktItem {
@@ -669,6 +685,7 @@ var Table = class extends LktItem {
   // Data visualization
   hideEmptyColumns = false;
   itemDisplayChecker = void 0;
+  rowDisplayType = 0 /* Auto */;
   // State
   loading = false;
   page = 1;
@@ -771,6 +788,14 @@ var ToggleMode = /* @__PURE__ */ ((ToggleMode2) => {
   return ToggleMode2;
 })(ToggleMode || {});
 
+// src/functions/extract-data-functions.ts
+var extractPropValue = (needle, haystack) => {
+  if (typeof needle === "string" && needle.startsWith("prop:")) {
+    return haystack[needle.substring(5)];
+  }
+  return needle;
+};
+
 // src/index.ts
 function getDefaultValues(cls) {
   const instance = new cls();
@@ -805,11 +830,13 @@ export {
   SortDirection,
   Table,
   TablePermission,
+  TableRowType,
   TableType,
   ToggleMode,
   Tooltip,
   TooltipLocationX,
   TooltipLocationY,
   TooltipPositionEngine,
+  extractPropValue,
   getDefaultValues
 };

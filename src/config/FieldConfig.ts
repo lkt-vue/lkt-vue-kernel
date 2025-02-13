@@ -83,7 +83,9 @@ export interface FieldConfig {
     modal?: string | Function
     modalKey?: string | number | Function
     modalData?: LktObject
-    prop?: LktObject
     itemType?: string
     optionValueType?: string
+
+    // Extract data
+    prop?: LktObject
 }

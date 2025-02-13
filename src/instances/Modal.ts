@@ -3,6 +3,8 @@ import {ModalConfig} from "../config/ModalConfig.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {ValidModalName} from "../types/ValidModalName.ts";
+import {ValidBeforeCloseModal} from "../types/ValidBeforeCloseModal.ts";
+import {ButtonConfig} from "../config/ButtonConfig.ts";
 
 export class Modal extends LktItem implements ModalConfig {
 
@@ -39,8 +41,10 @@ export class Modal extends LktItem implements ModalConfig {
     modalName: ValidModalName = '';
     modalKey: ValidModalKey = '_';
     zIndex: number = 500;
-    beforeClose: Function | undefined = undefined;
+    beforeClose: ValidBeforeCloseModal = undefined;
     item: LktObject = {};
+    confirmButton?: Partial<ButtonConfig> = {};
+    cancelButton?: Partial<ButtonConfig> = {};
 
     constructor(data: Partial<ModalConfig> = {}) {
         super();

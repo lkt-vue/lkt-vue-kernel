@@ -1,0 +1,1 @@
+export type ScanPropTarget = string|number|undefined|Function;

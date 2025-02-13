@@ -7,6 +7,8 @@ import {Column} from "./Column.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
+import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
+import {TableRowType} from "../enums/TableRowType.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -87,6 +89,7 @@ export class Table extends LktItem implements TableConfig {
     // Data visualization
     hideEmptyColumns?: boolean = false;
     itemDisplayChecker?: Function = undefined;
+    rowDisplayType?: ValidTableRowTypeValue = TableRowType.Auto;
 
     // State
     loading?: boolean = false;

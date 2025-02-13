@@ -63,6 +63,8 @@ export class Button extends LktItem implements ButtonConfig {
         'hideTooltipOnLeave',
         'tooltipClass',
         'splitClass',
+        'prop',
+        'onClick',
     ];
 
     type: ButtonType = ButtonType.Button;
@@ -80,10 +82,10 @@ export class Button extends LktItem implements ButtonConfig {
     resourceData: LktObject = {};
     modal: ValidModalName = '';
     modalKey: ValidModalKey = '_';
-    modalData: ModalConfig = {};
+    modalData: Partial<ModalConfig> = {};
     confirmModal: ValidModalName = '';
     confirmModalKey: ValidModalKey = '_';
-    confirmData: ModalConfig = {};
+    confirmData: Partial<ModalConfig> = {};
     text: string = '';
     icon: string = '';
     iconDot: boolean = false;
@@ -106,6 +108,11 @@ export class Button extends LktItem implements ButtonConfig {
     hideTooltipOnLeave?: boolean = undefined;
     tooltipClass?: string = '';
     splitClass?: string = '';
+
+    prop?: LktObject = {};
+
+    // Event management
+    onClick?: Function|undefined = undefined;
 
     constructor(data: Partial<ButtonConfig> = {}) {
         super();
