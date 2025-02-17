@@ -14,15 +14,17 @@ export class Paginator extends LktItem implements PaginatorConfig {
         'class',
         'resource',
         'readOnly',
+        'loading',
         'filters',
     ];
 
-    type: PaginatorType = PaginatorType.PagesPrevNext;
-    modelValue: number = 1;
-    class: string = '';
-    resource: string = '';
-    readOnly: boolean = false;
-    filters: LktObject = {};
+    type?: PaginatorType = PaginatorType.PagesPrevNext;
+    modelValue?: number = 1;
+    class?: string = '';
+    resource?: string = '';
+    readOnly?: boolean = false;
+    loading?: boolean = false;
+    filters?: LktObject = {};
 
     constructor(data: Partial<PaginatorConfig> = {}) {
         super();

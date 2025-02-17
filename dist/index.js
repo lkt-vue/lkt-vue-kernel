@@ -610,6 +610,7 @@ var Paginator = class extends LktItem {
     "class",
     "resource",
     "readOnly",
+    "loading",
     "filters"
   ];
   type = "pages-prev-next" /* PagesPrevNext */;
@@ -617,6 +618,7 @@ var Paginator = class extends LktItem {
   class = "";
   resource = "";
   readOnly = false;
+  loading = false;
   filters = {};
   constructor(data = {}) {
     super();

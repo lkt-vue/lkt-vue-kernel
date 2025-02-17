@@ -61,6 +61,7 @@ export {BeforeCloseModalData} from './types/BeforeCloseModalData.ts';
 export {ScanPropTarget} from './types/ScanPropTarget.ts';
 export {EmptyModalKey} from './types/EmptyModalKey.ts';
 export {ValidBeforeCloseModal} from './types/ValidBeforeCloseModal.ts';
+export {ValidCustomSlot} from './types/ValidCustomSlot.ts';
 export {ValidFieldValue} from './types/ValidFieldValue.ts';
 export {ValidModalKey} from './types/ValidModalKey.ts';
 export {ValidModalName} from './types/ValidModalName.ts';

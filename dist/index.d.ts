@@ -1,4 +1,4 @@
-import { VueElement } from 'vue';
+import { VueElement, Component } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
 
 interface LktObject {
@@ -345,12 +345,13 @@ declare enum PaginatorType {
 }
 
 interface PaginatorConfig {
-    type: PaginatorType;
-    modelValue: number;
-    class: string;
-    resource: string;
-    readOnly: boolean;
-    filters: LktObject;
+    type?: PaginatorType;
+    modelValue?: number;
+    class?: string;
+    resource?: string;
+    readOnly?: boolean;
+    loading?: boolean;
+    filters?: LktObject;
 }
 
 declare enum TooltipLocationY {
@@ -749,12 +750,13 @@ declare class Modal extends LktItem implements ModalConfig {
 declare class Paginator extends LktItem implements PaginatorConfig {
     static lktAllowUndefinedProps: string[];
     static lktDefaultValues: (keyof PaginatorConfig)[];
-    type: PaginatorType;
-    modelValue: number;
-    class: string;
-    resource: string;
-    readOnly: boolean;
-    filters: LktObject;
+    type?: PaginatorType;
+    modelValue?: number;
+    class?: string;
+    resource?: string;
+    readOnly?: boolean;
+    loading?: boolean;
+    filters?: LktObject;
     constructor(data?: Partial<PaginatorConfig>);
 }
 
@@ -834,6 +836,8 @@ declare enum SortDirection {
 
 type ScanPropTarget = string | number | undefined | Function;
 
+type ValidCustomSlot = string | Component | undefined;
+
 type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget);
 
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
@@ -847,4 +851,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractPropValue, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractPropValue, getDefaultValues };
