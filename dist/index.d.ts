@@ -335,6 +335,24 @@ interface ModalConfig extends LktObject {
     cancelButton?: Partial<ButtonConfig>;
 }
 
+declare enum PaginatorType {
+    Pages = "pages",
+    PrevNext = "prev-next",
+    PagesPrevNext = "pages-prev-next",
+    PagesPrevNextFirstLast = "pages-prev-next-first-last",
+    LoadMore = "load-more",
+    Infinite = "infinite"
+}
+
+interface PaginatorConfig {
+    type: PaginatorType;
+    modelValue: number;
+    class: string;
+    resource: string;
+    readOnly: boolean;
+    filters: LktObject;
+}
+
 declare enum TooltipLocationY {
     Top = "top",
     Bottom = "bottom",
@@ -681,7 +699,6 @@ interface TableConfig {
     slotItemVar?: string;
     modal?: string;
     modalData?: LktObject;
-    itemMode?: boolean;
 }
 
 declare class LktStrictItem extends LktItem {
@@ -727,6 +744,18 @@ declare class Modal extends LktItem implements ModalConfig {
     confirmButton?: Partial<ButtonConfig>;
     cancelButton?: Partial<ButtonConfig>;
     constructor(data?: Partial<ModalConfig>);
+}
+
+declare class Paginator extends LktItem implements PaginatorConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof PaginatorConfig)[];
+    type: PaginatorType;
+    modelValue: number;
+    class: string;
+    resource: string;
+    readOnly: boolean;
+    filters: LktObject;
+    constructor(data?: Partial<PaginatorConfig>);
 }
 
 declare class Table extends LktItem implements TableConfig {
@@ -818,4 +847,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractPropValue, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractPropValue, getDefaultValues };

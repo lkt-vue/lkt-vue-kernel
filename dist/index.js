@@ -590,6 +590,40 @@ var Modal = class extends LktItem {
   }
 };
 
+// src/enums/PaginatorType.ts
+var PaginatorType = /* @__PURE__ */ ((PaginatorType2) => {
+  PaginatorType2["Pages"] = "pages";
+  PaginatorType2["PrevNext"] = "prev-next";
+  PaginatorType2["PagesPrevNext"] = "pages-prev-next";
+  PaginatorType2["PagesPrevNextFirstLast"] = "pages-prev-next-first-last";
+  PaginatorType2["LoadMore"] = "load-more";
+  PaginatorType2["Infinite"] = "infinite";
+  return PaginatorType2;
+})(PaginatorType || {});
+
+// src/instances/Paginator.ts
+var Paginator = class extends LktItem {
+  static lktAllowUndefinedProps = [];
+  static lktDefaultValues = [
+    "type",
+    "modelValue",
+    "class",
+    "resource",
+    "readOnly",
+    "filters"
+  ];
+  type = "pages-prev-next" /* PagesPrevNext */;
+  modelValue = 1;
+  class = "";
+  resource = "";
+  readOnly = false;
+  filters = {};
+  constructor(data = {}) {
+    super();
+    this.feed(data);
+  }
+};
+
 // src/enums/TableType.ts
 var TableType = /* @__PURE__ */ ((TableType2) => {
   TableType2["Table"] = "table";
@@ -837,6 +871,8 @@ export {
   ModalType,
   MultipleOptionsDisplay,
   Option,
+  Paginator,
+  PaginatorType,
   SafeString,
   SortDirection,
   Table,

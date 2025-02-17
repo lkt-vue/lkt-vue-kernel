@@ -91,10 +91,6 @@ export interface TableConfig {
     slotItemVar?: string
     modal?: string
     modalData?: LktObject
-
-
-    // Old and deprecated props (to be removed)
-    itemMode?: boolean // Replaced with diferent 'type' values
 }
 
 

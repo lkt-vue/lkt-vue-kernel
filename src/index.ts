@@ -10,6 +10,7 @@ export {FieldConfig} from './config/FieldConfig.ts';
 export {OptionConfig} from './config/OptionConfig.ts';
 export {ModalCallbackConfig} from './config/ModalCallbackConfig.ts';
 export {ModalConfig} from './config/ModalConfig.ts';
+export {PaginatorConfig} from './config/PaginatorConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
 export {AnchorConfig} from './config/AnchorConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
@@ -29,6 +30,7 @@ export {Anchor} from './instances/Anchor.ts';
 export {Button} from './instances/Button.ts';
 export {Tooltip} from './instances/Tooltip.ts';
 export {Modal} from './instances/Modal.ts';
+export {Paginator} from './instances/Paginator.ts';
 export {Table} from './instances/Table.ts';
 
 /**
@@ -42,6 +44,7 @@ export {FieldType} from './enums/FieldType.ts';
 export {ModalCallbackAction} from './enums/ModalCallbackAction.ts';
 export {ModalType} from './enums/ModalType.ts';
 export {MultipleOptionsDisplay} from './enums/MultipleOptionsDisplay.ts';
+export {PaginatorType} from './enums/PaginatorType.ts';
 export {SortDirection} from './enums/SortDirection.ts';
 export {TableType} from './enums/TableType.ts';
 export {TablePermission} from './enums/TablePermission.ts';
