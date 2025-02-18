@@ -8,6 +8,7 @@ export {LktObject} from './interfaces/LktObject.ts';
  */
 export {FieldConfig} from './config/FieldConfig.ts';
 export {OptionConfig} from './config/OptionConfig.ts';
+export {IsDisabledCheckerArgs} from './config/IsDisabledCheckerArgs.ts';
 export {ModalCallbackConfig} from './config/ModalCallbackConfig.ts';
 export {ModalConfig} from './config/ModalConfig.ts';
 export {PaginatorConfig} from './config/PaginatorConfig.ts';
@@ -60,12 +61,16 @@ export {TooltipPositionEngine} from './enums/TooltipPositionEngine.ts';
 export {BeforeCloseModalData} from './types/BeforeCloseModalData.ts';
 export {ScanPropTarget} from './types/ScanPropTarget.ts';
 export {EmptyModalKey} from './types/EmptyModalKey.ts';
+export {IsDisabledChecker} from './types/IsDisabledChecker.ts';
 export {ValidBeforeCloseModal} from './types/ValidBeforeCloseModal.ts';
 export {ValidCustomSlot} from './types/ValidCustomSlot.ts';
+export {ValidDragConfig} from './types/ValidDragConfig.ts';
 export {ValidFieldValue} from './types/ValidFieldValue.ts';
+export {ValidIsDisabledValue} from './types/ValidIsDisabledValue.ts';
 export {ValidModalKey} from './types/ValidModalKey.ts';
 export {ValidModalName} from './types/ValidModalName.ts';
 export {ValidOptionValue} from './types/ValidOptionValue.ts';
+export {ValidPaginatorConfig} from './types/ValidPaginatorConfig.ts';
 export {ValidColSpan} from './types/ValidColSpan.ts';
 export {ValidFieldMinMax} from './types/ValidFieldMinMax.ts';
 export {ValidSafeStringValue} from './types/ValidSafeStringValue.ts';
@@ -82,7 +87,7 @@ export {SafeString} from './value-objects/SafeString.ts';
 /**
  * Export functions
  */
-export {extractPropValue} from "./functions/extract-data-functions.ts";
+export {extractPropValue, extractI18nValue} from "./functions/extract-data-functions.ts";
 
 
 

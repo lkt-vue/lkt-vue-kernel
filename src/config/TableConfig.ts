@@ -5,6 +5,8 @@ import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
+import {ValidDragConfig} from "../types/ValidDragConfig.ts";
+import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 
 export interface TableConfig {
 
@@ -19,7 +21,7 @@ export interface TableConfig {
     // Data visualization
     hideEmptyColumns?: boolean
     itemDisplayChecker?: Function
-    rowDisplayType?: ValidTableRowTypeValue // Replaced with diferent 'type' values
+    rowDisplayType?: ValidTableRowTypeValue
 
     // State
     loading?: boolean
@@ -33,12 +35,11 @@ export interface TableConfig {
     sorter?: Function
     initialSorting?: boolean
 
-    // Drag (Old)
-    draggableChecker?: Function
-    checkValidDrag?: Function
-    renderDrag?: boolean|Function
-    disabledDrag?: boolean|Function
-    draggableItemKey?: string
+    // Drag
+    drag?: ValidDragConfig
+
+    // Pagination
+    paginator?: ValidPaginatorConfig;
 
     // New proposed prop: header
     header?: HeaderConfig
@@ -49,48 +50,36 @@ export interface TableConfig {
     titleIcon?: string
     headerClass?: string
 
-
-    // New proposed prop: saveButton
+    // Buttons
     saveButton?: ButtonConfig
     createButton?: ButtonConfig
     dropButton?: ButtonConfig
+    hiddenSave?: boolean
 
 
     wrapContentTag?: string
     wrapContentClass?: string
     itemsContainerClass?: string
-    hiddenSave?: boolean
-    saveDisabled?: boolean
-    saveValidator?: Function
-    saveConfirm?: string
-    confirmData?: LktObject
-    saveResource?: string
-    saveResourceData?: LktObject
-    saveTooltipEngine?: string
-    splitSave?: boolean
-    saveText?: string
     createText?: string
     createIcon?: string
     createRoute?: string
+    createDisabled?: boolean
+    createEnabledValidator?: Function
     dropText?: string
     dropIcon?: string
+    dropConfirm?: string
+    dropResource?: string
     editText?: string
     editIcon?: string
     editLink?: string
     editModeText?: string
     switchEditionEnabled?: boolean
-    createDisabled?: boolean
-    dropConfirm?: string
-    dropResource?: string
     addNavigation?: boolean
-    createEnabledValidator?: Function
     newValueGenerator?: Function
     requiredItemsForTopCreate?: number
     requiredItemsForBottomCreate?: number
 
     slotItemVar?: string
-    modal?: string
-    modalData?: LktObject
 }
 
 

@@ -20,7 +20,11 @@ export default {
         outDir,
         minify: true,
         rollupOptions: {
-            external: [ 'vue' ],
+            external: [
+                'vue',
+                'lkt-data-state',
+                'lkt-i18n',
+            ],
             output: {
                 globals: {
                     vue: 'Vue',

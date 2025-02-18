@@ -9,6 +9,7 @@ import {ModalConfig} from "./ModalConfig.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {Anchor} from "../instances/Anchor.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
+import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 
 export interface ButtonConfig {
     type?: ButtonType
@@ -21,7 +22,7 @@ export interface ButtonConfig {
     containerClass?: string
     palette?: string
     value?: string
-    disabled?: boolean
+    disabled?: ValidIsDisabledValue
     loading?: boolean
     wrapContent?: boolean
 
@@ -46,9 +47,7 @@ export interface ButtonConfig {
     img?: string
 
     // Tooltip and split
-    split?: boolean | ToggleMode
     splitIcon?: string
-    tooltip?: boolean | ToggleMode
     tooltipEngine?: TooltipPositionEngine
     showTooltipOnHover?: boolean
     showTooltipOnHoverDelay?: number
@@ -67,4 +66,5 @@ export interface ButtonConfig {
 
     // Event management
     onClick?: Function|undefined
+    onConfirm?: Function|undefined
 }

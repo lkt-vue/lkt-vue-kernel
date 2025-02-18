@@ -1,3 +1,4 @@
+import { DataState } from 'lkt-data-state';
 import { VueElement, Component } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
 
@@ -163,6 +164,11 @@ interface FieldConfig {
     prop?: LktObject;
 }
 
+interface IsDisabledCheckerArgs {
+    value?: any;
+    dataState?: DataState;
+}
+
 declare enum ModalCallbackAction {
     Refresh = "refresh",
     Close = "close",
@@ -210,11 +216,6 @@ declare const enum ButtonType {
     Tooltip = "tooltip",// Tooltip button, content always generated
     TooltipLazy = "tooltip-lazy",// Tooltip button, contents generated after first open
     TooltipEver = "tooltip-ever"
-}
-
-declare enum ToggleMode {
-    Lazy = "lazy",
-    Ever = "ever"
 }
 
 declare enum AnchorType {
@@ -268,6 +269,10 @@ declare enum TooltipPositionEngine {
     Absolute = "absolute"
 }
 
+type IsDisabledChecker = ((args?: IsDisabledCheckerArgs) => boolean);
+
+type ValidIsDisabledValue = boolean | undefined | IsDisabledChecker;
+
 interface ButtonConfig {
     type?: ButtonType;
     checked?: boolean;
@@ -279,7 +284,7 @@ interface ButtonConfig {
     containerClass?: string;
     palette?: string;
     value?: string;
-    disabled?: boolean;
+    disabled?: ValidIsDisabledValue;
     loading?: boolean;
     wrapContent?: boolean;
     anchor?: AnchorConfig | Anchor;
@@ -294,9 +299,7 @@ interface ButtonConfig {
     iconDot?: boolean | string | number;
     iconEnd?: string;
     img?: string;
-    split?: boolean | ToggleMode;
     splitIcon?: string;
-    tooltip?: boolean | ToggleMode;
     tooltipEngine?: TooltipPositionEngine;
     showTooltipOnHover?: boolean;
     showTooltipOnHoverDelay?: number;
@@ -311,6 +314,7 @@ interface ButtonConfig {
     tabindex?: ValidTabIndex;
     prop?: LktObject;
     onClick?: Function | undefined;
+    onConfirm?: Function | undefined;
 }
 
 interface ModalConfig extends LktObject {
@@ -388,8 +392,10 @@ interface TooltipConfig {
 type ValidDrag = boolean | ((item: LktObject) => boolean);
 
 interface DragConfig {
+    enabled: boolean;
     isDraggable?: ValidDrag;
     isValid?: ValidDrag;
+    isDisabled?: boolean | Function;
     canRender?: boolean | Function;
     dragKey?: string;
 }
@@ -511,10 +517,9 @@ declare class Button extends LktItem implements ButtonConfig {
     class: string;
     containerClass: string;
     value: string;
-    disabled: boolean;
+    disabled: ValidIsDisabledValue;
     loading: boolean;
     wrapContent: boolean;
-    split: boolean;
     splitIcon: string;
     resource: string;
     resourceData: LktObject;
@@ -529,7 +534,6 @@ declare class Button extends LktItem implements ButtonConfig {
     iconDot: boolean;
     iconEnd: string;
     img: string;
-    tooltip: boolean;
     showTooltipOnHoverDelay: number;
     tooltipWindowMargin: number;
     tooltipReferrerMargin: number;
@@ -547,6 +551,7 @@ declare class Button extends LktItem implements ButtonConfig {
     splitClass?: string;
     prop?: LktObject;
     onClick?: Function | undefined;
+    onConfirm?: Function | undefined;
     constructor(data?: Partial<ButtonConfig>);
 }
 
@@ -635,6 +640,10 @@ declare enum TableRowType {
 
 type ValidTableRowTypeValue = TableRowType | ((...args: any[]) => TableRowType) | undefined;
 
+type ValidDragConfig = DragConfig | undefined;
+
+type ValidPaginatorConfig = PaginatorConfig | undefined;
+
 interface TableConfig {
     modelValue: LktObject[];
     type?: TableType;
@@ -653,11 +662,8 @@ interface TableConfig {
     sortable?: boolean;
     sorter?: Function;
     initialSorting?: boolean;
-    draggableChecker?: Function;
-    checkValidDrag?: Function;
-    renderDrag?: boolean | Function;
-    disabledDrag?: boolean | Function;
-    draggableItemKey?: string;
+    drag?: ValidDragConfig;
+    paginator?: ValidPaginatorConfig;
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
@@ -666,40 +672,29 @@ interface TableConfig {
     saveButton?: ButtonConfig;
     createButton?: ButtonConfig;
     dropButton?: ButtonConfig;
+    hiddenSave?: boolean;
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
-    hiddenSave?: boolean;
-    saveDisabled?: boolean;
-    saveValidator?: Function;
-    saveConfirm?: string;
-    confirmData?: LktObject;
-    saveResource?: string;
-    saveResourceData?: LktObject;
-    saveTooltipEngine?: string;
-    splitSave?: boolean;
-    saveText?: string;
     createText?: string;
     createIcon?: string;
     createRoute?: string;
+    createDisabled?: boolean;
+    createEnabledValidator?: Function;
     dropText?: string;
     dropIcon?: string;
+    dropConfirm?: string;
+    dropResource?: string;
     editText?: string;
     editIcon?: string;
     editLink?: string;
     editModeText?: string;
     switchEditionEnabled?: boolean;
-    createDisabled?: boolean;
-    dropConfirm?: string;
-    dropResource?: string;
     addNavigation?: boolean;
-    createEnabledValidator?: Function;
     newValueGenerator?: Function;
     requiredItemsForTopCreate?: number;
     requiredItemsForBottomCreate?: number;
     slotItemVar?: string;
-    modal?: string;
-    modalData?: LktObject;
 }
 
 declare class LktStrictItem extends LktItem {
@@ -779,11 +774,8 @@ declare class Table extends LktItem implements TableConfig {
     sortable?: boolean;
     sorter?: Function;
     initialSorting?: boolean;
-    draggableChecker?: Function;
-    checkValidDrag?: Function;
-    renderDrag?: boolean | Function;
-    disabledDrag?: boolean | Function;
-    draggableItemKey?: string;
+    drag?: ValidDragConfig;
+    paginator?: ValidPaginatorConfig;
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
@@ -792,19 +784,10 @@ declare class Table extends LktItem implements TableConfig {
     saveButton?: ButtonConfig;
     createButton?: ButtonConfig;
     dropButton?: ButtonConfig;
+    hiddenSave?: boolean;
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
-    hiddenSave?: boolean;
-    saveDisabled?: boolean;
-    saveValidator?: Function;
-    saveConfirm?: string;
-    confirmData?: LktObject;
-    saveResource?: string;
-    saveResourceData?: LktObject;
-    saveTooltipEngine?: string;
-    splitSave?: boolean;
-    saveText?: string;
     createText?: string;
     createIcon?: string;
     createRoute?: string;
@@ -824,14 +807,17 @@ declare class Table extends LktItem implements TableConfig {
     requiredItemsForTopCreate?: number;
     requiredItemsForBottomCreate?: number;
     slotItemVar?: string;
-    modal?: string;
-    modalData?: LktObject;
     constructor(data?: Partial<TableConfig>);
 }
 
 declare enum SortDirection {
     Asc = "asc",
     Desc = "desc"
+}
+
+declare enum ToggleMode {
+    Lazy = "lazy",
+    Ever = "ever"
 }
 
 type ScanPropTarget = string | number | undefined | Function;
@@ -841,6 +827,7 @@ type ValidCustomSlot = string | Component | undefined;
 type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget);
 
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
+declare const extractI18nValue: (needle: string) => any;
 
 /**
  * Export common interfaces
@@ -851,4 +838,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidFieldMinMax, type ValidFieldValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractPropValue, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractI18nValue, extractPropValue, getDefaultValues };

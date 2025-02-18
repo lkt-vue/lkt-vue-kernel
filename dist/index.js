@@ -328,7 +328,6 @@ var Button = class extends LktItem {
     "disabled",
     "loading",
     "wrapContent",
-    "split",
     "splitIcon",
     "resource",
     "resourceData",
@@ -343,7 +342,6 @@ var Button = class extends LktItem {
     "iconDot",
     "iconEnd",
     "img",
-    "tooltip",
     "showTooltipOnHoverDelay",
     "tooltipWindowMargin",
     "tooltipReferrerMargin",
@@ -360,7 +358,8 @@ var Button = class extends LktItem {
     "tooltipClass",
     "splitClass",
     "prop",
-    "onClick"
+    "onClick",
+    "onConfirm"
   ];
   type = "button" /* Button */;
   name = generateRandomString2(10);
@@ -371,7 +370,6 @@ var Button = class extends LktItem {
   disabled = false;
   loading = false;
   wrapContent = false;
-  split = false;
   splitIcon = "";
   resource = "";
   resourceData = {};
@@ -386,7 +384,6 @@ var Button = class extends LktItem {
   iconDot = false;
   iconEnd = "";
   img = "";
-  tooltip = false;
   showTooltipOnHoverDelay = 0;
   tooltipWindowMargin = 0;
   tooltipReferrerMargin = 0;
@@ -405,6 +402,7 @@ var Button = class extends LktItem {
   prop = {};
   // Event management
   onClick = void 0;
+  onConfirm = void 0;
   constructor(data = {}) {
     super();
     this.feed(data);
@@ -663,11 +661,8 @@ var Table = class extends LktItem {
     "sortable",
     "sorter",
     "initialSorting",
-    "draggableChecker",
-    "checkValidDrag",
-    "renderDrag",
-    "disabledDrag",
-    "draggableItemKey",
+    "drag",
+    "paginator",
     "header",
     "title",
     "titleTag",
@@ -680,15 +675,6 @@ var Table = class extends LktItem {
     "wrapContentClass",
     "itemsContainerClass",
     "hiddenSave",
-    "saveDisabled",
-    "saveValidator",
-    "saveConfirm",
-    "confirmData",
-    "saveResource",
-    "saveResourceData",
-    "saveTooltipEngine",
-    "splitSave",
-    "saveText",
     "createText",
     "createIcon",
     "createRoute",
@@ -707,9 +693,7 @@ var Table = class extends LktItem {
     "newValueGenerator",
     "requiredItemsForTopCreate",
     "requiredItemsForBottomCreate",
-    "slotItemVar",
-    "modal",
-    "modalData"
+    "slotItemVar"
   ];
   // Data
   modelValue = [];
@@ -732,12 +716,10 @@ var Table = class extends LktItem {
   sortable = false;
   sorter = void 0;
   initialSorting = false;
-  // Drag (Old)
-  draggableChecker;
-  checkValidDrag;
-  renderDrag;
-  disabledDrag;
-  draggableItemKey;
+  // Drag
+  drag = void 0;
+  // Pagination
+  paginator = void 0;
   // New proposed prop: header
   header;
   // Replaces:
@@ -745,23 +727,14 @@ var Table = class extends LktItem {
   titleTag = "h2";
   titleIcon = "";
   headerClass = "";
-  // New proposed prop: saveButton
+  // Buttons
   saveButton = {};
   createButton = {};
   dropButton = {};
+  hiddenSave = false;
   wrapContentTag = "div";
   wrapContentClass = "";
   itemsContainerClass = "";
-  hiddenSave = false;
-  saveDisabled = false;
-  saveValidator = void 0;
-  saveConfirm = "";
-  confirmData = {};
-  saveResource = "";
-  saveResourceData = {};
-  saveTooltipEngine = "absolute" /* Absolute */;
-  splitSave = false;
-  saveText = "";
   createText = "";
   createIcon = "";
   createRoute = "";
@@ -781,8 +754,6 @@ var Table = class extends LktItem {
   requiredItemsForTopCreate = 0;
   requiredItemsForBottomCreate = 0;
   slotItemVar = "item";
-  modal = "";
-  modalData = {};
   constructor(data = {}) {
     super();
     this.feed(data);
@@ -835,9 +806,16 @@ var ToggleMode = /* @__PURE__ */ ((ToggleMode2) => {
 })(ToggleMode || {});
 
 // src/functions/extract-data-functions.ts
+import { __ } from "lkt-i18n";
 var extractPropValue = (needle, haystack) => {
   if (typeof needle === "string" && needle.startsWith("prop:")) {
     return haystack[needle.substring(5)];
+  }
+  return needle;
+};
+var extractI18nValue = (needle) => {
+  if (needle.startsWith("__:")) {
+    return __(needle.substring(3));
   }
   return needle;
 };
@@ -886,6 +864,7 @@ export {
   TooltipLocationX,
   TooltipLocationY,
   TooltipPositionEngine,
+  extractI18nValue,
   extractPropValue,
   getDefaultValues
 };

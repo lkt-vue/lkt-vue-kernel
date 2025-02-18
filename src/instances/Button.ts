@@ -11,6 +11,7 @@ import {VueElement} from "vue";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {Anchor} from "./Anchor.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
+import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -32,7 +33,6 @@ export class Button extends LktItem implements ButtonConfig {
         'disabled',
         'loading',
         'wrapContent',
-        'split',
         'splitIcon',
         'resource',
         'resourceData',
@@ -47,7 +47,6 @@ export class Button extends LktItem implements ButtonConfig {
         'iconDot',
         'iconEnd',
         'img',
-        'tooltip',
         'showTooltipOnHoverDelay',
         'tooltipWindowMargin',
         'tooltipReferrerMargin',
@@ -65,6 +64,7 @@ export class Button extends LktItem implements ButtonConfig {
         'splitClass',
         'prop',
         'onClick',
+        'onConfirm',
     ];
 
     type: ButtonType = ButtonType.Button;
@@ -73,10 +73,9 @@ export class Button extends LktItem implements ButtonConfig {
     class: string = '';
     containerClass: string = '';
     value: string = '';
-    disabled: boolean = false;
+    disabled: ValidIsDisabledValue = false;
     loading: boolean = false;
     wrapContent: boolean = false;
-    split: boolean = false;
     splitIcon: string = '';
     resource: string = '';
     resourceData: LktObject = {};
@@ -91,7 +90,6 @@ export class Button extends LktItem implements ButtonConfig {
     iconDot: boolean = false;
     iconEnd: string = '';
     img: string = '';
-    tooltip: boolean = false;
     showTooltipOnHoverDelay: number = 0;
     tooltipWindowMargin: number = 0;
     tooltipReferrerMargin: number = 0;
@@ -113,6 +111,7 @@ export class Button extends LktItem implements ButtonConfig {
 
     // Event management
     onClick?: Function|undefined = undefined;
+    onConfirm?: Function|undefined = undefined;
 
     constructor(data: Partial<ButtonConfig> = {}) {
         super();

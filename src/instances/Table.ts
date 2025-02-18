@@ -6,9 +6,10 @@ import {TableType} from "../enums/TableType.ts";
 import {Column} from "./Column.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
-import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
 import {TableRowType} from "../enums/TableRowType.ts";
+import {ValidDragConfig} from "../types/ValidDragConfig.ts";
+import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -29,11 +30,8 @@ export class Table extends LktItem implements TableConfig {
         'sortable',
         'sorter',
         'initialSorting',
-        'draggableChecker',
-        'checkValidDrag',
-        'renderDrag',
-        'disabledDrag',
-        'draggableItemKey',
+        'drag',
+        'paginator',
         'header',
         'title',
         'titleTag',
@@ -46,15 +44,6 @@ export class Table extends LktItem implements TableConfig {
         'wrapContentClass',
         'itemsContainerClass',
         'hiddenSave',
-        'saveDisabled',
-        'saveValidator',
-        'saveConfirm',
-        'confirmData',
-        'saveResource',
-        'saveResourceData',
-        'saveTooltipEngine',
-        'splitSave',
-        'saveText',
         'createText',
         'createIcon',
         'createRoute',
@@ -74,8 +63,6 @@ export class Table extends LktItem implements TableConfig {
         'requiredItemsForTopCreate',
         'requiredItemsForBottomCreate',
         'slotItemVar',
-        'modal',
-        'modalData',
     ];
 
     // Data
@@ -103,12 +90,11 @@ export class Table extends LktItem implements TableConfig {
     sorter?: Function = undefined;
     initialSorting?: boolean = false;
 
-    // Drag (Old)
-    draggableChecker?: Function
-    checkValidDrag?: Function
-    renderDrag?: boolean | Function
-    disabledDrag?: boolean | Function
-    draggableItemKey?: string
+    // Drag
+    drag?: ValidDragConfig = undefined;
+
+    // Pagination
+    paginator?: ValidPaginatorConfig = undefined;
 
     // New proposed prop: header
     header?: HeaderConfig
@@ -119,26 +105,16 @@ export class Table extends LktItem implements TableConfig {
     titleIcon?: string = '';
     headerClass?: string = '';
 
-
-    // New proposed prop: saveButton
+    // Buttons
     saveButton?: ButtonConfig = {};
     createButton?: ButtonConfig = {};
     dropButton?: ButtonConfig = {};
+    hiddenSave?: boolean = false;
 
 
     wrapContentTag?: string = 'div';
     wrapContentClass?: string = '';
     itemsContainerClass?: string = '';
-    hiddenSave?: boolean = false;
-    saveDisabled?: boolean = false;
-    saveValidator?: Function = undefined;
-    saveConfirm?: string = '';
-    confirmData?: LktObject = {};
-    saveResource?: string = '';
-    saveResourceData?: LktObject = {};
-    saveTooltipEngine?: string = TooltipPositionEngine.Absolute;
-    splitSave?: boolean = false;
-    saveText?: string = '';
     createText?: string = '';
     createIcon?: string = '';
     createRoute?: string = '';
@@ -159,8 +135,6 @@ export class Table extends LktItem implements TableConfig {
     requiredItemsForBottomCreate?: number = 0;
 
     slotItemVar?: string = 'item';
-    modal?: string = '';
-    modalData?: LktObject = {};
 
 
     constructor(data: Partial<TableConfig> = {}) {
