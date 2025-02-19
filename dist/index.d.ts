@@ -1,9 +1,192 @@
-import { DataState } from 'lkt-data-state';
 import { VueElement, Component } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
+import { DataState } from 'lkt-data-state';
 
 interface LktObject {
     [key: string | number]: any;
+}
+
+declare const enum ButtonType {
+    Button = "button",// Default
+    Submit = "submit",// Form submit
+    Reset = "reset",
+    Anchor = "anchor",// Turns on anchor mode
+    Content = "content",// No click event
+    Switch = "switch",// Has a visible boolean state
+    HiddenSwitch = "hidden-switch",// Has a hidden boolean state
+    Split = "split",// Split button, content always generated
+    SplitLazy = "split-lazy",// Split button, contents generated after first open
+    SplitEver = "split-ever",// Split button, contents generated each time it's clicked
+    Tooltip = "tooltip",// Tooltip button, content always generated
+    TooltipLazy = "tooltip-lazy",// Tooltip button, contents generated after first open
+    TooltipEver = "tooltip-ever"
+}
+
+declare enum AnchorType {
+    Href = "href",// Vanilla JS+HTML anchor
+    RouterLink = "router-link",// For vue-router integration
+    RouterLinkBack = "router-link-back",// For vue-router back navigation
+    Mail = "mail",// Triggers OS mail integration
+    Tel = "tel",// Triggers OS phone integration
+    Tab = "tab",// New tab, similar to target="_blank"
+    Download = "download",// Download link
+    Action = "action",// Performs an action, without route changes
+    Legacy = ""
+}
+
+type ValidModalName = string | Function | undefined;
+
+type EmptyModalKey = '_';
+
+type ValidModalKey = string | Function | EmptyModalKey;
+
+type BeforeCloseModalData = {
+    modalName: ValidModalKey;
+    modalKey: ValidModalKey;
+    item?: LktObject;
+};
+
+type ValidBeforeCloseModal = Function | undefined | ((data: BeforeCloseModalData) => void);
+
+declare enum ModalType {
+    Modal = "modal",
+    Confirm = "confirm"
+}
+
+interface ModalConfig extends LktObject {
+    type?: ModalType;
+    size?: string;
+    preTitle?: string;
+    preTitleIcon?: string;
+    title?: string;
+    closeIcon?: string;
+    closeConfirm?: ValidModalName;
+    closeConfirmKey?: ValidModalKey;
+    showClose?: boolean;
+    disabledClose?: boolean;
+    disabledVeilClick?: boolean;
+    hiddenFooter?: boolean;
+    modalName?: ValidModalName;
+    modalKey?: ValidModalKey;
+    zIndex?: number;
+    beforeClose?: ValidBeforeCloseModal;
+    item?: LktObject;
+    confirmButton?: Partial<ButtonConfig>;
+    cancelButton?: Partial<ButtonConfig>;
+}
+
+interface AnchorConfig {
+    type?: AnchorType;
+    to?: RouteLocationRaw | string;
+    class?: string;
+    isActive?: boolean;
+    downloadFileName?: string;
+    disabled?: boolean;
+    onClick?: Function | undefined;
+    confirmModal?: ValidModalName;
+    confirmModalKey?: ValidModalKey;
+    confirmData?: ModalConfig;
+    imposter?: boolean;
+    external?: boolean;
+}
+
+type ValidTabIndex = string | number | undefined;
+
+declare class LktItem implements LktObject {
+    static lktAllowUndefinedProps: string[];
+    static lktExcludedProps: string[];
+    static lktDateProps: string[];
+    static lktStrictItem: boolean;
+    static lktDefaultValues: (keyof LktObject)[];
+    constructor(data?: LktObject);
+    feed(data?: LktObject, target?: this): void;
+    assignProp(key: string, value: any): void;
+}
+
+declare class Anchor extends LktItem implements AnchorConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof AnchorConfig)[];
+    type: AnchorType;
+    to?: RouteLocationRaw | string;
+    class: string;
+    isActive: boolean;
+    downloadFileName: string;
+    disabled: boolean;
+    onClick: Function | undefined;
+    confirmModal: ValidModalName;
+    confirmModalKey: ValidModalKey;
+    confirmData: LktObject;
+    imposter: boolean;
+    external: boolean;
+    getHref(): string;
+    constructor(data?: Partial<AnchorConfig>);
+}
+
+declare enum TooltipPositionEngine {
+    Fixed = "fixed",
+    Absolute = "absolute"
+}
+
+interface IsDisabledCheckerArgs {
+    value?: any;
+    dataState?: DataState;
+}
+
+type IsDisabledChecker = ((args?: IsDisabledCheckerArgs) => boolean);
+
+type ValidIsDisabledValue = boolean | undefined | IsDisabledChecker;
+
+interface ButtonConfig {
+    type?: ButtonType;
+    checked?: boolean;
+    openTooltip?: boolean;
+    name?: string;
+    text?: string | number;
+    icon?: string;
+    class?: string;
+    containerClass?: string;
+    palette?: string;
+    value?: string;
+    disabled?: ValidIsDisabledValue;
+    loading?: boolean;
+    wrapContent?: boolean;
+    anchor?: AnchorConfig | Anchor;
+    resource?: string;
+    resourceData?: LktObject;
+    modal?: ValidModalName;
+    modalKey?: ValidModalKey;
+    modalData?: Partial<ModalConfig>;
+    confirmModal?: ValidModalName;
+    confirmModalKey?: ValidModalKey;
+    confirmData?: Partial<ModalConfig>;
+    iconDot?: boolean | string | number;
+    iconEnd?: string;
+    img?: string;
+    splitIcon?: string;
+    tooltipEngine?: TooltipPositionEngine;
+    showTooltipOnHover?: boolean;
+    showTooltipOnHoverDelay?: number;
+    hideTooltipOnLeave?: boolean;
+    tooltipWindowMargin?: number;
+    tooltipReferrerMargin?: number;
+    tooltipClass?: string;
+    tooltipLocationY?: string;
+    tooltipLocationX?: string;
+    splitClass?: string;
+    clickRef?: Element | VueElement;
+    tabindex?: ValidTabIndex;
+    prop?: LktObject;
+    onClick?: Function | undefined;
+    onConfirm?: Function | undefined;
+}
+
+declare class LktSettings {
+    static debug: boolean;
+    static version: string;
+    static defaultConfirmButton: Partial<ButtonConfig>;
+    static defaultCancelButton: Partial<ButtonConfig>;
+    static setDefaultConfirmButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultCancelButton(button: Partial<ButtonConfig>): typeof LktSettings;
 }
 
 declare enum FieldType {
@@ -40,19 +223,6 @@ interface OptionConfig {
     modal?: string | Function;
 }
 
-declare class LktItem implements LktObject {
-    static lktAllowUndefinedProps: string[];
-    static lktExcludedProps: string[];
-    static lktDateProps: string[];
-    static lktStrictItem: boolean;
-    static lktDefaultValues: (keyof LktObject)[];
-    constructor(data?: LktObject);
-    feed(data?: LktObject, target?: this): void;
-    assignProp(key: string, value: any): void;
-}
-
-type ValidModalName = string | Function | undefined;
-
 declare class Option extends LktItem implements OptionConfig {
     value: ValidOptionValue;
     label: string;
@@ -71,8 +241,6 @@ declare enum MultipleOptionsDisplay {
     Inline = "inline",
     Count = "count"
 }
-
-type ValidTabIndex = string | number | undefined;
 
 declare enum FieldAutoValidationTrigger {
     None = "",
@@ -164,11 +332,6 @@ interface FieldConfig {
     prop?: LktObject;
 }
 
-interface IsDisabledCheckerArgs {
-    value?: any;
-    dataState?: DataState;
-}
-
 declare enum ModalCallbackAction {
     Refresh = "refresh",
     Close = "close",
@@ -177,166 +340,12 @@ declare enum ModalCallbackAction {
     Open = "open"
 }
 
-type EmptyModalKey = '_';
-
-type ValidModalKey = string | Function | EmptyModalKey;
-
 interface ModalCallbackConfig {
     modalName: ValidModalName;
     modalKey?: ValidModalKey;
     action: ModalCallbackAction;
     method?: string;
     args?: LktObject;
-}
-
-type BeforeCloseModalData = {
-    modalName: ValidModalKey;
-    modalKey: ValidModalKey;
-    item?: LktObject;
-};
-
-type ValidBeforeCloseModal = Function | undefined | ((data: BeforeCloseModalData) => void);
-
-declare enum ModalType {
-    Modal = "modal",
-    Confirm = "confirm"
-}
-
-declare const enum ButtonType {
-    Button = "button",// Default
-    Submit = "submit",// Form submit
-    Reset = "reset",
-    Anchor = "anchor",// Turns on anchor mode
-    Content = "content",// No click event
-    Switch = "switch",// Has a visible boolean state
-    HiddenSwitch = "hidden-switch",// Has a hidden boolean state
-    Split = "split",// Split button, content always generated
-    SplitLazy = "split-lazy",// Split button, contents generated after first open
-    SplitEver = "split-ever",// Split button, contents generated each time it's clicked
-    Tooltip = "tooltip",// Tooltip button, content always generated
-    TooltipLazy = "tooltip-lazy",// Tooltip button, contents generated after first open
-    TooltipEver = "tooltip-ever"
-}
-
-declare enum AnchorType {
-    Href = "href",// Vanilla JS+HTML anchor
-    RouterLink = "router-link",// For vue-router integration
-    RouterLinkBack = "router-link-back",// For vue-router back navigation
-    Mail = "mail",// Triggers OS mail integration
-    Tel = "tel",// Triggers OS phone integration
-    Tab = "tab",// New tab, similar to target="_blank"
-    Download = "download",// Download link
-    Action = "action",// Performs an action, without route changes
-    Legacy = ""
-}
-
-interface AnchorConfig {
-    type?: AnchorType;
-    to?: RouteLocationRaw | string;
-    class?: string;
-    isActive?: boolean;
-    downloadFileName?: string;
-    disabled?: boolean;
-    onClick?: Function | undefined;
-    confirmModal?: ValidModalName;
-    confirmModalKey?: ValidModalKey;
-    confirmData?: ModalConfig;
-    imposter?: boolean;
-    external?: boolean;
-}
-
-declare class Anchor extends LktItem implements AnchorConfig {
-    static lktAllowUndefinedProps: string[];
-    static lktDefaultValues: (keyof AnchorConfig)[];
-    type: AnchorType;
-    to?: RouteLocationRaw | string;
-    class: string;
-    isActive: boolean;
-    downloadFileName: string;
-    disabled: boolean;
-    onClick: Function | undefined;
-    confirmModal: ValidModalName;
-    confirmModalKey: ValidModalKey;
-    confirmData: LktObject;
-    imposter: boolean;
-    external: boolean;
-    getHref(): string;
-    constructor(data?: Partial<AnchorConfig>);
-}
-
-declare enum TooltipPositionEngine {
-    Fixed = "fixed",
-    Absolute = "absolute"
-}
-
-type IsDisabledChecker = ((args?: IsDisabledCheckerArgs) => boolean);
-
-type ValidIsDisabledValue = boolean | undefined | IsDisabledChecker;
-
-interface ButtonConfig {
-    type?: ButtonType;
-    checked?: boolean;
-    openTooltip?: boolean;
-    name?: string;
-    text?: string | number;
-    icon?: string;
-    class?: string;
-    containerClass?: string;
-    palette?: string;
-    value?: string;
-    disabled?: ValidIsDisabledValue;
-    loading?: boolean;
-    wrapContent?: boolean;
-    anchor?: AnchorConfig | Anchor;
-    resource?: string;
-    resourceData?: LktObject;
-    modal?: ValidModalName;
-    modalKey?: ValidModalKey;
-    modalData?: Partial<ModalConfig>;
-    confirmModal?: ValidModalName;
-    confirmModalKey?: ValidModalKey;
-    confirmData?: Partial<ModalConfig>;
-    iconDot?: boolean | string | number;
-    iconEnd?: string;
-    img?: string;
-    splitIcon?: string;
-    tooltipEngine?: TooltipPositionEngine;
-    showTooltipOnHover?: boolean;
-    showTooltipOnHoverDelay?: number;
-    hideTooltipOnLeave?: boolean;
-    tooltipWindowMargin?: number;
-    tooltipReferrerMargin?: number;
-    tooltipClass?: string;
-    tooltipLocationY?: string;
-    tooltipLocationX?: string;
-    splitClass?: string;
-    clickRef?: Element | VueElement;
-    tabindex?: ValidTabIndex;
-    prop?: LktObject;
-    onClick?: Function | undefined;
-    onConfirm?: Function | undefined;
-}
-
-interface ModalConfig extends LktObject {
-    type?: ModalType;
-    size?: string;
-    preTitle?: string;
-    preTitleIcon?: string;
-    title?: string;
-    closeIcon?: string;
-    closeConfirm?: ValidModalName;
-    closeConfirmKey?: ValidModalKey;
-    showClose?: boolean;
-    disabledClose?: boolean;
-    disabledVeilClick?: boolean;
-    hiddenFooter?: boolean;
-    modalName?: ValidModalName;
-    modalKey?: ValidModalKey;
-    zIndex?: number;
-    beforeClose?: ValidBeforeCloseModal;
-    item?: LktObject;
-    confirmButton?: Partial<ButtonConfig>;
-    cancelButton?: Partial<ButtonConfig>;
 }
 
 declare enum PaginatorType {
@@ -827,7 +836,7 @@ type ValidCustomSlot = string | Component | undefined;
 type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget);
 
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
-declare const extractI18nValue: (needle: string) => any;
+declare const extractI18nValue: (needle: string | number) => any;
 
 /**
  * Export common interfaces
@@ -838,4 +847,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, LktItem, type LktObject, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractI18nValue, extractPropValue, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractI18nValue, extractPropValue, getDefaultValues };

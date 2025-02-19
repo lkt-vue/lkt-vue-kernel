@@ -9,10 +9,10 @@ export const extractPropValue = (needle: ValidScanPropTarget, haystack: LktObjec
     return needle;
 }
 
-export const extractI18nValue = (needle: string) => {
-
-    if (needle.startsWith('__:')) {
-        return __(needle.substring(3));
+export const extractI18nValue = (needle: string|number) => {
+    let txt = String(needle);
+    if (txt.startsWith('__:')) {
+        return __(txt.substring(3));
     }
-    return needle;
+    return txt;
 }

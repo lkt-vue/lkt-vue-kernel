@@ -1,3 +1,23 @@
+// src/settings/LktSettings.ts
+var LktSettings = class _LktSettings {
+  static debug = false;
+  static version = "0.0.1";
+  static defaultConfirmButton = {
+    text: "Confirm"
+  };
+  static defaultCancelButton = {
+    text: "Cancel"
+  };
+  static setDefaultConfirmButton(button) {
+    _LktSettings.defaultConfirmButton = button;
+    return _LktSettings;
+  }
+  static setDefaultCancelButton(button) {
+    _LktSettings.defaultCancelButton = button;
+    return _LktSettings;
+  }
+};
+
 // src/instances/LktItem.ts
 var skipDataProps = [
   "lktDateProps",
@@ -814,10 +834,11 @@ var extractPropValue = (needle, haystack) => {
   return needle;
 };
 var extractI18nValue = (needle) => {
-  if (needle.startsWith("__:")) {
-    return __(needle.substring(3));
+  let txt = String(needle);
+  if (txt.startsWith("__:")) {
+    return __(txt.substring(3));
   }
-  return needle;
+  return txt;
 };
 
 // src/index.ts
@@ -845,6 +866,7 @@ export {
   FieldAutoValidationTrigger,
   FieldType,
   LktItem,
+  LktSettings,
   LktStrictItem,
   Modal,
   ModalCallbackAction,

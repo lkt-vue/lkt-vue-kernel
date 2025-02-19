@@ -4,6 +4,11 @@
 export {LktObject} from './interfaces/LktObject.ts';
 
 /**
+ * Export settings
+ */
+export {LktSettings} from './settings/LktSettings.ts';
+
+/**
  * Export config interfaces
  */
 export {FieldConfig} from './config/FieldConfig.ts';
