@@ -1,7 +1,6 @@
 // src/settings/LktSettings.ts
 var LktSettings = class _LktSettings {
   static debug = false;
-  static version = "0.0.1";
   static defaultConfirmButton = {
     text: "Confirm"
   };
@@ -780,6 +779,35 @@ var Table = class extends LktItem {
   }
 };
 
+// src/enums/ItemCrudButtonNavPosition.ts
+var ItemCrudButtonNavPosition = /* @__PURE__ */ ((ItemCrudButtonNavPosition2) => {
+  ItemCrudButtonNavPosition2["Top"] = "top";
+  ItemCrudButtonNavPosition2["Bottom"] = "bottom";
+  return ItemCrudButtonNavPosition2;
+})(ItemCrudButtonNavPosition || {});
+
+// src/enums/ItemCrudButtonNavVisibility.ts
+var ItemCrudButtonNavVisibility = /* @__PURE__ */ ((ItemCrudButtonNavVisibility2) => {
+  ItemCrudButtonNavVisibility2["Changed"] = "changed";
+  ItemCrudButtonNavVisibility2["Always"] = "always";
+  return ItemCrudButtonNavVisibility2;
+})(ItemCrudButtonNavVisibility || {});
+
+// src/enums/ItemCrudType.ts
+var ItemCrudType = /* @__PURE__ */ ((ItemCrudType2) => {
+  ItemCrudType2["Create"] = "create";
+  ItemCrudType2["Edit"] = "edit";
+  ItemCrudType2["Read"] = "read";
+  return ItemCrudType2;
+})(ItemCrudType || {});
+
+// src/enums/ItemCrudView.ts
+var ItemCrudView = /* @__PURE__ */ ((ItemCrudView2) => {
+  ItemCrudView2["Inline"] = "inline";
+  ItemCrudView2["Modal"] = "modal";
+  return ItemCrudView2;
+})(ItemCrudView || {});
+
 // src/enums/ModalCallbackAction.ts
 var ModalCallbackAction = /* @__PURE__ */ ((ModalCallbackAction2) => {
   ModalCallbackAction2["Refresh"] = "refresh";
@@ -796,6 +824,14 @@ var ModalType = /* @__PURE__ */ ((ModalType2) => {
   ModalType2["Confirm"] = "confirm";
   return ModalType2;
 })(ModalType || {});
+
+// src/enums/SaveType.ts
+var SaveType = /* @__PURE__ */ ((SaveType2) => {
+  SaveType2["Manual"] = "manual";
+  SaveType2["Auto"] = "auto";
+  SaveType2["Delay"] = "delay";
+  return SaveType2;
+})(SaveType || {});
 
 // src/enums/SortDirection.ts
 var SortDirection = /* @__PURE__ */ ((SortDirection2) => {
@@ -865,6 +901,10 @@ export {
   Field,
   FieldAutoValidationTrigger,
   FieldType,
+  ItemCrudButtonNavPosition,
+  ItemCrudButtonNavVisibility,
+  ItemCrudType,
+  ItemCrudView,
   LktItem,
   LktSettings,
   LktStrictItem,
@@ -876,6 +916,7 @@ export {
   Paginator,
   PaginatorType,
   SafeString,
+  SaveType,
   SortDirection,
   Table,
   TablePermission,

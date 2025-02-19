@@ -182,7 +182,6 @@ interface ButtonConfig {
 
 declare class LktSettings {
     static debug: boolean;
-    static version: string;
     static defaultConfirmButton: Partial<ButtonConfig>;
     static defaultCancelButton: Partial<ButtonConfig>;
     static setDefaultConfirmButton(button: Partial<ButtonConfig>): typeof LktSettings;
@@ -332,6 +331,11 @@ interface FieldConfig {
     prop?: LktObject;
 }
 
+declare enum ItemCrudView {
+    Inline = "inline",
+    Modal = "modal"
+}
+
 declare enum ModalCallbackAction {
     Refresh = "refresh",
     Close = "close",
@@ -346,6 +350,96 @@ interface ModalCallbackConfig {
     action: ModalCallbackAction;
     method?: string;
     args?: LktObject;
+}
+
+declare enum ItemCrudType {
+    Create = "create",
+    Edit = "edit",
+    Read = "read"
+}
+
+declare enum ItemCrudButtonNavPosition {
+    Top = "top",
+    Bottom = "bottom"
+}
+
+declare enum ItemCrudButtonNavVisibility {
+    Changed = "changed",
+    Always = "always"
+}
+
+declare enum SaveType {
+    Manual = "manual",
+    Auto = "auto",
+    Delay = "delay"
+}
+
+interface SaveConfig {
+    type?: SaveType;
+    delay?: number;
+}
+
+interface ItemCrudConfig {
+    modelValue: LktObject;
+    editing: boolean;
+    type: ItemCrudType;
+    view: ItemCrudView;
+    editButton: ButtonConfig;
+    dropButton: ButtonConfig;
+    createButton: ButtonConfig;
+    updateButton: ButtonConfig;
+    modalConfig: ModalConfig;
+    saveConfig: SaveConfig;
+    title: string;
+    hiddenSave: boolean;
+    hiddenDrop: boolean;
+    hiddenButtons: boolean;
+    hideSwitchEdition: boolean;
+    readResource: string;
+    readData: LktObject;
+    saveValidator: Function;
+    beforeEmitUpdate: Function | undefined;
+    dataStateConfig: LktObject;
+    buttonNavPosition?: ItemCrudButtonNavPosition;
+    buttonNavVisibility?: ItemCrudButtonNavVisibility;
+    insideModal: boolean;
+    saveText: string;
+    saveIcon: string;
+    dropText: string;
+    dropIcon: string;
+    createResource: string;
+    updateResource: string;
+    dropResource: string;
+    createConfirm: string;
+    updateConfirm: string;
+    dropConfirm: string;
+    createConfirmData: LktObject;
+    updateConfirmData: LktObject;
+    dropConfirmData: LktObject;
+    createDisabled: boolean;
+    updateDisabled: boolean;
+    dropDisabled: boolean;
+    createData: LktObject;
+    updateData: LktObject;
+    dropData: LktObject;
+    editModeText: string;
+    onCreate: Function | undefined;
+    onUpdate: Function | undefined;
+    onCreateModalCallbacks: ModalCallbackConfig[];
+    onUpdateModalCallbacks: ModalCallbackConfig[];
+    onDropModalCallbacks: ModalCallbackConfig[];
+    isCreate: boolean;
+    size: string;
+    preTitle: string;
+    showClose: boolean;
+    disabledClose: boolean;
+    disabledVeilClick: boolean;
+    modalName: string;
+    modalKey: string;
+    zIndex: number;
+    editedCloseConfirm: string;
+    editedCloseConfirmKey: string | number;
+    beforeClose: Function | undefined;
 }
 
 declare enum PaginatorType {
@@ -847,4 +941,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractI18nValue, extractPropValue, getDefaultValues };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudType, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractI18nValue, extractPropValue, getDefaultValues };
