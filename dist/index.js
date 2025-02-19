@@ -1,16 +1,20 @@
 // src/settings/LktSettings.ts
 var LktSettings = class _LktSettings {
-  static debug = false;
+  static debugEnabled = false;
+  static debugMode(enabled = true) {
+    _LktSettings.debugEnabled = enabled;
+    return _LktSettings;
+  }
   static defaultConfirmButton = {
     text: "Confirm"
-  };
-  static defaultCancelButton = {
-    text: "Cancel"
   };
   static setDefaultConfirmButton(button) {
     _LktSettings.defaultConfirmButton = button;
     return _LktSettings;
   }
+  static defaultCancelButton = {
+    text: "Cancel"
+  };
   static setDefaultCancelButton(button) {
     _LktSettings.defaultCancelButton = button;
     return _LktSettings;
@@ -877,6 +881,11 @@ var extractI18nValue = (needle) => {
   return txt;
 };
 
+// src/functions/debug-functions.ts
+var lktDebug = (component, ...args) => {
+  if (LktSettings.debugEnabled) console.info("::lkt::", `[${component}] `, ...args);
+};
+
 // src/index.ts
 function getDefaultValues(cls) {
   const instance = new cls();
@@ -929,5 +938,6 @@ export {
   TooltipPositionEngine,
   extractI18nValue,
   extractPropValue,
-  getDefaultValues
+  getDefaultValues,
+  lktDebug
 };

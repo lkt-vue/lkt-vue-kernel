@@ -100,6 +100,7 @@ export {SafeString} from './value-objects/SafeString.ts';
  * Export functions
  */
 export {extractPropValue, extractI18nValue} from "./functions/extract-data-functions.ts";
+export {lktDebug} from "./functions/debug-functions.ts";
 
 
 
