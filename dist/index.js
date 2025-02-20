@@ -16,6 +16,15 @@ var ButtonType = /* @__PURE__ */ ((ButtonType2) => {
   return ButtonType2;
 })(ButtonType || {});
 
+// src/functions/ensure-data-functions.ts
+var ensureButtonConfig = (buttonConfig, settingsConfig) => {
+  if (typeof buttonConfig === "undefined") return settingsConfig;
+  return {
+    ...settingsConfig,
+    ...buttonConfig
+  };
+};
+
 // src/settings/LktSettings.ts
 var LktSettings = class _LktSettings {
   static debugEnabled = false;
@@ -26,44 +35,68 @@ var LktSettings = class _LktSettings {
   static defaultConfirmButton = {
     text: "Confirm"
   };
-  static setDefaultConfirmButton(button) {
-    _LktSettings.defaultConfirmButton = button;
+  static setDefaultConfirmButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultConfirmButton = button;
+    } else {
+      _LktSettings.defaultConfirmButton = ensureButtonConfig(button, _LktSettings.defaultConfirmButton);
+    }
     return _LktSettings;
   }
   static defaultCancelButton = {
     text: "Cancel"
   };
-  static setDefaultCancelButton(button) {
-    _LktSettings.defaultCancelButton = button;
+  static setDefaultCancelButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultCancelButton = button;
+    } else {
+      _LktSettings.defaultCancelButton = ensureButtonConfig(button, _LktSettings.defaultCancelButton);
+    }
     return _LktSettings;
   }
   static defaultCreateButton = {
     text: "Create"
   };
-  static setDefaultCreateButton(button) {
-    _LktSettings.defaultCreateButton = button;
+  static setDefaultCreateButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultCreateButton = button;
+    } else {
+      _LktSettings.defaultCreateButton = ensureButtonConfig(button, _LktSettings.defaultCreateButton);
+    }
     return _LktSettings;
   }
   static defaultUpdateButton = {
     text: "Update"
   };
-  static setDefaultUpdateButton(button) {
-    _LktSettings.defaultUpdateButton = button;
+  static setDefaultUpdateButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultUpdateButton = button;
+    } else {
+      _LktSettings.defaultUpdateButton = ensureButtonConfig(button, _LktSettings.defaultUpdateButton);
+    }
     return _LktSettings;
   }
   static defaultDropButton = {
     text: "Drop"
   };
-  static setDefaultDropButton(button) {
-    _LktSettings.defaultDropButton = button;
+  static setDefaultDropButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultDropButton = button;
+    } else {
+      _LktSettings.defaultDropButton = ensureButtonConfig(button, _LktSettings.defaultDropButton);
+    }
     return _LktSettings;
   }
   static defaultEditModeButton = {
     text: "Edit mode",
     type: "switch" /* Switch */
   };
-  static setDefaultEditModeButton(button) {
-    _LktSettings.defaultEditModeButton = button;
+  static setDefaultEditModeButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultEditModeButton = button;
+    } else {
+      _LktSettings.defaultEditModeButton = ensureButtonConfig(button, _LktSettings.defaultEditModeButton);
+    }
     return _LktSettings;
   }
 };
@@ -970,15 +1003,6 @@ var extractI18nValue = (needle) => {
     return __(txt.substring(3));
   }
   return txt;
-};
-
-// src/functions/ensure-data-functions.ts
-var ensureButtonConfig = (buttonConfig, settingsConfig) => {
-  if (typeof buttonConfig === "undefined") return settingsConfig;
-  return {
-    ...settingsConfig,
-    ...buttonConfig
-  };
 };
 
 // src/functions/debug-functions.ts

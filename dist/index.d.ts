@@ -202,17 +202,17 @@ declare class LktSettings {
     static debugEnabled: boolean;
     static debugMode(enabled?: boolean): typeof LktSettings;
     static defaultConfirmButton: Partial<ButtonConfig>;
-    static setDefaultConfirmButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultConfirmButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultCancelButton: Partial<ButtonConfig>;
-    static setDefaultCancelButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultCancelButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultCreateButton: Partial<ButtonConfig>;
-    static setDefaultCreateButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultCreateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultUpdateButton: Partial<ButtonConfig>;
-    static setDefaultUpdateButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultUpdateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultDropButton: Partial<ButtonConfig>;
-    static setDefaultDropButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultDropButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultEditModeButton: Partial<ButtonConfig>;
-    static setDefaultEditModeButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static setDefaultEditModeButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
 }
 
 declare enum FieldType {
