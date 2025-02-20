@@ -10,6 +10,7 @@ import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {Anchor} from "../instances/Anchor.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
+import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 
 export interface ButtonConfig {
     type?: ButtonType
@@ -40,6 +41,7 @@ export interface ButtonConfig {
     confirmModal?: ValidModalName
     confirmModalKey?: ValidModalKey
     confirmData?: Partial<ModalConfig>
+    modalCallbacks?: Array<ModalCallbackConfig>
 
     // Icon and img
     iconDot?: boolean | string | number

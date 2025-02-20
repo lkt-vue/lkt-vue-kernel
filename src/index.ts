@@ -37,6 +37,7 @@ export {Column} from './instances/Column.ts';
 export {Anchor} from './instances/Anchor.ts';
 export {Button} from './instances/Button.ts';
 export {Tooltip} from './instances/Tooltip.ts';
+export {ItemCrud} from './instances/ItemCrud.ts';
 export {Modal} from './instances/Modal.ts';
 export {Paginator} from './instances/Paginator.ts';
 export {Table} from './instances/Table.ts';
@@ -51,7 +52,7 @@ export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts'
 export {FieldType} from './enums/FieldType.ts';
 export {ItemCrudButtonNavPosition} from './enums/ItemCrudButtonNavPosition.ts';
 export {ItemCrudButtonNavVisibility} from './enums/ItemCrudButtonNavVisibility.ts';
-export {ItemCrudType} from './enums/ItemCrudType.ts';
+export {ItemCrudMode} from './enums/ItemCrudMode.ts';
 export {ItemCrudView} from './enums/ItemCrudView.ts';
 export {ModalCallbackAction} from './enums/ModalCallbackAction.ts';
 export {ModalType} from './enums/ModalType.ts';
@@ -100,6 +101,7 @@ export {SafeString} from './value-objects/SafeString.ts';
  * Export functions
  */
 export {extractPropValue, extractI18nValue} from "./functions/extract-data-functions.ts";
+export {ensureButtonConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
 
 

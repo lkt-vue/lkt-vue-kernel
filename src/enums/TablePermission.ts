@@ -4,6 +4,7 @@ export enum TablePermission {
     Edit = 'edit', // Displays edit button
     Drop = 'drop', // Displays drop button
     Sort = 'sort', // Sort
+    SwitchEditMode = 'switch-edit-mode',
 
     InlineEdit = 'inline-edit', // Be able to edit columns inside the table
     InlineCreate = 'inline-create', // Be able to append a new editable row (needs InlineEdit in order to be editable)

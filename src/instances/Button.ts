@@ -12,6 +12,7 @@ import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {Anchor} from "./Anchor.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
+import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -42,6 +43,7 @@ export class Button extends LktItem implements ButtonConfig {
         'confirmModal',
         'confirmModalKey',
         'confirmData',
+        'modalCallbacks',
         'text',
         'icon',
         'iconDot',
@@ -85,6 +87,7 @@ export class Button extends LktItem implements ButtonConfig {
     confirmModal: ValidModalName = '';
     confirmModalKey: ValidModalKey = '_';
     confirmData: Partial<ModalConfig> = {};
+    modalCallbacks?: Array<ModalCallbackConfig> = [];
     text: string = '';
     icon: string = '';
     iconDot: boolean = false;
@@ -117,5 +120,10 @@ export class Button extends LktItem implements ButtonConfig {
         super();
         this.feed(data);
         this.anchor = new Anchor(data.anchor);
+    }
+
+    isDisabled() {
+        if (typeof this.disabled === 'function') return this.disabled();
+        return this.disabled;
     }
 }

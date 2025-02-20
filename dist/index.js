@@ -1,3 +1,21 @@
+// src/enums/ButtonType.ts
+var ButtonType = /* @__PURE__ */ ((ButtonType2) => {
+  ButtonType2["Button"] = "button";
+  ButtonType2["Submit"] = "submit";
+  ButtonType2["Reset"] = "reset";
+  ButtonType2["Anchor"] = "anchor";
+  ButtonType2["Content"] = "content";
+  ButtonType2["Switch"] = "switch";
+  ButtonType2["HiddenSwitch"] = "hidden-switch";
+  ButtonType2["Split"] = "split";
+  ButtonType2["SplitLazy"] = "split-lazy";
+  ButtonType2["SplitEver"] = "split-ever";
+  ButtonType2["Tooltip"] = "tooltip";
+  ButtonType2["TooltipLazy"] = "tooltip-lazy";
+  ButtonType2["TooltipEver"] = "tooltip-ever";
+  return ButtonType2;
+})(ButtonType || {});
+
 // src/settings/LktSettings.ts
 var LktSettings = class _LktSettings {
   static debugEnabled = false;
@@ -17,6 +35,35 @@ var LktSettings = class _LktSettings {
   };
   static setDefaultCancelButton(button) {
     _LktSettings.defaultCancelButton = button;
+    return _LktSettings;
+  }
+  static defaultCreateButton = {
+    text: "Create"
+  };
+  static setDefaultCreateButton(button) {
+    _LktSettings.defaultCreateButton = button;
+    return _LktSettings;
+  }
+  static defaultUpdateButton = {
+    text: "Update"
+  };
+  static setDefaultUpdateButton(button) {
+    _LktSettings.defaultUpdateButton = button;
+    return _LktSettings;
+  }
+  static defaultDropButton = {
+    text: "Drop"
+  };
+  static setDefaultDropButton(button) {
+    _LktSettings.defaultDropButton = button;
+    return _LktSettings;
+  }
+  static defaultEditModeButton = {
+    text: "Edit mode",
+    type: "switch" /* Switch */
+  };
+  static setDefaultEditModeButton(button) {
+    _LktSettings.defaultEditModeButton = button;
     return _LktSettings;
   }
 };
@@ -304,24 +351,6 @@ var Anchor = class extends LktItem {
   }
 };
 
-// src/enums/ButtonType.ts
-var ButtonType = /* @__PURE__ */ ((ButtonType2) => {
-  ButtonType2["Button"] = "button";
-  ButtonType2["Submit"] = "submit";
-  ButtonType2["Reset"] = "reset";
-  ButtonType2["Anchor"] = "anchor";
-  ButtonType2["Content"] = "content";
-  ButtonType2["Switch"] = "switch";
-  ButtonType2["HiddenSwitch"] = "hidden-switch";
-  ButtonType2["Split"] = "split";
-  ButtonType2["SplitLazy"] = "split-lazy";
-  ButtonType2["SplitEver"] = "split-ever";
-  ButtonType2["Tooltip"] = "tooltip";
-  ButtonType2["TooltipLazy"] = "tooltip-lazy";
-  ButtonType2["TooltipEver"] = "tooltip-ever";
-  return ButtonType2;
-})(ButtonType || {});
-
 // src/instances/Button.ts
 import { generateRandomString as generateRandomString2 } from "lkt-string-tools";
 
@@ -360,6 +389,7 @@ var Button = class extends LktItem {
     "confirmModal",
     "confirmModalKey",
     "confirmData",
+    "modalCallbacks",
     "text",
     "icon",
     "iconDot",
@@ -402,6 +432,7 @@ var Button = class extends LktItem {
   confirmModal = "";
   confirmModalKey = "_";
   confirmData = {};
+  modalCallbacks = [];
   text = "";
   icon = "";
   iconDot = false;
@@ -430,6 +461,10 @@ var Button = class extends LktItem {
     super();
     this.feed(data);
     this.anchor = new Anchor(data.anchor);
+  }
+  isDisabled() {
+    if (typeof this.disabled === "function") return this.disabled();
+    return this.disabled;
   }
 };
 
@@ -561,6 +596,100 @@ var Tooltip = class extends LktItem {
   referrer = void 0;
   locationY = "bottom" /* Bottom */;
   locationX = "left-corner" /* LeftCorner */;
+  constructor(data = {}) {
+    super();
+    this.feed(data);
+  }
+};
+
+// src/enums/ItemCrudMode.ts
+var ItemCrudMode = /* @__PURE__ */ ((ItemCrudMode2) => {
+  ItemCrudMode2["Create"] = "create";
+  ItemCrudMode2["Update"] = "update";
+  ItemCrudMode2["Read"] = "read";
+  return ItemCrudMode2;
+})(ItemCrudMode || {});
+
+// src/enums/ItemCrudView.ts
+var ItemCrudView = /* @__PURE__ */ ((ItemCrudView2) => {
+  ItemCrudView2["Inline"] = "inline";
+  ItemCrudView2["Modal"] = "modal";
+  return ItemCrudView2;
+})(ItemCrudView || {});
+
+// src/enums/ItemCrudButtonNavPosition.ts
+var ItemCrudButtonNavPosition = /* @__PURE__ */ ((ItemCrudButtonNavPosition2) => {
+  ItemCrudButtonNavPosition2["Top"] = "top";
+  ItemCrudButtonNavPosition2["Bottom"] = "bottom";
+  return ItemCrudButtonNavPosition2;
+})(ItemCrudButtonNavPosition || {});
+
+// src/enums/ItemCrudButtonNavVisibility.ts
+var ItemCrudButtonNavVisibility = /* @__PURE__ */ ((ItemCrudButtonNavVisibility2) => {
+  ItemCrudButtonNavVisibility2["Changed"] = "changed";
+  ItemCrudButtonNavVisibility2["Always"] = "always";
+  ItemCrudButtonNavVisibility2["Never"] = "never";
+  return ItemCrudButtonNavVisibility2;
+})(ItemCrudButtonNavVisibility || {});
+
+// src/enums/SaveType.ts
+var SaveType = /* @__PURE__ */ ((SaveType2) => {
+  SaveType2["Manual"] = "manual";
+  SaveType2["Auto"] = "auto";
+  SaveType2["Delay"] = "delay";
+  return SaveType2;
+})(SaveType || {});
+
+// src/instances/ItemCrud.ts
+var ItemCrud = class extends LktItem {
+  // static lktAllowUndefinedProps: string[] = [
+  // ];
+  //
+  static lktDefaultValues = [
+    "modelValue",
+    "editing",
+    "mode",
+    "view",
+    "editModeButton",
+    "dropButton",
+    "createButton",
+    "updateButton",
+    "modalConfig",
+    "saveConfig",
+    "title",
+    "readResource",
+    "readData",
+    "saveValidator",
+    "beforeEmitUpdate",
+    "dataStateConfig",
+    "buttonNavPosition",
+    "buttonNavVisibility"
+  ];
+  modelValue = {};
+  editing = false;
+  // Global config
+  mode = "read" /* Read */;
+  view = "inline" /* Inline */;
+  // Buttons
+  editModeButton = {};
+  // Not sure, should test
+  dropButton = {};
+  createButton = {};
+  updateButton = {};
+  // Config if type === modal
+  modalConfig = {};
+  // Save config
+  saveConfig = {
+    type: "manual" /* Manual */
+  };
+  title = "";
+  readResource = "";
+  readData = {};
+  saveValidator = () => true;
+  beforeEmitUpdate = void 0;
+  dataStateConfig = {};
+  buttonNavPosition = "top" /* Top */;
+  buttonNavVisibility = "always" /* Always */;
   constructor(data = {}) {
     super();
     this.feed(data);
@@ -783,35 +912,6 @@ var Table = class extends LktItem {
   }
 };
 
-// src/enums/ItemCrudButtonNavPosition.ts
-var ItemCrudButtonNavPosition = /* @__PURE__ */ ((ItemCrudButtonNavPosition2) => {
-  ItemCrudButtonNavPosition2["Top"] = "top";
-  ItemCrudButtonNavPosition2["Bottom"] = "bottom";
-  return ItemCrudButtonNavPosition2;
-})(ItemCrudButtonNavPosition || {});
-
-// src/enums/ItemCrudButtonNavVisibility.ts
-var ItemCrudButtonNavVisibility = /* @__PURE__ */ ((ItemCrudButtonNavVisibility2) => {
-  ItemCrudButtonNavVisibility2["Changed"] = "changed";
-  ItemCrudButtonNavVisibility2["Always"] = "always";
-  return ItemCrudButtonNavVisibility2;
-})(ItemCrudButtonNavVisibility || {});
-
-// src/enums/ItemCrudType.ts
-var ItemCrudType = /* @__PURE__ */ ((ItemCrudType2) => {
-  ItemCrudType2["Create"] = "create";
-  ItemCrudType2["Edit"] = "edit";
-  ItemCrudType2["Read"] = "read";
-  return ItemCrudType2;
-})(ItemCrudType || {});
-
-// src/enums/ItemCrudView.ts
-var ItemCrudView = /* @__PURE__ */ ((ItemCrudView2) => {
-  ItemCrudView2["Inline"] = "inline";
-  ItemCrudView2["Modal"] = "modal";
-  return ItemCrudView2;
-})(ItemCrudView || {});
-
 // src/enums/ModalCallbackAction.ts
 var ModalCallbackAction = /* @__PURE__ */ ((ModalCallbackAction2) => {
   ModalCallbackAction2["Refresh"] = "refresh";
@@ -829,14 +929,6 @@ var ModalType = /* @__PURE__ */ ((ModalType2) => {
   return ModalType2;
 })(ModalType || {});
 
-// src/enums/SaveType.ts
-var SaveType = /* @__PURE__ */ ((SaveType2) => {
-  SaveType2["Manual"] = "manual";
-  SaveType2["Auto"] = "auto";
-  SaveType2["Delay"] = "delay";
-  return SaveType2;
-})(SaveType || {});
-
 // src/enums/SortDirection.ts
 var SortDirection = /* @__PURE__ */ ((SortDirection2) => {
   SortDirection2["Asc"] = "asc";
@@ -851,6 +943,7 @@ var TablePermission = /* @__PURE__ */ ((TablePermission2) => {
   TablePermission2["Edit"] = "edit";
   TablePermission2["Drop"] = "drop";
   TablePermission2["Sort"] = "sort";
+  TablePermission2["SwitchEditMode"] = "switch-edit-mode";
   TablePermission2["InlineEdit"] = "inline-edit";
   TablePermission2["InlineCreate"] = "inline-create";
   TablePermission2["ModalCreate"] = "modal-create";
@@ -879,6 +972,15 @@ var extractI18nValue = (needle) => {
     return __(txt.substring(3));
   }
   return txt;
+};
+
+// src/functions/ensure-data-functions.ts
+var ensureButtonConfig = (buttonConfig, settingsConfig) => {
+  if (typeof buttonConfig === "undefined") return settingsConfig;
+  return {
+    ...settingsConfig,
+    ...buttonConfig
+  };
 };
 
 // src/functions/debug-functions.ts
@@ -910,9 +1012,10 @@ export {
   Field,
   FieldAutoValidationTrigger,
   FieldType,
+  ItemCrud,
   ItemCrudButtonNavPosition,
   ItemCrudButtonNavVisibility,
-  ItemCrudType,
+  ItemCrudMode,
   ItemCrudView,
   LktItem,
   LktSettings,
@@ -936,6 +1039,7 @@ export {
   TooltipLocationX,
   TooltipLocationY,
   TooltipPositionEngine,
+  ensureButtonConfig,
   extractI18nValue,
   extractPropValue,
   getDefaultValues,

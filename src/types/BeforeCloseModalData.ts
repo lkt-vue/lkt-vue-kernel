@@ -5,4 +5,5 @@ export type BeforeCloseModalData = {
     modalName: ValidModalKey,
     modalKey: ValidModalKey,
     item?: LktObject
+    itemCreated?: boolean
 }

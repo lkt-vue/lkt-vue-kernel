@@ -1,6 +1,6 @@
 import { VueElement, Component } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
-import { DataState } from 'lkt-data-state';
+import { DataState, DataStateConfig } from 'lkt-data-state';
 
 interface LktObject {
     [key: string | number]: any;
@@ -44,6 +44,7 @@ type BeforeCloseModalData = {
     modalName: ValidModalKey;
     modalKey: ValidModalKey;
     item?: LktObject;
+    itemCreated?: boolean;
 };
 
 type ValidBeforeCloseModal = Function | undefined | ((data: BeforeCloseModalData) => void);
@@ -136,6 +137,22 @@ type IsDisabledChecker = ((args?: IsDisabledCheckerArgs) => boolean);
 
 type ValidIsDisabledValue = boolean | undefined | IsDisabledChecker;
 
+declare enum ModalCallbackAction {
+    Refresh = "refresh",
+    Close = "close",
+    ReOpen = "reOpen",
+    Exec = "exec",
+    Open = "open"
+}
+
+interface ModalCallbackConfig {
+    modalName: ValidModalName;
+    modalKey?: ValidModalKey;
+    action: ModalCallbackAction;
+    method?: string;
+    args?: LktObject;
+}
+
 interface ButtonConfig {
     type?: ButtonType;
     checked?: boolean;
@@ -159,6 +176,7 @@ interface ButtonConfig {
     confirmModal?: ValidModalName;
     confirmModalKey?: ValidModalKey;
     confirmData?: Partial<ModalConfig>;
+    modalCallbacks?: Array<ModalCallbackConfig>;
     iconDot?: boolean | string | number;
     iconEnd?: string;
     img?: string;
@@ -187,6 +205,14 @@ declare class LktSettings {
     static setDefaultConfirmButton(button: Partial<ButtonConfig>): typeof LktSettings;
     static defaultCancelButton: Partial<ButtonConfig>;
     static setDefaultCancelButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static defaultCreateButton: Partial<ButtonConfig>;
+    static setDefaultCreateButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static defaultUpdateButton: Partial<ButtonConfig>;
+    static setDefaultUpdateButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static defaultDropButton: Partial<ButtonConfig>;
+    static setDefaultDropButton(button: Partial<ButtonConfig>): typeof LktSettings;
+    static defaultEditModeButton: Partial<ButtonConfig>;
+    static setDefaultEditModeButton(button: Partial<ButtonConfig>): typeof LktSettings;
 }
 
 declare enum FieldType {
@@ -337,25 +363,9 @@ declare enum ItemCrudView {
     Modal = "modal"
 }
 
-declare enum ModalCallbackAction {
-    Refresh = "refresh",
-    Close = "close",
-    ReOpen = "reOpen",
-    Exec = "exec",
-    Open = "open"
-}
-
-interface ModalCallbackConfig {
-    modalName: ValidModalName;
-    modalKey?: ValidModalKey;
-    action: ModalCallbackAction;
-    method?: string;
-    args?: LktObject;
-}
-
-declare enum ItemCrudType {
+declare enum ItemCrudMode {
     Create = "create",
-    Edit = "edit",
+    Update = "update",
     Read = "read"
 }
 
@@ -366,7 +376,8 @@ declare enum ItemCrudButtonNavPosition {
 
 declare enum ItemCrudButtonNavVisibility {
     Changed = "changed",
-    Always = "always"
+    Always = "always",
+    Never = "never"
 }
 
 declare enum SaveType {
@@ -383,64 +394,22 @@ interface SaveConfig {
 interface ItemCrudConfig {
     modelValue: LktObject;
     editing: boolean;
-    type: ItemCrudType;
+    mode: ItemCrudMode;
     view: ItemCrudView;
-    editButton: ButtonConfig;
+    editModeButton: ButtonConfig;
     dropButton: ButtonConfig;
     createButton: ButtonConfig;
     updateButton: ButtonConfig;
     modalConfig: ModalConfig;
     saveConfig: SaveConfig;
     title: string;
-    hiddenSave: boolean;
-    hiddenDrop: boolean;
-    hiddenButtons: boolean;
-    hideSwitchEdition: boolean;
     readResource: string;
     readData: LktObject;
     saveValidator: Function;
     beforeEmitUpdate: Function | undefined;
-    dataStateConfig: LktObject;
+    dataStateConfig: DataStateConfig;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
-    insideModal: boolean;
-    saveText: string;
-    saveIcon: string;
-    dropText: string;
-    dropIcon: string;
-    createResource: string;
-    updateResource: string;
-    dropResource: string;
-    createConfirm: string;
-    updateConfirm: string;
-    dropConfirm: string;
-    createConfirmData: LktObject;
-    updateConfirmData: LktObject;
-    dropConfirmData: LktObject;
-    createDisabled: boolean;
-    updateDisabled: boolean;
-    dropDisabled: boolean;
-    createData: LktObject;
-    updateData: LktObject;
-    dropData: LktObject;
-    editModeText: string;
-    onCreate: Function | undefined;
-    onUpdate: Function | undefined;
-    onCreateModalCallbacks: ModalCallbackConfig[];
-    onUpdateModalCallbacks: ModalCallbackConfig[];
-    onDropModalCallbacks: ModalCallbackConfig[];
-    isCreate: boolean;
-    size: string;
-    preTitle: string;
-    showClose: boolean;
-    disabledClose: boolean;
-    disabledVeilClick: boolean;
-    modalName: string;
-    modalKey: string;
-    zIndex: number;
-    editedCloseConfirm: string;
-    editedCloseConfirmKey: string | number;
-    beforeClose: Function | undefined;
 }
 
 declare enum PaginatorType {
@@ -633,6 +602,7 @@ declare class Button extends LktItem implements ButtonConfig {
     confirmModal: ValidModalName;
     confirmModalKey: ValidModalKey;
     confirmData: Partial<ModalConfig>;
+    modalCallbacks?: Array<ModalCallbackConfig>;
     text: string;
     icon: string;
     iconDot: boolean;
@@ -657,6 +627,7 @@ declare class Button extends LktItem implements ButtonConfig {
     onClick?: Function | undefined;
     onConfirm?: Function | undefined;
     constructor(data?: Partial<ButtonConfig>);
+    isDisabled(): boolean | undefined;
 }
 
 interface ColumnConfig {
@@ -720,6 +691,7 @@ declare enum TablePermission {
     Edit = "edit",// Displays edit button
     Drop = "drop",// Displays drop button
     Sort = "sort",// Sort
+    SwitchEditMode = "switch-edit-mode",
     InlineEdit = "inline-edit",// Be able to edit columns inside the table
     InlineCreate = "inline-create",// Be able to append a new editable row (needs InlineEdit in order to be editable)
     ModalCreate = "modal-create",// Be able to append a new row after save a modal form
@@ -821,6 +793,29 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     locationY: TooltipLocationY;
     locationX: TooltipLocationX;
     constructor(data?: Partial<TooltipConfig>);
+}
+
+declare class ItemCrud extends LktItem implements ItemCrudConfig {
+    static lktDefaultValues: (keyof ItemCrudConfig)[];
+    modelValue: LktObject;
+    editing: boolean;
+    mode: ItemCrudMode;
+    view: ItemCrudView;
+    editModeButton: ButtonConfig;
+    dropButton: ButtonConfig;
+    createButton: ButtonConfig;
+    updateButton: ButtonConfig;
+    modalConfig: ModalConfig;
+    saveConfig: SaveConfig;
+    title: string;
+    readResource: string;
+    readData: LktObject;
+    saveValidator: Function;
+    beforeEmitUpdate: Function | undefined;
+    dataStateConfig: DataStateConfig;
+    buttonNavPosition?: ItemCrudButtonNavPosition;
+    buttonNavVisibility?: ItemCrudButtonNavVisibility;
+    constructor(data?: Partial<ItemCrudConfig>);
 }
 
 declare class Modal extends LktItem implements ModalConfig {
@@ -933,6 +928,8 @@ type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget)
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
 declare const extractI18nValue: (needle: string | number) => any;
 
+declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
+
 declare const lktDebug: (component: string, ...args: any[]) => void;
 
 /**
@@ -944,4 +941,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudType, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, extractI18nValue, extractPropValue, getDefaultValues, lktDebug };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, ensureButtonConfig, extractI18nValue, extractPropValue, getDefaultValues, lktDebug };
