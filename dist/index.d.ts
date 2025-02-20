@@ -400,16 +400,15 @@ interface ItemCrudConfig {
     dropButton: ButtonConfig;
     createButton: ButtonConfig;
     updateButton: ButtonConfig;
-    modalConfig: ModalConfig;
-    saveConfig: SaveConfig;
-    title: string;
-    readResource: string;
-    readData: LktObject;
-    saveValidator: Function;
-    beforeEmitUpdate: Function | undefined;
-    dataStateConfig: DataStateConfig;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
+    modalConfig: ModalConfig;
+    saveConfig: SaveConfig;
+    dataStateConfig: DataStateConfig;
+    readResource: string;
+    readData: LktObject;
+    title: string;
+    beforeEmitUpdate: Function | undefined;
 }
 
 declare enum PaginatorType {
@@ -810,7 +809,6 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     title: string;
     readResource: string;
     readData: LktObject;
-    saveValidator: Function;
     beforeEmitUpdate: Function | undefined;
     dataStateConfig: DataStateConfig;
     buttonNavPosition?: ItemCrudButtonNavPosition;

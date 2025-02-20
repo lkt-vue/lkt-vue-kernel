@@ -659,7 +659,6 @@ var ItemCrud = class extends LktItem {
     "title",
     "readResource",
     "readData",
-    "saveValidator",
     "beforeEmitUpdate",
     "dataStateConfig",
     "buttonNavPosition",
@@ -685,7 +684,6 @@ var ItemCrud = class extends LktItem {
   title = "";
   readResource = "";
   readData = {};
-  saveValidator = () => true;
   beforeEmitUpdate = void 0;
   dataStateConfig = {};
   buttonNavPosition = "top" /* Top */;

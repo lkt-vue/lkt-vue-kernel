@@ -30,7 +30,6 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'title',
         'readResource',
         'readData',
-        'saveValidator',
         'beforeEmitUpdate',
         'dataStateConfig',
         'buttonNavPosition',
@@ -63,7 +62,6 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     title: string = '';
     readResource: string = '';
     readData: LktObject = {};
-    saveValidator: Function = () => true;
     beforeEmitUpdate: Function | undefined = undefined;
     dataStateConfig: DataStateConfig = {};
     buttonNavPosition?: ItemCrudButtonNavPosition = ItemCrudButtonNavPosition.Top;
