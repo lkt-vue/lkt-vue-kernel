@@ -38,7 +38,7 @@ type ValidModalName = string | Function | undefined;
 
 type EmptyModalKey = '_';
 
-type ValidModalKey = string | Function | EmptyModalKey;
+type ValidModalKey = string | number | Function | EmptyModalKey;
 
 type BeforeCloseModalData = {
     modalName: ValidModalKey;
