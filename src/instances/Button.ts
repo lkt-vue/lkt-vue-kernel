@@ -10,9 +10,9 @@ import {generateRandomString} from "lkt-string-tools";
 import {VueElement} from "vue";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {Anchor} from "./Anchor.ts";
-import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
+import {TooltipConfig} from "../config/TooltipConfig.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -50,19 +50,14 @@ export class Button extends LktItem implements ButtonConfig {
         'iconEnd',
         'img',
         'showTooltipOnHoverDelay',
-        'tooltipWindowMargin',
-        'tooltipReferrerMargin',
-        'tooltipLocationY',
-        'tooltipLocationX',
+        'tooltip',
         'checked',
         'clickRef',
         'openTooltip',
         'tabindex',
         'anchor',
-        'tooltipEngine',
         'showTooltipOnHover',
         'hideTooltipOnLeave',
-        'tooltipClass',
         'splitClass',
         'prop',
         'onClick',
@@ -94,21 +89,16 @@ export class Button extends LktItem implements ButtonConfig {
     iconEnd: string = '';
     img: string = '';
     showTooltipOnHoverDelay: number = 0;
-    tooltipWindowMargin: number = 0;
-    tooltipReferrerMargin: number = 0;
-    tooltipLocationY: string = 'bottom';
-    tooltipLocationX: string = 'left-corner';
     checked: boolean = false;
     clickRef?: Element | VueElement = undefined;
     openTooltip: boolean = false;
     tabindex: ValidTabIndex = undefined;
     anchor?:AnchorConfig|Anchor = undefined;
 
-    tooltipEngine?: TooltipPositionEngine = TooltipPositionEngine.Fixed;
     showTooltipOnHover?: boolean = undefined;
     hideTooltipOnLeave?: boolean = undefined;
-    tooltipClass?: string = '';
     splitClass?: string = '';
+    tooltip?: TooltipConfig = {};
 
     prop?: LktObject = {};
 

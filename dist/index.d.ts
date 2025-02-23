@@ -123,11 +123,6 @@ declare class Anchor extends LktItem implements AnchorConfig {
     constructor(data?: Partial<AnchorConfig>);
 }
 
-declare enum TooltipPositionEngine {
-    Fixed = "fixed",
-    Absolute = "absolute"
-}
-
 interface IsDisabledCheckerArgs {
     value?: any;
     dataState?: DataState;
@@ -151,6 +146,42 @@ interface ModalCallbackConfig {
     action: ModalCallbackAction;
     method?: string;
     args?: LktObject;
+}
+
+declare enum TooltipLocationY {
+    Top = "top",
+    Bottom = "bottom",
+    Center = "center",
+    ReferrerCenter = "referrer-center"
+}
+
+declare enum TooltipLocationX {
+    Left = "left",
+    Right = "right",
+    Center = "center",
+    LeftCorner = "left-corner",
+    RightCorner = "right-corner"
+}
+
+declare enum TooltipPositionEngine {
+    Fixed = "fixed",
+    Absolute = "absolute"
+}
+
+interface TooltipConfig {
+    modelValue?: boolean;
+    alwaysOpen?: boolean;
+    class?: string;
+    text?: string;
+    icon?: string;
+    iconAtEnd?: boolean;
+    engine?: TooltipPositionEngine;
+    referrerMargin?: number | string;
+    windowMargin?: number | string;
+    referrerWidth?: boolean;
+    referrer?: HTMLElement | undefined;
+    locationY?: TooltipLocationY;
+    locationX?: TooltipLocationX;
 }
 
 interface ButtonConfig {
@@ -181,15 +212,10 @@ interface ButtonConfig {
     iconEnd?: string;
     img?: string;
     splitIcon?: string;
-    tooltipEngine?: TooltipPositionEngine;
     showTooltipOnHover?: boolean;
     showTooltipOnHoverDelay?: number;
     hideTooltipOnLeave?: boolean;
-    tooltipWindowMargin?: number;
-    tooltipReferrerMargin?: number;
-    tooltipClass?: string;
-    tooltipLocationY?: string;
-    tooltipLocationX?: string;
+    tooltip?: TooltipConfig;
     splitClass?: string;
     clickRef?: Element | VueElement;
     tabindex?: ValidTabIndex;
@@ -201,6 +227,8 @@ interface ButtonConfig {
 declare class LktSettings {
     static debugEnabled: boolean;
     static debugMode(enabled?: boolean): typeof LktSettings;
+    static defaultSaveButton: Partial<ButtonConfig>;
+    static setDefaultSaveButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultConfirmButton: Partial<ButtonConfig>;
     static setDefaultConfirmButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultCancelButton: Partial<ButtonConfig>;
@@ -430,37 +458,6 @@ interface PaginatorConfig {
     filters?: LktObject;
 }
 
-declare enum TooltipLocationY {
-    Top = "top",
-    Bottom = "bottom",
-    Center = "center",
-    ReferrerCenter = "referrer-center"
-}
-
-declare enum TooltipLocationX {
-    Left = "left",
-    Right = "right",
-    Center = "center",
-    LeftCorner = "left-corner",
-    RightCorner = "right-corner"
-}
-
-interface TooltipConfig {
-    modelValue?: boolean;
-    alwaysOpen?: boolean;
-    class?: string;
-    text?: string;
-    icon?: string;
-    iconAtEnd?: boolean;
-    engine?: TooltipPositionEngine;
-    referrerMargin?: number | string;
-    windowMargin?: number | string;
-    referrerWidth?: boolean;
-    referrer?: HTMLElement | undefined;
-    locationY?: TooltipLocationY;
-    locationX?: TooltipLocationX;
-}
-
 type ValidDrag = boolean | ((item: LktObject) => boolean);
 
 interface DragConfig {
@@ -608,20 +605,15 @@ declare class Button extends LktItem implements ButtonConfig {
     iconEnd: string;
     img: string;
     showTooltipOnHoverDelay: number;
-    tooltipWindowMargin: number;
-    tooltipReferrerMargin: number;
-    tooltipLocationY: string;
-    tooltipLocationX: string;
     checked: boolean;
     clickRef?: Element | VueElement;
     openTooltip: boolean;
     tabindex: ValidTabIndex;
     anchor?: AnchorConfig | Anchor;
-    tooltipEngine?: TooltipPositionEngine;
     showTooltipOnHover?: boolean;
     hideTooltipOnLeave?: boolean;
-    tooltipClass?: string;
     splitClass?: string;
+    tooltip?: TooltipConfig;
     prop?: LktObject;
     onClick?: Function | undefined;
     onConfirm?: Function | undefined;
@@ -930,6 +922,8 @@ declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefin
 
 declare const lktDebug: (component: string, ...args: any[]) => void;
 
+declare const createColumn: (data: ColumnConfig) => Column;
+
 /**
  * Export common interfaces
  */
@@ -939,4 +933,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, ensureButtonConfig, extractI18nValue, extractPropValue, getDefaultValues, lktDebug };
+export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, getDefaultValues, lktDebug };

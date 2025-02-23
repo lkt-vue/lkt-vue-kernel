@@ -1,16 +1,15 @@
 import {ButtonType} from "../enums/ButtonType.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {VueElement} from "vue";
-import {ToggleMode} from "../enums/ToggleMode.ts";
 import {AnchorConfig} from "./AnchorConfig.ts";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {ModalConfig} from "./ModalConfig.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {Anchor} from "../instances/Anchor.ts";
-import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
+import {TooltipConfig} from "./TooltipConfig.ts";
 
 export interface ButtonConfig {
     type?: ButtonType
@@ -50,15 +49,10 @@ export interface ButtonConfig {
 
     // Tooltip and split
     splitIcon?: string
-    tooltipEngine?: TooltipPositionEngine
     showTooltipOnHover?: boolean
     showTooltipOnHoverDelay?: number
     hideTooltipOnLeave?: boolean
-    tooltipWindowMargin?: number
-    tooltipReferrerMargin?: number
-    tooltipClass?: string
-    tooltipLocationY?: string
-    tooltipLocationX?: string
+    tooltip?: TooltipConfig
     splitClass?: string
     clickRef?: Element | VueElement
     tabindex?: ValidTabIndex

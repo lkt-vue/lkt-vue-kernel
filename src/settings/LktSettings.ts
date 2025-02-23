@@ -10,6 +10,18 @@ export class LktSettings {
         return LktSettings;
     }
 
+    static defaultSaveButton: Partial<ButtonConfig> = {
+        text: 'Save',
+    };
+    static setDefaultSaveButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultSaveButton = button;
+        } else {
+            LktSettings.defaultSaveButton = ensureButtonConfig(button, LktSettings.defaultSaveButton);
+        }
+        return LktSettings;
+    }
+
     static defaultConfirmButton: Partial<ButtonConfig> = {
         text: 'Confirm',
     };

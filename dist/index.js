@@ -32,6 +32,17 @@ var LktSettings = class _LktSettings {
     _LktSettings.debugEnabled = enabled;
     return _LktSettings;
   }
+  static defaultSaveButton = {
+    text: "Save"
+  };
+  static setDefaultSaveButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultSaveButton = button;
+    } else {
+      _LktSettings.defaultSaveButton = ensureButtonConfig(button, _LktSettings.defaultSaveButton);
+    }
+    return _LktSettings;
+  }
   static defaultConfirmButton = {
     text: "Confirm"
   };
@@ -386,15 +397,6 @@ var Anchor = class extends LktItem {
 
 // src/instances/Button.ts
 import { generateRandomString as generateRandomString2 } from "lkt-string-tools";
-
-// src/enums/TooltipPositionEngine.ts
-var TooltipPositionEngine = /* @__PURE__ */ ((TooltipPositionEngine2) => {
-  TooltipPositionEngine2["Fixed"] = "fixed";
-  TooltipPositionEngine2["Absolute"] = "absolute";
-  return TooltipPositionEngine2;
-})(TooltipPositionEngine || {});
-
-// src/instances/Button.ts
 var Button = class extends LktItem {
   lktAllowUndefinedProps = [
     "clickRef",
@@ -429,19 +431,14 @@ var Button = class extends LktItem {
     "iconEnd",
     "img",
     "showTooltipOnHoverDelay",
-    "tooltipWindowMargin",
-    "tooltipReferrerMargin",
-    "tooltipLocationY",
-    "tooltipLocationX",
+    "tooltip",
     "checked",
     "clickRef",
     "openTooltip",
     "tabindex",
     "anchor",
-    "tooltipEngine",
     "showTooltipOnHover",
     "hideTooltipOnLeave",
-    "tooltipClass",
     "splitClass",
     "prop",
     "onClick",
@@ -472,20 +469,15 @@ var Button = class extends LktItem {
   iconEnd = "";
   img = "";
   showTooltipOnHoverDelay = 0;
-  tooltipWindowMargin = 0;
-  tooltipReferrerMargin = 0;
-  tooltipLocationY = "bottom";
-  tooltipLocationX = "left-corner";
   checked = false;
   clickRef = void 0;
   openTooltip = false;
   tabindex = void 0;
   anchor = void 0;
-  tooltipEngine = "fixed" /* Fixed */;
   showTooltipOnHover = void 0;
   hideTooltipOnLeave = void 0;
-  tooltipClass = "";
   splitClass = "";
+  tooltip = {};
   prop = {};
   // Event management
   onClick = void 0;
@@ -579,6 +571,13 @@ var Column = class extends LktItem {
     console.warn("No action defined");
   }
 };
+
+// src/enums/TooltipPositionEngine.ts
+var TooltipPositionEngine = /* @__PURE__ */ ((TooltipPositionEngine2) => {
+  TooltipPositionEngine2["Fixed"] = "fixed";
+  TooltipPositionEngine2["Absolute"] = "absolute";
+  return TooltipPositionEngine2;
+})(TooltipPositionEngine || {});
 
 // src/enums/TooltipLocationY.ts
 var TooltipLocationY = /* @__PURE__ */ ((TooltipLocationY2) => {
@@ -1010,6 +1009,11 @@ var lktDebug = (component, ...args) => {
   if (LktSettings.debugEnabled) console.info("::lkt::", `[${component}] `, ...args);
 };
 
+// src/functions/table-functions.ts
+var createColumn = (data) => {
+  return new Column(data);
+};
+
 // src/index.ts
 function getDefaultValues(cls) {
   const instance = new cls();
@@ -1061,6 +1065,7 @@ export {
   TooltipLocationX,
   TooltipLocationY,
   TooltipPositionEngine,
+  createColumn,
   ensureButtonConfig,
   extractI18nValue,
   extractPropValue,
