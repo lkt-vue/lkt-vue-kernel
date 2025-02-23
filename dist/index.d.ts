@@ -473,19 +473,7 @@ declare enum ColumnType {
     None = "",
     Field = "field",
     Button = "button",
-    Anchor = "anchor",
-    Text = "text",
-    Number = "number",
-    Check = "check",
-    Switch = "switch",
-    Select = "select",
-    Email = "email",
-    Tel = "tel",
-    File = "file",
-    Link = "link",
-    Action = "action",
-    Integer = "int",
-    Float = "float"
+    Anchor = "anchor"
 }
 
 type ValidColSpan = Function | boolean | number | undefined;
@@ -624,10 +612,10 @@ declare class Button extends LktItem implements ButtonConfig {
 interface ColumnConfig {
     type: ColumnType;
     key: string;
-    label: string;
-    sortable: boolean;
-    hidden: boolean;
-    editable: boolean;
+    label?: string;
+    sortable?: boolean;
+    hidden?: boolean;
+    editable?: boolean;
     formatter?: Function | undefined;
     checkEmpty?: Function | undefined;
     colspan?: ValidColSpan;

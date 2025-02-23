@@ -294,18 +294,6 @@ var ColumnType = /* @__PURE__ */ ((ColumnType2) => {
   ColumnType2["Field"] = "field";
   ColumnType2["Button"] = "button";
   ColumnType2["Anchor"] = "anchor";
-  ColumnType2["Text"] = "text";
-  ColumnType2["Number"] = "number";
-  ColumnType2["Check"] = "check";
-  ColumnType2["Switch"] = "switch";
-  ColumnType2["Select"] = "select";
-  ColumnType2["Email"] = "email";
-  ColumnType2["Tel"] = "tel";
-  ColumnType2["File"] = "file";
-  ColumnType2["Link"] = "link";
-  ColumnType2["Action"] = "action";
-  ColumnType2["Integer"] = "int";
-  ColumnType2["Float"] = "float";
   return ColumnType2;
 })(ColumnType || {});
 

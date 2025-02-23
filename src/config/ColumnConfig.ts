@@ -13,10 +13,10 @@ import {SafeString} from "../value-objects/SafeString.ts";
 export interface ColumnConfig {
     type: ColumnType
     key: string
-    label: string
-    sortable: boolean
-    hidden: boolean
-    editable: boolean
+    label?: string
+    sortable?: boolean
+    hidden?: boolean
+    editable?: boolean
     formatter?: Function | undefined
     checkEmpty?: Function | undefined
     colspan?: ValidColSpan
