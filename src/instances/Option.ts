@@ -7,11 +7,11 @@ import {ValidModalName} from "../types/ValidModalName.ts";
 export class Option extends LktItem implements OptionConfig {
     value: ValidOptionValue = undefined;
     label: string = '';
-    data: LktObject = {};
-    disabled: boolean = false;
-    group: string = '';
-    icon: string = '';
-    modal: ValidModalName = '';
+    data?: LktObject = {};
+    disabled?: boolean = false;
+    group?: string = '';
+    icon?: string = '';
+    modal?: ValidModalName = '';
 
     constructor(data: Partial<OptionConfig> = {}) {
         super();

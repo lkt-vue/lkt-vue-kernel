@@ -280,11 +280,11 @@ interface OptionConfig {
 declare class Option extends LktItem implements OptionConfig {
     value: ValidOptionValue;
     label: string;
-    data: LktObject;
-    disabled: boolean;
-    group: string;
-    icon: string;
-    modal: ValidModalName;
+    data?: LktObject;
+    disabled?: boolean;
+    group?: string;
+    icon?: string;
+    modal?: ValidModalName;
     constructor(data?: Partial<OptionConfig>);
 }
 
