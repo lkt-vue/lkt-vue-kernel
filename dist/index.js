@@ -112,6 +112,63 @@ var LktSettings = class _LktSettings {
   }
 };
 
+// src/enums/FieldType.ts
+var FieldType = /* @__PURE__ */ ((FieldType2) => {
+  FieldType2["Text"] = "text";
+  FieldType2["Email"] = "email";
+  FieldType2["Tel"] = "tel";
+  FieldType2["Password"] = "password";
+  FieldType2["Search"] = "search";
+  FieldType2["Number"] = "number";
+  FieldType2["Color"] = "color";
+  FieldType2["Range"] = "range";
+  FieldType2["Textarea"] = "textarea";
+  FieldType2["Html"] = "html";
+  FieldType2["Date"] = "date";
+  FieldType2["File"] = "file";
+  FieldType2["Image"] = "image";
+  FieldType2["Select"] = "select";
+  FieldType2["Check"] = "check";
+  FieldType2["Switch"] = "switch";
+  FieldType2["Calc"] = "calc";
+  FieldType2["Card"] = "card";
+  FieldType2["Elements"] = "elements";
+  return FieldType2;
+})(FieldType || {});
+
+// src/constants/field-constants.ts
+var fieldTypesWithOptions = [
+  "text" /* Text */,
+  "search" /* Search */,
+  "select" /* Select */
+];
+var fieldTypesWithoutClear = [
+  "switch" /* Switch */,
+  "check" /* Check */
+];
+var fieldTypesWithoutUndo = [
+  "switch" /* Switch */,
+  "check" /* Check */
+];
+var textFieldTypesWithOptions = [
+  "text" /* Text */,
+  "search" /* Search */
+];
+var booleanFieldTypes = [
+  "switch" /* Switch */,
+  "check" /* Check */
+];
+var fieldsWithMultipleMode = [
+  "select" /* Select */,
+  "color" /* Color */,
+  "card" /* Card */
+];
+var textFieldTypes = [
+  "text" /* Text */,
+  "email" /* Email */,
+  "password" /* Password */
+];
+
 // src/instances/LktItem.ts
 var skipDataProps = [
   "lktDateProps",
@@ -161,30 +218,6 @@ var Option = class extends LktItem {
   }
 };
 
-// src/enums/FieldType.ts
-var FieldType = /* @__PURE__ */ ((FieldType2) => {
-  FieldType2["Text"] = "text";
-  FieldType2["Email"] = "email";
-  FieldType2["Tel"] = "tel";
-  FieldType2["Password"] = "password";
-  FieldType2["Search"] = "search";
-  FieldType2["Number"] = "number";
-  FieldType2["Color"] = "color";
-  FieldType2["Range"] = "range";
-  FieldType2["Textarea"] = "textarea";
-  FieldType2["Html"] = "html";
-  FieldType2["Date"] = "date";
-  FieldType2["File"] = "file";
-  FieldType2["Image"] = "image";
-  FieldType2["Select"] = "select";
-  FieldType2["Check"] = "check";
-  FieldType2["Switch"] = "switch";
-  FieldType2["Calc"] = "calc";
-  FieldType2["Card"] = "card";
-  FieldType2["Elements"] = "elements";
-  return FieldType2;
-})(FieldType || {});
-
 // src/instances/Field.ts
 import { generateRandomString } from "lkt-string-tools";
 
@@ -228,6 +261,7 @@ var Field = class extends LktItem {
   canUndo = false;
   canI18n = false;
   canStep = true;
+  canTag = true;
   mandatoryMessage = "";
   infoMessage = "";
   errorMessage = "";
@@ -272,7 +306,9 @@ var Field = class extends LktItem {
   optionsDownload = "";
   optionsModal = "";
   optionsModalData = {};
+  optionsText = "";
   optionsIcon = "";
+  optionsClass = "";
   optionsLabelFormatter = void 0;
   optionsResource = "";
   optionsResourceData = {};
@@ -282,9 +318,119 @@ var Field = class extends LktItem {
   modalKey = "";
   modalData = {};
   data = {};
+  validation = {};
   constructor(data = {}) {
     super();
     this.feed(data);
+  }
+};
+
+// src/enums/ValidationCode.ts
+var ValidationCode = /* @__PURE__ */ ((ValidationCode2) => {
+  ValidationCode2["MinStringLength"] = "min-str";
+  ValidationCode2["MinNumber"] = "min-num";
+  ValidationCode2["MaxStringLength"] = "max-str";
+  ValidationCode2["MaxNumber"] = "max-num";
+  ValidationCode2["Email"] = "email";
+  ValidationCode2["Empty"] = "empty";
+  ValidationCode2["EqualTo"] = "equal-to";
+  ValidationCode2["MinNumbers"] = "min-numbers";
+  ValidationCode2["MaxNumbers"] = "max-numbers";
+  ValidationCode2["MinChars"] = "min-chars";
+  ValidationCode2["MaxChars"] = "max-chars";
+  ValidationCode2["MinUpperChars"] = "min-upper-chars";
+  ValidationCode2["MaxUpperChars"] = "max-upper-chars";
+  ValidationCode2["MinLowerChars"] = "min-lower-chars";
+  ValidationCode2["MaxLowerChars"] = "max-lower-chars";
+  ValidationCode2["MinSpecialChars"] = "min-special-chars";
+  ValidationCode2["MaxSpecialChars"] = "max-special-chars";
+  return ValidationCode2;
+})(ValidationCode || {});
+
+// src/enums/ValidationStatus.ts
+var ValidationStatus = /* @__PURE__ */ ((ValidationStatus2) => {
+  ValidationStatus2["Ok"] = "ok";
+  ValidationStatus2["Ko"] = "ko";
+  ValidationStatus2["Info"] = "info";
+  return ValidationStatus2;
+})(ValidationStatus || {});
+
+// src/instances/FieldValidation.ts
+var FieldValidation = class _FieldValidation {
+  code = void 0;
+  status = "info" /* Info */;
+  min = 0;
+  max = 0;
+  equalToValue = void 0;
+  constructor(code, status) {
+    this.code = code;
+    this.status = status;
+  }
+  setMin(n) {
+    this.min = n;
+    return this;
+  }
+  setMax(n) {
+    this.max = n;
+    return this;
+  }
+  setEqualToValue(val) {
+    this.equalToValue = val;
+    return this;
+  }
+  static createEmpty(status = "ko" /* Ko */) {
+    return new _FieldValidation("empty" /* Empty */, status);
+  }
+  static createEmail(status = "ko" /* Ko */) {
+    return new _FieldValidation("email" /* Email */, status);
+  }
+  static createMinStr(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-str" /* MinStringLength */, status).setMin(min);
+  }
+  static createMaxStr(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-str" /* MaxStringLength */, status).setMax(max);
+  }
+  static createMinNum(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-num" /* MinNumber */, status).setMin(min);
+  }
+  static createMaxNum(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-num" /* MaxNumber */, status).setMax(max);
+  }
+  static createNumBetween(min, max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-num" /* MaxNumber */, status).setMin(min).setMax(max);
+  }
+  static createMinNumbers(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-numbers" /* MinNumbers */, status).setMin(min);
+  }
+  static createMaxNumbers(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-numbers" /* MaxNumbers */, status).setMax(max);
+  }
+  static createMinUpperChars(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-upper-chars" /* MinUpperChars */, status).setMin(min);
+  }
+  static createMaxUpperChars(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-upper-chars" /* MaxUpperChars */, status).setMax(max);
+  }
+  static createMinLowerChars(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-lower-chars" /* MinLowerChars */, status).setMin(min);
+  }
+  static createMaxLowerChars(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-lower-chars" /* MaxLowerChars */, status).setMax(max);
+  }
+  static createMinSpecialChars(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-special-chars" /* MinSpecialChars */, status).setMin(min);
+  }
+  static createMaxSpecialChars(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-special-chars" /* MaxSpecialChars */, status).setMax(max);
+  }
+  static createMinChars(min, status = "ko" /* Ko */) {
+    return new _FieldValidation("min-chars" /* MinChars */, status).setMin(min);
+  }
+  static createMaxChars(max, status = "ko" /* Ko */) {
+    return new _FieldValidation("max-chars" /* MaxChars */, status).setMax(max);
+  }
+  static createEqualTo(value, status = "ko" /* Ko */) {
+    return new _FieldValidation("equal-to" /* EqualTo */, status).setEqualToValue(value);
   }
 };
 
@@ -414,7 +560,11 @@ var Button = class extends LktItem {
     "confirmData",
     "modalCallbacks",
     "text",
+    "textOn",
+    "textOff",
     "icon",
+    "iconOn",
+    "iconOff",
     "iconDot",
     "iconEnd",
     "img",
@@ -452,6 +602,10 @@ var Button = class extends LktItem {
   confirmData = {};
   modalCallbacks = [];
   text = "";
+  textOn = void 0;
+  textOff = void 0;
+  iconOn = void 0;
+  iconOff = void 0;
   icon = "";
   iconDot = false;
   iconEnd = "";
@@ -930,6 +1084,23 @@ var Table = class extends LktItem {
   }
 };
 
+// src/enums/AccordionToggleMode.ts
+var AccordionToggleMode = /* @__PURE__ */ ((AccordionToggleMode2) => {
+  AccordionToggleMode2["Transform"] = "transform";
+  AccordionToggleMode2["Height"] = "height";
+  AccordionToggleMode2["Display"] = "display";
+  return AccordionToggleMode2;
+})(AccordionToggleMode || {});
+
+// src/enums/AccordionType.ts
+var AccordionType = /* @__PURE__ */ ((AccordionType2) => {
+  AccordionType2["Auto"] = "auto";
+  AccordionType2["Always"] = "always";
+  AccordionType2["Lazy"] = "lazy";
+  AccordionType2["Ever"] = "ever";
+  return AccordionType2;
+})(AccordionType || {});
+
 // src/enums/ModalCallbackAction.ts
 var ModalCallbackAction = /* @__PURE__ */ ((ModalCallbackAction2) => {
   ModalCallbackAction2["Refresh"] = "refresh";
@@ -1017,6 +1188,8 @@ function getDefaultValues(cls) {
   return result;
 }
 export {
+  AccordionToggleMode,
+  AccordionType,
   Anchor,
   AnchorType,
   Button,
@@ -1026,6 +1199,7 @@ export {
   Field,
   FieldAutoValidationTrigger,
   FieldType,
+  FieldValidation,
   ItemCrud,
   ItemCrudButtonNavPosition,
   ItemCrudButtonNavVisibility,
@@ -1053,10 +1227,19 @@ export {
   TooltipLocationX,
   TooltipLocationY,
   TooltipPositionEngine,
+  ValidationCode,
+  ValidationStatus,
+  booleanFieldTypes,
   createColumn,
   ensureButtonConfig,
   extractI18nValue,
   extractPropValue,
+  fieldTypesWithOptions,
+  fieldTypesWithoutClear,
+  fieldTypesWithoutUndo,
+  fieldsWithMultipleMode,
   getDefaultValues,
-  lktDebug
+  lktDebug,
+  textFieldTypes,
+  textFieldTypesWithOptions
 };

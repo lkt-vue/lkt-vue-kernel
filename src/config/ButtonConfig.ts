@@ -13,7 +13,6 @@ import {TooltipConfig} from "./TooltipConfig.ts";
 
 export interface ButtonConfig {
     type?: ButtonType
-    checked?: boolean
     openTooltip?: boolean
     name?: string
     text?: string | number
@@ -25,6 +24,13 @@ export interface ButtonConfig {
     disabled?: ValidIsDisabledValue
     loading?: boolean
     wrapContent?: boolean
+
+    // Check button
+    checked?: boolean
+    textOn?: string | number | undefined
+    textOff?: string | number | undefined
+    iconOn?: string | number | undefined
+    iconOff?: string | number | undefined
 
     // Anchor integration
     anchor?: AnchorConfig|Anchor

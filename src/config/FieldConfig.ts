@@ -6,6 +6,7 @@ import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
+import {FieldValidationConfig} from "./FieldValidationConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -44,6 +45,39 @@ export interface FieldConfig {
     slotData?: LktObject
     resource?: string
     resourceData?: LktObject
+    featuredButton?: string
+    infoButtonEllipsis?: boolean
+    fileName?: string
+    options?: string | Option[]
+    multiple?: boolean
+    multipleDisplay?: MultipleOptionsDisplay
+    multipleDisplayEdition?: MultipleOptionsDisplay
+    searchable?: boolean
+    autoloadOptionsResource?: boolean | 'feed'
+    optionsDownload?: string | Function
+    optionsModal?: string | Function
+    optionsModalData?: LktObject | Function
+    optionsText?: string | Function
+    optionsIcon?: string | Function
+    optionsClass?: string | Function
+    optionsLabelFormatter?: Function|undefined
+    optionsResource?: string
+    optionsResourceData?: LktObject
+    icon?: string | Function
+    download?: string | Function
+    modal?: string | Function
+    modalKey?: string | number | Function
+    modalData?: LktObject
+    itemType?: string
+    optionValueType?: string
+
+    // Extract data
+    prop?: LktObject
+
+    // Validation
+    validation?: FieldValidationConfig
+
+    // Deprecated:Validation
     validationResource?: string
     validationResourceData?: LktObject
     autoValidation?: boolean
@@ -60,32 +94,10 @@ export interface FieldConfig {
     minSpecialChars?: ValidFieldMinMax
     maxSpecialChars?: ValidFieldMinMax
     checkEqualTo?: ValidFieldMinMax
-    featuredButton?: string
-    infoButtonEllipsis?: boolean
-    fileName?: string
+
+    // Custom button
+
+    // Deprecated: Custom button
     customButtonText?: string
     customButtonClass?: string
-    options?: string | Option[]
-    multiple?: boolean
-    multipleDisplay?: MultipleOptionsDisplay
-    multipleDisplayEdition?: MultipleOptionsDisplay
-    searchable?: boolean
-    autoloadOptionsResource?: boolean | 'feed'
-    optionsDownload?: string | Function
-    optionsModal?: string | Function
-    optionsModalData?: LktObject | Function
-    optionsIcon?: string | Function
-    optionsLabelFormatter?: Function|undefined
-    optionsResource?: string
-    optionsResourceData?: LktObject
-    icon?: string | Function
-    download?: string | Function
-    modal?: string | Function
-    modalKey?: string | number | Function
-    modalData?: LktObject
-    itemType?: string
-    optionValueType?: string
-
-    // Extract data
-    prop?: LktObject
 }

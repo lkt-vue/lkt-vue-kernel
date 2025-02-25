@@ -9,6 +9,7 @@ import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
+import {FieldValidationConfig} from "../config/FieldValidationConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
     modelValue: ValidFieldValue = '';
@@ -32,6 +33,7 @@ export class Field extends LktItem implements FieldConfig {
     canUndo: boolean = false;
     canI18n: boolean = false;
     canStep: boolean = true;
+    canTag: boolean = true;
     mandatoryMessage: string = '';
     infoMessage: string = '';
     errorMessage: string = '';
@@ -76,7 +78,9 @@ export class Field extends LktItem implements FieldConfig {
     optionsDownload: string | Function = '';
     optionsModal: string | Function = '';
     optionsModalData: LktObject | Function = {};
+    optionsText: string | Function = '';
     optionsIcon: string | Function = '';
+    optionsClass: string | Function = '';
     optionsLabelFormatter = undefined;
     optionsResource: string = '';
     optionsResourceData: LktObject = {};
@@ -86,6 +90,7 @@ export class Field extends LktItem implements FieldConfig {
     modalKey: string | number | Function = '';
     modalData: LktObject = {};
     data: LktObject = {};
+    validation: FieldValidationConfig = {};
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

@@ -45,7 +45,11 @@ export class Button extends LktItem implements ButtonConfig {
         'confirmData',
         'modalCallbacks',
         'text',
+        'textOn',
+        'textOff',
         'icon',
+        'iconOn',
+        'iconOff',
         'iconDot',
         'iconEnd',
         'img',
@@ -83,7 +87,11 @@ export class Button extends LktItem implements ButtonConfig {
     confirmModalKey: ValidModalKey = '_';
     confirmData: Partial<ModalConfig> = {};
     modalCallbacks?: Array<ModalCallbackConfig> = [];
-    text: string = '';
+    text: string | number = '';
+    textOn: string | number | undefined = undefined;
+    textOff: string | number | undefined = undefined;
+    iconOn: string | number | undefined = undefined;
+    iconOff: string | number | undefined = undefined;
     icon: string = '';
     iconDot: boolean = false;
     iconEnd: string = '';

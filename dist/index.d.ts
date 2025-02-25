@@ -186,7 +186,6 @@ interface TooltipConfig {
 
 interface ButtonConfig {
     type?: ButtonType;
-    checked?: boolean;
     openTooltip?: boolean;
     name?: string;
     text?: string | number;
@@ -198,6 +197,11 @@ interface ButtonConfig {
     disabled?: ValidIsDisabledValue;
     loading?: boolean;
     wrapContent?: boolean;
+    checked?: boolean;
+    textOn?: string | number | undefined;
+    textOff?: string | number | undefined;
+    iconOn?: string | number | undefined;
+    iconOff?: string | number | undefined;
     anchor?: AnchorConfig | Anchor;
     resource?: string;
     resourceData?: LktObject;
@@ -265,6 +269,54 @@ declare enum FieldType {
     Elements = "elements"
 }
 
+declare const fieldTypesWithOptions: FieldType[];
+declare const fieldTypesWithoutClear: FieldType[];
+declare const fieldTypesWithoutUndo: FieldType[];
+declare const textFieldTypesWithOptions: FieldType[];
+declare const booleanFieldTypes: FieldType[];
+declare const fieldsWithMultipleMode: FieldType[];
+declare const textFieldTypes: FieldType[];
+
+declare enum AccordionToggleMode {
+    Transform = "transform",
+    Height = "height",
+    Display = "display"
+}
+
+declare enum AccordionType {
+    Auto = "auto",// Default accordion flow
+    Always = "always",// Always opened
+    Lazy = "lazy",// Lazy content, only after fist open
+    Ever = "ever"
+}
+
+interface AccordionConfig {
+    modelValue?: boolean;
+    type?: AccordionType;
+    toggleMode?: AccordionToggleMode;
+    actionButton?: ButtonConfig;
+    toggleButton?: ButtonConfig;
+    toggleOnClickIntro?: boolean;
+    toggleTimeout?: number;
+    title?: string;
+    icon?: string;
+    class?: string;
+    contentClass?: string;
+    iconRotation?: '90' | '180' | '-90' | '-180';
+    minHeight?: number | undefined;
+    toggleIconAtEnd?: boolean;
+    iconAtEnd?: boolean;
+}
+
+declare enum ColumnType {
+    None = "",
+    Field = "field",
+    Button = "button",
+    Anchor = "anchor"
+}
+
+type ValidColSpan = Function | boolean | number | undefined;
+
 type ValidOptionValue = string | number | undefined;
 
 interface OptionConfig {
@@ -305,6 +357,30 @@ declare enum FieldAutoValidationTrigger {
 
 type ValidFieldMinMax = number | string | undefined;
 
+declare enum FieldValidationType {
+    Auto = "auto",
+    Remote = "remote"
+}
+
+interface FieldValidationConfig {
+    type?: FieldValidationType;
+    trigger?: FieldAutoValidationTrigger;
+    stack?: string;
+    resource?: string;
+    resourceData?: LktObject;
+    minNumbers?: ValidFieldMinMax;
+    maxNumbers?: ValidFieldMinMax;
+    minChars?: ValidFieldMinMax;
+    maxChars?: ValidFieldMinMax;
+    minUpperChars?: ValidFieldMinMax;
+    maxUpperChars?: ValidFieldMinMax;
+    minLowerChars?: ValidFieldMinMax;
+    maxLowerChars?: ValidFieldMinMax;
+    minSpecialChars?: ValidFieldMinMax;
+    maxSpecialChars?: ValidFieldMinMax;
+    checkEqualTo?: ValidFieldMinMax;
+}
+
 interface FieldConfig {
     modelValue?: ValidFieldValue;
     type?: FieldType;
@@ -342,6 +418,33 @@ interface FieldConfig {
     slotData?: LktObject;
     resource?: string;
     resourceData?: LktObject;
+    featuredButton?: string;
+    infoButtonEllipsis?: boolean;
+    fileName?: string;
+    options?: string | Option[];
+    multiple?: boolean;
+    multipleDisplay?: MultipleOptionsDisplay;
+    multipleDisplayEdition?: MultipleOptionsDisplay;
+    searchable?: boolean;
+    autoloadOptionsResource?: boolean | 'feed';
+    optionsDownload?: string | Function;
+    optionsModal?: string | Function;
+    optionsModalData?: LktObject | Function;
+    optionsText?: string | Function;
+    optionsIcon?: string | Function;
+    optionsClass?: string | Function;
+    optionsLabelFormatter?: Function | undefined;
+    optionsResource?: string;
+    optionsResourceData?: LktObject;
+    icon?: string | Function;
+    download?: string | Function;
+    modal?: string | Function;
+    modalKey?: string | number | Function;
+    modalData?: LktObject;
+    itemType?: string;
+    optionValueType?: string;
+    prop?: LktObject;
+    validation?: FieldValidationConfig;
     validationResource?: string;
     validationResourceData?: LktObject;
     autoValidation?: boolean;
@@ -358,32 +461,179 @@ interface FieldConfig {
     minSpecialChars?: ValidFieldMinMax;
     maxSpecialChars?: ValidFieldMinMax;
     checkEqualTo?: ValidFieldMinMax;
-    featuredButton?: string;
-    infoButtonEllipsis?: boolean;
-    fileName?: string;
     customButtonText?: string;
     customButtonClass?: string;
-    options?: string | Option[];
-    multiple?: boolean;
-    multipleDisplay?: MultipleOptionsDisplay;
-    multipleDisplayEdition?: MultipleOptionsDisplay;
-    searchable?: boolean;
-    autoloadOptionsResource?: boolean | 'feed';
-    optionsDownload?: string | Function;
-    optionsModal?: string | Function;
-    optionsModalData?: LktObject | Function;
-    optionsIcon?: string | Function;
-    optionsLabelFormatter?: Function | undefined;
-    optionsResource?: string;
-    optionsResourceData?: LktObject;
-    icon?: string | Function;
-    download?: string | Function;
-    modal?: string | Function;
-    modalKey?: string | number | Function;
-    modalData?: LktObject;
-    itemType?: string;
-    optionValueType?: string;
+}
+
+declare class SafeString {
+    private readonly value;
+    constructor(input: ValidSafeStringValue);
+    getValue(...args: any[]): string;
+}
+
+type ValidSafeStringValue = string | ((...args: any[]) => string) | undefined | SafeString;
+
+declare class Field extends LktItem implements FieldConfig {
+    modelValue: ValidFieldValue;
+    type: FieldType;
+    valid: boolean | undefined;
+    placeholder: string;
+    searchPlaceholder: string;
+    label: string;
+    labelIcon: string;
+    labelIconAtEnd: boolean;
+    name: string;
+    autocomplete: boolean;
+    disabled: boolean;
+    readonly: boolean;
+    readMode: boolean;
+    allowReadModeSwitch: boolean;
+    tabindex: ValidTabIndex;
+    mandatory: boolean;
+    showPassword: boolean;
+    canClear: boolean;
+    canUndo: boolean;
+    canI18n: boolean;
+    canStep: boolean;
+    canTag: boolean;
+    mandatoryMessage: string;
+    infoMessage: string;
+    errorMessage: string;
+    min: ValidFieldMinMax;
+    max: ValidFieldMinMax;
+    step: number | string;
+    enableAutoNumberFix: boolean;
+    emptyValueSlot: string;
+    optionSlot: undefined;
+    valueSlot: undefined;
+    editSlot: undefined;
+    slotData: LktObject;
+    resource: string;
+    resourceData: LktObject;
+    validationResource: string;
+    validationResourceData: LktObject;
+    autoValidation: boolean;
+    autoValidationType: FieldAutoValidationTrigger;
+    validationStack: string;
+    minNumbers: ValidFieldMinMax;
+    maxNumbers: ValidFieldMinMax;
+    minChars: ValidFieldMinMax;
+    maxChars: ValidFieldMinMax;
+    minUpperChars: ValidFieldMinMax;
+    maxUpperChars: ValidFieldMinMax;
+    minLowerChars: ValidFieldMinMax;
+    maxLowerChars: ValidFieldMinMax;
+    minSpecialChars: ValidFieldMinMax;
+    maxSpecialChars: ValidFieldMinMax;
+    checkEqualTo: ValidFieldMinMax;
+    featuredButton: string;
+    infoButtonEllipsis: boolean;
+    fileName: string;
+    customButtonText: string;
+    customButtonClass: string;
+    options: string | Option[];
+    multiple: boolean;
+    multipleDisplay: MultipleOptionsDisplay;
+    multipleDisplayEdition: MultipleOptionsDisplay;
+    searchable: boolean;
+    autoloadOptionsResource: boolean | 'feed';
+    optionsDownload: string | Function;
+    optionsModal: string | Function;
+    optionsModalData: LktObject | Function;
+    optionsText: string | Function;
+    optionsIcon: string | Function;
+    optionsClass: string | Function;
+    optionsLabelFormatter: undefined;
+    optionsResource: string;
+    optionsResourceData: LktObject;
+    icon: string | Function;
+    download: string | Function;
+    modal: string | Function;
+    modalKey: string | number | Function;
+    modalData: LktObject;
+    data: LktObject;
+    validation: FieldValidationConfig;
+    constructor(data?: Partial<FieldConfig>);
+}
+
+declare class Button extends LktItem implements ButtonConfig {
+    lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof ButtonConfig)[];
+    type: ButtonType;
+    name: string;
+    palette: string;
+    class: string;
+    containerClass: string;
+    value: string;
+    disabled: ValidIsDisabledValue;
+    loading: boolean;
+    wrapContent: boolean;
+    splitIcon: string;
+    resource: string;
+    resourceData: LktObject;
+    modal: ValidModalName;
+    modalKey: ValidModalKey;
+    modalData: Partial<ModalConfig>;
+    confirmModal: ValidModalName;
+    confirmModalKey: ValidModalKey;
+    confirmData: Partial<ModalConfig>;
+    modalCallbacks?: Array<ModalCallbackConfig>;
+    text: string | number;
+    textOn: string | number | undefined;
+    textOff: string | number | undefined;
+    iconOn: string | number | undefined;
+    iconOff: string | number | undefined;
+    icon: string;
+    iconDot: boolean;
+    iconEnd: string;
+    img: string;
+    showTooltipOnHoverDelay: number;
+    checked: boolean;
+    clickRef?: Element | VueElement;
+    openTooltip: boolean;
+    tabindex: ValidTabIndex;
+    anchor?: AnchorConfig | Anchor;
+    showTooltipOnHover?: boolean;
+    hideTooltipOnLeave?: boolean;
+    splitClass?: string;
+    tooltip?: TooltipConfig;
     prop?: LktObject;
+    onClick?: Function | undefined;
+    onConfirm?: Function | undefined;
+    constructor(data?: Partial<ButtonConfig>);
+    isDisabled(): boolean | undefined;
+}
+
+interface ColumnConfig {
+    type: ColumnType;
+    key: string;
+    label?: string;
+    sortable?: boolean;
+    hidden?: boolean;
+    editable?: boolean;
+    formatter?: Function | undefined;
+    checkEmpty?: Function | undefined;
+    colspan?: ValidColSpan;
+    preferSlot?: Function | boolean;
+    isForRowKey?: boolean;
+    extractTitleFromColumn?: string;
+    slotData?: LktObject;
+    field?: Field | FieldConfig | undefined;
+    anchor?: Anchor | AnchorConfig | undefined;
+    button?: Button | ButtonConfig | undefined;
+    link?: ValidSafeStringValue | SafeString;
+    action?: Function;
+}
+
+type ValidDrag = boolean | ((item: LktObject) => boolean);
+
+interface DragConfig {
+    enabled: boolean;
+    isDraggable?: ValidDrag;
+    isValid?: ValidDrag;
+    isDisabled?: boolean | Function;
+    canRender?: boolean | Function;
+    dragKey?: string;
 }
 
 declare enum ItemCrudView {
@@ -456,178 +706,6 @@ interface PaginatorConfig {
     readOnly?: boolean;
     loading?: boolean;
     filters?: LktObject;
-}
-
-type ValidDrag = boolean | ((item: LktObject) => boolean);
-
-interface DragConfig {
-    enabled: boolean;
-    isDraggable?: ValidDrag;
-    isValid?: ValidDrag;
-    isDisabled?: boolean | Function;
-    canRender?: boolean | Function;
-    dragKey?: string;
-}
-
-declare enum ColumnType {
-    None = "",
-    Field = "field",
-    Button = "button",
-    Anchor = "anchor"
-}
-
-type ValidColSpan = Function | boolean | number | undefined;
-
-declare class SafeString {
-    private readonly value;
-    constructor(input: ValidSafeStringValue);
-    getValue(...args: any[]): string;
-}
-
-type ValidSafeStringValue = string | ((...args: any[]) => string) | undefined | SafeString;
-
-declare class Field extends LktItem implements FieldConfig {
-    modelValue: ValidFieldValue;
-    type: FieldType;
-    valid: boolean | undefined;
-    placeholder: string;
-    searchPlaceholder: string;
-    label: string;
-    labelIcon: string;
-    labelIconAtEnd: boolean;
-    name: string;
-    autocomplete: boolean;
-    disabled: boolean;
-    readonly: boolean;
-    readMode: boolean;
-    allowReadModeSwitch: boolean;
-    tabindex: ValidTabIndex;
-    mandatory: boolean;
-    showPassword: boolean;
-    canClear: boolean;
-    canUndo: boolean;
-    canI18n: boolean;
-    canStep: boolean;
-    mandatoryMessage: string;
-    infoMessage: string;
-    errorMessage: string;
-    min: ValidFieldMinMax;
-    max: ValidFieldMinMax;
-    step: number | string;
-    enableAutoNumberFix: boolean;
-    emptyValueSlot: string;
-    optionSlot: undefined;
-    valueSlot: undefined;
-    editSlot: undefined;
-    slotData: LktObject;
-    resource: string;
-    resourceData: LktObject;
-    validationResource: string;
-    validationResourceData: LktObject;
-    autoValidation: boolean;
-    autoValidationType: FieldAutoValidationTrigger;
-    validationStack: string;
-    minNumbers: ValidFieldMinMax;
-    maxNumbers: ValidFieldMinMax;
-    minChars: ValidFieldMinMax;
-    maxChars: ValidFieldMinMax;
-    minUpperChars: ValidFieldMinMax;
-    maxUpperChars: ValidFieldMinMax;
-    minLowerChars: ValidFieldMinMax;
-    maxLowerChars: ValidFieldMinMax;
-    minSpecialChars: ValidFieldMinMax;
-    maxSpecialChars: ValidFieldMinMax;
-    checkEqualTo: ValidFieldMinMax;
-    featuredButton: string;
-    infoButtonEllipsis: boolean;
-    fileName: string;
-    customButtonText: string;
-    customButtonClass: string;
-    options: string | Option[];
-    multiple: boolean;
-    multipleDisplay: MultipleOptionsDisplay;
-    multipleDisplayEdition: MultipleOptionsDisplay;
-    searchable: boolean;
-    autoloadOptionsResource: boolean | 'feed';
-    optionsDownload: string | Function;
-    optionsModal: string | Function;
-    optionsModalData: LktObject | Function;
-    optionsIcon: string | Function;
-    optionsLabelFormatter: undefined;
-    optionsResource: string;
-    optionsResourceData: LktObject;
-    icon: string | Function;
-    download: string | Function;
-    modal: string | Function;
-    modalKey: string | number | Function;
-    modalData: LktObject;
-    data: LktObject;
-    constructor(data?: Partial<FieldConfig>);
-}
-
-declare class Button extends LktItem implements ButtonConfig {
-    lktAllowUndefinedProps: string[];
-    static lktDefaultValues: (keyof ButtonConfig)[];
-    type: ButtonType;
-    name: string;
-    palette: string;
-    class: string;
-    containerClass: string;
-    value: string;
-    disabled: ValidIsDisabledValue;
-    loading: boolean;
-    wrapContent: boolean;
-    splitIcon: string;
-    resource: string;
-    resourceData: LktObject;
-    modal: ValidModalName;
-    modalKey: ValidModalKey;
-    modalData: Partial<ModalConfig>;
-    confirmModal: ValidModalName;
-    confirmModalKey: ValidModalKey;
-    confirmData: Partial<ModalConfig>;
-    modalCallbacks?: Array<ModalCallbackConfig>;
-    text: string;
-    icon: string;
-    iconDot: boolean;
-    iconEnd: string;
-    img: string;
-    showTooltipOnHoverDelay: number;
-    checked: boolean;
-    clickRef?: Element | VueElement;
-    openTooltip: boolean;
-    tabindex: ValidTabIndex;
-    anchor?: AnchorConfig | Anchor;
-    showTooltipOnHover?: boolean;
-    hideTooltipOnLeave?: boolean;
-    splitClass?: string;
-    tooltip?: TooltipConfig;
-    prop?: LktObject;
-    onClick?: Function | undefined;
-    onConfirm?: Function | undefined;
-    constructor(data?: Partial<ButtonConfig>);
-    isDisabled(): boolean | undefined;
-}
-
-interface ColumnConfig {
-    type: ColumnType;
-    key: string;
-    label?: string;
-    sortable?: boolean;
-    hidden?: boolean;
-    editable?: boolean;
-    formatter?: Function | undefined;
-    checkEmpty?: Function | undefined;
-    colspan?: ValidColSpan;
-    preferSlot?: Function | boolean;
-    isForRowKey?: boolean;
-    extractTitleFromColumn?: string;
-    slotData?: LktObject;
-    field?: Field | FieldConfig | undefined;
-    anchor?: Anchor | AnchorConfig | undefined;
-    button?: Button | ButtonConfig | undefined;
-    link?: ValidSafeStringValue | SafeString;
-    action?: Function;
 }
 
 declare enum TableType {
@@ -754,6 +832,62 @@ interface TableConfig {
 
 declare class LktStrictItem extends LktItem {
     lktStrictItem: boolean;
+}
+
+declare enum ValidationCode {
+    MinStringLength = "min-str",
+    MinNumber = "min-num",
+    MaxStringLength = "max-str",
+    MaxNumber = "max-num",
+    Email = "email",
+    Empty = "empty",
+    EqualTo = "equal-to",
+    MinNumbers = "min-numbers",
+    MaxNumbers = "max-numbers",
+    MinChars = "min-chars",
+    MaxChars = "max-chars",
+    MinUpperChars = "min-upper-chars",
+    MaxUpperChars = "max-upper-chars",
+    MinLowerChars = "min-lower-chars",
+    MaxLowerChars = "max-lower-chars",
+    MinSpecialChars = "min-special-chars",
+    MaxSpecialChars = "max-special-chars"
+}
+
+declare enum ValidationStatus {
+    Ok = "ok",
+    Ko = "ko",
+    Info = "info"
+}
+
+declare class FieldValidation {
+    code?: ValidationCode | string;
+    status: ValidationStatus;
+    min: number;
+    max: number;
+    equalToValue: number | string | undefined;
+    constructor(code: ValidationCode, status: ValidationStatus);
+    setMin(n: number): this;
+    setMax(n: number): this;
+    setEqualToValue(val: number | string): this;
+    static createEmpty(status?: ValidationStatus): FieldValidation;
+    static createEmail(status?: ValidationStatus): FieldValidation;
+    static createMinStr(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxStr(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinNum(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxNum(max: number, status?: ValidationStatus): FieldValidation;
+    static createNumBetween(min: number, max: number, status?: ValidationStatus): FieldValidation;
+    static createMinNumbers(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxNumbers(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinUpperChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxUpperChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinLowerChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxLowerChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinSpecialChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxSpecialChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createEqualTo(value: number | string, status?: ValidationStatus): FieldValidation;
 }
 
 declare class Tooltip extends LktItem implements TooltipConfig {
@@ -921,4 +1055,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, getDefaultValues, lktDebug };
+export { type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };
