@@ -26,6 +26,7 @@ export class Accordion extends LktItem implements AccordionConfig {
         'iconRotation',
         'minHeight',
         'iconAtEnd',
+        'toggleIconAtEnd',
     ];
 
     // Main config
@@ -49,6 +50,7 @@ export class Accordion extends LktItem implements AccordionConfig {
     iconRotation?: '90' | '180' | '-90' | '-180' = '90';
     minHeight?: number | undefined = undefined;
     iconAtEnd?: boolean = false;
+    toggleIconAtEnd?: boolean = false;
 
     constructor(data: Partial<AnchorConfig> = {}) {
         super();

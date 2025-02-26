@@ -309,6 +309,7 @@ interface AccordionConfig {
     iconRotation?: '90' | '180' | '-90' | '-180';
     minHeight?: number | undefined;
     iconAtEnd?: boolean;
+    toggleIconAtEnd?: boolean;
 }
 
 declare enum ColumnType {
@@ -911,6 +912,7 @@ declare class Accordion extends LktItem implements AccordionConfig {
     iconRotation?: '90' | '180' | '-90' | '-180';
     minHeight?: number | undefined;
     iconAtEnd?: boolean;
+    toggleIconAtEnd?: boolean;
     constructor(data?: Partial<AnchorConfig>);
 }
 

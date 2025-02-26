@@ -24,4 +24,5 @@ export interface AccordionConfig {
     iconRotation?: '90' | '180' | '-90' | '-180'
     minHeight?: number | undefined
     iconAtEnd?: boolean
+    toggleIconAtEnd?: boolean
 }

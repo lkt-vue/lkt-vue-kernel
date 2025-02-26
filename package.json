@@ -1,6 +1,6 @@
 {
   "name": "lkt-vue-kernel",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "LKT Vue Kernel",
   "keywords": [
     "lkt",
@@ -27,17 +27,19 @@
     "build": "tsup src/index.ts --format esm --dts"
   },
   "author": "Antonio Ibáñez",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "tsup": "^8.3.6",
     "typescript": "^5.7.3"
   },
-  "engines": {
-    "node": ">=18"
-  },
   "dependencies": {
     "lkt-data-state": "^1.0.10",
     "lkt-i18n": "^1.0.6",
-    "lkt-string-tools": "^1.0.8",
+    "lkt-string-tools": "^1.0.8"
+  },
+  "peerDependencies": {
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   }
