@@ -854,6 +854,7 @@ interface ToastConfig {
     positionX?: ToastPositionX;
     duration?: number;
     buttonConfig?: ButtonConfig;
+    zIndex?: number;
 }
 
 declare class LktStrictItem extends LktItem {
@@ -1085,7 +1086,7 @@ type ValidCustomSlot = string | Component | undefined;
 type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget);
 
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
-declare const extractI18nValue: (needle: string | number) => any;
+declare const extractI18nValue: (needle: ValidTextValue) => any;
 
 declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
 

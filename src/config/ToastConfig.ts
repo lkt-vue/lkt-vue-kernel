@@ -11,4 +11,7 @@ export interface ToastConfig {
 
     // Button mode
     buttonConfig?: ButtonConfig
+
+    // Programmatically used by canvas
+    zIndex?: number
 }
