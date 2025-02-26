@@ -11,6 +11,7 @@ import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
 import {ValidButtonDot} from "../types/ValidButtonDot.ts";
+import {ValidTextValue} from "../types/ValidTextValue.ts";
 
 export interface ButtonConfig {
 
@@ -30,7 +31,7 @@ export interface ButtonConfig {
     wrapContent?: boolean
 
     // Content
-    text?: string | number
+    text?: ValidTextValue
     icon?: string
     iconEnd?: string
     img?: string

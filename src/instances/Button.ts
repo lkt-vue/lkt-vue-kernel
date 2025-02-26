@@ -14,6 +14,7 @@ import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {ValidButtonDot} from "../types/ValidButtonDot.ts";
+import {ValidTextValue} from "../types/ValidTextValue.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -88,7 +89,7 @@ export class Button extends LktItem implements ButtonConfig {
     confirmModalKey: ValidModalKey = '_';
     confirmData: Partial<ModalConfig> = {};
     modalCallbacks?: Array<ModalCallbackConfig> = [];
-    text: string | number = '';
+    text: ValidTextValue = '';
     textOn: string | number | undefined = undefined;
     textOff: string | number | undefined = undefined;
     iconOn: string | number | undefined = undefined;
