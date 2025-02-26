@@ -110,6 +110,20 @@ var LktSettings = class _LktSettings {
     }
     return _LktSettings;
   }
+  static defaultToggleButton = {
+    text: "Toggle",
+    textOn: "Close",
+    textOff: "Show more",
+    type: "hidden-switch" /* HiddenSwitch */
+  };
+  static setDefaultToggleButton(button, override = true) {
+    if (override) {
+      _LktSettings.defaultToggleButton = button;
+    } else {
+      _LktSettings.defaultToggleButton = ensureButtonConfig(button, _LktSettings.defaultToggleButton);
+    }
+    return _LktSettings;
+  }
 };
 
 // src/enums/FieldType.ts
@@ -542,7 +556,6 @@ var Button = class extends LktItem {
   static lktDefaultValues = [
     "type",
     "name",
-    "palette",
     "class",
     "containerClass",
     "value",
@@ -565,7 +578,9 @@ var Button = class extends LktItem {
     "icon",
     "iconOn",
     "iconOff",
-    "iconDot",
+    "iconEndOn",
+    "iconEndOff",
+    "dot",
     "iconEnd",
     "img",
     "showTooltipOnHoverDelay",
@@ -579,8 +594,7 @@ var Button = class extends LktItem {
     "hideTooltipOnLeave",
     "splitClass",
     "prop",
-    "onClick",
-    "onConfirm"
+    "onClick"
   ];
   type = "button" /* Button */;
   name = generateRandomString2(10);
@@ -606,8 +620,10 @@ var Button = class extends LktItem {
   textOff = void 0;
   iconOn = void 0;
   iconOff = void 0;
+  iconEndOn = void 0;
+  iconEndOff = void 0;
   icon = "";
-  iconDot = false;
+  dot = false;
   iconEnd = "";
   img = "";
   showTooltipOnHoverDelay = 0;
@@ -623,7 +639,6 @@ var Button = class extends LktItem {
   prop = {};
   // Event management
   onClick = void 0;
-  onConfirm = void 0;
   constructor(data = {}) {
     super();
     this.feed(data);
@@ -711,6 +726,68 @@ var Column = class extends LktItem {
       return this.action(item);
     }
     console.warn("No action defined");
+  }
+};
+
+// src/enums/AccordionType.ts
+var AccordionType = /* @__PURE__ */ ((AccordionType2) => {
+  AccordionType2["Auto"] = "auto";
+  AccordionType2["Always"] = "always";
+  AccordionType2["Lazy"] = "lazy";
+  AccordionType2["Ever"] = "ever";
+  return AccordionType2;
+})(AccordionType || {});
+
+// src/enums/AccordionToggleMode.ts
+var AccordionToggleMode = /* @__PURE__ */ ((AccordionToggleMode2) => {
+  AccordionToggleMode2["Transform"] = "transform";
+  AccordionToggleMode2["Height"] = "height";
+  AccordionToggleMode2["Display"] = "display";
+  return AccordionToggleMode2;
+})(AccordionToggleMode || {});
+
+// src/instances/Accordion.ts
+var Accordion = class extends LktItem {
+  static lktAllowUndefinedProps = [
+    "onClick"
+  ];
+  static lktDefaultValues = [
+    "modelValue",
+    "type",
+    "toggleMode",
+    "actionButton",
+    "toggleButton",
+    "toggleOnClickIntro",
+    "toggleTimeout",
+    "title",
+    "icon",
+    "class",
+    "contentClass",
+    "iconRotation",
+    "minHeight",
+    "iconAtEnd"
+  ];
+  // Main config
+  modelValue = false;
+  type = "auto" /* Auto */;
+  toggleMode = "height" /* Height */;
+  // Buttons config
+  actionButton = {};
+  toggleButton = {};
+  // Toggle config
+  toggleOnClickIntro = false;
+  toggleTimeout = 0;
+  // Visuals
+  title = "";
+  icon = "";
+  class = "";
+  contentClass = "";
+  iconRotation = "90";
+  minHeight = void 0;
+  iconAtEnd = false;
+  constructor(data = {}) {
+    super();
+    this.feed(data);
   }
 };
 
@@ -1084,23 +1161,6 @@ var Table = class extends LktItem {
   }
 };
 
-// src/enums/AccordionToggleMode.ts
-var AccordionToggleMode = /* @__PURE__ */ ((AccordionToggleMode2) => {
-  AccordionToggleMode2["Transform"] = "transform";
-  AccordionToggleMode2["Height"] = "height";
-  AccordionToggleMode2["Display"] = "display";
-  return AccordionToggleMode2;
-})(AccordionToggleMode || {});
-
-// src/enums/AccordionType.ts
-var AccordionType = /* @__PURE__ */ ((AccordionType2) => {
-  AccordionType2["Auto"] = "auto";
-  AccordionType2["Always"] = "always";
-  AccordionType2["Lazy"] = "lazy";
-  AccordionType2["Ever"] = "ever";
-  return AccordionType2;
-})(AccordionType || {});
-
 // src/enums/ModalCallbackAction.ts
 var ModalCallbackAction = /* @__PURE__ */ ((ModalCallbackAction2) => {
   ModalCallbackAction2["Refresh"] = "refresh";
@@ -1188,6 +1248,7 @@ function getDefaultValues(cls) {
   return result;
 }
 export {
+  Accordion,
   AccordionToggleMode,
   AccordionType,
   Anchor,

@@ -23,24 +23,5 @@ export interface AccordionConfig {
     contentClass?: string
     iconRotation?: '90' | '180' | '-90' | '-180'
     minHeight?: number | undefined
-    toggleIconAtEnd?: boolean
     iconAtEnd?: boolean
-
-    // // Deprecated props:
-    // alwaysOpen?: boolean
-    //
-    // showActionButton?: boolean
-    // actionButtonClass?: string
-    // actionButtonText?: string
-    // actionButtonIcon?: string
-    // actionButtonResource?: string
-    // actionButtonConfirm?: string
-    // actionButtonConfirmData?: LktObject
-    // actionButtonData?: LktObject
-    //
-    // buttonIconClass?: string
-    // buttonIconOn?: string
-    // buttonIconOff?: string
-    // buttonTextOn?: string
-    // buttonTextOff?: string
 }

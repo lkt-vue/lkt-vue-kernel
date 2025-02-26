@@ -95,4 +95,19 @@ export class LktSettings {
         }
         return LktSettings;
     }
+
+    static defaultToggleButton: Partial<ButtonConfig> = {
+        text: 'Toggle',
+        textOn: 'Close',
+        textOff: 'Show more',
+        type: ButtonType.HiddenSwitch,
+    };
+    static setDefaultToggleButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultToggleButton = button;
+        } else {
+            LktSettings.defaultToggleButton = ensureButtonConfig(button, LktSettings.defaultToggleButton);
+        }
+        return LktSettings;
+    }
 }

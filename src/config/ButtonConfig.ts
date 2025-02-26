@@ -10,20 +10,30 @@ import {Anchor} from "../instances/Anchor.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
+import {ValidButtonDot} from "../types/ValidButtonDot.ts";
 
 export interface ButtonConfig {
+
+    // Main config
     type?: ButtonType
-    openTooltip?: boolean
     name?: string
-    text?: string | number
-    icon?: string
+    value?: string
+
+    // State
+    disabled?: ValidIsDisabledValue
+    openTooltip?: boolean
+    loading?: boolean
+
+    // Styling
     class?: string
     containerClass?: string
-    palette?: string
-    value?: string
-    disabled?: ValidIsDisabledValue
-    loading?: boolean
     wrapContent?: boolean
+
+    // Content
+    text?: string | number
+    icon?: string
+    iconEnd?: string
+    img?: string
 
     // Check button
     checked?: boolean
@@ -31,6 +41,11 @@ export interface ButtonConfig {
     textOff?: string | number | undefined
     iconOn?: string | number | undefined
     iconOff?: string | number | undefined
+    iconEndOn?: string | number | undefined
+    iconEndOff?: string | number | undefined
+
+    // Dot config
+    dot?: ValidButtonDot
 
     // Anchor integration
     anchor?: AnchorConfig|Anchor
@@ -48,25 +63,21 @@ export interface ButtonConfig {
     confirmData?: Partial<ModalConfig>
     modalCallbacks?: Array<ModalCallbackConfig>
 
-    // Icon and img
-    iconDot?: boolean | string | number
-    iconEnd?: string
-    img?: string
-
     // Tooltip and split
+    tooltip?: TooltipConfig
     splitIcon?: string
     showTooltipOnHover?: boolean
     showTooltipOnHoverDelay?: number
     hideTooltipOnLeave?: boolean
-    tooltip?: TooltipConfig
     splitClass?: string
-    clickRef?: Element | VueElement
+
+    // Accessibility
     tabindex?: ValidTabIndex
 
     // Extract data
     prop?: LktObject
 
     // Event management
+    clickRef?: Element | VueElement
     onClick?: Function|undefined
-    onConfirm?: Function|undefined
 }

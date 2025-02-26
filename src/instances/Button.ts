@@ -13,6 +13,7 @@ import {Anchor} from "./Anchor.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
+import {ValidButtonDot} from "../types/ValidButtonDot.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -27,7 +28,6 @@ export class Button extends LktItem implements ButtonConfig {
     static lktDefaultValues: (keyof ButtonConfig)[] = [
         'type',
         'name',
-        'palette',
         'class',
         'containerClass',
         'value',
@@ -50,7 +50,9 @@ export class Button extends LktItem implements ButtonConfig {
         'icon',
         'iconOn',
         'iconOff',
-        'iconDot',
+        'iconEndOn',
+        'iconEndOff',
+        'dot',
         'iconEnd',
         'img',
         'showTooltipOnHoverDelay',
@@ -65,7 +67,6 @@ export class Button extends LktItem implements ButtonConfig {
         'splitClass',
         'prop',
         'onClick',
-        'onConfirm',
     ];
 
     type: ButtonType = ButtonType.Button;
@@ -92,8 +93,10 @@ export class Button extends LktItem implements ButtonConfig {
     textOff: string | number | undefined = undefined;
     iconOn: string | number | undefined = undefined;
     iconOff: string | number | undefined = undefined;
+    iconEndOn: string | number | undefined = undefined;
+    iconEndOff: string | number | undefined = undefined;
     icon: string = '';
-    iconDot: boolean = false;
+    dot: ValidButtonDot = false;
     iconEnd: string = '';
     img: string = '';
     showTooltipOnHoverDelay: number = 0;
@@ -112,7 +115,6 @@ export class Button extends LktItem implements ButtonConfig {
 
     // Event management
     onClick?: Function|undefined = undefined;
-    onConfirm?: Function|undefined = undefined;
 
     constructor(data: Partial<ButtonConfig> = {}) {
         super();
