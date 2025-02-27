@@ -56,6 +56,7 @@ export {Column} from './instances/Column.ts';
 export {Accordion} from './instances/Accordion.ts';
 export {Anchor} from './instances/Anchor.ts';
 export {Button} from './instances/Button.ts';
+export {Toast} from './instances/Toast.ts';
 export {Tooltip} from './instances/Tooltip.ts';
 export {ItemCrud} from './instances/ItemCrud.ts';
 export {Modal} from './instances/Modal.ts';
