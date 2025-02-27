@@ -10,6 +10,7 @@ import {ItemCrudButtonNavPosition} from "../enums/ItemCrudButtonNavPosition.ts";
 import {ItemCrudButtonNavVisibility} from "../enums/ItemCrudButtonNavVisibility.ts";
 import {SaveType} from "../enums/SaveType.ts";
 import {DataStateConfig} from "lkt-data-state";
+import {NotificationType} from "../enums/NotificationType.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -34,6 +35,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'dataStateConfig',
         'buttonNavPosition',
         'buttonNavVisibility',
+        'notificationType',
     ];
 
 
@@ -66,6 +68,9 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     dataStateConfig: DataStateConfig = {};
     buttonNavPosition?: ItemCrudButtonNavPosition = ItemCrudButtonNavPosition.Top;
     buttonNavVisibility?: ItemCrudButtonNavVisibility = ItemCrudButtonNavVisibility.Always;
+
+    // Notifications
+    notificationType?: NotificationType = NotificationType.Toast;
 
     constructor(data: Partial<ItemCrudConfig> = {}) {
         super();

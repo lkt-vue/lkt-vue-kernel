@@ -7,41 +7,45 @@ import {ItemCrudButtonNavPosition} from "../enums/ItemCrudButtonNavPosition.ts";
 import {ItemCrudButtonNavVisibility} from "../enums/ItemCrudButtonNavVisibility.ts";
 import {SaveConfig} from "./SaveConfig.ts";
 import {DataStateConfig} from "lkt-data-state";
+import {NotificationType} from "../enums/NotificationType.ts";
 
 export interface ItemCrudConfig {
-    modelValue: LktObject
-    editing: boolean
+    modelValue?: LktObject
+    editing?: boolean
 
     // Global config
-    mode: ItemCrudMode
-    view: ItemCrudView
+    mode?: ItemCrudMode
+    view?: ItemCrudView
 
     // Buttons
-    editModeButton: ButtonConfig
-    dropButton: ButtonConfig
-    createButton: ButtonConfig
-    updateButton: ButtonConfig
+    editModeButton?: ButtonConfig
+    dropButton?: ButtonConfig
+    createButton?: ButtonConfig
+    updateButton?: ButtonConfig
 
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition
     buttonNavVisibility?: ItemCrudButtonNavVisibility
 
     // Config if view === modal
-    modalConfig: ModalConfig
+    modalConfig?: ModalConfig
 
     // Save config
-    saveConfig: SaveConfig
+    saveConfig?: SaveConfig
 
     // State
-    dataStateConfig: DataStateConfig
+    dataStateConfig?: DataStateConfig
 
     // Fetch data
-    readResource: string
-    readData: LktObject
+    readResource?: string
+    readData?: LktObject
 
     // Title (only if view === inline)
-    title: string
+    title?: string
 
     // Events
-    beforeEmitUpdate: Function | undefined
+    beforeEmitUpdate?: Function | undefined
+
+    // Notifications
+    notificationType?: NotificationType
 }

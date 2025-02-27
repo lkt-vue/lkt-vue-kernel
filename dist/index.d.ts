@@ -186,7 +186,7 @@ interface TooltipConfig {
 
 type ValidButtonDot = boolean | string | number;
 
-type ValidTextValue = string | number;
+type ValidTextValue = string | number | undefined;
 
 interface ButtonConfig {
     type?: ButtonType;
@@ -643,6 +643,14 @@ interface DragConfig {
     dragKey?: string;
 }
 
+interface IconConfig {
+    icon?: ValidTextValue;
+    text?: ValidTextValue;
+    class?: ValidTextValue;
+    pack?: ValidTextValue;
+    type?: string;
+}
+
 declare enum ItemCrudView {
     Inline = "inline",
     Modal = "modal"
@@ -676,24 +684,30 @@ interface SaveConfig {
     delay?: number;
 }
 
+declare enum NotificationType {
+    Toast = "toast",
+    Inline = "inline"
+}
+
 interface ItemCrudConfig {
-    modelValue: LktObject;
-    editing: boolean;
-    mode: ItemCrudMode;
-    view: ItemCrudView;
-    editModeButton: ButtonConfig;
-    dropButton: ButtonConfig;
-    createButton: ButtonConfig;
-    updateButton: ButtonConfig;
+    modelValue?: LktObject;
+    editing?: boolean;
+    mode?: ItemCrudMode;
+    view?: ItemCrudView;
+    editModeButton?: ButtonConfig;
+    dropButton?: ButtonConfig;
+    createButton?: ButtonConfig;
+    updateButton?: ButtonConfig;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
-    modalConfig: ModalConfig;
-    saveConfig: SaveConfig;
-    dataStateConfig: DataStateConfig;
-    readResource: string;
-    readData: LktObject;
-    title: string;
-    beforeEmitUpdate: Function | undefined;
+    modalConfig?: ModalConfig;
+    saveConfig?: SaveConfig;
+    dataStateConfig?: DataStateConfig;
+    readResource?: string;
+    readData?: LktObject;
+    title?: string;
+    beforeEmitUpdate?: Function | undefined;
+    notificationType?: NotificationType;
 }
 
 declare enum PaginatorType {
@@ -713,6 +727,30 @@ interface PaginatorConfig {
     readOnly?: boolean;
     loading?: boolean;
     filters?: LktObject;
+}
+
+declare enum ProgressType {
+    None = "",
+    Incremental = "incremental",
+    Decremental = "decremental"
+}
+
+declare enum ProgressValueFormat {
+    NotDefined = "",
+    Hidden = "hidden",
+    Integer = "integer",
+    Decimal = "decimal",
+    Auto = "auto"
+}
+
+interface ProgressConfig {
+    modelValue?: number;
+    type?: ProgressType;
+    duration?: number;
+    pauseOnHover?: boolean;
+    header?: string;
+    valueFormat?: ProgressValueFormat;
+    palette?: string;
 }
 
 declare enum TableType {
@@ -851,6 +889,7 @@ declare enum ToastPositionX {
 interface ToastConfig {
     type?: ToastType;
     text?: ValidTextValue;
+    icon?: ValidTextValue;
     positionX?: ToastPositionX;
     duration?: number;
     buttonConfig?: ButtonConfig;
@@ -975,6 +1014,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     dataStateConfig: DataStateConfig;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
+    notificationType?: NotificationType;
     constructor(data?: Partial<ItemCrudConfig>);
 }
 
@@ -1103,4 +1143,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, type IconConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };

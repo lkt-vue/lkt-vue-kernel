@@ -1,1 +1,1 @@
-export type ValidTextValue = string | number;
+export type ValidTextValue = string | number | undefined;
