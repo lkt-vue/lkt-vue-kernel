@@ -10,9 +10,40 @@ export class LktSettings {
         return LktSettings;
     }
 
+    static defaultCreateErrorText = 'Creation failed';
+    static defaultCreateErrorDetails = 'An error occurred while creating the item. Please try again.';
+    static defaultCreateErrorIcon = '';
+
+    static setDefaultCreateError(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultCreateErrorText = config.text ?? LktSettings.defaultCreateErrorText;
+        LktSettings.defaultCreateErrorDetails = config.details ?? LktSettings.defaultCreateErrorDetails;
+        LktSettings.defaultCreateErrorIcon = config.icon ?? LktSettings.defaultCreateErrorIcon;
+    }
+
+    static defaultUpdateErrorText = 'Update failed';
+    static defaultUpdateErrorDetails = 'An error occurred while updating the item. Please try again.';
+    static defaultUpdateErrorIcon = '';
+
+    static setDefaultUpdateError(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultUpdateErrorText = config.text ?? LktSettings.defaultUpdateErrorText;
+        LktSettings.defaultUpdateErrorDetails = config.details ?? LktSettings.defaultUpdateErrorDetails;
+        LktSettings.defaultUpdateErrorIcon = config.icon ?? LktSettings.defaultUpdateErrorIcon;
+    }
+
+    static defaultDropErrorText = 'Drop failed';
+    static defaultDropErrorDetails = 'An error occurred while removing the item. Please try again.';
+    static defaultDropErrorIcon = '';
+
+    static setDefaultDropError(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultDropErrorText = config.text ?? LktSettings.defaultDropErrorText;
+        LktSettings.defaultDropErrorDetails = config.details ?? LktSettings.defaultDropErrorDetails;
+        LktSettings.defaultDropErrorIcon = config.icon ?? LktSettings.defaultDropErrorIcon;
+    }
+
     static defaultSaveButton: Partial<ButtonConfig> = {
         text: 'Save',
     };
+
     static setDefaultSaveButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultSaveButton = button;
@@ -25,6 +56,7 @@ export class LktSettings {
     static defaultConfirmButton: Partial<ButtonConfig> = {
         text: 'Confirm',
     };
+
     static setDefaultConfirmButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultConfirmButton = button;
@@ -38,6 +70,7 @@ export class LktSettings {
     static defaultCancelButton: Partial<ButtonConfig> = {
         text: 'Cancel',
     };
+
     static setDefaultCancelButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultCancelButton = button;
@@ -50,6 +83,7 @@ export class LktSettings {
     static defaultCreateButton: Partial<ButtonConfig> = {
         text: 'Create',
     };
+
     static setDefaultCreateButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultCreateButton = button;
@@ -62,6 +96,7 @@ export class LktSettings {
     static defaultUpdateButton: Partial<ButtonConfig> = {
         text: 'Update',
     };
+
     static setDefaultUpdateButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultUpdateButton = button;
@@ -74,6 +109,7 @@ export class LktSettings {
     static defaultDropButton: Partial<ButtonConfig> = {
         text: 'Drop',
     };
+
     static setDefaultDropButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultDropButton = button;
@@ -87,6 +123,7 @@ export class LktSettings {
         text: 'Edit mode',
         type: ButtonType.Switch,
     };
+
     static setDefaultEditModeButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultEditModeButton = button;
@@ -102,6 +139,7 @@ export class LktSettings {
         textOff: 'Show more',
         type: ButtonType.HiddenSwitch,
     };
+
     static setDefaultToggleButton(button: Partial<ButtonConfig>, override: boolean = true) {
         if (override) {
             LktSettings.defaultToggleButton = button;

@@ -235,6 +235,30 @@ interface ButtonConfig {
 declare class LktSettings {
     static debugEnabled: boolean;
     static debugMode(enabled?: boolean): typeof LktSettings;
+    static defaultCreateErrorText: string;
+    static defaultCreateErrorDetails: string;
+    static defaultCreateErrorIcon: string;
+    static setDefaultCreateError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUpdateErrorText: string;
+    static defaultUpdateErrorDetails: string;
+    static defaultUpdateErrorIcon: string;
+    static setDefaultUpdateError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultDropErrorText: string;
+    static defaultDropErrorDetails: string;
+    static defaultDropErrorIcon: string;
+    static setDefaultDropError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
     static defaultSaveButton: Partial<ButtonConfig>;
     static setDefaultSaveButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultConfirmButton: Partial<ButtonConfig>;
@@ -889,6 +913,7 @@ declare enum ToastPositionX {
 interface ToastConfig {
     type?: ToastType;
     text?: ValidTextValue;
+    details?: ValidTextValue;
     icon?: ValidTextValue;
     positionX?: ToastPositionX;
     duration?: number;
@@ -981,6 +1006,7 @@ declare class Toast extends LktItem implements ToastConfig {
     static lktDefaultValues: (keyof ToastConfig)[];
     type?: ToastType;
     text?: ValidTextValue;
+    details?: ValidTextValue;
     icon?: ValidTextValue;
     positionX?: ToastPositionX;
     duration?: number | undefined;
