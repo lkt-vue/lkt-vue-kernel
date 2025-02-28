@@ -6,15 +6,10 @@ import {EventsConfig} from "../config/EventsConfig.ts";
 
 export class Icon extends LktItem implements IconConfig {
 
-    static lktAllowUndefinedProps: string[] = [
-        'onClick',
-    ];
-
     static lktDefaultValues: (keyof IconConfig)[] = [
         'icon',
         'text',
         'class',
-        'pack',
         'type',
         'events',
     ];
@@ -22,7 +17,6 @@ export class Icon extends LktItem implements IconConfig {
     icon?: ValidTextValue = '';
     text?: ValidTextValue = '';
     class?: ValidTextValue = '';
-    pack?: ValidTextValue = '';
     type?: IconType = IconType.NotDefined;
 
     // Event management

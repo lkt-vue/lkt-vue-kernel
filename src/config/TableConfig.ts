@@ -53,6 +53,7 @@ export interface TableConfig {
     saveButton?: ButtonConfig
     createButton?: ButtonConfig
     dropButton?: ButtonConfig
+    editButton?: ButtonConfig
     hiddenSave?: boolean
 
 
@@ -68,9 +69,6 @@ export interface TableConfig {
 
     // Deprecated props:
     createEnabledValidator?: Function
-    editText?: string
-    editIcon?: string
-    editLink?: string
 }
 
 

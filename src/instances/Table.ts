@@ -39,13 +39,11 @@ export class Table extends LktItem implements TableConfig {
         'saveButton',
         'createButton',
         'dropButton',
+        'editButton',
         'wrapContentTag',
         'wrapContentClass',
         'itemsContainerClass',
         'hiddenSave',
-        'editText',
-        'editIcon',
-        'editLink',
         'addNavigation',
         'createEnabledValidator',
         'newValueGenerator',
@@ -99,15 +97,13 @@ export class Table extends LktItem implements TableConfig {
     saveButton?: ButtonConfig = {};
     createButton?: ButtonConfig = {};
     dropButton?: ButtonConfig = {};
+    editButton?: ButtonConfig = {};
     hiddenSave?: boolean = false;
 
 
     wrapContentTag?: string = 'div';
     wrapContentClass?: string = '';
     itemsContainerClass?: string = '';
-    editText?: string = '';
-    editIcon?: string = '';
-    editLink?: string = '';
     addNavigation?: boolean = false;
     createEnabledValidator?: Function = undefined;
     newValueGenerator?: Function = undefined;

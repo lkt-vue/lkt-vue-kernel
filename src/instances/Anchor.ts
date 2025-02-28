@@ -9,9 +9,7 @@ import {EventsConfig} from "../config/EventsConfig.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
-    static lktAllowUndefinedProps: string[] = [
-        'onClick',
-    ];
+    static lktAllowUndefinedProps: string[] = [];
 
     static lktDefaultValues: (keyof AnchorConfig)[] = [
         'type',

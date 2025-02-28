@@ -6,7 +6,6 @@ export interface IconConfig {
     icon?: ValidTextValue
     text?: ValidTextValue
     class?: ValidTextValue
-    pack?: ValidTextValue
     type?: IconType
 
     // Event management
