@@ -704,6 +704,7 @@ interface IconConfig {
     class?: ValidTextValue;
     pack?: ValidTextValue;
     type?: IconType;
+    onClick?: Function | undefined;
 }
 
 interface ImageConfig {
@@ -935,15 +936,15 @@ interface TableConfig {
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
-    createEnabledValidator?: Function;
-    editText?: string;
-    editIcon?: string;
-    editLink?: string;
     addNavigation?: boolean;
     newValueGenerator?: Function;
     requiredItemsForTopCreate?: number;
     requiredItemsForBottomCreate?: number;
     slotItemVar?: string;
+    createEnabledValidator?: Function;
+    editText?: string;
+    editIcon?: string;
+    editLink?: string;
 }
 
 interface TabsConfig {
@@ -1081,6 +1082,7 @@ declare class Icon extends LktItem implements IconConfig {
     class?: ValidTextValue;
     pack?: ValidTextValue;
     type?: IconType;
+    onClick?: Function | undefined;
     constructor(data?: Partial<IconConfig>);
 }
 
