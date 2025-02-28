@@ -14,9 +14,7 @@ export interface TableConfig {
     modelValue: LktObject[]
     type?: TableType,
     columns: Column[]
-    resource?: string
     noResultsText?: string
-    filters?: LktObject[]
 
     // Data visualization
     hideEmptyColumns?: boolean
@@ -51,6 +49,7 @@ export interface TableConfig {
     headerClass?: string
 
     // Buttons
+    editModeButton?: ButtonConfig
     saveButton?: ButtonConfig
     createButton?: ButtonConfig
     dropButton?: ButtonConfig
@@ -60,26 +59,18 @@ export interface TableConfig {
     wrapContentTag?: string
     wrapContentClass?: string
     itemsContainerClass?: string
-    createText?: string
-    createIcon?: string
-    createRoute?: string
-    createDisabled?: boolean
-    createEnabledValidator?: Function
-    dropText?: string
-    dropIcon?: string
-    dropConfirm?: string
-    dropResource?: string
-    editText?: string
-    editIcon?: string
-    editLink?: string
-    editModeText?: string
-    switchEditionEnabled?: boolean
     addNavigation?: boolean
     newValueGenerator?: Function
     requiredItemsForTopCreate?: number
     requiredItemsForBottomCreate?: number
 
     slotItemVar?: string
+
+    // Deprecated props:
+    createEnabledValidator?: Function
+    editText?: string
+    editIcon?: string
+    editLink?: string
 }
 
 

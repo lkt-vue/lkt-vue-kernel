@@ -17,9 +17,7 @@ export class Table extends LktItem implements TableConfig {
         'modelValue',
         'type',
         'columns',
-        'resource',
         'noResultsText',
-        'filters',
         'hideEmptyColumns',
         'itemDisplayChecker',
         'loading',
@@ -37,6 +35,7 @@ export class Table extends LktItem implements TableConfig {
         'titleTag',
         'titleIcon',
         'headerClass',
+        'editModeButton',
         'saveButton',
         'createButton',
         'dropButton',
@@ -44,19 +43,9 @@ export class Table extends LktItem implements TableConfig {
         'wrapContentClass',
         'itemsContainerClass',
         'hiddenSave',
-        'createText',
-        'createIcon',
-        'createRoute',
-        'dropText',
-        'dropIcon',
         'editText',
         'editIcon',
         'editLink',
-        'editModeText',
-        'switchEditionEnabled',
-        'createDisabled',
-        'dropConfirm',
-        'dropResource',
         'addNavigation',
         'createEnabledValidator',
         'newValueGenerator',
@@ -106,6 +95,7 @@ export class Table extends LktItem implements TableConfig {
     headerClass?: string = '';
 
     // Buttons
+    editModeButton?: ButtonConfig = {};
     saveButton?: ButtonConfig = {};
     createButton?: ButtonConfig = {};
     dropButton?: ButtonConfig = {};
@@ -115,19 +105,9 @@ export class Table extends LktItem implements TableConfig {
     wrapContentTag?: string = 'div';
     wrapContentClass?: string = '';
     itemsContainerClass?: string = '';
-    createText?: string = '';
-    createIcon?: string = '';
-    createRoute?: string = '';
-    dropText?: string = '';
-    dropIcon?: string = '';
     editText?: string = '';
     editIcon?: string = '';
     editLink?: string = '';
-    editModeText?: string = '';
-    switchEditionEnabled?: boolean = false;
-    createDisabled?: boolean = false;
-    dropConfirm?: string = '';
-    dropResource?: string = '';
     addNavigation?: boolean = false;
     createEnabledValidator?: Function = undefined;
     newValueGenerator?: Function = undefined;

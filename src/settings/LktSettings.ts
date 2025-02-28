@@ -40,6 +40,36 @@ export class LktSettings {
         LktSettings.defaultDropErrorIcon = config.icon ?? LktSettings.defaultDropErrorIcon;
     }
 
+    static defaultCreateSuccessText = 'Item created';
+    static defaultCreateSuccessDetails = '';
+    static defaultCreateSuccessIcon = '';
+
+    static setDefaultCreateSuccess(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultCreateSuccessText = config.text ?? LktSettings.defaultCreateSuccessText;
+        LktSettings.defaultCreateSuccessDetails = config.details ?? LktSettings.defaultCreateSuccessDetails;
+        LktSettings.defaultCreateSuccessIcon = config.icon ?? LktSettings.defaultCreateSuccessIcon;
+    }
+
+    static defaultUpdateSuccessText = 'Item updated';
+    static defaultUpdateSuccessDetails = '';
+    static defaultUpdateSuccessIcon = '';
+
+    static setDefaultUpdateSuccess(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultUpdateSuccessText = config.text ?? LktSettings.defaultUpdateSuccessText;
+        LktSettings.defaultUpdateSuccessDetails = config.details ?? LktSettings.defaultUpdateSuccessDetails;
+        LktSettings.defaultUpdateSuccessIcon = config.icon ?? LktSettings.defaultUpdateSuccessIcon;
+    }
+
+    static defaultDropSuccessText = 'Item removed';
+    static defaultDropSuccessDetails = '';
+    static defaultDropSuccessIcon = '';
+
+    static setDefaultDropSuccess(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultDropSuccessText = config.text ?? LktSettings.defaultDropSuccessText;
+        LktSettings.defaultDropSuccessDetails = config.details ?? LktSettings.defaultDropSuccessDetails;
+        LktSettings.defaultDropSuccessIcon = config.icon ?? LktSettings.defaultDropSuccessIcon;
+    }
+
     static defaultSaveButton: Partial<ButtonConfig> = {
         text: 'Save',
     };
@@ -145,6 +175,20 @@ export class LktSettings {
             LktSettings.defaultToggleButton = button;
         } else {
             LktSettings.defaultToggleButton = ensureButtonConfig(button, LktSettings.defaultToggleButton);
+        }
+        return LktSettings;
+    }
+
+    static defaultLoadMoreButton: Partial<ButtonConfig> = {
+        text: 'Load more',
+        type: ButtonType.HiddenSwitch,
+    };
+
+    static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultLoadMoreButton = button;
+        } else {
+            LktSettings.defaultLoadMoreButton = ensureButtonConfig(button, LktSettings.defaultLoadMoreButton);
         }
         return LktSettings;
     }

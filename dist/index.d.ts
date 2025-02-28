@@ -203,12 +203,12 @@ interface ButtonConfig {
     iconEnd?: string;
     img?: string;
     checked?: boolean;
-    textOn?: string | number | undefined;
-    textOff?: string | number | undefined;
-    iconOn?: string | number | undefined;
-    iconOff?: string | number | undefined;
-    iconEndOn?: string | number | undefined;
-    iconEndOff?: string | number | undefined;
+    textOn?: ValidTextValue;
+    textOff?: ValidTextValue;
+    iconOn?: ValidTextValue;
+    iconOff?: ValidTextValue;
+    iconEndOn?: ValidTextValue;
+    iconEndOff?: ValidTextValue;
     dot?: ValidButtonDot;
     anchor?: AnchorConfig | Anchor;
     resource?: string;
@@ -259,6 +259,30 @@ declare class LktSettings {
         details?: string;
         icon?: string;
     }): void;
+    static defaultCreateSuccessText: string;
+    static defaultCreateSuccessDetails: string;
+    static defaultCreateSuccessIcon: string;
+    static setDefaultCreateSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUpdateSuccessText: string;
+    static defaultUpdateSuccessDetails: string;
+    static defaultUpdateSuccessIcon: string;
+    static setDefaultUpdateSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultDropSuccessText: string;
+    static defaultDropSuccessDetails: string;
+    static defaultDropSuccessIcon: string;
+    static setDefaultDropSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
     static defaultSaveButton: Partial<ButtonConfig>;
     static setDefaultSaveButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultConfirmButton: Partial<ButtonConfig>;
@@ -275,6 +299,8 @@ declare class LktSettings {
     static setDefaultEditModeButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultToggleButton: Partial<ButtonConfig>;
     static setDefaultToggleButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultLoadMoreButton: Partial<ButtonConfig>;
+    static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
 }
 
 declare enum FieldType {
@@ -609,12 +635,12 @@ declare class Button extends LktItem implements ButtonConfig {
     confirmData: Partial<ModalConfig>;
     modalCallbacks?: Array<ModalCallbackConfig>;
     text: ValidTextValue;
-    textOn: string | number | undefined;
-    textOff: string | number | undefined;
-    iconOn: string | number | undefined;
-    iconOff: string | number | undefined;
-    iconEndOn: string | number | undefined;
-    iconEndOff: string | number | undefined;
+    textOn: ValidTextValue;
+    textOff: ValidTextValue;
+    iconOn: ValidTextValue;
+    iconOff: ValidTextValue;
+    iconEndOn: ValidTextValue;
+    iconEndOff: ValidTextValue;
     icon: string;
     dot: ValidButtonDot;
     iconEnd: string;
@@ -667,12 +693,25 @@ interface DragConfig {
     dragKey?: string;
 }
 
+declare enum IconType {
+    NotDefined = "",
+    Button = "button"
+}
+
 interface IconConfig {
     icon?: ValidTextValue;
     text?: ValidTextValue;
     class?: ValidTextValue;
     pack?: ValidTextValue;
-    type?: string;
+    type?: IconType;
+}
+
+interface ImageConfig {
+    src?: string;
+    alt?: string;
+    text?: string;
+    class?: string;
+    imageStyle?: string | LktObject;
 }
 
 declare enum ItemCrudView {
@@ -734,6 +773,25 @@ interface ItemCrudConfig {
     notificationType?: NotificationType;
 }
 
+interface MenuEntryConfig {
+    key?: string;
+    href?: string;
+    label?: string;
+    icon?: string;
+    onClick?: Function | undefined;
+    isActiveChecker?: Function | undefined;
+    isOpened?: boolean;
+    isActive?: boolean;
+    parent?: MenuEntryConfig | undefined;
+    children?: MenuEntryConfig[];
+}
+
+interface MenuConfig {
+    modelValue?: MenuEntryConfig[];
+    resource?: string;
+    resourceData: LktObject;
+}
+
 declare enum PaginatorType {
     Pages = "pages",
     PrevNext = "prev-next",
@@ -748,9 +806,9 @@ interface PaginatorConfig {
     modelValue?: number;
     class?: string;
     resource?: string;
+    resourceData?: LktObject;
     readOnly?: boolean;
     loading?: boolean;
-    filters?: LktObject;
 }
 
 declare enum ProgressType {
@@ -850,9 +908,7 @@ interface TableConfig {
     modelValue: LktObject[];
     type?: TableType;
     columns: Column[];
-    resource?: string;
     noResultsText?: string;
-    filters?: LktObject[];
     hideEmptyColumns?: boolean;
     itemDisplayChecker?: Function;
     rowDisplayType?: ValidTableRowTypeValue;
@@ -871,6 +927,7 @@ interface TableConfig {
     titleTag?: string;
     titleIcon?: string;
     headerClass?: string;
+    editModeButton?: ButtonConfig;
     saveButton?: ButtonConfig;
     createButton?: ButtonConfig;
     dropButton?: ButtonConfig;
@@ -878,25 +935,39 @@ interface TableConfig {
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
-    createText?: string;
-    createIcon?: string;
-    createRoute?: string;
-    createDisabled?: boolean;
     createEnabledValidator?: Function;
-    dropText?: string;
-    dropIcon?: string;
-    dropConfirm?: string;
-    dropResource?: string;
     editText?: string;
     editIcon?: string;
     editLink?: string;
-    editModeText?: string;
-    switchEditionEnabled?: boolean;
     addNavigation?: boolean;
     newValueGenerator?: Function;
     requiredItemsForTopCreate?: number;
     requiredItemsForBottomCreate?: number;
     slotItemVar?: string;
+}
+
+interface TabsConfig {
+    modelValue: string | number;
+    id?: string;
+    useSession?: boolean;
+    cacheLifetime?: number;
+    contentPad?: string;
+    titles?: LktObject;
+}
+
+declare enum TagType {
+    NotDefined = "",
+    ActionIcon = "action-icon"
+}
+
+interface TagConfig {
+    class?: string;
+    text?: string;
+    featuredText?: string;
+    icon?: string;
+    iconAtEnd?: boolean;
+    featuredAtStart?: boolean;
+    type?: TagType;
 }
 
 declare enum ToastType {
@@ -923,6 +994,27 @@ interface ToastConfig {
 
 declare class LktStrictItem extends LktItem {
     lktStrictItem: boolean;
+}
+
+declare class Accordion extends LktItem implements AccordionConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof AccordionConfig)[];
+    modelValue?: boolean;
+    type?: AccordionType;
+    toggleMode?: AccordionToggleMode;
+    actionButton?: ButtonConfig;
+    toggleButton?: ButtonConfig;
+    toggleOnClickIntro?: boolean;
+    toggleTimeout?: number;
+    title?: string;
+    icon?: string;
+    class?: string;
+    contentClass?: string;
+    iconRotation?: '90' | '180' | '-90' | '-180';
+    minHeight?: number | undefined;
+    iconAtEnd?: boolean;
+    toggleIconAtEnd?: boolean;
+    constructor(data?: Partial<AnchorConfig>);
 }
 
 declare enum ValidationCode {
@@ -981,56 +1073,26 @@ declare class FieldValidation {
     static createEqualTo(value: number | string, status?: ValidationStatus): FieldValidation;
 }
 
-declare class Accordion extends LktItem implements AccordionConfig {
+declare class Icon extends LktItem implements IconConfig {
     static lktAllowUndefinedProps: string[];
-    static lktDefaultValues: (keyof AccordionConfig)[];
-    modelValue?: boolean;
-    type?: AccordionType;
-    toggleMode?: AccordionToggleMode;
-    actionButton?: ButtonConfig;
-    toggleButton?: ButtonConfig;
-    toggleOnClickIntro?: boolean;
-    toggleTimeout?: number;
-    title?: string;
-    icon?: string;
-    class?: string;
-    contentClass?: string;
-    iconRotation?: '90' | '180' | '-90' | '-180';
-    minHeight?: number | undefined;
-    iconAtEnd?: boolean;
-    toggleIconAtEnd?: boolean;
-    constructor(data?: Partial<AnchorConfig>);
-}
-
-declare class Toast extends LktItem implements ToastConfig {
-    static lktDefaultValues: (keyof ToastConfig)[];
-    type?: ToastType;
-    text?: ValidTextValue;
-    details?: ValidTextValue;
+    static lktDefaultValues: (keyof IconConfig)[];
     icon?: ValidTextValue;
-    positionX?: ToastPositionX;
-    duration?: number | undefined;
-    buttonConfig?: ButtonConfig | undefined;
-    zIndex?: number;
-    constructor(data?: Partial<ToastConfig>);
+    text?: ValidTextValue;
+    class?: ValidTextValue;
+    pack?: ValidTextValue;
+    type?: IconType;
+    constructor(data?: Partial<IconConfig>);
 }
 
-declare class Tooltip extends LktItem implements TooltipConfig {
-    static lktDefaultValues: (keyof TooltipConfig)[];
-    modelValue: boolean;
-    alwaysOpen: boolean;
-    class: string;
-    text: string;
-    icon: string;
-    iconAtEnd: boolean;
-    engine: TooltipPositionEngine;
-    referrerWidth: boolean;
-    referrerMargin: number | string;
-    windowMargin: number | string;
-    referrer: HTMLElement | undefined;
-    locationY: TooltipLocationY;
-    locationX: TooltipLocationX;
-    constructor(data?: Partial<TooltipConfig>);
+declare class Image extends LktItem implements ImageConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof ImageConfig)[];
+    src?: string;
+    alt?: string;
+    text?: string;
+    class?: string;
+    imageStyle?: string | LktObject;
+    constructor(data?: Partial<ImageConfig>);
 }
 
 declare class ItemCrud extends LktItem implements ItemCrudConfig {
@@ -1088,7 +1150,7 @@ declare class Paginator extends LktItem implements PaginatorConfig {
     resource?: string;
     readOnly?: boolean;
     loading?: boolean;
-    filters?: LktObject;
+    resourceData?: LktObject;
     constructor(data?: Partial<PaginatorConfig>);
 }
 
@@ -1118,6 +1180,7 @@ declare class Table extends LktItem implements TableConfig {
     titleTag?: string;
     titleIcon?: string;
     headerClass?: string;
+    editModeButton?: ButtonConfig;
     saveButton?: ButtonConfig;
     createButton?: ButtonConfig;
     dropButton?: ButtonConfig;
@@ -1125,19 +1188,9 @@ declare class Table extends LktItem implements TableConfig {
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
-    createText?: string;
-    createIcon?: string;
-    createRoute?: string;
-    dropText?: string;
-    dropIcon?: string;
     editText?: string;
     editIcon?: string;
     editLink?: string;
-    editModeText?: string;
-    switchEditionEnabled?: boolean;
-    createDisabled?: boolean;
-    dropConfirm?: string;
-    dropResource?: string;
     addNavigation?: boolean;
     createEnabledValidator?: Function;
     newValueGenerator?: Function;
@@ -1145,6 +1198,50 @@ declare class Table extends LktItem implements TableConfig {
     requiredItemsForBottomCreate?: number;
     slotItemVar?: string;
     constructor(data?: Partial<TableConfig>);
+}
+
+declare class Tag extends LktItem implements TagConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof TagConfig)[];
+    class?: string;
+    text?: string;
+    featuredText?: string;
+    icon?: string;
+    iconAtEnd?: boolean;
+    featuredAtStart?: boolean;
+    type?: TagType;
+    constructor(data?: Partial<TagConfig>);
+}
+
+declare class Toast extends LktItem implements ToastConfig {
+    static lktDefaultValues: (keyof ToastConfig)[];
+    type?: ToastType;
+    text?: ValidTextValue;
+    details?: ValidTextValue;
+    icon?: ValidTextValue;
+    positionX?: ToastPositionX;
+    duration?: number | undefined;
+    buttonConfig?: ButtonConfig | undefined;
+    zIndex?: number;
+    constructor(data?: Partial<ToastConfig>);
+}
+
+declare class Tooltip extends LktItem implements TooltipConfig {
+    static lktDefaultValues: (keyof TooltipConfig)[];
+    modelValue: boolean;
+    alwaysOpen: boolean;
+    class: string;
+    text: string;
+    icon: string;
+    iconAtEnd: boolean;
+    engine: TooltipPositionEngine;
+    referrerWidth: boolean;
+    referrerMargin: number | string;
+    windowMargin: number | string;
+    referrer: HTMLElement | undefined;
+    locationY: TooltipLocationY;
+    locationX: TooltipLocationX;
+    constructor(data?: Partial<TooltipConfig>);
 }
 
 declare enum SortDirection {
@@ -1181,4 +1278,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, type IconConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, Icon, type IconConfig, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, type MenuConfig, type MenuEntryConfig, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };

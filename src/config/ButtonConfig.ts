@@ -38,12 +38,12 @@ export interface ButtonConfig {
 
     // Check button
     checked?: boolean
-    textOn?: string | number | undefined
-    textOff?: string | number | undefined
-    iconOn?: string | number | undefined
-    iconOff?: string | number | undefined
-    iconEndOn?: string | number | undefined
-    iconEndOff?: string | number | undefined
+    textOn?: ValidTextValue
+    textOff?: ValidTextValue
+    iconOn?: ValidTextValue
+    iconOff?: ValidTextValue
+    iconEndOn?: ValidTextValue
+    iconEndOff?: ValidTextValue
 
     // Dot config
     dot?: ValidButtonDot

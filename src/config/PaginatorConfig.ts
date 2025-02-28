@@ -6,7 +6,7 @@ export interface PaginatorConfig {
     modelValue?: number
     class?: string
     resource?: string
+    resourceData?: LktObject
     readOnly?: boolean
     loading?: boolean
-    filters?: LktObject
 }

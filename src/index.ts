@@ -32,8 +32,11 @@ export {DragConfig} from './config/DragConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';
+export {ImageConfig} from './config/ImageConfig.ts';
 export {IsDisabledCheckerArgs} from './config/IsDisabledCheckerArgs.ts';
 export {ItemCrudConfig} from './config/ItemCrudConfig.ts';
+export {MenuConfig} from './config/MenuConfig.ts';
+export {MenuEntryConfig} from './config/MenuEntryConfig.ts';
 export {ModalCallbackConfig} from './config/ModalCallbackConfig.ts';
 export {ModalConfig} from './config/ModalConfig.ts';
 export {OptionConfig} from './config/OptionConfig.ts';
@@ -41,6 +44,8 @@ export {PaginatorConfig} from './config/PaginatorConfig.ts';
 export {ProgressConfig} from './config/ProgressConfig.ts';
 export {SaveConfig} from './config/SaveConfig.ts';
 export {TableConfig} from './config/TableConfig.ts';
+export {TabsConfig} from './config/TabsConfig.ts';
+export {TagConfig} from './config/TagConfig.ts';
 export {ToastConfig} from './config/ToastConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
 
@@ -49,19 +54,22 @@ export {TooltipConfig} from './config/TooltipConfig.ts';
  */
 export {LktItem} from './instances/LktItem.ts';
 export {LktStrictItem} from './instances/LktStrictItem.ts';
-export {Option} from './instances/Option.ts';
-export {Field} from './instances/Field.ts';
-export {FieldValidation} from './instances/FieldValidation.ts';
-export {Column} from './instances/Column.ts';
 export {Accordion} from './instances/Accordion.ts';
 export {Anchor} from './instances/Anchor.ts';
 export {Button} from './instances/Button.ts';
-export {Toast} from './instances/Toast.ts';
-export {Tooltip} from './instances/Tooltip.ts';
+export {Column} from './instances/Column.ts';
+export {Field} from './instances/Field.ts';
+export {FieldValidation} from './instances/FieldValidation.ts';
+export {Icon} from './instances/Icon.ts';
+export {Image} from './instances/Image.ts';
 export {ItemCrud} from './instances/ItemCrud.ts';
 export {Modal} from './instances/Modal.ts';
+export {Option} from './instances/Option.ts';
 export {Paginator} from './instances/Paginator.ts';
 export {Table} from './instances/Table.ts';
+export {Tag} from './instances/Tag.ts';
+export {Toast} from './instances/Toast.ts';
+export {Tooltip} from './instances/Tooltip.ts';
 
 /**
  * Export enums
@@ -89,6 +97,7 @@ export {SortDirection} from './enums/SortDirection.ts';
 export {TablePermission} from './enums/TablePermission.ts';
 export {TableRowType} from './enums/TableRowType.ts';
 export {TableType} from './enums/TableType.ts';
+export {TagType} from './enums/TagType.ts';
 export {ToastPositionX} from './enums/ToastPositionX.ts';
 export {ToastType} from './enums/ToastType.ts';
 export {ToggleMode} from './enums/ToggleMode.ts';

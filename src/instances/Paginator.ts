@@ -15,7 +15,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
         'resource',
         'readOnly',
         'loading',
-        'filters',
+        'resourceData',
     ];
 
     type?: PaginatorType = PaginatorType.PagesPrevNext;
@@ -24,7 +24,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
     resource?: string = '';
     readOnly?: boolean = false;
     loading?: boolean = false;
-    filters?: LktObject = {};
+    resourceData?: LktObject = {};
 
     constructor(data: Partial<PaginatorConfig> = {}) {
         super();
