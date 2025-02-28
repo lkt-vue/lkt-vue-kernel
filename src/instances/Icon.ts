@@ -2,6 +2,7 @@ import {LktItem} from "./LktItem.ts";
 import {IconConfig} from "../config/IconConfig.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {IconType} from "../enums/IconType.ts";
+import {EventsConfig} from "../config/EventsConfig.ts";
 
 export class Icon extends LktItem implements IconConfig {
 
@@ -15,7 +16,7 @@ export class Icon extends LktItem implements IconConfig {
         'class',
         'pack',
         'type',
-        'onClick',
+        'events',
     ];
 
     icon?: ValidTextValue = '';
@@ -25,7 +26,7 @@ export class Icon extends LktItem implements IconConfig {
     type?: IconType = IconType.NotDefined;
 
     // Event management
-    onClick?: Function|undefined
+    events?: EventsConfig|undefined = {};
 
     constructor(data: Partial<IconConfig> = {}) {
         super();

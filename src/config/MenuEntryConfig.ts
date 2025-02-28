@@ -1,10 +1,11 @@
+import {EventsConfig} from "./EventsConfig.ts";
+
 export interface MenuEntryConfig {
     key?: string
     href?: string
     label?: string
     icon?: string
 
-    onClick?: Function|undefined
     isActiveChecker?: Function|undefined
 
     isOpened?: boolean
@@ -12,4 +13,10 @@ export interface MenuEntryConfig {
     parent?: MenuEntryConfig|undefined
 
     children?: MenuEntryConfig[]
+
+    // Events
+    events?: EventsConfig|undefined
+
+    // Deprecated
+    onClick?: Function|undefined
 }

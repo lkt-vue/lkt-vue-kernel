@@ -3,6 +3,7 @@ import {RouteLocationRaw} from "vue-router";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {ModalConfig} from "./ModalConfig.ts";
+import {EventsConfig} from "./EventsConfig.ts";
 
 export interface AnchorConfig {
     type?: AnchorType
@@ -11,10 +12,15 @@ export interface AnchorConfig {
     isActive?: boolean
     downloadFileName?: string
     disabled?: boolean
-    onClick?: Function | undefined
     confirmModal?: ValidModalName
     confirmModalKey?: ValidModalKey
     confirmData?: ModalConfig
     imposter?: boolean
     external?: boolean
+
+    // Events
+    events?: EventsConfig|undefined
+
+    // Deprecated:
+    onClick?: Function | undefined
 }

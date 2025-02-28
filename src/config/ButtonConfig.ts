@@ -12,6 +12,7 @@ import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
 import {ValidButtonDot} from "../types/ValidButtonDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
+import {EventsConfig} from "./EventsConfig.ts";
 
 export interface ButtonConfig {
 
@@ -80,5 +81,5 @@ export interface ButtonConfig {
 
     // Event management
     clickRef?: Element | VueElement
-    onClick?: Function|undefined
+    events?: EventsConfig|undefined
 }

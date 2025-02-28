@@ -15,6 +15,7 @@ import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {ValidButtonDot} from "../types/ValidButtonDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
+import {EventsConfig} from "../config/EventsConfig.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -67,12 +68,11 @@ export class Button extends LktItem implements ButtonConfig {
         'hideTooltipOnLeave',
         'splitClass',
         'prop',
-        'onClick',
+        'events',
     ];
 
     type: ButtonType = ButtonType.Button;
     name: string = generateRandomString(10);
-    palette: string = '';
     class: string = '';
     containerClass: string = '';
     value: string = '';
@@ -115,7 +115,7 @@ export class Button extends LktItem implements ButtonConfig {
     prop?: LktObject = {};
 
     // Event management
-    onClick?: Function|undefined = undefined;
+    events?: EventsConfig|undefined = {};
 
     constructor(data: Partial<ButtonConfig> = {}) {
         super();

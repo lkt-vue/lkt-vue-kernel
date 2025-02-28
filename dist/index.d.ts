@@ -76,6 +76,10 @@ interface ModalConfig extends LktObject {
     cancelButton?: Partial<ButtonConfig>;
 }
 
+interface EventsConfig {
+    click?: Function | undefined;
+}
+
 interface AnchorConfig {
     type?: AnchorType;
     to?: RouteLocationRaw | string;
@@ -83,12 +87,13 @@ interface AnchorConfig {
     isActive?: boolean;
     downloadFileName?: string;
     disabled?: boolean;
-    onClick?: Function | undefined;
     confirmModal?: ValidModalName;
     confirmModalKey?: ValidModalKey;
     confirmData?: ModalConfig;
     imposter?: boolean;
     external?: boolean;
+    events?: EventsConfig | undefined;
+    onClick?: Function | undefined;
 }
 
 type ValidTabIndex = string | number | undefined;
@@ -119,6 +124,7 @@ declare class Anchor extends LktItem implements AnchorConfig {
     confirmData: LktObject;
     imposter: boolean;
     external: boolean;
+    events?: EventsConfig | undefined;
     getHref(): string;
     constructor(data?: Partial<AnchorConfig>);
 }
@@ -229,7 +235,7 @@ interface ButtonConfig {
     tabindex?: ValidTabIndex;
     prop?: LktObject;
     clickRef?: Element | VueElement;
-    onClick?: Function | undefined;
+    events?: EventsConfig | undefined;
 }
 
 declare class LktSettings {
@@ -617,7 +623,6 @@ declare class Button extends LktItem implements ButtonConfig {
     static lktDefaultValues: (keyof ButtonConfig)[];
     type: ButtonType;
     name: string;
-    palette: string;
     class: string;
     containerClass: string;
     value: string;
@@ -656,7 +661,7 @@ declare class Button extends LktItem implements ButtonConfig {
     splitClass?: string;
     tooltip?: TooltipConfig;
     prop?: LktObject;
-    onClick?: Function | undefined;
+    events?: EventsConfig | undefined;
     constructor(data?: Partial<ButtonConfig>);
     isDisabled(): boolean | undefined;
 }
@@ -704,7 +709,7 @@ interface IconConfig {
     class?: ValidTextValue;
     pack?: ValidTextValue;
     type?: IconType;
-    onClick?: Function | undefined;
+    events?: EventsConfig | undefined;
 }
 
 interface ImageConfig {
@@ -779,12 +784,13 @@ interface MenuEntryConfig {
     href?: string;
     label?: string;
     icon?: string;
-    onClick?: Function | undefined;
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
     parent?: MenuEntryConfig | undefined;
     children?: MenuEntryConfig[];
+    events?: EventsConfig | undefined;
+    onClick?: Function | undefined;
 }
 
 interface MenuConfig {
@@ -1082,7 +1088,7 @@ declare class Icon extends LktItem implements IconConfig {
     class?: ValidTextValue;
     pack?: ValidTextValue;
     type?: IconType;
-    onClick?: Function | undefined;
+    events?: EventsConfig | undefined;
     constructor(data?: Partial<IconConfig>);
 }
 
@@ -1280,4 +1286,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, Icon, type IconConfig, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, type MenuConfig, type MenuEntryConfig, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, Icon, type IconConfig, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, type MenuConfig, type MenuEntryConfig, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };

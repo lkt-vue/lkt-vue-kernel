@@ -29,6 +29,7 @@ export {AnchorConfig} from './config/AnchorConfig.ts';
 export {ButtonConfig} from './config/ButtonConfig.ts';
 export {ColumnConfig} from './config/ColumnConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
+export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';

@@ -5,6 +5,7 @@ import {RouteLocationRaw} from "vue-router";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
+import {EventsConfig} from "../config/EventsConfig.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
@@ -25,6 +26,7 @@ export class Anchor extends LktItem implements AnchorConfig {
         'confirmData',
         'imposter',
         'external',
+        'events',
     ];
 
     type: AnchorType = AnchorType.RouterLink;
@@ -39,6 +41,9 @@ export class Anchor extends LktItem implements AnchorConfig {
     confirmData: LktObject = {};
     imposter: boolean = false;
     external: boolean = false;
+
+    // Event management
+    events?: EventsConfig|undefined = {};
 
     getHref() {
         let href = '';
