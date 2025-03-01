@@ -6,6 +6,9 @@ import {ModalType} from "../enums/ModalType.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 
 export interface ModalConfig extends LktObject {
+    modalName?: ValidModalName
+    modalKey?: ValidModalKey
+    zIndex?: number
     type?: ModalType
     size?: string
     preTitle?: string
@@ -18,19 +21,8 @@ export interface ModalConfig extends LktObject {
     disabledClose?: boolean
     disabledVeilClick?: boolean
     hiddenFooter?: boolean
-    modalName?: ValidModalName
-    modalKey?: ValidModalKey
-    zIndex?: number
     beforeClose?: ValidBeforeCloseModal
     item?: LktObject
     confirmButton?: Partial<ButtonConfig>
     cancelButton?: Partial<ButtonConfig>
-
-
-    // hiddenButtons?: boolean // Equals to hidden footer
-    // onConfirm?: Function|undefined
-    // cancelText: string
-    // confirmText: string
-    // cancelPalette: string
-    // confirmPalette: string
 }
