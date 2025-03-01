@@ -71,6 +71,7 @@ export {Option} from './instances/Option.ts';
 export {Paginator} from './instances/Paginator.ts';
 export {Progress} from './instances/Progress.ts';
 export {Table} from './instances/Table.ts';
+export {Tabs} from './instances/Tabs.ts';
 export {Tag} from './instances/Tag.ts';
 export {Toast} from './instances/Toast.ts';
 export {Tooltip} from './instances/Tooltip.ts';

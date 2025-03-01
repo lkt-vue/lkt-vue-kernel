@@ -4,10 +4,6 @@ import {TagType} from "../enums/TagType.ts";
 
 export class Tag extends LktItem implements TagConfig {
 
-    static lktAllowUndefinedProps: string[] = [
-        'onClick',
-    ];
-
     static lktDefaultValues: (keyof TagConfig)[] = [
         'class',
         'text',
