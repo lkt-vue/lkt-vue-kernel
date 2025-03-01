@@ -192,4 +192,11 @@ export class LktSettings {
         }
         return LktSettings;
     }
+
+    static defaultCloseModalIcon: string = 'lkt-icn-cancel';
+
+    static setDefaultCloseModalIcon(icon: string) {
+        LktSettings.defaultCloseModalIcon = icon;
+        return LktSettings;
+    }
 }

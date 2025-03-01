@@ -307,6 +307,8 @@ declare class LktSettings {
     static setDefaultToggleButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultLoadMoreButton: Partial<ButtonConfig>;
     static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultCloseModalIcon: string;
+    static setDefaultCloseModalIcon(icon: string): typeof LktSettings;
 }
 
 declare enum FieldType {

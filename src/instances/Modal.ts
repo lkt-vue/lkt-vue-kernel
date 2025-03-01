@@ -5,6 +5,7 @@ import {LktObject} from "../interfaces/LktObject.ts";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidBeforeCloseModal} from "../types/ValidBeforeCloseModal.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {LktSettings} from "../settings/LktSettings.ts";
 
 export class Modal extends LktItem implements ModalConfig {
 
@@ -31,7 +32,7 @@ export class Modal extends LktItem implements ModalConfig {
     preTitle: string = '';
     preTitleIcon: string = '';
     title: string = '';
-    closeIcon: string = '';
+    closeIcon: string = LktSettings.defaultCloseModalIcon;
     closeConfirm: ValidModalName = '';
     closeConfirmKey: ValidModalKey = '_';
     showClose: boolean = true;
