@@ -315,6 +315,14 @@ declare class LktSettings {
     static defaultTableSortDescIcon: string;
     static setDefaultTableSortAscIcon(icon: string): typeof LktSettings;
     static setDefaultTableSortDescIcon(icon: string): typeof LktSettings;
+    static defaultPaginatorFirstButton: Partial<ButtonConfig>;
+    static defaultPaginatorPrevButton: Partial<ButtonConfig>;
+    static defaultPaginatorNextButton: Partial<ButtonConfig>;
+    static defaultPaginatorLastButton: Partial<ButtonConfig>;
+    static setDefaultPaginatorFirstButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultPaginatorPrevButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultPaginatorNextButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultPaginatorLastButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
 }
 
 declare enum FieldType {

@@ -219,4 +219,60 @@ export class LktSettings {
         LktSettings.defaultTableSortDescIcon = icon;
         return LktSettings;
     }
+
+    static defaultPaginatorFirstButton: Partial<ButtonConfig> = {
+        text: '',
+        icon: 'lkt-icn-angle-double-left',
+    }
+
+    static defaultPaginatorPrevButton: Partial<ButtonConfig> = {
+        text: '',
+        icon: 'lkt-icn-angle-left',
+    }
+
+    static defaultPaginatorNextButton: Partial<ButtonConfig> = {
+        text: '',
+        iconEnd: 'lkt-icn-angle-right',
+    }
+
+    static defaultPaginatorLastButton: Partial<ButtonConfig> = {
+        text: '',
+        iconEnd: 'lkt-icn-angle-double-right',
+    }
+
+    static setDefaultPaginatorFirstButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultPaginatorFirstButton = button;
+        } else {
+            LktSettings.defaultPaginatorFirstButton = ensureButtonConfig(button, LktSettings.defaultPaginatorFirstButton);
+        }
+        return LktSettings;
+    }
+
+    static setDefaultPaginatorPrevButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultPaginatorPrevButton = button;
+        } else {
+            LktSettings.defaultPaginatorPrevButton = ensureButtonConfig(button, LktSettings.defaultPaginatorPrevButton);
+        }
+        return LktSettings;
+    }
+
+    static setDefaultPaginatorNextButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultPaginatorNextButton = button;
+        } else {
+            LktSettings.defaultPaginatorNextButton = ensureButtonConfig(button, LktSettings.defaultPaginatorNextButton);
+        }
+        return LktSettings;
+    }
+
+    static setDefaultPaginatorLastButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultPaginatorLastButton = button;
+        } else {
+            LktSettings.defaultPaginatorLastButton = ensureButtonConfig(button, LktSettings.defaultPaginatorLastButton);
+        }
+        return LktSettings;
+    }
 }
