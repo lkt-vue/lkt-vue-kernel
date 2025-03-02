@@ -199,4 +199,24 @@ export class LktSettings {
         LktSettings.defaultCloseModalIcon = icon;
         return LktSettings;
     }
+
+    static defaultCloseToastIcon: string = 'lkt-icn-cancel';
+
+    static setDefaultCloseToastIcon(icon: string) {
+        LktSettings.defaultCloseToastIcon = icon;
+        return LktSettings;
+    }
+
+    static defaultTableSortAscIcon: string = 'lkt-icn-arrow-bottom';
+    static defaultTableSortDescIcon: string = 'lkt-icn-arrow-top';
+
+    static setDefaultTableSortAscIcon(icon: string) {
+        LktSettings.defaultTableSortAscIcon = icon;
+        return LktSettings;
+    }
+
+    static setDefaultTableSortDescIcon(icon: string) {
+        LktSettings.defaultTableSortDescIcon = icon;
+        return LktSettings;
+    }
 }

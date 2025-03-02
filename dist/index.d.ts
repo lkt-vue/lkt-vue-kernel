@@ -309,6 +309,12 @@ declare class LktSettings {
     static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultCloseModalIcon: string;
     static setDefaultCloseModalIcon(icon: string): typeof LktSettings;
+    static defaultCloseToastIcon: string;
+    static setDefaultCloseToastIcon(icon: string): typeof LktSettings;
+    static defaultTableSortAscIcon: string;
+    static defaultTableSortDescIcon: string;
+    static setDefaultTableSortAscIcon(icon: string): typeof LktSettings;
+    static setDefaultTableSortDescIcon(icon: string): typeof LktSettings;
 }
 
 declare enum FieldType {
