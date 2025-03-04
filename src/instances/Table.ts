@@ -10,6 +10,7 @@ import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
 import {TableRowType} from "../enums/TableRowType.ts";
 import {ValidDragConfig} from "../types/ValidDragConfig.ts";
 import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
+import {CarouselConfig} from "../config/CarouselConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -50,15 +51,14 @@ export class Table extends LktItem implements TableConfig {
         'requiredItemsForTopCreate',
         'requiredItemsForBottomCreate',
         'slotItemVar',
+        'carousel',
     ];
 
     // Data
     modelValue: LktObject[] = [];
     type?: TableType = TableType.Table;
     columns: Column[] = [];
-    resource?: string = '';
     noResultsText?: string = '';
-    filters?: LktObject[] = [];
 
     // Data visualization
     hideEmptyColumns?: boolean = false;
@@ -82,6 +82,7 @@ export class Table extends LktItem implements TableConfig {
 
     // Pagination
     paginator?: ValidPaginatorConfig = undefined;
+    carousel?: CarouselConfig = {};
 
     // New proposed prop: header
     header?: HeaderConfig

@@ -3,4 +3,5 @@ export enum TableType {
     Item = 'item',
     Ul = 'ul',
     Ol = 'ol',
+    Carousel = 'carousel',
 }

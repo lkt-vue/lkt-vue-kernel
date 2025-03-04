@@ -147,7 +147,7 @@ export {SafeString} from './value-objects/SafeString.ts';
 /**
  * Export functions
  */
-export {extractPropValue, extractI18nValue} from "./functions/extract-data-functions.ts";
+export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
 export {ensureButtonConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
 export {createColumn} from "./functions/table-functions.ts";

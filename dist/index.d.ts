@@ -861,7 +861,8 @@ declare enum TableType {
     Table = "table",
     Item = "item",
     Ul = "ul",
-    Ol = "ol"
+    Ol = "ol",
+    Carousel = "carousel"
 }
 
 declare class Column extends LktItem implements ColumnConfig {
@@ -926,6 +927,18 @@ type ValidDragConfig = DragConfig | undefined;
 
 type ValidPaginatorConfig = PaginatorConfig | undefined;
 
+interface CarouselConfig {
+    itemsToShow?: number;
+    itemsToScroll?: number;
+    autoplay?: number;
+    infinite?: boolean;
+    mouseDrag?: boolean;
+    touchDrag?: boolean;
+    pauseAutoplayOnHover?: boolean;
+    dir?: 'ltr' | 'rtl';
+    snapAlign?: 'start' | 'end' | 'center' | 'center-odd' | 'center-even';
+}
+
 interface TableConfig {
     modelValue: LktObject[];
     type?: TableType;
@@ -934,6 +947,7 @@ interface TableConfig {
     hideEmptyColumns?: boolean;
     itemDisplayChecker?: Function;
     rowDisplayType?: ValidTableRowTypeValue;
+    slotItemVar?: string;
     loading?: boolean;
     page?: number;
     perms?: ValidTablePermission[];
@@ -944,6 +958,7 @@ interface TableConfig {
     initialSorting?: boolean;
     drag?: ValidDragConfig;
     paginator?: ValidPaginatorConfig;
+    carousel?: CarouselConfig;
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
@@ -955,14 +970,13 @@ interface TableConfig {
     dropButton?: ButtonConfig;
     editButton?: ButtonConfig;
     hiddenSave?: boolean;
+    requiredItemsForTopCreate?: number;
+    requiredItemsForBottomCreate?: number;
+    addNavigation?: boolean;
+    newValueGenerator?: Function;
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
-    addNavigation?: boolean;
-    newValueGenerator?: Function;
-    requiredItemsForTopCreate?: number;
-    requiredItemsForBottomCreate?: number;
-    slotItemVar?: string;
     createEnabledValidator?: Function;
 }
 
@@ -1222,9 +1236,7 @@ declare class Table extends LktItem implements TableConfig {
     modelValue: LktObject[];
     type?: TableType;
     columns: Column[];
-    resource?: string;
     noResultsText?: string;
-    filters?: LktObject[];
     hideEmptyColumns?: boolean;
     itemDisplayChecker?: Function;
     rowDisplayType?: ValidTableRowTypeValue;
@@ -1238,6 +1250,7 @@ declare class Table extends LktItem implements TableConfig {
     initialSorting?: boolean;
     drag?: ValidDragConfig;
     paginator?: ValidPaginatorConfig;
+    carousel?: CarouselConfig;
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
@@ -1333,6 +1346,7 @@ type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget)
 
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
 declare const extractI18nValue: (needle: ValidTextValue) => any;
+declare const prepareResourceData: (resourceData: LktObject | undefined, haystack: LktObject) => LktObject;
 
 declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
 
@@ -1349,4 +1363,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, Icon, type IconConfig, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, FieldType, FieldValidation, type FieldValidationConfig, Icon, type IconConfig, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };

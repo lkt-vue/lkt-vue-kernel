@@ -1,6 +1,6 @@
 {
   "name": "lkt-vue-kernel",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "description": "LKT Vue Kernel",
   "keywords": [
     "lkt",
@@ -34,12 +34,10 @@
     "tsup": "^8.3.6",
     "typescript": "^5.7.3"
   },
-  "dependencies": {
+  "peerDependencies": {
     "lkt-data-state": "^1.0.10",
     "lkt-i18n": "^1.0.6",
-    "lkt-string-tools": "^1.0.8"
-  },
-  "peerDependencies": {
+    "lkt-string-tools": "^1.0.8",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   }

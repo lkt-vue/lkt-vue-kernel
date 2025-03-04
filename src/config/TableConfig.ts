@@ -7,6 +7,7 @@ import {ButtonConfig} from "./ButtonConfig.ts";
 import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
 import {ValidDragConfig} from "../types/ValidDragConfig.ts";
 import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
+import {CarouselConfig} from "./CarouselConfig.ts";
 
 export interface TableConfig {
 
@@ -20,6 +21,7 @@ export interface TableConfig {
     hideEmptyColumns?: boolean
     itemDisplayChecker?: Function
     rowDisplayType?: ValidTableRowTypeValue
+    slotItemVar?: string
 
     // State
     loading?: boolean
@@ -39,6 +41,9 @@ export interface TableConfig {
     // Pagination
     paginator?: ValidPaginatorConfig;
 
+    // Carousel
+    carousel?: CarouselConfig;
+
     // New proposed prop: header
     header?: HeaderConfig
 
@@ -55,19 +60,17 @@ export interface TableConfig {
     dropButton?: ButtonConfig
     editButton?: ButtonConfig
     hiddenSave?: boolean
+    requiredItemsForTopCreate?: number
+    requiredItemsForBottomCreate?: number
+    addNavigation?: boolean
+    newValueGenerator?: Function
 
-
+    // Content
     wrapContentTag?: string
     wrapContentClass?: string
     itemsContainerClass?: string
-    addNavigation?: boolean
-    newValueGenerator?: Function
-    requiredItemsForTopCreate?: number
-    requiredItemsForBottomCreate?: number
 
-    slotItemVar?: string
-
-    // Deprecated props:
+    // Deprecated props (use saveButton.disabled):
     createEnabledValidator?: Function
 }
 
