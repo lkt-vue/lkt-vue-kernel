@@ -72,6 +72,7 @@ export class LktSettings {
 
     static defaultSaveButton: Partial<ButtonConfig> = {
         text: 'Save',
+        icon: 'lkt-icn-save'
     };
 
     static setDefaultSaveButton(button: Partial<ButtonConfig>, override: boolean = true) {
@@ -112,6 +113,7 @@ export class LktSettings {
 
     static defaultCreateButton: Partial<ButtonConfig> = {
         text: 'Create',
+        icon: 'lkt-icn-save'
     };
 
     static setDefaultCreateButton(button: Partial<ButtonConfig>, override: boolean = true) {
@@ -125,6 +127,7 @@ export class LktSettings {
 
     static defaultUpdateButton: Partial<ButtonConfig> = {
         text: 'Update',
+        icon: 'lkt-icn-save'
     };
 
     static setDefaultUpdateButton(button: Partial<ButtonConfig>, override: boolean = true) {

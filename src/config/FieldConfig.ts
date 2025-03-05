@@ -4,14 +4,14 @@ import {ValidFieldValue} from './../types/ValidFieldValue.ts';
 import {Option} from '../instances/Option.ts';
 import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
-import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "./FieldValidationConfig.ts";
+import {FieldValidationEndEventArgs} from "../arguments/FieldValidationEndEventArgs.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
     type?: FieldType
-    valid?: boolean|undefined
+    valid?: boolean | undefined
     placeholder?: string
     searchPlaceholder?: string
     label?: string
@@ -39,9 +39,9 @@ export interface FieldConfig {
     step?: number | string
     enableAutoNumberFix?: boolean
     emptyValueSlot?: string
-    optionSlot?: string|undefined
-    valueSlot?: string|undefined
-    editSlot?: string|undefined
+    optionSlot?: string | undefined
+    valueSlot?: string | undefined
+    editSlot?: string | undefined
     slotData?: LktObject
     resource?: string
     resourceData?: LktObject
@@ -60,7 +60,7 @@ export interface FieldConfig {
     optionsText?: string | Function
     optionsIcon?: string | Function
     optionsClass?: string | Function
-    optionsLabelFormatter?: Function|undefined
+    optionsLabelFormatter?: Function | undefined
     optionsResource?: string
     optionsResourceData?: LktObject
     icon?: string | Function
@@ -77,27 +77,15 @@ export interface FieldConfig {
     // Validation
     validation?: FieldValidationConfig
 
-    // Deprecated:Validation
-    validationResource?: string
-    validationResourceData?: LktObject
-    autoValidation?: boolean
-    autoValidationType?: FieldAutoValidationTrigger
-    validationStack?: string
-    minNumbers?: ValidFieldMinMax
-    maxNumbers?: ValidFieldMinMax
-    minChars?: ValidFieldMinMax
-    maxChars?: ValidFieldMinMax
-    minUpperChars?: ValidFieldMinMax
-    maxUpperChars?: ValidFieldMinMax
-    minLowerChars?: ValidFieldMinMax
-    maxLowerChars?: ValidFieldMinMax
-    minSpecialChars?: ValidFieldMinMax
-    maxSpecialChars?: ValidFieldMinMax
-    checkEqualTo?: ValidFieldMinMax
-
     // Custom button
 
     // Deprecated: Custom button
     customButtonText?: string
     customButtonClass?: string
+
+    // Events
+    events?: {
+        validationStart?: undefined | Function
+        validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean)
+    }
 }

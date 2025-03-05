@@ -1,17 +1,84 @@
-import { ValidFieldValue } from '../types/ValidFieldValue';
-import { FieldType } from '../enums/FieldType'
-import { Option } from './Option';
-import { generateRandomString } from 'lkt-string-tools';
+import {ValidFieldValue} from '../types/ValidFieldValue';
+import {FieldType} from '../enums/FieldType'
+import {Option} from './Option';
+import {generateRandomString} from 'lkt-string-tools';
 import {FieldConfig} from "../config/FieldConfig.ts";
 import {LktItem} from "./LktItem.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
-import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "../config/FieldValidationConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
+
+    static lktDefaultValues: (keyof FieldConfig)[] = [
+        'modelValue',
+        'type',
+        'valid',
+        'placeholder',
+        'searchPlaceholder',
+        'label',
+        'labelIcon',
+        'labelIconAtEnd',
+        'name',
+        'autocomplete',
+        'disabled',
+        'readonly',
+        'readMode',
+        'allowReadModeSwitch',
+        'tabindex',
+        'mandatory',
+        'showPassword',
+        'canClear',
+        'canUndo',
+        'canI18n',
+        'canStep',
+        'canTag',
+        'mandatoryMessage',
+        'infoMessage',
+        'errorMessage',
+        'min',
+        'max',
+        'step',
+        'enableAutoNumberFix',
+        'emptyValueSlot',
+        'optionSlot',
+        'valueSlot',
+        'editSlot',
+        'slotData',
+        'resource',
+        'resourceData',
+        'featuredButton',
+        'infoButtonEllipsis',
+        'fileName',
+        'customButtonText',
+        'customButtonClass',
+        'options',
+        'multiple',
+        'multipleDisplay',
+        'multipleDisplayEdition',
+        'searchable',
+        'autoloadOptionsResource',
+        'optionsDownload',
+        'optionsModal',
+        'optionsModalData',
+        'optionsText',
+        'optionsIcon',
+        'optionsClass',
+        'optionsLabelFormatter',
+        'optionsResource',
+        'optionsResourceData',
+        'icon',
+        'download',
+        'modal',
+        'modalKey',
+        'modalData',
+        'validation',
+        'prop',
+        'optionValueType',
+    ];
+
     modelValue: ValidFieldValue = '';
     type: FieldType = FieldType.Text;
     valid: boolean|undefined = undefined;
@@ -48,22 +115,6 @@ export class Field extends LktItem implements FieldConfig {
     slotData: LktObject = {};
     resource: string = '';
     resourceData: LktObject = {};
-    validationResource: string = '';
-    validationResourceData: LktObject = {};
-    autoValidation: boolean = false;
-    autoValidationType: FieldAutoValidationTrigger = FieldAutoValidationTrigger.Blur;
-    validationStack: string = 'default';
-    minNumbers: ValidFieldMinMax = undefined;
-    maxNumbers: ValidFieldMinMax = undefined;
-    minChars: ValidFieldMinMax = undefined;
-    maxChars: ValidFieldMinMax = undefined;
-    minUpperChars: ValidFieldMinMax = undefined;
-    maxUpperChars: ValidFieldMinMax = undefined;
-    minLowerChars: ValidFieldMinMax = undefined;
-    maxLowerChars: ValidFieldMinMax = undefined;
-    minSpecialChars: ValidFieldMinMax = undefined;
-    maxSpecialChars: ValidFieldMinMax = undefined;
-    checkEqualTo: ValidFieldMinMax = undefined;
     featuredButton: string = '';
     infoButtonEllipsis: boolean = false
     fileName: string = '';
@@ -89,8 +140,10 @@ export class Field extends LktItem implements FieldConfig {
     modal: string | Function = '';
     modalKey: string | number | Function = '';
     modalData: LktObject = {};
-    data: LktObject = {};
     validation: FieldValidationConfig = {};
+
+    prop?: LktObject = {};
+    optionValueType: string = 'value';
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

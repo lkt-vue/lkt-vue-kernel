@@ -86,6 +86,7 @@ export {ButtonType} from './enums/ButtonType.ts';
 export {ColumnType} from './enums/ColumnType.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
 export {FieldType} from './enums/FieldType.ts';
+export {FieldValidationType} from './enums/FieldValidationType.ts';
 export {IconType} from './enums/IconType.ts';
 export {ItemCrudButtonNavPosition} from './enums/ItemCrudButtonNavPosition.ts';
 export {ItemCrudButtonNavVisibility} from './enums/ItemCrudButtonNavVisibility.ts';

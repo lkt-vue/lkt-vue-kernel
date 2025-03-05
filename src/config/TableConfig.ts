@@ -12,9 +12,9 @@ import {CarouselConfig} from "./CarouselConfig.ts";
 export interface TableConfig {
 
     // Data
-    modelValue: LktObject[]
+    modelValue?: LktObject[]
     type?: TableType,
-    columns: Column[]
+    columns?: Column[]
     noResultsText?: string
 
     // Data visualization

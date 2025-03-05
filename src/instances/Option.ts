@@ -12,6 +12,7 @@ export class Option extends LktItem implements OptionConfig {
     group?: string = '';
     icon?: string = '';
     modal?: ValidModalName = '';
+    tags?: OptionConfig[] = [];
 
     constructor(data: Partial<OptionConfig> = {}) {
         super();
