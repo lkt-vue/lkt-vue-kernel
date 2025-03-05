@@ -1,6 +1,6 @@
 import {LktObject} from "../interfaces/LktObject.ts";
 
-export interface HttpConfig {
+export interface HttpCallConfig {
     resource?: string,
     data?: LktObject,
     events?: {

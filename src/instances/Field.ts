@@ -10,7 +10,7 @@ import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "../config/FieldValidationConfig.ts";
 import {OptionsConfig} from "../config/OptionsConfig.ts";
-import {HttpConfig} from "../config/HttpConfig.ts";
+import {HttpCallConfig} from "../config/HttpCallConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -153,7 +153,7 @@ export class Field extends LktItem implements FieldConfig {
     optionsConfig?: OptionsConfig = {};
 
     // File upload config
-    fileUploadHttp?: HttpConfig = {};
+    fileUploadHttp?: HttpCallConfig = {};
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

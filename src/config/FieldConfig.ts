@@ -7,7 +7,7 @@ import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "./FieldValidationConfig.ts";
 import {FieldValidationEndEventArgs} from "../arguments/FieldValidationEndEventArgs.ts";
-import {HttpConfig} from "./HttpConfig.ts";
+import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {OptionsConfig} from "./OptionsConfig.ts";
 
 export interface FieldConfig {
@@ -84,7 +84,7 @@ export interface FieldConfig {
     optionsResourceData?: LktObject
 
     // File upload config
-    fileUploadHttp?: HttpConfig
+    fileUploadHttp?: HttpCallConfig
 
     // Deprecated file upload config
     resource: string

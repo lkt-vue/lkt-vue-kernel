@@ -32,7 +32,7 @@ export {DragConfig} from './config/DragConfig.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
-export {HttpConfig} from './config/HttpConfig.ts';
+export {HttpCallConfig} from './config/HttpCallConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';
 export {ImageConfig} from './config/ImageConfig.ts';
 export {IsDisabledCheckerArgs} from './config/IsDisabledCheckerArgs.ts';
