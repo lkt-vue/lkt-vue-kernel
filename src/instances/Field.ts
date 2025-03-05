@@ -9,6 +9,8 @@ import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "../config/FieldValidationConfig.ts";
+import {OptionsConfig} from "../config/OptionsConfig.ts";
+import {HttpConfig} from "../config/HttpConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -77,6 +79,8 @@ export class Field extends LktItem implements FieldConfig {
         'validation',
         'prop',
         'optionValueType',
+        'optionsConfig',
+        'fileUploadHttp',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -144,6 +148,12 @@ export class Field extends LktItem implements FieldConfig {
 
     prop?: LktObject = {};
     optionValueType: string = 'value';
+
+    // Options API
+    optionsConfig?: OptionsConfig = {};
+
+    // File upload config
+    fileUploadHttp?: HttpConfig = {};
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

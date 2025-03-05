@@ -7,6 +7,8 @@ import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "./FieldValidationConfig.ts";
 import {FieldValidationEndEventArgs} from "../arguments/FieldValidationEndEventArgs.ts";
+import {HttpConfig} from "./HttpConfig.ts";
+import {OptionsConfig} from "./OptionsConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -43,8 +45,6 @@ export interface FieldConfig {
     valueSlot?: string | undefined
     editSlot?: string | undefined
     slotData?: LktObject
-    resource?: string
-    resourceData?: LktObject
     featuredButton?: string
     infoButtonEllipsis?: boolean
     fileName?: string
@@ -53,16 +53,7 @@ export interface FieldConfig {
     multipleDisplay?: MultipleOptionsDisplay
     multipleDisplayEdition?: MultipleOptionsDisplay
     searchable?: boolean
-    autoloadOptionsResource?: boolean | 'feed'
-    optionsDownload?: string | Function
-    optionsModal?: string | Function
-    optionsModalData?: LktObject | Function
-    optionsText?: string | Function
-    optionsIcon?: string | Function
-    optionsClass?: string | Function
-    optionsLabelFormatter?: Function | undefined
-    optionsResource?: string
-    optionsResourceData?: LktObject
+
     icon?: string | Function
     download?: string | Function
     modal?: string | Function
@@ -76,6 +67,28 @@ export interface FieldConfig {
 
     // Validation
     validation?: FieldValidationConfig
+
+    // Options API
+    optionsConfig?: OptionsConfig
+
+    // Deprecated Options API
+    autoloadOptionsResource?: boolean | 'feed'
+    optionsDownload?: string | Function
+    optionsModal?: string | Function
+    optionsModalData?: LktObject | Function
+    optionsText?: string | Function
+    optionsIcon?: string | Function
+    optionsClass?: string | Function
+    optionsLabelFormatter?: Function | undefined
+    optionsResource?: string
+    optionsResourceData?: LktObject
+
+    // File upload config
+    fileUploadHttp?: HttpConfig
+
+    // Deprecated file upload config
+    resource: string
+    resourceData: LktObject
 
     // Custom button
 

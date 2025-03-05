@@ -1,4 +1,5 @@
 import {LktObject} from "../interfaces/LktObject.ts";
+import {HttpConfig} from "./HttpConfig.ts";
 
 export interface OptionsConfig {
     autoloadResource?: boolean | 'feed'
@@ -9,6 +10,9 @@ export interface OptionsConfig {
     icon?: string | Function
     class?: string | Function
     labelFormatter?: Function|undefined
+    httpConfig?: HttpConfig
+
+    // Deprecated props:
     resource?: string
     resourceData?: LktObject
 }
