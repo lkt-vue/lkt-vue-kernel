@@ -10,9 +10,5 @@ export interface OptionsConfig {
     icon?: string | Function
     class?: string | Function
     labelFormatter?: Function|undefined
-    httpConfig?: HttpCallConfig
-
-    // Deprecated props:
-    resource?: string
-    resourceData?: LktObject
+    http?: HttpCallConfig
 }

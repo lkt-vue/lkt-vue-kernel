@@ -501,9 +501,7 @@ interface OptionsConfig {
     icon?: string | Function;
     class?: string | Function;
     labelFormatter?: Function | undefined;
-    httpConfig?: HttpCallConfig;
-    resource?: string;
-    resourceData?: LktObject;
+    http?: HttpCallConfig;
 }
 
 interface FieldConfig {
@@ -559,19 +557,7 @@ interface FieldConfig {
     prop?: LktObject;
     validation?: FieldValidationConfig;
     optionsConfig?: OptionsConfig;
-    autoloadOptionsResource?: boolean | 'feed';
-    optionsDownload?: string | Function;
-    optionsModal?: string | Function;
-    optionsModalData?: LktObject | Function;
-    optionsText?: string | Function;
-    optionsIcon?: string | Function;
-    optionsClass?: string | Function;
-    optionsLabelFormatter?: Function | undefined;
-    optionsResource?: string;
-    optionsResourceData?: LktObject;
     fileUploadHttp?: HttpCallConfig;
-    resource: string;
-    resourceData: LktObject;
     customButtonText?: string;
     customButtonClass?: string;
     events?: {
@@ -624,8 +610,6 @@ declare class Field extends LktItem implements FieldConfig {
     valueSlot: undefined;
     editSlot: undefined;
     slotData: LktObject;
-    resource: string;
-    resourceData: LktObject;
     featuredButton: string;
     infoButtonEllipsis: boolean;
     fileName: string;
@@ -636,16 +620,6 @@ declare class Field extends LktItem implements FieldConfig {
     multipleDisplay: MultipleOptionsDisplay;
     multipleDisplayEdition: MultipleOptionsDisplay;
     searchable: boolean;
-    autoloadOptionsResource: boolean | 'feed';
-    optionsDownload: string | Function;
-    optionsModal: string | Function;
-    optionsModalData: LktObject | Function;
-    optionsText: string | Function;
-    optionsIcon: string | Function;
-    optionsClass: string | Function;
-    optionsLabelFormatter: undefined;
-    optionsResource: string;
-    optionsResourceData: LktObject;
     icon: string | Function;
     download: string | Function;
     modal: string | Function;

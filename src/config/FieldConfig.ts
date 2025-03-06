@@ -71,24 +71,8 @@ export interface FieldConfig {
     // Options API
     optionsConfig?: OptionsConfig
 
-    // Deprecated Options API
-    autoloadOptionsResource?: boolean | 'feed'
-    optionsDownload?: string | Function
-    optionsModal?: string | Function
-    optionsModalData?: LktObject | Function
-    optionsText?: string | Function
-    optionsIcon?: string | Function
-    optionsClass?: string | Function
-    optionsLabelFormatter?: Function | undefined
-    optionsResource?: string
-    optionsResourceData?: LktObject
-
     // File upload config
     fileUploadHttp?: HttpCallConfig
-
-    // Deprecated file upload config
-    resource: string
-    resourceData: LktObject
 
     // Custom button
 

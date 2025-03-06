@@ -49,8 +49,6 @@ export class Field extends LktItem implements FieldConfig {
         'valueSlot',
         'editSlot',
         'slotData',
-        'resource',
-        'resourceData',
         'featuredButton',
         'infoButtonEllipsis',
         'fileName',
@@ -61,16 +59,6 @@ export class Field extends LktItem implements FieldConfig {
         'multipleDisplay',
         'multipleDisplayEdition',
         'searchable',
-        'autoloadOptionsResource',
-        'optionsDownload',
-        'optionsModal',
-        'optionsModalData',
-        'optionsText',
-        'optionsIcon',
-        'optionsClass',
-        'optionsLabelFormatter',
-        'optionsResource',
-        'optionsResourceData',
         'icon',
         'download',
         'modal',
@@ -117,8 +105,6 @@ export class Field extends LktItem implements FieldConfig {
     valueSlot = undefined;
     editSlot = undefined;
     slotData: LktObject = {};
-    resource: string = '';
-    resourceData: LktObject = {};
     featuredButton: string = '';
     infoButtonEllipsis: boolean = false
     fileName: string = '';
@@ -129,16 +115,6 @@ export class Field extends LktItem implements FieldConfig {
     multipleDisplay: MultipleOptionsDisplay = MultipleOptionsDisplay.List;
     multipleDisplayEdition: MultipleOptionsDisplay = MultipleOptionsDisplay.Inline;
     searchable: boolean = false;
-    autoloadOptionsResource: boolean | 'feed' = false;
-    optionsDownload: string | Function = '';
-    optionsModal: string | Function = '';
-    optionsModalData: LktObject | Function = {};
-    optionsText: string | Function = '';
-    optionsIcon: string | Function = '';
-    optionsClass: string | Function = '';
-    optionsLabelFormatter = undefined;
-    optionsResource: string = '';
-    optionsResourceData: LktObject = {};
     icon: string | Function = '';
     download: string | Function = '';
     modal: string | Function = '';
