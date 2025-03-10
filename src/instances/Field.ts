@@ -11,6 +11,7 @@ import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "../config/FieldValidationConfig.ts";
 import {OptionsConfig} from "../config/OptionsConfig.ts";
 import {HttpCallConfig} from "../config/HttpCallConfig.ts";
+import {TooltipConfig} from "../config/TooltipConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -69,6 +70,7 @@ export class Field extends LktItem implements FieldConfig {
         'optionValueType',
         'optionsConfig',
         'fileUploadHttp',
+        'tooltipConfig',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -130,6 +132,9 @@ export class Field extends LktItem implements FieldConfig {
 
     // File upload config
     fileUploadHttp?: HttpCallConfig = {};
+
+    // Tooltip API
+    tooltipConfig?: TooltipConfig = {};
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

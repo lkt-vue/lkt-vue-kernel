@@ -558,6 +558,7 @@ interface FieldConfig {
     validation?: FieldValidationConfig;
     optionsConfig?: OptionsConfig;
     fileUploadHttp?: HttpCallConfig;
+    tooltipConfig?: TooltipConfig;
     customButtonText?: string;
     customButtonClass?: string;
     events?: {
@@ -630,6 +631,7 @@ declare class Field extends LktItem implements FieldConfig {
     optionValueType: string;
     optionsConfig?: OptionsConfig;
     fileUploadHttp?: HttpCallConfig;
+    tooltipConfig?: TooltipConfig;
     constructor(data?: Partial<FieldConfig>);
 }
 

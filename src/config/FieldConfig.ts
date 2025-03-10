@@ -9,6 +9,7 @@ import {FieldValidationConfig} from "./FieldValidationConfig.ts";
 import {FieldValidationEndEventArgs} from "../arguments/FieldValidationEndEventArgs.ts";
 import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {OptionsConfig} from "./OptionsConfig.ts";
+import {TooltipConfig} from "./TooltipConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -73,6 +74,9 @@ export interface FieldConfig {
 
     // File upload config
     fileUploadHttp?: HttpCallConfig
+
+    // Tooltip API
+    tooltipConfig?: TooltipConfig
 
     // Custom button
 
