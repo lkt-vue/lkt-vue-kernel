@@ -189,6 +189,9 @@ interface TooltipConfig {
     referrer?: HTMLElement | undefined;
     locationY?: TooltipLocationY;
     locationX?: TooltipLocationX;
+    showOnReferrerHover?: boolean;
+    showOnReferrerHoverDelay?: number;
+    hideOnReferrerLeave?: boolean;
 }
 
 type ValidButtonDot = boolean | string | number;
@@ -1312,6 +1315,9 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     referrer: HTMLElement | undefined;
     locationY: TooltipLocationY;
     locationX: TooltipLocationX;
+    showOnReferrerHover: boolean;
+    showOnReferrerHoverDelay: number;
+    hideOnReferrerLeave: boolean;
     constructor(data?: Partial<TooltipConfig>);
 }
 

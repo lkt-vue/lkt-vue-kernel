@@ -16,5 +16,8 @@ export interface TooltipConfig {
     referrer?: HTMLElement|undefined
     locationY?: TooltipLocationY
     locationX?: TooltipLocationX
+    showOnReferrerHover?: boolean
+    showOnReferrerHoverDelay?: number
+    hideOnReferrerLeave?: boolean
 }
 

@@ -1,4 +1,3 @@
-import {FieldConfig} from "../config/FieldConfig.ts";
 import {LktItem} from "./LktItem.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
@@ -36,6 +35,9 @@ export class Tooltip extends LktItem implements TooltipConfig {
     referrer: HTMLElement|undefined = undefined;
     locationY: TooltipLocationY = TooltipLocationY.Bottom;
     locationX: TooltipLocationX = TooltipLocationX.LeftCorner;
+    showOnReferrerHover: boolean = false;
+    showOnReferrerHoverDelay: number = 0;
+    hideOnReferrerLeave: boolean = false;
 
     constructor(data: Partial<TooltipConfig> = {}) {
         super();
