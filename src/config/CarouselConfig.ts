@@ -1,4 +1,5 @@
 export interface CarouselConfig {
+    currentSlide?: number
     itemsToShow?: number
     itemsToScroll?: number
     autoplay?: number

@@ -929,6 +929,7 @@ type ValidDragConfig = DragConfig | undefined;
 type ValidPaginatorConfig = PaginatorConfig | undefined;
 
 interface CarouselConfig {
+    currentSlide?: number;
     itemsToShow?: number;
     itemsToScroll?: number;
     autoplay?: number;
@@ -943,7 +944,7 @@ interface CarouselConfig {
 interface TableConfig {
     modelValue?: LktObject[];
     type?: TableType;
-    columns?: Column[];
+    columns?: Array<Column>;
     noResultsText?: string;
     hideEmptyColumns?: boolean;
     itemDisplayChecker?: Function;

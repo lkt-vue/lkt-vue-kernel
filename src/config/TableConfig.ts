@@ -14,7 +14,7 @@ export interface TableConfig {
     // Data
     modelValue?: LktObject[]
     type?: TableType,
-    columns?: Column[]
+    columns?: Array<Column>
     noResultsText?: string
 
     // Data visualization
