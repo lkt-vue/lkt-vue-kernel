@@ -59,7 +59,7 @@ export interface ButtonConfig {
     // Modal integration
     modal?: ValidModalName
     modalKey?: ValidModalKey
-    modalData?: Partial<ModalConfig>
+    modalData?: Partial<ModalConfig> | Function
     confirmModal?: ValidModalName
     confirmModalKey?: ValidModalKey
     confirmData?: Partial<ModalConfig>

@@ -84,7 +84,7 @@ export class Button extends LktItem implements ButtonConfig {
     resourceData: LktObject = {};
     modal: ValidModalName = '';
     modalKey: ValidModalKey = '_';
-    modalData: Partial<ModalConfig> = {};
+    modalData: Partial<ModalConfig> | Function = {};
     confirmModal: ValidModalName = '';
     confirmModalKey: ValidModalKey = '_';
     confirmData: Partial<ModalConfig> = {};

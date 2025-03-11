@@ -20,6 +20,10 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'referrer',
         'locationY',
         'locationX',
+        'showOnReferrerHover',
+        'showOnReferrerHoverDelay',
+        'hideOnReferrerLeave',
+        'hideOnReferrerLeaveDelay',
     ];
 
     modelValue: boolean = false;
@@ -38,6 +42,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     showOnReferrerHover: boolean = false;
     showOnReferrerHoverDelay: number = 0;
     hideOnReferrerLeave: boolean = false;
+    hideOnReferrerLeaveDelay: number = 0;
 
     constructor(data: Partial<TooltipConfig> = {}) {
         super();

@@ -19,5 +19,6 @@ export interface TooltipConfig {
     showOnReferrerHover?: boolean
     showOnReferrerHoverDelay?: number
     hideOnReferrerLeave?: boolean
+    hideOnReferrerLeaveDelay?: number
 }
 

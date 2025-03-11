@@ -12,6 +12,7 @@ import {FieldValidationConfig} from "../config/FieldValidationConfig.ts";
 import {OptionsConfig} from "../config/OptionsConfig.ts";
 import {HttpCallConfig} from "../config/HttpCallConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
+import {FieldReadModeConfig} from "../config/FieldReadModeConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -71,6 +72,7 @@ export class Field extends LktItem implements FieldConfig {
         'optionsConfig',
         'fileUploadHttp',
         'tooltipConfig',
+        'readModeConfig',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -85,8 +87,6 @@ export class Field extends LktItem implements FieldConfig {
     autocomplete: boolean = false;
     disabled: boolean = false;
     readonly: boolean = false;
-    readMode: boolean = false;
-    allowReadModeSwitch: boolean = false;
     tabindex: ValidTabIndex = undefined;
     mandatory: boolean = false;
     showPassword: boolean = false;
@@ -121,8 +121,13 @@ export class Field extends LktItem implements FieldConfig {
     download: string | Function = '';
     modal: string | Function = '';
     modalKey: string | number | Function = '';
-    modalData: LktObject = {};
+    modalData: LktObject | Function = {};
     validation: FieldValidationConfig = {};
+
+    // Read mode API
+    readMode?: boolean
+    allowReadModeSwitch: boolean = false;
+    readModeConfig?: FieldReadModeConfig
 
     prop?: LktObject = {};
     optionValueType: string = 'value';

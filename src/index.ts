@@ -31,6 +31,7 @@ export {ColumnConfig} from './config/ColumnConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
+export {FieldReadModeConfig} from './config/FieldReadModeConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
 export {HttpCallConfig} from './config/HttpCallConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';

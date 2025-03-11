@@ -10,6 +10,7 @@ import {FieldValidationEndEventArgs} from "../arguments/FieldValidationEndEventA
 import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {OptionsConfig} from "./OptionsConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
+import {FieldReadModeConfig} from "./FieldReadModeConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -24,8 +25,6 @@ export interface FieldConfig {
     autocomplete?: boolean
     disabled?: boolean | Function
     readonly?: boolean
-    readMode?: boolean
-    allowReadModeSwitch?: boolean
     tabindex?: ValidTabIndex
     mandatory?: boolean
     showPassword?: boolean
@@ -59,9 +58,14 @@ export interface FieldConfig {
     download?: string | Function
     modal?: string | Function
     modalKey?: string | number | Function
-    modalData?: LktObject
+    modalData?: LktObject | Function
     itemType?: string
     optionValueType?: string
+
+    // Read mode API
+    readMode?: boolean
+    allowReadModeSwitch?: boolean
+    readModeConfig?: FieldReadModeConfig
 
     // Extract data
     prop?: LktObject
