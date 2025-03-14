@@ -6,6 +6,8 @@ import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {EventsConfig} from "../config/EventsConfig.ts";
+import {getAnchorHref} from "../functions/anchor-functions.ts";
+import {ValidTextValue} from "../types/ValidTextValue.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
@@ -25,6 +27,7 @@ export class Anchor extends LktItem implements AnchorConfig {
         'imposter',
         'external',
         'events',
+        'text',
     ];
 
     type: AnchorType = AnchorType.RouterLink;
@@ -39,29 +42,13 @@ export class Anchor extends LktItem implements AnchorConfig {
     confirmData: LktObject = {};
     imposter: boolean = false;
     external: boolean = false;
+    text?: ValidTextValue
 
     // Event management
     events?: EventsConfig|undefined = {};
 
     getHref() {
-        let href = '';
-        if (typeof this.to === 'string') href = this.to;
-
-        if (AnchorType.Mail === this.type) return `mailto:${href}`;
-        if (AnchorType.Tel === this.type) return `tel:${href}`;
-
-        if ([
-            AnchorType.Href,
-            AnchorType.Mail,
-            AnchorType.Tel,
-            AnchorType.Tab,
-            AnchorType.Download,
-        ].includes(this.type)) {
-            return href;
-        }
-
-        if (typeof this.to === 'string' && this.to !== '') return this.to;
-        return '';
+        return getAnchorHref(this);
     }
 
     constructor(data: Partial<AnchorConfig> = {}) {

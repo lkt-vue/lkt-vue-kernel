@@ -11,6 +11,9 @@ import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {OptionsConfig} from "./OptionsConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
 import {FieldReadModeConfig} from "./FieldReadModeConfig.ts";
+import {ValidTextValue} from "../types/ValidTextValue.ts";
+import {BooleanFieldConfig} from "./BooleanFieldConfig.ts";
+import {ButtonConfig} from "./ButtonConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -25,6 +28,7 @@ export interface FieldConfig {
     autocomplete?: boolean
     disabled?: boolean | Function
     readonly?: boolean
+    hidden?: boolean
     tabindex?: ValidTabIndex
     mandatory?: boolean
     showPassword?: boolean
@@ -62,6 +66,10 @@ export interface FieldConfig {
     itemType?: string
     optionValueType?: string
 
+    // Boolean field mode
+    configOn?: BooleanFieldConfig
+    configOff?: BooleanFieldConfig
+
     // Read mode API
     readMode?: boolean
     allowReadModeSwitch?: boolean
@@ -78,6 +86,9 @@ export interface FieldConfig {
 
     // File upload config
     fileUploadHttp?: HttpCallConfig
+
+    // File upload button (For Select if it's being used as file list - old lkt-field-file-select mode)
+    fileUploadButton?: ButtonConfig
 
     // Tooltip API
     tooltipConfig?: TooltipConfig

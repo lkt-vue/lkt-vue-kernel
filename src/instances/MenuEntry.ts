@@ -1,11 +1,14 @@
 import {LktItem} from "./LktItem.ts";
 import {MenuEntryConfig} from "../config/MenuEntryConfig.ts";
 import {EventsConfig} from "../config/EventsConfig.ts";
+import {MenuEntryType} from "../enums/MenuEntryType.ts";
+import {AnchorConfig} from "../config/AnchorConfig.ts";
 
 export class MenuEntry extends LktItem implements MenuEntryConfig {
 
     static lktDefaultValues: (keyof MenuEntryConfig)[] = [
         'key',
+        'type',
         'href',
         'label',
         'icon',
@@ -19,9 +22,17 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
     ];
 
     key?: string = '';
+    type?: MenuEntryType = MenuEntryType.Anchor;
+
+    // Icon
+    icon?: string = '';
+
+    // Anchor config
+    anchor?: AnchorConfig = {};
+
+    // Deprecated anchor config
     href?: string = '';
     label?: string = '';
-    icon?: string = '';
 
     isActiveChecker?: Function|undefined = undefined;
 

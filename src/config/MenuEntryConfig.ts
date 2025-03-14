@@ -1,17 +1,29 @@
 import {EventsConfig} from "./EventsConfig.ts";
+import {MenuEntryType} from "../enums/MenuEntryType.ts";
+import {AnchorConfig} from "./AnchorConfig.ts";
 
 export interface MenuEntryConfig {
+    // Core config
     key?: string
-    href?: string
-    label?: string
+    type?: MenuEntryType
+
+    // Icon
     icon?: string
 
-    isActiveChecker?: Function|undefined
+    // Anchor config
+    anchor?: AnchorConfig
 
+    // Deprecated anchor config
+    href?: string
+    label?: string
+
+    // State control
+    isActiveChecker?: Function|undefined
     isOpened?: boolean
     isActive?: boolean
-    parent?: MenuEntryConfig|undefined
 
+    // Related entries
+    parent?: MenuEntryConfig|undefined
     children?: MenuEntryConfig[]
 
     // Events

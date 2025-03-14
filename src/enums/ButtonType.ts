@@ -12,4 +12,6 @@ export const enum ButtonType {
     Tooltip = 'tooltip', // Tooltip button, content always generated
     TooltipLazy = 'tooltip-lazy', // Tooltip button, contents generated after first open
     TooltipEver = 'tooltip-ever', // Tooltip button, contents generated each time it's clicked
+    FileUpload = 'file-upload', // File upload mode. Enables HTTP upload by lkt-field
+    ImageUpload = 'image-upload', // Image upload mode. Enables HTTP upload by lkt-field
 }

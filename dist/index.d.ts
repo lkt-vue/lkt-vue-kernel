@@ -20,7 +20,9 @@ declare const enum ButtonType {
     SplitEver = "split-ever",// Split button, contents generated each time it's clicked
     Tooltip = "tooltip",// Tooltip button, content always generated
     TooltipLazy = "tooltip-lazy",// Tooltip button, contents generated after first open
-    TooltipEver = "tooltip-ever"
+    TooltipEver = "tooltip-ever",// Tooltip button, contents generated each time it's clicked
+    FileUpload = "file-upload",// File upload mode. Enables HTTP upload by lkt-field
+    ImageUpload = "image-upload"
 }
 
 declare enum AnchorType {
@@ -81,6 +83,8 @@ interface EventsConfig {
     click?: Function | undefined;
 }
 
+type ValidTextValue = string | number | undefined;
+
 interface AnchorConfig {
     type?: AnchorType;
     to?: RouteLocationRaw | string;
@@ -93,6 +97,7 @@ interface AnchorConfig {
     confirmData?: ModalConfig;
     imposter?: boolean;
     external?: boolean;
+    text?: ValidTextValue;
     events?: EventsConfig | undefined;
     onClick?: Function | undefined;
 }
@@ -125,6 +130,7 @@ declare class Anchor extends LktItem implements AnchorConfig {
     confirmData: LktObject;
     imposter: boolean;
     external: boolean;
+    text?: ValidTextValue;
     events?: EventsConfig | undefined;
     getHref(): string;
     constructor(data?: Partial<AnchorConfig>);
@@ -197,8 +203,6 @@ interface TooltipConfig {
 }
 
 type ValidButtonDot = boolean | string | number;
-
-type ValidTextValue = string | number | undefined;
 
 interface ButtonConfig {
     type?: ButtonType;
@@ -291,6 +295,22 @@ declare class LktSettings {
     static defaultDropSuccessDetails: string;
     static defaultDropSuccessIcon: string;
     static setDefaultDropSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUploadSuccessText: string;
+    static defaultUploadSuccessDetails: string;
+    static defaultUploadSuccessIcon: string;
+    static setDefaultUploadSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUploadErrorText: string;
+    static defaultUploadErrorDetails: string;
+    static defaultUploadErrorIcon: string;
+    static setDefaultUploadError(config: {
         text?: string;
         details?: string;
         icon?: string;
@@ -390,6 +410,12 @@ interface AccordionConfig {
     minHeight?: number | undefined;
     iconAtEnd?: boolean;
     toggleIconAtEnd?: boolean;
+}
+
+interface BooleanFieldConfig {
+    label?: ValidTextValue;
+    icon?: ValidTextValue;
+    labelIcon?: ValidTextValue;
 }
 
 declare enum ColumnType {
@@ -526,6 +552,7 @@ interface FieldConfig {
     autocomplete?: boolean;
     disabled?: boolean | Function;
     readonly?: boolean;
+    hidden?: boolean;
     tabindex?: ValidTabIndex;
     mandatory?: boolean;
     showPassword?: boolean;
@@ -561,6 +588,8 @@ interface FieldConfig {
     modalData?: LktObject | Function;
     itemType?: string;
     optionValueType?: string;
+    configOn?: BooleanFieldConfig;
+    configOff?: BooleanFieldConfig;
     readMode?: boolean;
     allowReadModeSwitch?: boolean;
     readModeConfig?: FieldReadModeConfig;
@@ -568,6 +597,7 @@ interface FieldConfig {
     validation?: FieldValidationConfig;
     optionsConfig?: OptionsConfig;
     fileUploadHttp?: HttpCallConfig;
+    fileUploadButton?: ButtonConfig;
     tooltipConfig?: TooltipConfig;
     customButtonText?: string;
     customButtonClass?: string;
@@ -612,11 +642,17 @@ declare enum IconType {
     Button = "button"
 }
 
+declare enum IconPosition {
+    Start = "start",
+    End = "end"
+}
+
 interface IconConfig {
     icon?: ValidTextValue;
     text?: ValidTextValue;
     class?: ValidTextValue;
     type?: IconType;
+    position?: IconPosition;
     events?: EventsConfig | undefined;
 }
 
@@ -687,11 +723,17 @@ interface ItemCrudConfig {
     notificationType?: NotificationType;
 }
 
+declare enum MenuEntryType {
+    Anchor = "anchor"
+}
+
 interface MenuEntryConfig {
     key?: string;
+    type?: MenuEntryType;
+    icon?: string;
+    anchor?: AnchorConfig;
     href?: string;
     label?: string;
-    icon?: string;
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
@@ -703,6 +745,7 @@ interface MenuEntryConfig {
 
 interface MenuConfig {
     modelValue?: MenuEntryConfig[];
+    http?: HttpCallConfig;
     resource?: string;
     resourceData: LktObject;
 }
@@ -905,6 +948,17 @@ declare class LktStrictItem extends LktItem {
     lktStrictItem: boolean;
 }
 
+declare class LktColor extends LktStrictItem {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+    constructor(data: LktObject);
+    static fromHexColor(color: string): LktColor;
+    toString(): string;
+    getContrastFontColor(): "#000000" | "#ffffff";
+}
+
 declare class Accordion extends LktItem implements AccordionConfig {
     static lktAllowUndefinedProps: string[];
     static lktDefaultValues: (keyof AccordionConfig)[];
@@ -988,6 +1042,7 @@ declare class Field extends LktItem implements FieldConfig {
     autocomplete: boolean;
     disabled: boolean;
     readonly: boolean;
+    hidden: boolean;
     tabindex: ValidTabIndex;
     mandatory: boolean;
     showPassword: boolean;
@@ -1024,6 +1079,8 @@ declare class Field extends LktItem implements FieldConfig {
     modalKey: string | number | Function;
     modalData: LktObject | Function;
     validation: FieldValidationConfig;
+    configOn?: BooleanFieldConfig;
+    configOff?: BooleanFieldConfig;
     readMode?: boolean;
     allowReadModeSwitch: boolean;
     readModeConfig?: FieldReadModeConfig;
@@ -1031,6 +1088,7 @@ declare class Field extends LktItem implements FieldConfig {
     optionValueType: string;
     optionsConfig?: OptionsConfig;
     fileUploadHttp?: HttpCallConfig;
+    fileUploadButton: ButtonConfig;
     tooltipConfig?: TooltipConfig;
     constructor(data?: Partial<FieldConfig>);
 }
@@ -1097,6 +1155,7 @@ declare class Icon extends LktItem implements IconConfig {
     text?: ValidTextValue;
     class?: ValidTextValue;
     type?: IconType;
+    position?: IconPosition;
     events?: EventsConfig | undefined;
     constructor(data?: Partial<IconConfig>);
 }
@@ -1138,6 +1197,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
 declare class Menu extends LktItem implements MenuConfig {
     static lktDefaultValues: (keyof MenuConfig)[];
     modelValue?: MenuEntryConfig[];
+    http?: HttpCallConfig;
     resource?: string;
     resourceData: LktObject;
     constructor(data?: Partial<MenuConfig>);
@@ -1146,9 +1206,11 @@ declare class Menu extends LktItem implements MenuConfig {
 declare class MenuEntry extends LktItem implements MenuEntryConfig {
     static lktDefaultValues: (keyof MenuEntryConfig)[];
     key?: string;
+    type?: MenuEntryType;
+    icon?: string;
+    anchor?: AnchorConfig;
     href?: string;
     label?: string;
-    icon?: string;
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
@@ -1340,6 +1402,8 @@ type ValidSafeStringValue = string | ((...args: any[]) => string) | undefined | 
 
 type ValidScanPropTarget = ScanPropTarget | ((...args: any[]) => ScanPropTarget);
 
+declare const getAnchorHref: (anchor: AnchorConfig) => string;
+
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
 declare const extractI18nValue: (needle: ValidTextValue) => any;
 declare const prepareResourceData: (resourceData: LktObject | undefined, haystack: LktObject) => LktObject;
@@ -1359,4 +1423,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type HttpCallConfig, Icon, type IconConfig, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getDefaultValues, lktDebug, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultValues, lktDebug, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };

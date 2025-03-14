@@ -13,6 +13,9 @@ import {OptionsConfig} from "../config/OptionsConfig.ts";
 import {HttpCallConfig} from "../config/HttpCallConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {FieldReadModeConfig} from "../config/FieldReadModeConfig.ts";
+import {ValidTextValue} from "../types/ValidTextValue.ts";
+import {BooleanFieldConfig} from "../config/BooleanFieldConfig.ts";
+import {ButtonConfig} from "../config/ButtonConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -29,6 +32,7 @@ export class Field extends LktItem implements FieldConfig {
         'autocomplete',
         'disabled',
         'readonly',
+        'hidden',
         'readMode',
         'allowReadModeSwitch',
         'tabindex',
@@ -73,6 +77,8 @@ export class Field extends LktItem implements FieldConfig {
         'fileUploadHttp',
         'tooltipConfig',
         'readModeConfig',
+        'configOn',
+        'configOff',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -87,6 +93,7 @@ export class Field extends LktItem implements FieldConfig {
     autocomplete: boolean = false;
     disabled: boolean = false;
     readonly: boolean = false;
+    hidden: boolean = false;
     tabindex: ValidTabIndex = undefined;
     mandatory: boolean = false;
     showPassword: boolean = false;
@@ -124,6 +131,10 @@ export class Field extends LktItem implements FieldConfig {
     modalData: LktObject | Function = {};
     validation: FieldValidationConfig = {};
 
+    // Boolean field mode
+    configOn?: BooleanFieldConfig = {};
+    configOff?: BooleanFieldConfig = {};
+
     // Read mode API
     readMode?: boolean
     allowReadModeSwitch: boolean = false;
@@ -137,6 +148,7 @@ export class Field extends LktItem implements FieldConfig {
 
     // File upload config
     fileUploadHttp?: HttpCallConfig = {};
+    fileUploadButton: ButtonConfig = {};
 
     // Tooltip API
     tooltipConfig?: TooltipConfig = {};

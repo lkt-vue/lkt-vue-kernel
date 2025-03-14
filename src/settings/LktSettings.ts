@@ -70,6 +70,26 @@ export class LktSettings {
         LktSettings.defaultDropSuccessIcon = config.icon ?? LktSettings.defaultDropSuccessIcon;
     }
 
+    static defaultUploadSuccessText = 'Upload success';
+    static defaultUploadSuccessDetails = '';
+    static defaultUploadSuccessIcon = '';
+
+    static setDefaultUploadSuccess(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultUploadSuccessText = config.text ?? LktSettings.defaultUploadSuccessText;
+        LktSettings.defaultUploadSuccessDetails = config.details ?? LktSettings.defaultUploadSuccessDetails;
+        LktSettings.defaultUploadSuccessIcon = config.icon ?? LktSettings.defaultUploadSuccessIcon;
+    }
+
+    static defaultUploadErrorText = 'Upload error';
+    static defaultUploadErrorDetails = '';
+    static defaultUploadErrorIcon = '';
+
+    static setDefaultUploadError(config: { text?: string, details?: string, icon?: string }) {
+        LktSettings.defaultUploadErrorText = config.text ?? LktSettings.defaultUploadErrorText;
+        LktSettings.defaultUploadErrorDetails = config.details ?? LktSettings.defaultUploadErrorDetails;
+        LktSettings.defaultUploadErrorIcon = config.icon ?? LktSettings.defaultUploadErrorIcon;
+    }
+
     static defaultSaveButton: Partial<ButtonConfig> = {
         text: 'Save',
         icon: 'lkt-icn-save'
