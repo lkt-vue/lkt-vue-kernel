@@ -724,7 +724,9 @@ interface ItemCrudConfig {
 }
 
 declare enum MenuEntryType {
-    Anchor = "anchor"
+    Anchor = "anchor",
+    Button = "button",
+    Entry = "entry"
 }
 
 interface MenuEntryConfig {
@@ -732,8 +734,7 @@ interface MenuEntryConfig {
     type?: MenuEntryType;
     icon?: string;
     anchor?: AnchorConfig;
-    href?: string;
-    label?: string;
+    button?: ButtonConfig;
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
@@ -746,8 +747,6 @@ interface MenuEntryConfig {
 interface MenuConfig {
     modelValue?: MenuEntryConfig[];
     http?: HttpCallConfig;
-    resource?: string;
-    resourceData: LktObject;
 }
 
 declare enum PaginatorType {
@@ -1198,8 +1197,6 @@ declare class Menu extends LktItem implements MenuConfig {
     static lktDefaultValues: (keyof MenuConfig)[];
     modelValue?: MenuEntryConfig[];
     http?: HttpCallConfig;
-    resource?: string;
-    resourceData: LktObject;
     constructor(data?: Partial<MenuConfig>);
 }
 
@@ -1209,8 +1206,7 @@ declare class MenuEntry extends LktItem implements MenuEntryConfig {
     type?: MenuEntryType;
     icon?: string;
     anchor?: AnchorConfig;
-    href?: string;
-    label?: string;
+    button?: ButtonConfig;
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
@@ -1219,12 +1215,6 @@ declare class MenuEntry extends LktItem implements MenuEntryConfig {
     events?: EventsConfig | undefined;
     onClick?: Function | undefined;
     constructor(data?: Partial<MenuEntryConfig>);
-    setChildren(children: MenuEntry[]): this;
-    setOnClick(fn: Function): this;
-    setIsActiveChecker(fn: Function): this;
-    setIsActive(enabled?: boolean): this;
-    setLabel(str: string): this;
-    setIcon(str: string): this;
     doClose(): void;
 }
 

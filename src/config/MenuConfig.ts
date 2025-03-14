@@ -7,8 +7,4 @@ export interface MenuConfig {
 
     // Http config
     http?: HttpCallConfig
-
-    // Deprecated HTTP config
-    resource?: string
-    resourceData: LktObject
 }

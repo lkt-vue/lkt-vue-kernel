@@ -1,6 +1,7 @@
 import {EventsConfig} from "./EventsConfig.ts";
 import {MenuEntryType} from "../enums/MenuEntryType.ts";
 import {AnchorConfig} from "./AnchorConfig.ts";
+import {ButtonConfig} from "./ButtonConfig.ts";
 
 export interface MenuEntryConfig {
     // Core config
@@ -13,9 +14,8 @@ export interface MenuEntryConfig {
     // Anchor config
     anchor?: AnchorConfig
 
-    // Deprecated anchor config
-    href?: string
-    label?: string
+    // Button config
+    button?: ButtonConfig
 
     // State control
     isActiveChecker?: Function|undefined

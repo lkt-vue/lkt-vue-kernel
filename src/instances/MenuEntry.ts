@@ -3,14 +3,13 @@ import {MenuEntryConfig} from "../config/MenuEntryConfig.ts";
 import {EventsConfig} from "../config/EventsConfig.ts";
 import {MenuEntryType} from "../enums/MenuEntryType.ts";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
+import {ButtonConfig} from "../config/ButtonConfig.ts";
 
 export class MenuEntry extends LktItem implements MenuEntryConfig {
 
     static lktDefaultValues: (keyof MenuEntryConfig)[] = [
         'key',
         'type',
-        'href',
-        'label',
         'icon',
         'isActiveChecker',
         'isOpened',
@@ -30,9 +29,8 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
     // Anchor config
     anchor?: AnchorConfig = {};
 
-    // Deprecated anchor config
-    href?: string = '';
-    label?: string = '';
+    // Button config
+    button?: ButtonConfig = {};
 
     isActiveChecker?: Function|undefined = undefined;
 
@@ -51,37 +49,6 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
     constructor(data: Partial<MenuEntryConfig> = {}) {
         super();
         this.feed(data);
-    }
-
-    setChildren(children: MenuEntry[]) {
-        children.forEach(c => c.parent = this);
-        this.children = children;
-        return this;
-    }
-
-    setOnClick(fn: Function) {
-        this.onClick = fn;
-        return this;
-    }
-
-    setIsActiveChecker(fn: Function) {
-        this.isActiveChecker = fn;
-        return this;
-    }
-
-    setIsActive(enabled: boolean = true) {
-        this.isActive = enabled;
-        return this;
-    }
-
-    setLabel(str: string) {
-        this.label = str;
-        return this;
-    }
-
-    setIcon(str: string) {
-        this.icon = str;
-        return this;
     }
 
     doClose() {
