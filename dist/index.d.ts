@@ -1238,6 +1238,7 @@ declare class Modal extends LktItem implements ModalConfig {
     item: LktObject;
     confirmButton?: Partial<ButtonConfig>;
     cancelButton?: Partial<ButtonConfig>;
+    type: ModalType;
     constructor(data?: Partial<ModalConfig>);
 }
 
@@ -1382,6 +1383,8 @@ type ScanPropTarget = string | number | undefined | Function;
 
 type ValidCustomSlot = string | Component | undefined;
 
+type ValidModalComponent = string | VueElement | Component;
+
 declare class SafeString {
     private readonly value;
     constructor(input: ValidSafeStringValue);
@@ -1402,7 +1405,54 @@ declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefin
 
 declare const lktDebug: (component: string, ...args: any[]) => void;
 
+declare enum ModalRegisterType {
+    Quick = "quick",
+    Full = "full"
+}
+
+interface ModalRegister {
+    name: ValidModalName;
+    type: ModalRegisterType;
+    component: ValidModalComponent;
+    config?: Partial<ModalConfig>;
+}
+
+declare const addModal: (config: ModalRegister) => void;
+declare const openModal: (modalConfig: ModalConfig, componentProps: LktObject) => void;
+declare const closeModal: (modalConfig: ModalConfig) => void;
+
 declare const createColumn: (data: ColumnConfig) => Column;
+
+interface ModalCanvasInterface {
+    refresh: Function;
+    refreshModal: Function;
+    execModal: Function;
+}
+
+declare class ModalController {
+    private static config;
+    private static components;
+    private static zIndex;
+    static canvas?: ModalCanvasInterface | undefined;
+    static addModal(modalConfig: ModalRegister): typeof ModalController;
+    private static findConfig;
+    private static getInstanceIndex;
+    private static getModalInfo;
+    private static focus;
+    static open(modalConfig: ModalConfig, componentProps?: LktObject, legacy?: boolean): any;
+    static close(modalConfig: ModalConfig): void;
+}
+
+interface RenderModalConfig {
+    componentProps: LktObject;
+    modalConfig: ModalConfig;
+    modalRegister: ModalRegister;
+    index: string;
+    legacy: boolean;
+    legacyData?: {
+        props?: LktObject;
+    };
+}
 
 /**
  * Export common interfaces
@@ -1413,4 +1463,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, booleanFieldTypes, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultValues, lktDebug, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };

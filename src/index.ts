@@ -134,6 +134,7 @@ export {ValidCustomSlot} from './types/ValidCustomSlot.ts';
 export {ValidDragConfig} from './types/ValidDragConfig.ts';
 export {ValidFieldValue} from './types/ValidFieldValue.ts';
 export {ValidIsDisabledValue} from './types/ValidIsDisabledValue.ts';
+export {ValidModalComponent} from './types/ValidModalComponent.ts';
 export {ValidModalKey} from './types/ValidModalKey.ts';
 export {ValidModalName} from './types/ValidModalName.ts';
 export {ValidOptionValue} from './types/ValidOptionValue.ts';
@@ -159,7 +160,16 @@ export {getAnchorHref} from "./functions/anchor-functions.ts";
 export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
 export {ensureButtonConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
+export {addModal, closeModal, openModal} from "./functions/modal-functions.ts";
 export {createColumn} from "./functions/table-functions.ts";
+
+/**
+ * Export controllers
+ */
+export {ModalController} from "./controllers/ModalController.ts";
+export {RenderModalConfig} from "./controllers/config/RenderModalConfig.ts";
+export {ModalRegister} from "./controllers/config/ModalRegister.ts";
+export {ModalRegisterType} from "./controllers/enums/ModalRegisterType.ts";
 
 export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
     const instance = new cls();

@@ -6,6 +6,7 @@ import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidBeforeCloseModal} from "../types/ValidBeforeCloseModal.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {LktSettings} from "../settings/LktSettings.ts";
+import {ModalType} from "../enums/ModalType.ts";
 
 export class Modal extends LktItem implements ModalConfig {
 
@@ -26,6 +27,7 @@ export class Modal extends LktItem implements ModalConfig {
         'zIndex',
         'beforeClose',
         'item',
+        'type',
     ];
 
     size: string = '';
@@ -46,6 +48,7 @@ export class Modal extends LktItem implements ModalConfig {
     item: LktObject = {};
     confirmButton?: Partial<ButtonConfig> = {};
     cancelButton?: Partial<ButtonConfig> = {};
+    type: ModalType = ModalType.Modal;
 
     constructor(data: Partial<ModalConfig> = {}) {
         super();
