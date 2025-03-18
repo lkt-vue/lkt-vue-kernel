@@ -158,7 +158,7 @@ export {SafeString} from './value-objects/SafeString.ts';
  */
 export {getAnchorHref} from "./functions/anchor-functions.ts";
 export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
-export {ensureButtonConfig} from "./functions/ensure-data-functions.ts";
+export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
 export {addModal, closeModal, openModal} from "./functions/modal-functions.ts";
 export {createColumn} from "./functions/table-functions.ts";

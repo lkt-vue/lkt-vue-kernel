@@ -8,20 +8,22 @@ import {ItemCrudButtonNavVisibility} from "../enums/ItemCrudButtonNavVisibility.
 import {SaveConfig} from "./SaveConfig.ts";
 import {DataStateConfig} from "lkt-data-state";
 import {NotificationType} from "../enums/NotificationType.ts";
+import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
     editing?: boolean
+    perms?: ValidTablePermission[]
 
     // Global config
     mode?: ItemCrudMode
     view?: ItemCrudView
 
     // Buttons
-    editModeButton?: ButtonConfig
-    dropButton?: ButtonConfig
-    createButton?: ButtonConfig
-    updateButton?: ButtonConfig
+    editModeButton?: ButtonConfig|false
+    dropButton?: ButtonConfig|false
+    createButton?: ButtonConfig|false
+    updateButton?: ButtonConfig|false
 
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition

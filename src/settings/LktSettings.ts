@@ -1,6 +1,7 @@
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {ButtonType} from "../enums/ButtonType.ts";
-import {ensureButtonConfig} from "../functions/ensure-data-functions.ts";
+import {ensureButtonConfig, ensureFieldConfig} from "../functions/ensure-data-functions.ts";
+import {FieldConfig} from "../config/FieldConfig.ts";
 
 export class LktSettings {
     static debugEnabled = false;
@@ -295,6 +296,42 @@ export class LktSettings {
             LktSettings.defaultPaginatorLastButton = button;
         } else {
             LktSettings.defaultPaginatorLastButton = ensureButtonConfig(button, LktSettings.defaultPaginatorLastButton);
+        }
+        return LktSettings;
+    }
+
+    static defaultFieldElementCustomClassField: Partial<FieldConfig> = {
+        label: 'Custom Class',
+        multiple: false,
+    }
+
+    static defaultFieldLktAccordionElementCustomClassField: Partial<FieldConfig> = {}
+    static defaultFieldLktBoxElementCustomClassField: Partial<FieldConfig> = {}
+    static defaultFieldLktIconElementCustomClassField: Partial<FieldConfig> = {}
+
+    static setDefaultFieldLktAccordionElementCustomClassField(field: Partial<FieldConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultFieldLktAccordionElementCustomClassField = field;
+        } else {
+            LktSettings.defaultFieldLktAccordionElementCustomClassField = ensureFieldConfig(field, LktSettings.defaultFieldLktAccordionElementCustomClassField);
+        }
+        return LktSettings;
+    }
+
+    static setDefaultFieldLktBoxElementCustomClassField(field: Partial<FieldConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultFieldLktBoxElementCustomClassField = field;
+        } else {
+            LktSettings.defaultFieldLktBoxElementCustomClassField = ensureFieldConfig(field, LktSettings.defaultFieldLktBoxElementCustomClassField);
+        }
+        return LktSettings;
+    }
+
+    static setDefaultFieldLktIconElementCustomClassField(field: Partial<FieldConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultFieldLktIconElementCustomClassField = field;
+        } else {
+            LktSettings.defaultFieldLktIconElementCustomClassField = ensureFieldConfig(field, LktSettings.defaultFieldLktIconElementCustomClassField);
         }
         return LktSettings;
     }

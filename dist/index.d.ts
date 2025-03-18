@@ -248,109 +248,6 @@ interface ButtonConfig {
     events?: EventsConfig | undefined;
 }
 
-declare class LktSettings {
-    static debugEnabled: boolean;
-    static debugMode(enabled?: boolean): typeof LktSettings;
-    static defaultCreateErrorText: string;
-    static defaultCreateErrorDetails: string;
-    static defaultCreateErrorIcon: string;
-    static setDefaultCreateError(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultUpdateErrorText: string;
-    static defaultUpdateErrorDetails: string;
-    static defaultUpdateErrorIcon: string;
-    static setDefaultUpdateError(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultDropErrorText: string;
-    static defaultDropErrorDetails: string;
-    static defaultDropErrorIcon: string;
-    static setDefaultDropError(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultCreateSuccessText: string;
-    static defaultCreateSuccessDetails: string;
-    static defaultCreateSuccessIcon: string;
-    static setDefaultCreateSuccess(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultUpdateSuccessText: string;
-    static defaultUpdateSuccessDetails: string;
-    static defaultUpdateSuccessIcon: string;
-    static setDefaultUpdateSuccess(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultDropSuccessText: string;
-    static defaultDropSuccessDetails: string;
-    static defaultDropSuccessIcon: string;
-    static setDefaultDropSuccess(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultUploadSuccessText: string;
-    static defaultUploadSuccessDetails: string;
-    static defaultUploadSuccessIcon: string;
-    static setDefaultUploadSuccess(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultUploadErrorText: string;
-    static defaultUploadErrorDetails: string;
-    static defaultUploadErrorIcon: string;
-    static setDefaultUploadError(config: {
-        text?: string;
-        details?: string;
-        icon?: string;
-    }): void;
-    static defaultSaveButton: Partial<ButtonConfig>;
-    static setDefaultSaveButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultConfirmButton: Partial<ButtonConfig>;
-    static setDefaultConfirmButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultCancelButton: Partial<ButtonConfig>;
-    static setDefaultCancelButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultCreateButton: Partial<ButtonConfig>;
-    static setDefaultCreateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultUpdateButton: Partial<ButtonConfig>;
-    static setDefaultUpdateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultDropButton: Partial<ButtonConfig>;
-    static setDefaultDropButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultEditModeButton: Partial<ButtonConfig>;
-    static setDefaultEditModeButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultToggleButton: Partial<ButtonConfig>;
-    static setDefaultToggleButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultLoadMoreButton: Partial<ButtonConfig>;
-    static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static defaultCloseModalIcon: string;
-    static setDefaultCloseModalIcon(icon: string): typeof LktSettings;
-    static defaultCloseToastIcon: string;
-    static setDefaultCloseToastIcon(icon: string): typeof LktSettings;
-    static defaultTableSortAscIcon: string;
-    static defaultTableSortDescIcon: string;
-    static setDefaultTableSortAscIcon(icon: string): typeof LktSettings;
-    static setDefaultTableSortDescIcon(icon: string): typeof LktSettings;
-    static defaultPaginatorFirstButton: Partial<ButtonConfig>;
-    static defaultPaginatorPrevButton: Partial<ButtonConfig>;
-    static defaultPaginatorNextButton: Partial<ButtonConfig>;
-    static defaultPaginatorLastButton: Partial<ButtonConfig>;
-    static setDefaultPaginatorFirstButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static setDefaultPaginatorPrevButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static setDefaultPaginatorNextButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-    static setDefaultPaginatorLastButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
-}
-
 declare enum FieldType {
     Text = "text",
     Email = "email",
@@ -372,60 +269,6 @@ declare enum FieldType {
     Card = "card",
     Elements = "elements"
 }
-
-declare const fieldTypesWithOptions: FieldType[];
-declare const fieldTypesWithoutClear: FieldType[];
-declare const fieldTypesWithoutUndo: FieldType[];
-declare const textFieldTypesWithOptions: FieldType[];
-declare const booleanFieldTypes: FieldType[];
-declare const fieldsWithMultipleMode: FieldType[];
-declare const textFieldTypes: FieldType[];
-
-declare enum AccordionToggleMode {
-    Transform = "transform",
-    Height = "height",
-    Display = "display"
-}
-
-declare enum AccordionType {
-    Auto = "auto",// Default accordion flow
-    Always = "always",// Always opened
-    Lazy = "lazy",// Lazy content, only after fist open
-    Ever = "ever"
-}
-
-interface AccordionConfig {
-    modelValue?: boolean;
-    type?: AccordionType;
-    toggleMode?: AccordionToggleMode;
-    actionButton?: ButtonConfig;
-    toggleButton?: ButtonConfig;
-    toggleOnClickIntro?: boolean;
-    toggleTimeout?: number;
-    title?: string;
-    icon?: string;
-    class?: string;
-    contentClass?: string;
-    iconRotation?: '90' | '180' | '-90' | '-180';
-    minHeight?: number | undefined;
-    iconAtEnd?: boolean;
-    toggleIconAtEnd?: boolean;
-}
-
-interface BooleanFieldConfig {
-    label?: ValidTextValue;
-    icon?: ValidTextValue;
-    labelIcon?: ValidTextValue;
-}
-
-declare enum ColumnType {
-    None = "",
-    Field = "field",
-    Button = "button",
-    Anchor = "anchor"
-}
-
-type ValidColSpan = Function | boolean | number | undefined;
 
 type ValidOptionValue = string | number | undefined;
 
@@ -539,6 +382,12 @@ interface FieldReadModeConfig {
     textMaxLength?: number;
 }
 
+interface BooleanFieldConfig {
+    label?: ValidTextValue;
+    icon?: ValidTextValue;
+    labelIcon?: ValidTextValue;
+}
+
 interface FieldConfig {
     modelValue?: ValidFieldValue;
     type?: FieldType;
@@ -606,6 +455,164 @@ interface FieldConfig {
         validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean);
     };
 }
+
+declare class LktSettings {
+    static debugEnabled: boolean;
+    static debugMode(enabled?: boolean): typeof LktSettings;
+    static defaultCreateErrorText: string;
+    static defaultCreateErrorDetails: string;
+    static defaultCreateErrorIcon: string;
+    static setDefaultCreateError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUpdateErrorText: string;
+    static defaultUpdateErrorDetails: string;
+    static defaultUpdateErrorIcon: string;
+    static setDefaultUpdateError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultDropErrorText: string;
+    static defaultDropErrorDetails: string;
+    static defaultDropErrorIcon: string;
+    static setDefaultDropError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultCreateSuccessText: string;
+    static defaultCreateSuccessDetails: string;
+    static defaultCreateSuccessIcon: string;
+    static setDefaultCreateSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUpdateSuccessText: string;
+    static defaultUpdateSuccessDetails: string;
+    static defaultUpdateSuccessIcon: string;
+    static setDefaultUpdateSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultDropSuccessText: string;
+    static defaultDropSuccessDetails: string;
+    static defaultDropSuccessIcon: string;
+    static setDefaultDropSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUploadSuccessText: string;
+    static defaultUploadSuccessDetails: string;
+    static defaultUploadSuccessIcon: string;
+    static setDefaultUploadSuccess(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultUploadErrorText: string;
+    static defaultUploadErrorDetails: string;
+    static defaultUploadErrorIcon: string;
+    static setDefaultUploadError(config: {
+        text?: string;
+        details?: string;
+        icon?: string;
+    }): void;
+    static defaultSaveButton: Partial<ButtonConfig>;
+    static setDefaultSaveButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultConfirmButton: Partial<ButtonConfig>;
+    static setDefaultConfirmButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultCancelButton: Partial<ButtonConfig>;
+    static setDefaultCancelButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultCreateButton: Partial<ButtonConfig>;
+    static setDefaultCreateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultUpdateButton: Partial<ButtonConfig>;
+    static setDefaultUpdateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultDropButton: Partial<ButtonConfig>;
+    static setDefaultDropButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultEditModeButton: Partial<ButtonConfig>;
+    static setDefaultEditModeButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultToggleButton: Partial<ButtonConfig>;
+    static setDefaultToggleButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultLoadMoreButton: Partial<ButtonConfig>;
+    static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultCloseModalIcon: string;
+    static setDefaultCloseModalIcon(icon: string): typeof LktSettings;
+    static defaultCloseToastIcon: string;
+    static setDefaultCloseToastIcon(icon: string): typeof LktSettings;
+    static defaultTableSortAscIcon: string;
+    static defaultTableSortDescIcon: string;
+    static setDefaultTableSortAscIcon(icon: string): typeof LktSettings;
+    static setDefaultTableSortDescIcon(icon: string): typeof LktSettings;
+    static defaultPaginatorFirstButton: Partial<ButtonConfig>;
+    static defaultPaginatorPrevButton: Partial<ButtonConfig>;
+    static defaultPaginatorNextButton: Partial<ButtonConfig>;
+    static defaultPaginatorLastButton: Partial<ButtonConfig>;
+    static setDefaultPaginatorFirstButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultPaginatorPrevButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultPaginatorNextButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultPaginatorLastButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultFieldElementCustomClassField: Partial<FieldConfig>;
+    static defaultFieldLktAccordionElementCustomClassField: Partial<FieldConfig>;
+    static defaultFieldLktBoxElementCustomClassField: Partial<FieldConfig>;
+    static defaultFieldLktIconElementCustomClassField: Partial<FieldConfig>;
+    static setDefaultFieldLktAccordionElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultFieldLktBoxElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultFieldLktIconElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
+}
+
+declare const fieldTypesWithOptions: FieldType[];
+declare const fieldTypesWithoutClear: FieldType[];
+declare const fieldTypesWithoutUndo: FieldType[];
+declare const textFieldTypesWithOptions: FieldType[];
+declare const booleanFieldTypes: FieldType[];
+declare const fieldsWithMultipleMode: FieldType[];
+declare const textFieldTypes: FieldType[];
+
+declare enum AccordionToggleMode {
+    Transform = "transform",
+    Height = "height",
+    Display = "display"
+}
+
+declare enum AccordionType {
+    Auto = "auto",// Default accordion flow
+    Always = "always",// Always opened
+    Lazy = "lazy",// Lazy content, only after fist open
+    Ever = "ever"
+}
+
+interface AccordionConfig {
+    modelValue?: boolean;
+    type?: AccordionType;
+    toggleMode?: AccordionToggleMode;
+    actionButton?: ButtonConfig;
+    toggleButton?: ButtonConfig;
+    toggleOnClickIntro?: boolean;
+    toggleTimeout?: number;
+    title?: string;
+    icon?: string;
+    class?: string;
+    contentClass?: string;
+    iconRotation?: '90' | '180' | '-90' | '-180';
+    minHeight?: number | undefined;
+    iconAtEnd?: boolean;
+    toggleIconAtEnd?: boolean;
+}
+
+declare enum ColumnType {
+    None = "",
+    Field = "field",
+    Button = "button",
+    Anchor = "anchor"
+}
+
+type ValidColSpan = Function | boolean | number | undefined;
 
 interface ColumnConfig {
     type: ColumnType;
@@ -702,15 +709,31 @@ declare enum NotificationType {
     Inline = "inline"
 }
 
+declare enum TablePermission {
+    Create = "create",
+    Update = "update",// Save changes
+    Edit = "edit",// Displays edit button
+    Drop = "drop",// Displays drop button
+    Sort = "sort",// Sort
+    SwitchEditMode = "switch-edit-mode",
+    InlineEdit = "inline-edit",// Be able to edit columns inside the table
+    InlineCreate = "inline-create",// Be able to append a new editable row (needs InlineEdit in order to be editable)
+    ModalCreate = "modal-create",// Be able to append a new row after save a modal form
+    InlineCreateEver = "inline-create-ever"
+}
+
+type ValidTablePermission = TablePermission | string;
+
 interface ItemCrudConfig {
     modelValue?: LktObject;
     editing?: boolean;
+    perms?: ValidTablePermission[];
     mode?: ItemCrudMode;
     view?: ItemCrudView;
-    editModeButton?: ButtonConfig;
-    dropButton?: ButtonConfig;
-    createButton?: ButtonConfig;
-    updateButton?: ButtonConfig;
+    editModeButton?: ButtonConfig | false;
+    dropButton?: ButtonConfig | false;
+    createButton?: ButtonConfig | false;
+    updateButton?: ButtonConfig | false;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
     modalConfig?: ModalConfig;
@@ -822,21 +845,6 @@ declare class Column extends LktItem implements ColumnConfig {
     button: ButtonConfig | undefined;
     constructor(data?: Partial<ColumnConfig>);
 }
-
-declare enum TablePermission {
-    Create = "create",
-    Update = "update",// Save changes
-    Edit = "edit",// Displays edit button
-    Drop = "drop",// Displays drop button
-    Sort = "sort",// Sort
-    SwitchEditMode = "switch-edit-mode",
-    InlineEdit = "inline-edit",// Be able to edit columns inside the table
-    InlineCreate = "inline-create",// Be able to append a new editable row (needs InlineEdit in order to be editable)
-    ModalCreate = "modal-create",// Be able to append a new row after save a modal form
-    InlineCreateEver = "inline-create-ever"
-}
-
-type ValidTablePermission = TablePermission | string;
 
 interface HeaderConfig {
     tag?: string;
@@ -1174,6 +1182,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     static lktDefaultValues: (keyof ItemCrudConfig)[];
     modelValue: LktObject;
     editing: boolean;
+    perms: ValidTablePermission[];
     mode: ItemCrudMode;
     view: ItemCrudView;
     editModeButton: ButtonConfig;
@@ -1402,6 +1411,7 @@ declare const extractI18nValue: (needle: ValidTextValue) => any;
 declare const prepareResourceData: (resourceData: LktObject | undefined, haystack: LktObject) => LktObject;
 
 declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
+declare const ensureFieldConfig: (config: Partial<FieldConfig> | undefined, settingsConfig: Partial<FieldConfig>) => Partial<FieldConfig>;
 
 declare const lktDebug: (component: string, ...args: any[]) => void;
 
@@ -1463,4 +1473,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };

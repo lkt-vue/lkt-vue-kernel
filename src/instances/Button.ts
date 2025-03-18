@@ -79,7 +79,7 @@ export class Button extends LktItem implements ButtonConfig {
     disabled: ValidIsDisabledValue = false;
     loading: boolean = false;
     wrapContent: boolean = false;
-    splitIcon: string = '';
+    splitIcon: string = 'lkt-icn-angle-bottom';
     resource: string = '';
     resourceData: LktObject = {};
     modal: ValidModalName = '';

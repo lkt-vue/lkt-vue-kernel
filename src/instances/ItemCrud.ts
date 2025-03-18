@@ -11,6 +11,7 @@ import {ItemCrudButtonNavVisibility} from "../enums/ItemCrudButtonNavVisibility.
 import {SaveType} from "../enums/SaveType.ts";
 import {DataStateConfig} from "lkt-data-state";
 import {NotificationType} from "../enums/NotificationType.ts";
+import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -20,6 +21,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     static lktDefaultValues: (keyof ItemCrudConfig)[] = [
         'modelValue',
         'editing',
+        'perms',
         'mode',
         'view',
         'editModeButton',
@@ -41,6 +43,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
 
     modelValue: LktObject = {};
     editing: boolean = false;
+    perms: ValidTablePermission[] = [];
 
     // Global config
     mode: ItemCrudMode = ItemCrudMode.Read;
