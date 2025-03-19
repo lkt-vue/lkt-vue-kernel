@@ -561,9 +561,11 @@ declare class LktSettings {
     static defaultFieldLktAccordionElementCustomClassField: Partial<FieldConfig>;
     static defaultFieldLktBoxElementCustomClassField: Partial<FieldConfig>;
     static defaultFieldLktIconElementCustomClassField: Partial<FieldConfig>;
+    static defaultFieldLktImageElementCustomClassField: Partial<FieldConfig>;
     static setDefaultFieldLktAccordionElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
     static setDefaultFieldLktBoxElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
     static setDefaultFieldLktIconElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
+    static setDefaultFieldLktImageElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
 }
 
 declare const fieldTypesWithOptions: FieldType[];

@@ -308,6 +308,7 @@ export class LktSettings {
     static defaultFieldLktAccordionElementCustomClassField: Partial<FieldConfig> = {}
     static defaultFieldLktBoxElementCustomClassField: Partial<FieldConfig> = {}
     static defaultFieldLktIconElementCustomClassField: Partial<FieldConfig> = {}
+    static defaultFieldLktImageElementCustomClassField: Partial<FieldConfig> = {}
 
     static setDefaultFieldLktAccordionElementCustomClassField(field: Partial<FieldConfig>, override: boolean = true) {
         if (override) {
@@ -332,6 +333,15 @@ export class LktSettings {
             LktSettings.defaultFieldLktIconElementCustomClassField = field;
         } else {
             LktSettings.defaultFieldLktIconElementCustomClassField = ensureFieldConfig(field, LktSettings.defaultFieldLktIconElementCustomClassField);
+        }
+        return LktSettings;
+    }
+
+    static setDefaultFieldLktImageElementCustomClassField(field: Partial<FieldConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultFieldLktImageElementCustomClassField = field;
+        } else {
+            LktSettings.defaultFieldLktImageElementCustomClassField = ensureFieldConfig(field, LktSettings.defaultFieldLktImageElementCustomClassField);
         }
         return LktSettings;
     }
