@@ -895,6 +895,7 @@ interface TableConfig {
     columns?: Array<Column>;
     noResultsText?: string;
     hideEmptyColumns?: boolean;
+    hideTableHeader?: boolean;
     itemDisplayChecker?: Function;
     rowDisplayType?: ValidTableRowTypeValue;
     slotItemVar?: string;
@@ -1303,6 +1304,7 @@ declare class Table extends LktItem implements TableConfig {
     type?: TableType;
     columns: Column[];
     noResultsText?: string;
+    hideTableHeader?: boolean;
     hideEmptyColumns?: boolean;
     itemDisplayChecker?: Function;
     rowDisplayType?: ValidTableRowTypeValue;

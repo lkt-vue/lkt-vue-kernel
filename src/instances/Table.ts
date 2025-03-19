@@ -52,6 +52,7 @@ export class Table extends LktItem implements TableConfig {
         'requiredItemsForBottomCreate',
         'slotItemVar',
         'carousel',
+        'hideTableHeader',
     ];
 
     // Data
@@ -61,6 +62,7 @@ export class Table extends LktItem implements TableConfig {
     noResultsText?: string = '';
 
     // Data visualization
+    hideTableHeader?: boolean = false;
     hideEmptyColumns?: boolean = false;
     itemDisplayChecker?: Function = undefined;
     rowDisplayType?: ValidTableRowTypeValue = TableRowType.Auto;

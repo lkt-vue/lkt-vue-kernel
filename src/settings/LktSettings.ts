@@ -301,7 +301,7 @@ export class LktSettings {
     }
 
     static defaultFieldElementCustomClassField: Partial<FieldConfig> = {
-        label: 'Custom Class',
+        label: 'Appearance',
         multiple: false,
     }
 
