@@ -11,9 +11,9 @@ import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {OptionsConfig} from "./OptionsConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
 import {FieldReadModeConfig} from "./FieldReadModeConfig.ts";
-import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {BooleanFieldConfig} from "./BooleanFieldConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
+import {OptionConfig} from "./OptionConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -52,7 +52,7 @@ export interface FieldConfig {
     featuredButton?: string
     infoButtonEllipsis?: boolean
     fileName?: string
-    options?: string | Option[]
+    options?: string | Option[] | OptionConfig[]
     multiple?: boolean
     multipleDisplay?: MultipleOptionsDisplay
     multipleDisplayEdition?: MultipleOptionsDisplay

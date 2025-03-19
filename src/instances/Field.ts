@@ -13,9 +13,9 @@ import {OptionsConfig} from "../config/OptionsConfig.ts";
 import {HttpCallConfig} from "../config/HttpCallConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {FieldReadModeConfig} from "../config/FieldReadModeConfig.ts";
-import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {BooleanFieldConfig} from "../config/BooleanFieldConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {OptionConfig} from "../config/OptionConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -119,7 +119,7 @@ export class Field extends LktItem implements FieldConfig {
     fileName: string = '';
     customButtonText: string = '';
     customButtonClass: string = '';
-    options: string | Option[] = [];
+    options: string | Option[] | OptionConfig[] = [];
     multiple: boolean = false;
     multipleDisplay: MultipleOptionsDisplay = MultipleOptionsDisplay.List;
     multipleDisplayEdition: MultipleOptionsDisplay = MultipleOptionsDisplay.Inline;

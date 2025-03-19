@@ -27,6 +27,7 @@ export {
 export {AccordionConfig} from './config/AccordionConfig.ts';
 export {AnchorConfig} from './config/AnchorConfig.ts';
 export {BooleanFieldConfig} from './config/BooleanFieldConfig.ts';
+export {BoxConfig} from './config/BoxConfig.ts';
 export {ButtonConfig} from './config/ButtonConfig.ts';
 export {ColumnConfig} from './config/ColumnConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
@@ -62,6 +63,7 @@ export {LktStrictItem} from './instances/LktStrictItem.ts';
 export {LktColor} from './instances/LktColor.ts';
 export {Accordion} from './instances/Accordion.ts';
 export {Anchor} from './instances/Anchor.ts';
+export {Box} from './instances/Box.ts';
 export {Button} from './instances/Button.ts';
 export {Column} from './instances/Column.ts';
 export {Field} from './instances/Field.ts';
