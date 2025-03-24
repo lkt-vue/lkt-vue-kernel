@@ -34,7 +34,7 @@ export {DocPageConfig} from './config/DocPageConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
-export {FieldElement} from './config/FieldElement.ts';
+export {FieldElementConfig} from './config/FieldElementConfig.ts';
 export {FieldReadModeConfig} from './config/FieldReadModeConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
 export {HttpCallConfig} from './config/HttpCallConfig.ts';
