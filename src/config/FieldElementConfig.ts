@@ -1,4 +1,3 @@
-import {LktObject} from "../interfaces/LktObject.ts";
 import {FieldElementType} from "../enums/FieldElementType.ts";
 
 export interface FieldElementConfig {
@@ -6,8 +5,11 @@ export interface FieldElementConfig {
     component?: string
     props?: Record<string, any>
     text?: string
-    config?: LktObject
     children?: FieldElementConfig[],
+    config?: {
+        hasHeader?: boolean
+        hasIcon?: boolean
+    },
     layout?: {
         type?: 'grid',
         amountOfItems?: [],
