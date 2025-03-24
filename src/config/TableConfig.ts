@@ -1,6 +1,5 @@
 import {TableType} from "../enums/TableType.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
-import {Column} from "../instances/Column.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
@@ -8,13 +7,14 @@ import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
 import {ValidDragConfig} from "../types/ValidDragConfig.ts";
 import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 import {CarouselConfig} from "./CarouselConfig.ts";
+import {ColumnConfig} from "./ColumnConfig.ts";
 
 export interface TableConfig {
 
     // Data
     modelValue?: LktObject[]
     type?: TableType,
-    columns?: Array<Column>
+    columns?: Array<ColumnConfig>
     noResultsText?: string
 
     // Data visualization

@@ -3,7 +3,6 @@ import {TableConfig} from "../config/TableConfig.ts";
 import {HeaderConfig} from "../config/HeaderConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {TableType} from "../enums/TableType.ts";
-import {Column} from "./Column.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {ValidTableRowTypeValue} from "../types/ValidTableRowTypeValue.ts";
@@ -11,6 +10,7 @@ import {TableRowType} from "../enums/TableRowType.ts";
 import {ValidDragConfig} from "../types/ValidDragConfig.ts";
 import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 import {CarouselConfig} from "../config/CarouselConfig.ts";
+import {ColumnConfig} from "../config/ColumnConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -58,7 +58,7 @@ export class Table extends LktItem implements TableConfig {
     // Data
     modelValue: LktObject[] = [];
     type?: TableType = TableType.Table;
-    columns: Column[] = [];
+    columns: ColumnConfig[] = [];
     noResultsText?: string = '';
 
     // Data visualization
