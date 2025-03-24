@@ -71,6 +71,7 @@ export {Column} from './instances/Column.ts';
 export {DocPage} from './instances/DocPage.ts';
 export {Field} from './instances/Field.ts';
 export {FieldValidation} from './instances/FieldValidation.ts';
+export {Header} from './instances/Header.ts';
 export {Icon} from './instances/Icon.ts';
 export {Image} from './instances/Image.ts';
 export {ItemCrud} from './instances/ItemCrud.ts';
@@ -99,6 +100,7 @@ export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts'
 export {FieldElementType} from './enums/FieldElementType.ts';
 export {FieldType} from './enums/FieldType.ts';
 export {FieldValidationType} from './enums/FieldValidationType.ts';
+export {HeaderTag} from './enums/HeaderTag.ts';
 export {IconPosition} from './enums/IconPosition.ts';
 export {IconType} from './enums/IconType.ts';
 export {ItemCrudButtonNavPosition} from './enums/ItemCrudButtonNavPosition.ts';

@@ -1,6 +1,8 @@
+import {HeaderTag} from "../enums/HeaderTag.ts";
+
 export interface HeaderConfig {
-    tag?: string,
-    class?: string,
-    text?: string,
-    icon?: string,
+    tag?: HeaderTag
+    class?: string
+    text?: string
+    icon?: string
 }
