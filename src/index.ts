@@ -38,6 +38,7 @@ export {FieldElementConfig} from './config/FieldElementConfig.ts';
 export {FieldReadModeConfig} from './config/FieldReadModeConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
 export {HttpCallConfig} from './config/HttpCallConfig.ts';
+export {HeaderConfig} from './config/HeaderConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';
 export {ImageConfig} from './config/ImageConfig.ts';
 export {IsDisabledCheckerArgs} from './config/IsDisabledCheckerArgs.ts';
