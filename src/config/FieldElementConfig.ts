@@ -7,5 +7,9 @@ export interface FieldElementConfig {
     props?: Record<string, any>
     text?: string
     config?: LktObject
-    children?: FieldElementConfig[]
+    children?: FieldElementConfig[],
+    layout?: {
+        type?: 'grid',
+        amountOfItems?: [],
+    }
 }

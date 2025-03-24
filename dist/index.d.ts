@@ -711,6 +711,10 @@ interface FieldElementConfig {
     text?: string;
     config?: LktObject;
     children?: FieldElementConfig[];
+    layout?: {
+        type?: 'grid';
+        amountOfItems?: [];
+    };
 }
 
 interface ImageConfig {
