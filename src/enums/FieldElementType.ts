@@ -4,6 +4,7 @@ export enum FieldElementType {
     LktBox = 'lkt-box',
     LktButton = 'lkt-button',
     LktLayout = 'lkt-layout',
+    LktHeader = 'lkt-header',
     LktIcon = 'lkt-icon',
     LktImage = 'lkt-image',
     Text = 'text',

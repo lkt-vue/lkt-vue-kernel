@@ -9,6 +9,7 @@ export interface OptionsConfig {
     text?: string | Function
     icon?: string | Function
     class?: string | Function
+    filter?: Function
     labelFormatter?: Function|undefined
     http?: HttpCallConfig
 }

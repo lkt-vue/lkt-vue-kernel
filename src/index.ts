@@ -176,7 +176,8 @@ export {
     getDefaultLktIconElement,
     getDefaultLktImageElement,
     getDefaultLktButtonElement,
-    getDefaultLktLayoutElement
+    getDefaultLktLayoutElement,
+    getDefaultLktHeaderElement
 } from "./functions/field-element-functions.ts";
 export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";

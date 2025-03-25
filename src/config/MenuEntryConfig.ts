@@ -7,6 +7,7 @@ export interface MenuEntryConfig {
     // Core config
     key?: string
     type?: MenuEntryType
+    class?: string
 
     // Icon
     icon?: string

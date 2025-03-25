@@ -22,6 +22,7 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
 
     key?: string = '';
     type?: MenuEntryType = MenuEntryType.Anchor;
+    class?: string = '';
 
     // Icon
     icon?: string = '';

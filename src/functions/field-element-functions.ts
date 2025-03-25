@@ -5,7 +5,7 @@ import {
     AccordionConfig, Anchor, AnchorConfig,
     Box,
     BoxConfig, Button, ButtonConfig,
-    getDefaultValues,
+    getDefaultValues, Header, HeaderConfig,
     Icon,
     IconConfig,
     Image,
@@ -117,6 +117,22 @@ export const getDefaultLktAccordionElement = (): FieldElementConfig => {
             type: 'grid',
             amountOfItems: [],
         }
+    }
+}
+
+export const getDefaultLktHeaderElement = (): FieldElementConfig => {
+    return {
+        type: FieldElementType.LktHeader,
+        props: {
+            ...getDefaultValues(Header),
+            ...<HeaderConfig>{
+                text: 'Content goes here',
+            },
+        },
+        config: {
+            hasHeader: true,
+            hasIcon: true,
+        },
     }
 }
 
