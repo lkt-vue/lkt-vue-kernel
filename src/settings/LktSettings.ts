@@ -2,6 +2,7 @@ import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {ButtonType} from "../enums/ButtonType.ts";
 import {ensureButtonConfig, ensureFieldConfig} from "../functions/ensure-data-functions.ts";
 import {FieldConfig} from "../config/FieldConfig.ts";
+import {LktObject} from "../interfaces/LktObject.ts";
 
 export class LktSettings {
     static debugEnabled = false;
@@ -343,6 +344,13 @@ export class LktSettings {
         } else {
             LktSettings.defaultFieldLktImageElementCustomClassField = ensureFieldConfig(field, LktSettings.defaultFieldLktImageElementCustomClassField);
         }
+        return LktSettings;
+    }
+
+    static i18nOptionsFormatter: LktObject = {}
+
+    static setI18nOptionFormatter(key: string, formatter: Function) {
+        LktSettings.i18nOptionsFormatter[key] = formatter;
         return LktSettings;
     }
 }
