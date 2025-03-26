@@ -349,7 +349,7 @@ export class LktSettings {
 
     static i18nOptionsFormatter: LktObject = {}
 
-    static setI18nOptionFormatter(key: string, formatter: Function) {
+    static setI18nOptionsFormatter(key: string, formatter: Function) {
         LktSettings.i18nOptionsFormatter[key] = formatter;
         return LktSettings;
     }

@@ -568,7 +568,7 @@ declare class LktSettings {
     static setDefaultFieldLktIconElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
     static setDefaultFieldLktImageElementCustomClassField(field: Partial<FieldConfig>, override?: boolean): typeof LktSettings;
     static i18nOptionsFormatter: LktObject;
-    static setI18nOptionFormatter(key: string, formatter: Function): typeof LktSettings;
+    static setI18nOptionsFormatter(key: string, formatter: Function): typeof LktSettings;
 }
 
 declare const fieldTypesWithOptions: FieldType[];
