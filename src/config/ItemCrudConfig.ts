@@ -24,6 +24,7 @@ export interface ItemCrudConfig {
     dropButton?: ButtonConfig|false
     createButton?: ButtonConfig|false
     updateButton?: ButtonConfig|false
+    groupButton?: ButtonConfig|boolean
 
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition

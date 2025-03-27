@@ -28,6 +28,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'dropButton',
         'createButton',
         'updateButton',
+        'groupButton',
         'modalConfig',
         'saveConfig',
         'title',
@@ -50,10 +51,11 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     view: ItemCrudView = ItemCrudView.Inline;
 
     // Buttons
-    editModeButton: ButtonConfig = {}; // Not sure, should test
-    dropButton: ButtonConfig = {};
-    createButton: ButtonConfig = {};
-    updateButton: ButtonConfig = {};
+    editModeButton: ButtonConfig|false = {}; // Not sure, should test
+    dropButton: ButtonConfig|false = {};
+    createButton: ButtonConfig|false = {};
+    updateButton: ButtonConfig|false = {};
+    groupButton: ButtonConfig|boolean = false;
 
     // Config if type === modal
     modalConfig: ModalConfig = {};

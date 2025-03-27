@@ -538,6 +538,8 @@ declare class LktSettings {
     static setDefaultDropButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultEditModeButton: Partial<ButtonConfig>;
     static setDefaultEditModeButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultGroupButton: Partial<ButtonConfig>;
+    static setDefaultGroupButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultToggleButton: Partial<ButtonConfig>;
     static setDefaultToggleButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultLoadMoreButton: Partial<ButtonConfig>;
@@ -814,6 +816,7 @@ interface ItemCrudConfig {
     dropButton?: ButtonConfig | false;
     createButton?: ButtonConfig | false;
     updateButton?: ButtonConfig | false;
+    groupButton?: ButtonConfig | boolean;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
     modalConfig?: ModalConfig;
@@ -1292,10 +1295,11 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     perms: ValidTablePermission[];
     mode: ItemCrudMode;
     view: ItemCrudView;
-    editModeButton: ButtonConfig;
-    dropButton: ButtonConfig;
-    createButton: ButtonConfig;
-    updateButton: ButtonConfig;
+    editModeButton: ButtonConfig | false;
+    dropButton: ButtonConfig | false;
+    createButton: ButtonConfig | false;
+    updateButton: ButtonConfig | false;
+    groupButton: ButtonConfig | boolean;
     modalConfig: ModalConfig;
     saveConfig: SaveConfig;
     title: string;
@@ -1529,7 +1533,7 @@ declare const getDefaultLktHeaderElement: () => FieldElementConfig;
 declare const getDefaultLktIconElement: () => FieldElementConfig;
 declare const getDefaultLktImageElement: () => FieldElementConfig;
 
-declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
+declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined | false, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
 declare const ensureFieldConfig: (config: Partial<FieldConfig> | undefined, settingsConfig: Partial<FieldConfig>) => Partial<FieldConfig>;
 
 declare const lktDebug: (component: string, ...args: any[]) => void;

@@ -188,6 +188,21 @@ export class LktSettings {
         return LktSettings;
     }
 
+    static defaultGroupButton: Partial<ButtonConfig> = {
+        text: 'Actions',
+        type: ButtonType.Split,
+        icon: 'lkt-icn-settings-cogs',
+    };
+
+    static setDefaultGroupButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultGroupButton = button;
+        } else {
+            LktSettings.defaultGroupButton = ensureButtonConfig(button, LktSettings.defaultGroupButton);
+        }
+        return LktSettings;
+    }
+
     static defaultToggleButton: Partial<ButtonConfig> = {
         text: 'Toggle',
         textOn: 'Close',
