@@ -6,7 +6,6 @@ import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {ModalConfig} from "./ModalConfig.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
-import {Anchor} from "../instances/Anchor.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
@@ -50,7 +49,7 @@ export interface ButtonConfig {
     dot?: ValidButtonDot
 
     // Anchor integration
-    anchor?: AnchorConfig|Anchor
+    anchor?: AnchorConfig
 
     // HTTP integration
     resource?: string

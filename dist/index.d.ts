@@ -104,38 +104,6 @@ interface AnchorConfig {
 
 type ValidTabIndex = string | number | undefined;
 
-declare class LktItem implements LktObject {
-    static lktAllowUndefinedProps: string[];
-    static lktExcludedProps: string[];
-    static lktDateProps: string[];
-    static lktStrictItem: boolean;
-    static lktDefaultValues: (keyof LktObject)[];
-    constructor(data?: LktObject);
-    feed(data?: LktObject, target?: this): void;
-    assignProp(key: string, value: any): void;
-}
-
-declare class Anchor extends LktItem implements AnchorConfig {
-    static lktAllowUndefinedProps: string[];
-    static lktDefaultValues: (keyof AnchorConfig)[];
-    type: AnchorType;
-    to?: RouteLocationRaw | string;
-    class: string;
-    isActive: boolean;
-    downloadFileName: string;
-    disabled: boolean;
-    onClick: Function | undefined;
-    confirmModal: ValidModalName;
-    confirmModalKey: ValidModalKey;
-    confirmData: LktObject;
-    imposter: boolean;
-    external: boolean;
-    text?: ValidTextValue;
-    events?: EventsConfig | undefined;
-    getHref(): string;
-    constructor(data?: Partial<AnchorConfig>);
-}
-
 interface IsDisabledCheckerArgs {
     value?: any;
     dataState?: DataState;
@@ -226,7 +194,7 @@ interface ButtonConfig {
     iconEndOn?: ValidTextValue;
     iconEndOff?: ValidTextValue;
     dot?: ValidButtonDot;
-    anchor?: AnchorConfig | Anchor;
+    anchor?: AnchorConfig;
     resource?: string;
     resourceData?: LktObject;
     modal?: ValidModalName;
@@ -296,6 +264,17 @@ interface OptionConfig {
     icon?: string;
     modal?: string | Function;
     tags?: TagConfig[] | ((opt: OptionConfig) => TagConfig[]) | undefined;
+}
+
+declare class LktItem implements LktObject {
+    static lktAllowUndefinedProps: string[];
+    static lktExcludedProps: string[];
+    static lktDateProps: string[];
+    static lktStrictItem: boolean;
+    static lktDefaultValues: (keyof LktObject)[];
+    constructor(data?: LktObject);
+    feed(data?: LktObject, target?: this): void;
+    assignProp(key: string, value: any): void;
 }
 
 declare class Option extends LktItem implements OptionConfig {
@@ -1042,6 +1021,27 @@ declare class Accordion extends LktItem implements AccordionConfig {
     constructor(data?: Partial<AnchorConfig>);
 }
 
+declare class Anchor extends LktItem implements AnchorConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof AnchorConfig)[];
+    type: AnchorType;
+    to?: RouteLocationRaw | string;
+    class: string;
+    isActive: boolean;
+    downloadFileName: string;
+    disabled: boolean;
+    onClick: Function | undefined;
+    confirmModal: ValidModalName;
+    confirmModalKey: ValidModalKey;
+    confirmData: LktObject;
+    imposter: boolean;
+    external: boolean;
+    text?: ValidTextValue;
+    events?: EventsConfig | undefined;
+    getHref(): string;
+    constructor(data?: Partial<AnchorConfig>);
+}
+
 declare class Box extends LktItem implements BoxConfig {
     static lktDefaultValues: (keyof BoxConfig)[];
     title: string;
@@ -1089,7 +1089,7 @@ declare class Button extends LktItem implements ButtonConfig {
     clickRef?: Element | VueElement;
     openTooltip: boolean;
     tabindex: ValidTabIndex;
-    anchor?: AnchorConfig | Anchor;
+    anchor?: AnchorConfig;
     showTooltipOnHover?: boolean;
     hideTooltipOnLeave?: boolean;
     splitClass?: string;

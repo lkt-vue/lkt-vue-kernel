@@ -9,7 +9,6 @@ import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {generateRandomString} from "lkt-string-tools";
 import {VueElement} from "vue";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
-import {Anchor} from "./Anchor.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
@@ -105,7 +104,7 @@ export class Button extends LktItem implements ButtonConfig {
     clickRef?: Element | VueElement = undefined;
     openTooltip: boolean = false;
     tabindex: ValidTabIndex = undefined;
-    anchor?:AnchorConfig|Anchor = undefined;
+    anchor?:AnchorConfig = undefined;
 
     showTooltipOnHover?: boolean = undefined;
     hideTooltipOnLeave?: boolean = undefined;
@@ -120,7 +119,6 @@ export class Button extends LktItem implements ButtonConfig {
     constructor(data: Partial<ButtonConfig> = {}) {
         super();
         this.feed(data);
-        this.anchor = new Anchor(data.anchor);
     }
 
     isDisabled() {
