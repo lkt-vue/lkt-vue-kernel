@@ -1,4 +1,5 @@
 import {FieldElementType} from "../enums/FieldElementType.ts";
+import {LktObject} from "../interfaces/LktObject.ts";
 
 export interface FieldElementConfig {
     type: FieldElementType|string
@@ -13,5 +14,6 @@ export interface FieldElementConfig {
     layout?: {
         type?: 'grid',
         amountOfItems?: [],
-    }
+    },
+    translations?: LktObject
 }

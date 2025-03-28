@@ -9,18 +9,28 @@ import {
     Icon,
     IconConfig,
     Image,
-    ImageConfig
+    ImageConfig, LktObject
 } from "../index.ts";
+import {getAvailableLanguages} from "lkt-i18n";
 
 export const getDefaultTextElement = (text: string = 'Time to create'): FieldElementConfig => {
+    let translations: LktObject = {};
+
+    const availableLanguages = getAvailableLanguages();
+
+    availableLanguages.forEach(lang => {
+        translations[lang] = text;
+    })
+
     return {
         type: FieldElementType.Text,
         text,
+        translations
     };
 }
 
 export const getDefaultLktAnchorElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktAnchor,
         props: {
             ...getDefaultValues(Anchor),
@@ -39,7 +49,7 @@ export const getDefaultLktAnchorElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktButtonElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktButton,
         props: {
             ...getDefaultValues(Button),
@@ -58,7 +68,7 @@ export const getDefaultLktButtonElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktLayoutElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktLayout,
         props: {},
         config: {},
@@ -73,7 +83,7 @@ export const getDefaultLktLayoutElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktBoxElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktBox,
         props: {
             ...getDefaultValues(Box),
@@ -97,7 +107,7 @@ export const getDefaultLktBoxElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktAccordionElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktAccordion,
         props: {
             ...getDefaultValues(Accordion),
@@ -121,7 +131,7 @@ export const getDefaultLktAccordionElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktHeaderElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktHeader,
         props: {
             ...getDefaultValues(Header),
@@ -137,7 +147,7 @@ export const getDefaultLktHeaderElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktIconElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktIcon,
         props: {
             ...getDefaultValues(Icon),
@@ -153,7 +163,7 @@ export const getDefaultLktIconElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktImageElement = (): FieldElementConfig => {
-    return {
+    return <FieldElementConfig>{
         type: FieldElementType.LktImage,
         props: {
             ...getDefaultValues(Image),

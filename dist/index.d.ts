@@ -706,6 +706,7 @@ interface FieldElementConfig {
         type?: 'grid';
         amountOfItems?: [];
     };
+    translations?: LktObject;
 }
 
 declare enum HeaderTag {
