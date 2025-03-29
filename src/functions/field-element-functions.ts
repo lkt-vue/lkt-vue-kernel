@@ -24,20 +24,16 @@ export const getDefaultTextElement = (text: string = 'Time to create'): FieldEle
 
     return {
         type: FieldElementType.Text,
-        text,
-        translations
+        props: {
+            text: translations
+        }
     };
 }
 
 export const getDefaultLktAnchorElement = (): FieldElementConfig => {
     return <FieldElementConfig>{
         type: FieldElementType.LktAnchor,
-        props: {
-            ...getDefaultValues(Anchor),
-            ...<AnchorConfig>{
-                text: 'Anchor text',
-            },
-        },
+        props: {},
         config: {
             hasHeader: true,
             hasIcon: true,
@@ -83,14 +79,19 @@ export const getDefaultLktLayoutElement = (): FieldElementConfig => {
 }
 
 export const getDefaultLktBoxElement = (): FieldElementConfig => {
+
+    let header: LktObject = {};
+
+    const availableLanguages = getAvailableLanguages();
+
+    availableLanguages.forEach(lang => {
+        header[lang] = 'Title goes here';
+    })
+
     return <FieldElementConfig>{
         type: FieldElementType.LktBox,
         props: {
-            ...getDefaultValues(Box),
-            ...<BoxConfig>{
-                header: 'Title goes here',
-                text: 'Content goes here',
-            },
+            header,
         },
         config: {
             hasHeader: true,
