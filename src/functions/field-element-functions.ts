@@ -13,6 +13,7 @@ export const getDefaultTextElement = (text: string = 'Time to create'): FieldEle
     })
 
     return {
+        id: 0,
         type: FieldElementType.Text,
         props: {
             text: translations
@@ -31,6 +32,7 @@ export const getDefaultLktAnchorElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktAnchor,
         props: {
             text,
@@ -53,6 +55,7 @@ export const getDefaultLktButtonElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktButton,
         props: {
             text,
@@ -69,6 +72,7 @@ export const getDefaultLktButtonElement = (): FieldElementConfig => {
 
 export const getDefaultLktLayoutElement = (): FieldElementConfig => {
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktLayout,
         props: {},
         config: {},
@@ -93,6 +97,7 @@ export const getDefaultLktBoxElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktBox,
         props: {
             header,
@@ -122,6 +127,7 @@ export const getDefaultLktAccordionElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktAccordion,
         props: {
             header,
@@ -151,6 +157,7 @@ export const getDefaultLktHeaderElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktHeader,
         props: {
             text
@@ -173,6 +180,7 @@ export const getDefaultLktIconElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktIcon,
         props: {
             text
@@ -195,6 +203,7 @@ export const getDefaultLktImageElement = (): FieldElementConfig => {
     })
 
     return <FieldElementConfig>{
+        id: 0,
         type: FieldElementType.LktImage,
         props: {
             text,

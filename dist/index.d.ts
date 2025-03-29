@@ -693,6 +693,7 @@ declare enum FieldElementType {
 }
 
 interface FieldElementConfig {
+    id: number;
     type: FieldElementType | string;
     component?: string;
     props?: Record<string, any>;
