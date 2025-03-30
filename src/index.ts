@@ -34,7 +34,7 @@ export {DocPageConfig} from './config/DocPageConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
-export {FieldElementConfig} from './config/FieldElementConfig.ts';
+export {WebElementConfig} from './config/WebElementConfig.ts';
 export {FieldElementPropsConfig} from './config/FieldElementPropsConfig.ts';
 export {FieldReadModeConfig} from './config/FieldReadModeConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
@@ -100,7 +100,7 @@ export {ButtonType} from './enums/ButtonType.ts';
 export {ColumnType} from './enums/ColumnType.ts';
 export {DocPageSize} from './enums/DocPageSize.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
-export {FieldElementType} from './enums/FieldElementType.ts';
+export {WebElementType} from './enums/WebElementType.ts';
 export {FieldType} from './enums/FieldType.ts';
 export {FieldValidationType} from './enums/FieldValidationType.ts';
 export {HeaderTag} from './enums/HeaderTag.ts';
@@ -171,16 +171,18 @@ export {SafeString} from './value-objects/SafeString.ts';
 export {getAnchorHref} from "./functions/anchor-functions.ts";
 export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
 export {
-    getDefaultLktAnchorElement,
-    getDefaultTextElement,
-    getDefaultLktAccordionElement,
-    getDefaultLktBoxElement,
-    getDefaultLktIconElement,
-    getDefaultLktImageElement,
-    getDefaultLktButtonElement,
-    getDefaultLktLayoutElement,
-    getDefaultLktHeaderElement
-} from "./functions/field-element-functions.ts";
+    getDefaultLktAnchorWebElement,
+    getDefaultLktTextWebElement,
+    getDefaultLktLayoutAccordionWebElement,
+    getDefaultLktTextBoxWebElement,
+    getDefaultLktLayoutBoxWebElement,
+    getDefaultLktTextAccordionWebElement,
+    getDefaultLktIconWebElement,
+    getDefaultLktImageWebElement,
+    getDefaultLktButtonWebElement,
+    getDefaultLktLayoutWebElement,
+    getDefaultLktHeaderWebElement
+} from "./functions/web-element-functions.ts";
 export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
 export {addModal, closeModal, openModal} from "./functions/modal-functions.ts";

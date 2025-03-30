@@ -1,12 +1,12 @@
-import {FieldElementType} from "../enums/FieldElementType.ts";
+import {WebElementType} from "../enums/WebElementType.ts";
 import {FieldElementPropsConfig} from "./FieldElementPropsConfig.ts";
 
-export interface FieldElementConfig {
+export interface WebElementConfig {
     id: number,
-    type: FieldElementType|string
+    type: WebElementType|string
     component?: string
     props: FieldElementPropsConfig
-    children?: FieldElementConfig[]
+    children?: WebElementConfig[]
     config: {
         hasHeader?: boolean
         hasIcon?: boolean

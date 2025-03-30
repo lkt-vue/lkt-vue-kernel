@@ -1,9 +1,9 @@
-import {FieldElementType} from "../enums/FieldElementType.ts";
-import {FieldElementConfig} from "../config/FieldElementConfig.ts";
-import {LktObject} from "../index.ts";
+import {WebElementType} from "../enums/WebElementType.ts";
+import {WebElementConfig} from "../config/WebElementConfig.ts";
+import {LktObject, MultiLangValue} from "../index.ts";
 import {getAvailableLanguages} from "lkt-i18n";
 
-export const getDefaultTextElement = (text: string = 'Time to create'): FieldElementConfig => {
+export const getDefaultLktTextWebElement = (text: string = 'Time to create'): WebElementConfig => {
     let translations: LktObject = {};
 
     const availableLanguages = getAvailableLanguages();
@@ -14,7 +14,7 @@ export const getDefaultTextElement = (text: string = 'Time to create'): FieldEle
 
     return {
         id: 0,
-        type: FieldElementType.Text,
+        type: WebElementType.LktText,
         props: {
             text: translations
         },
@@ -22,7 +22,7 @@ export const getDefaultTextElement = (text: string = 'Time to create'): FieldEle
     };
 }
 
-export const getDefaultLktAnchorElement = (): FieldElementConfig => {
+export const getDefaultLktAnchorWebElement = (): WebElementConfig => {
 
     let text: LktObject = {};
 
@@ -32,9 +32,9 @@ export const getDefaultLktAnchorElement = (): FieldElementConfig => {
         text[lang] = 'Title goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktAnchor,
+        type: WebElementType.LktAnchor,
         props: {
             text,
         },
@@ -45,7 +45,7 @@ export const getDefaultLktAnchorElement = (): FieldElementConfig => {
     };
 }
 
-export const getDefaultLktButtonElement = (): FieldElementConfig => {
+export const getDefaultLktButtonWebElement = (): WebElementConfig => {
 
     let text: LktObject = {};
 
@@ -55,9 +55,9 @@ export const getDefaultLktButtonElement = (): FieldElementConfig => {
         text[lang] = 'Title goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktButton,
+        type: WebElementType.LktButton,
         props: {
             text,
         },
@@ -66,19 +66,19 @@ export const getDefaultLktButtonElement = (): FieldElementConfig => {
             hasIcon: true,
         },
         children: [
-            getDefaultTextElement('Button text'),
+            getDefaultLktTextWebElement('Button text'),
         ],
     };
 }
 
-export const getDefaultLktLayoutElement = (): FieldElementConfig => {
-    return <FieldElementConfig>{
+export const getDefaultLktLayoutWebElement = (): WebElementConfig => {
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktLayout,
+        type: WebElementType.LktLayout,
         props: {},
         config: {},
         children: [
-            getDefaultTextElement('Content goes here'),
+            getDefaultLktTextWebElement('Content goes here'),
         ],
         layout: {
             type: 'grid',
@@ -87,7 +87,40 @@ export const getDefaultLktLayoutElement = (): FieldElementConfig => {
     };
 }
 
-export const getDefaultLktBoxElement = (): FieldElementConfig => {
+export const getDefaultLktTextBoxWebElement = (): WebElementConfig => {
+
+    let header: MultiLangValue = {},
+        text: MultiLangValue = {};
+
+    const availableLanguages = getAvailableLanguages();
+
+    availableLanguages.forEach(lang => {
+        //@ts-ignore
+        header[lang] = 'Title goes here';
+        // @ts-ignore
+        text[lang] = 'Content goes here';
+    })
+
+    return <WebElementConfig>{
+        id: 0,
+        type: WebElementType.LktTextBox,
+        props: {
+            header,
+            text,
+        },
+        config: {
+            hasHeader: true,
+            hasIcon: true,
+        },
+        children: [],
+        layout: {
+            type: 'grid',
+            amountOfItems: [],
+        }
+    };
+}
+
+export const getDefaultLktLayoutBoxWebElement = (): WebElementConfig => {
 
     let header: LktObject = {};
 
@@ -97,9 +130,9 @@ export const getDefaultLktBoxElement = (): FieldElementConfig => {
         header[lang] = 'Title goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktBox,
+        type: WebElementType.LktLayoutBox,
         props: {
             header,
         },
@@ -108,7 +141,7 @@ export const getDefaultLktBoxElement = (): FieldElementConfig => {
             hasIcon: true,
         },
         children: [
-            getDefaultTextElement('Content goes here'),
+            getDefaultLktTextWebElement('Content goes here'),
         ],
         layout: {
             type: 'grid',
@@ -117,7 +150,7 @@ export const getDefaultLktBoxElement = (): FieldElementConfig => {
     };
 }
 
-export const getDefaultLktAccordionElement = (): FieldElementConfig => {
+export const getDefaultLktLayoutAccordionWebElement = (): WebElementConfig => {
 
     let header: LktObject = {};
 
@@ -127,9 +160,9 @@ export const getDefaultLktAccordionElement = (): FieldElementConfig => {
         header[lang] = 'Title goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktAccordion,
+        type: WebElementType.LktLayoutAccordion,
         props: {
             header,
         },
@@ -138,7 +171,7 @@ export const getDefaultLktAccordionElement = (): FieldElementConfig => {
             hasIcon: true,
         },
         children: [
-            getDefaultTextElement('Content goes here'),
+            getDefaultLktTextWebElement('Content goes here'),
         ],
         layout: {
             type: 'grid',
@@ -147,7 +180,38 @@ export const getDefaultLktAccordionElement = (): FieldElementConfig => {
     }
 }
 
-export const getDefaultLktHeaderElement = (): FieldElementConfig => {
+export const getDefaultLktTextAccordionWebElement = (): WebElementConfig => {
+
+    let header: LktObject = {},
+        text: LktObject = {};
+
+    const availableLanguages = getAvailableLanguages();
+
+    availableLanguages.forEach(lang => {
+        header[lang] = 'Title goes here';
+        text[lang] = 'Content goes here';
+    })
+
+    return <WebElementConfig>{
+        id: 0,
+        type: WebElementType.LktTextAccordion,
+        props: {
+            header,
+            text,
+        },
+        config: {
+            hasHeader: true,
+            hasIcon: true,
+        },
+        children: [],
+        layout: {
+            type: 'grid',
+            amountOfItems: [],
+        }
+    }
+}
+
+export const getDefaultLktHeaderWebElement = (): WebElementConfig => {
 
     let text: LktObject = {};
 
@@ -157,9 +221,9 @@ export const getDefaultLktHeaderElement = (): FieldElementConfig => {
         text[lang] = 'Title goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktHeader,
+        type: WebElementType.LktHeader,
         props: {
             text
         },
@@ -170,7 +234,7 @@ export const getDefaultLktHeaderElement = (): FieldElementConfig => {
     }
 }
 
-export const getDefaultLktIconElement = (): FieldElementConfig => {
+export const getDefaultLktIconWebElement = (): WebElementConfig => {
 
     let text: LktObject = {};
 
@@ -180,9 +244,9 @@ export const getDefaultLktIconElement = (): FieldElementConfig => {
         text[lang] = 'Content goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktIcon,
+        type: WebElementType.LktIcon,
         props: {
             text
         },
@@ -193,7 +257,7 @@ export const getDefaultLktIconElement = (): FieldElementConfig => {
     }
 }
 
-export const getDefaultLktImageElement = (): FieldElementConfig => {
+export const getDefaultLktImageWebElement = (): WebElementConfig => {
 
     let text: LktObject = {};
 
@@ -203,9 +267,9 @@ export const getDefaultLktImageElement = (): FieldElementConfig => {
         text[lang] = 'Image description goes here';
     })
 
-    return <FieldElementConfig>{
+    return <WebElementConfig>{
         id: 0,
-        type: FieldElementType.LktImage,
+        type: WebElementType.LktImage,
         props: {
             text,
         },
