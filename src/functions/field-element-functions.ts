@@ -17,7 +17,8 @@ export const getDefaultTextElement = (text: string = 'Time to create'): FieldEle
         type: FieldElementType.Text,
         props: {
             text: translations
-        }
+        },
+        config: {}
     };
 }
 

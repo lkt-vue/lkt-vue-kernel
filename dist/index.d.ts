@@ -692,14 +692,32 @@ declare enum FieldElementType {
     Text = "text"
 }
 
+interface MultiLangValue {
+    en?: string;
+    es?: string;
+    de?: string;
+    it?: string;
+    fr?: string;
+    pt?: string;
+    ch?: string;
+    jp?: string;
+    nl?: string;
+}
+
+interface FieldElementPropsConfig extends LktObject {
+    class?: string;
+    icon?: string;
+    header?: MultiLangValue;
+    text?: MultiLangValue;
+}
+
 interface FieldElementConfig {
     id: number;
     type: FieldElementType | string;
     component?: string;
-    props?: Record<string, any>;
-    text?: string;
+    props: FieldElementPropsConfig;
     children?: FieldElementConfig[];
-    config?: {
+    config: {
         hasHeader?: boolean;
         hasIcon?: boolean;
     };
@@ -707,7 +725,6 @@ interface FieldElementConfig {
         type?: 'grid';
         amountOfItems?: [];
     };
-    translations?: LktObject;
 }
 
 declare enum HeaderTag {
@@ -1598,4 +1615,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Box, type BoxConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, DocPage, type DocPageConfig, DocPageSize, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldElementConfig, FieldElementType, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, Header, type HeaderConfig, HeaderTag, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultLktAccordionElement, getDefaultLktAnchorElement, getDefaultLktBoxElement, getDefaultLktButtonElement, getDefaultLktHeaderElement, getDefaultLktIconElement, getDefaultLktImageElement, getDefaultLktLayoutElement, getDefaultTextElement, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Box, type BoxConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, DocPage, type DocPageConfig, DocPageSize, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldElementConfig, type FieldElementPropsConfig, FieldElementType, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, Header, type HeaderConfig, HeaderTag, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, type MultiLangValue, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultLktAccordionElement, getDefaultLktAnchorElement, getDefaultLktBoxElement, getDefaultLktButtonElement, getDefaultLktHeaderElement, getDefaultLktIconElement, getDefaultLktImageElement, getDefaultLktLayoutElement, getDefaultTextElement, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };
