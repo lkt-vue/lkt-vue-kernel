@@ -100,8 +100,8 @@ export class Field extends LktItem implements FieldConfig {
     canClear: boolean = false;
     canUndo: boolean = false;
     canI18n: boolean = false;
-    canStep: boolean = true;
-    canTag: boolean = true;
+    canStep: boolean = false;
+    canTag: boolean = false;
     mandatoryMessage: string = '';
     infoMessage: string = '';
     errorMessage: string = '';

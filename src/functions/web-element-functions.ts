@@ -1,6 +1,6 @@
 import {WebElementType} from "../enums/WebElementType.ts";
 import {WebElementConfig} from "../config/WebElementConfig.ts";
-import {LktObject, MultiLangValue} from "../index.ts";
+import {AccordionType, LktObject, MultiLangValue, WebElementLayoutType} from "../index.ts";
 import {getAvailableLanguages} from "lkt-i18n";
 
 export const getDefaultLktTextWebElement = (text: string = 'Time to create'): WebElementConfig => {
@@ -18,7 +18,12 @@ export const getDefaultLktTextWebElement = (text: string = 'Time to create'): We
         props: {
             text: translations
         },
-        config: {}
+        config: {},
+        layout: {
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
     };
 }
 
@@ -68,6 +73,11 @@ export const getDefaultLktButtonWebElement = (): WebElementConfig => {
         children: [
             getDefaultLktTextWebElement('Button text'),
         ],
+        layout: {
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
     };
 }
 
@@ -81,8 +91,13 @@ export const getDefaultLktLayoutWebElement = (): WebElementConfig => {
             getDefaultLktTextWebElement('Content goes here'),
         ],
         layout: {
-            type: 'grid',
+            type: WebElementLayoutType.Grid,
             amountOfItems: [],
+            alignItems: [],
+            justifyContent: [],
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
         },
     };
 }
@@ -114,8 +129,9 @@ export const getDefaultLktTextBoxWebElement = (): WebElementConfig => {
         },
         children: [],
         layout: {
-            type: 'grid',
-            amountOfItems: [],
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
         }
     };
 }
@@ -144,8 +160,13 @@ export const getDefaultLktLayoutBoxWebElement = (): WebElementConfig => {
             getDefaultLktTextWebElement('Content goes here'),
         ],
         layout: {
-            type: 'grid',
+            type: WebElementLayoutType.Grid,
             amountOfItems: [],
+            alignItems: [],
+            justifyContent: [],
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
         }
     };
 }
@@ -165,6 +186,7 @@ export const getDefaultLktLayoutAccordionWebElement = (): WebElementConfig => {
         type: WebElementType.LktLayoutAccordion,
         props: {
             header,
+            type: AccordionType.Auto
         },
         config: {
             hasHeader: true,
@@ -174,8 +196,13 @@ export const getDefaultLktLayoutAccordionWebElement = (): WebElementConfig => {
             getDefaultLktTextWebElement('Content goes here'),
         ],
         layout: {
-            type: 'grid',
+            type: WebElementLayoutType.Grid,
             amountOfItems: [],
+            alignItems: [],
+            justifyContent: [],
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
         }
     }
 }
@@ -198,6 +225,7 @@ export const getDefaultLktTextAccordionWebElement = (): WebElementConfig => {
         props: {
             header,
             text,
+            type: AccordionType.Auto
         },
         config: {
             hasHeader: true,
@@ -205,8 +233,9 @@ export const getDefaultLktTextAccordionWebElement = (): WebElementConfig => {
         },
         children: [],
         layout: {
-            type: 'grid',
-            amountOfItems: [],
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
         }
     }
 }
@@ -231,6 +260,11 @@ export const getDefaultLktHeaderWebElement = (): WebElementConfig => {
             hasHeader: true,
             hasIcon: true,
         },
+        layout: {
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
     }
 }
 
@@ -254,6 +288,11 @@ export const getDefaultLktIconWebElement = (): WebElementConfig => {
             hasHeader: true,
             hasIcon: true,
         },
+        layout: {
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
     }
 }
 
@@ -277,5 +316,10 @@ export const getDefaultLktImageWebElement = (): WebElementConfig => {
             hasHeader: true,
             hasIcon: true,
         },
+        layout: {
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
     }
 }

@@ -70,6 +70,7 @@ export interface TableConfig {
     wrapContentTag?: string
     wrapContentClass?: string
     itemsContainerClass?: string
+    itemContainerClass?: string|Function
 
     // Deprecated props (use saveButton.disabled):
     createEnabledValidator?: Function

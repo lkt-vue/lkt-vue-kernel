@@ -34,7 +34,6 @@ export {DocPageConfig} from './config/DocPageConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
-export {WebElementConfig} from './config/WebElementConfig.ts';
 export {FieldElementPropsConfig} from './config/FieldElementPropsConfig.ts';
 export {FieldReadModeConfig} from './config/FieldReadModeConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
@@ -59,6 +58,7 @@ export {TabsConfig} from './config/TabsConfig.ts';
 export {TagConfig} from './config/TagConfig.ts';
 export {ToastConfig} from './config/ToastConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
+export {WebElementConfig} from './config/WebElementConfig.ts';
 
 /**
  * Export instances
@@ -100,7 +100,6 @@ export {ButtonType} from './enums/ButtonType.ts';
 export {ColumnType} from './enums/ColumnType.ts';
 export {DocPageSize} from './enums/DocPageSize.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
-export {WebElementType} from './enums/WebElementType.ts';
 export {FieldType} from './enums/FieldType.ts';
 export {FieldValidationType} from './enums/FieldValidationType.ts';
 export {HeaderTag} from './enums/HeaderTag.ts';
@@ -132,6 +131,8 @@ export {TooltipLocationX} from './enums/TooltipLocationX.ts';
 export {TooltipPositionEngine} from './enums/TooltipPositionEngine.ts';
 export {ValidationCode} from './enums/ValidationCode.ts';
 export {ValidationStatus} from './enums/ValidationStatus.ts';
+export {WebElementLayoutType} from './enums/WebElementLayoutType.ts';
+export {WebElementType} from './enums/WebElementType.ts';
 
 /**
  * Export types

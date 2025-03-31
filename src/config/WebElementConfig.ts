@@ -1,5 +1,6 @@
 import {WebElementType} from "../enums/WebElementType.ts";
 import {FieldElementPropsConfig} from "./FieldElementPropsConfig.ts";
+import {WebElementLayoutType} from "../enums/WebElementLayoutType.ts";
 
 export interface WebElementConfig {
     id: number,
@@ -11,8 +12,13 @@ export interface WebElementConfig {
         hasHeader?: boolean
         hasIcon?: boolean
     },
-    layout?: {
-        type?: 'grid',
+    layout: {
+        type?: WebElementLayoutType,
         amountOfItems?: [],
+        alignItems?: [],
+        justifyContent?: [],
+        columns: [],
+        alignSelf: [],
+        justifySelf: [],
     }
 }
