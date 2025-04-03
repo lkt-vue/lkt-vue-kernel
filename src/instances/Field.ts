@@ -16,6 +16,7 @@ import {FieldReadModeConfig} from "../config/FieldReadModeConfig.ts";
 import {BooleanFieldConfig} from "../config/BooleanFieldConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {OptionConfig} from "../config/OptionConfig.ts";
+import {FileBrowserConfig} from "../config/FileBrowserConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -76,6 +77,7 @@ export class Field extends LktItem implements FieldConfig {
         'optionsConfig',
         'fileUploadHttp',
         'tooltipConfig',
+        'fileBrowserConfig',
         'readModeConfig',
         'configOn',
         'configOff',
@@ -152,6 +154,9 @@ export class Field extends LktItem implements FieldConfig {
 
     // Tooltip API
     tooltipConfig?: TooltipConfig = {};
+
+    // File Browser Config
+    fileBrowserConfig?: FileBrowserConfig = {};
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

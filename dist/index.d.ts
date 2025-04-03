@@ -368,6 +368,10 @@ interface BooleanFieldConfig {
     labelIcon?: ValidTextValue;
 }
 
+interface FileBrowserConfig {
+    http?: HttpCallConfig;
+}
+
 interface FieldConfig {
     modelValue?: ValidFieldValue;
     type?: FieldType;
@@ -428,6 +432,7 @@ interface FieldConfig {
     fileUploadHttp?: HttpCallConfig;
     fileUploadButton?: ButtonConfig;
     tooltipConfig?: TooltipConfig;
+    fileBrowserConfig?: FileBrowserConfig;
     customButtonText?: string;
     customButtonClass?: string;
     events?: {
@@ -692,11 +697,26 @@ interface MultiLangValue {
     nl?: string;
 }
 
-interface FieldElementPropsConfig extends LktObject {
+interface WebElementPropsConfig extends LktObject {
     class?: string;
     icon?: string;
     header?: MultiLangValue;
     text?: MultiLangValue;
+}
+
+declare enum FileEntityType {
+    StorageUnit = "unit",
+    Directory = "dir",
+    Image = "img",
+    Video = "vid",
+    File = "file"
+}
+
+interface FileEntityConfig {
+    id?: number | string | undefined;
+    type: FileEntityType;
+    name: string;
+    children?: FileEntityConfig[];
 }
 
 declare enum HeaderTag {
@@ -935,6 +955,7 @@ interface TableConfig {
     dropButton?: ButtonConfig;
     editButton?: ButtonConfig;
     hiddenSave?: boolean;
+    groupButton?: ButtonConfig | boolean;
     requiredItemsForTopCreate?: number;
     requiredItemsForBottomCreate?: number;
     addNavigation?: boolean;
@@ -998,24 +1019,26 @@ declare enum WebElementLayoutType {
     FlexColumn = "flex-column"
 }
 
+interface WebElementLayoutConfig {
+    type?: WebElementLayoutType;
+    amountOfItems?: [];
+    alignItems?: [];
+    justifyContent?: [];
+    columns: [];
+    alignSelf: [];
+    justifySelf: [];
+}
+
 interface WebElementConfig {
-    id: number;
-    type: WebElementType | string;
+    id?: number | string | undefined;
+    type: WebElementType;
     component?: string;
-    props: FieldElementPropsConfig;
+    props: WebElementPropsConfig;
     children?: WebElementConfig[];
+    layout: WebElementLayoutConfig;
     config: {
         hasHeader?: boolean;
         hasIcon?: boolean;
-    };
-    layout: {
-        type?: WebElementLayoutType;
-        amountOfItems?: [];
-        alignItems?: [];
-        justifyContent?: [];
-        columns: [];
-        alignSelf: [];
-        justifySelf: [];
     };
 }
 
@@ -1231,6 +1254,7 @@ declare class Field extends LktItem implements FieldConfig {
     fileUploadHttp?: HttpCallConfig;
     fileUploadButton: ButtonConfig;
     tooltipConfig?: TooltipConfig;
+    fileBrowserConfig?: FileBrowserConfig;
     constructor(data?: Partial<FieldConfig>);
 }
 
@@ -1455,6 +1479,7 @@ declare class Table extends LktItem implements TableConfig {
     dropButton?: ButtonConfig;
     editButton?: ButtonConfig;
     hiddenSave?: boolean;
+    groupButton?: ButtonConfig | boolean;
     wrapContentTag?: string;
     wrapContentClass?: string;
     itemsContainerClass?: string;
@@ -1524,6 +1549,21 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     hideOnReferrerLeave: boolean;
     hideOnReferrerLeaveDelay: number;
     constructor(data?: Partial<TooltipConfig>);
+}
+
+declare class WebElement extends LktItem implements WebElementConfig {
+    static lktDefaultValues: (keyof WebElementConfig)[];
+    id?: number | string | undefined;
+    type: WebElementType;
+    component?: string;
+    props: WebElementPropsConfig;
+    children?: WebElementConfig[];
+    layout: WebElementLayoutConfig;
+    config: {
+        hasHeader: boolean;
+        hasIcon: boolean;
+    };
+    constructor(data?: Partial<WebElementConfig>);
 }
 
 declare enum SortDirection {
@@ -1633,4 +1673,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Box, type BoxConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, DocPage, type DocPageConfig, DocPageSize, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldElementPropsConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, Header, type HeaderConfig, HeaderTag, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, type MultiLangValue, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, type WebElementConfig, WebElementLayoutType, WebElementType, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultLktAnchorWebElement, getDefaultLktButtonWebElement, getDefaultLktHeaderWebElement, getDefaultLktIconWebElement, getDefaultLktImageWebElement, getDefaultLktLayoutAccordionWebElement, getDefaultLktLayoutBoxWebElement, getDefaultLktLayoutWebElement, getDefaultLktTextAccordionWebElement, getDefaultLktTextBoxWebElement, getDefaultLktTextWebElement, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, AnchorType, type BeforeCloseModalData, type BooleanFieldConfig, Box, type BoxConfig, Button, type ButtonConfig, ButtonType, Column, type ColumnConfig, ColumnType, DocPage, type DocPageConfig, DocPageSize, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldReadModeConfig, FieldType, FieldValidation, type FieldValidationConfig, FieldValidationType, type FileBrowserConfig, type FileEntityConfig, FileEntityType, Header, type HeaderConfig, HeaderTag, type HttpCallConfig, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, ItemCrudMode, ItemCrudView, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Menu, type MenuConfig, MenuEntry, type MenuEntryConfig, MenuEntryType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, type MultiLangValue, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, PaginatorType, Progress, type ProgressConfig, ProgressType, ProgressValueFormat, type RenderModalConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, Table, type TableConfig, TablePermission, TableRowType, TableType, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type ValidBeforeCloseModal, type ValidButtonDot, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, WebElement, type WebElementConfig, WebElementLayoutType, type WebElementPropsConfig, WebElementType, addModal, booleanFieldTypes, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAnchorHref, getDefaultLktAnchorWebElement, getDefaultLktButtonWebElement, getDefaultLktHeaderWebElement, getDefaultLktIconWebElement, getDefaultLktImageWebElement, getDefaultLktLayoutAccordionWebElement, getDefaultLktLayoutBoxWebElement, getDefaultLktLayoutWebElement, getDefaultLktTextAccordionWebElement, getDefaultLktTextBoxWebElement, getDefaultLktTextWebElement, getDefaultValues, lktDebug, openModal, prepareResourceData, textFieldTypes, textFieldTypesWithOptions };

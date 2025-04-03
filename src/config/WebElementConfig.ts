@@ -1,24 +1,16 @@
 import {WebElementType} from "../enums/WebElementType.ts";
-import {FieldElementPropsConfig} from "./FieldElementPropsConfig.ts";
-import {WebElementLayoutType} from "../enums/WebElementLayoutType.ts";
+import {WebElementPropsConfig} from "./WebElementPropsConfig.ts";
+import {WebElementLayoutConfig} from "./WebElementLayoutConfig.ts";
 
 export interface WebElementConfig {
-    id: number,
-    type: WebElementType|string
+    id?: number|string|undefined,
+    type: WebElementType
     component?: string
-    props: FieldElementPropsConfig
+    props: WebElementPropsConfig
     children?: WebElementConfig[]
+    layout: WebElementLayoutConfig
     config: {
         hasHeader?: boolean
         hasIcon?: boolean
-    },
-    layout: {
-        type?: WebElementLayoutType,
-        amountOfItems?: [],
-        alignItems?: [],
-        justifyContent?: [],
-        columns: [],
-        alignSelf: [],
-        justifySelf: [],
     }
 }

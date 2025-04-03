@@ -34,9 +34,11 @@ export {DocPageConfig} from './config/DocPageConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
-export {FieldElementPropsConfig} from './config/FieldElementPropsConfig.ts';
+export {WebElementPropsConfig} from './config/WebElementPropsConfig.ts';
 export {FieldReadModeConfig} from './config/FieldReadModeConfig.ts';
 export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
+export {FileBrowserConfig} from './config/FileBrowserConfig.ts';
+export {FileEntityConfig} from './config/FileEntityConfig.ts';
 export {HttpCallConfig} from './config/HttpCallConfig.ts';
 export {HeaderConfig} from './config/HeaderConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';
@@ -89,6 +91,7 @@ export {Tabs} from './instances/Tabs.ts';
 export {Tag} from './instances/Tag.ts';
 export {Toast} from './instances/Toast.ts';
 export {Tooltip} from './instances/Tooltip.ts';
+export {WebElement} from './instances/WebElement.ts';
 
 /**
  * Export enums
@@ -102,6 +105,7 @@ export {DocPageSize} from './enums/DocPageSize.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
 export {FieldType} from './enums/FieldType.ts';
 export {FieldValidationType} from './enums/FieldValidationType.ts';
+export {FileEntityType} from './enums/FileEntityType.ts';
 export {HeaderTag} from './enums/HeaderTag.ts';
 export {IconPosition} from './enums/IconPosition.ts';
 export {IconType} from './enums/IconType.ts';

@@ -14,6 +14,7 @@ import {FieldReadModeConfig} from "./FieldReadModeConfig.ts";
 import {BooleanFieldConfig} from "./BooleanFieldConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {OptionConfig} from "./OptionConfig.ts";
+import {FileBrowserConfig} from "./FileBrowserConfig.ts";
 
 export interface FieldConfig {
     modelValue?: ValidFieldValue
@@ -92,6 +93,9 @@ export interface FieldConfig {
 
     // Tooltip API
     tooltipConfig?: TooltipConfig
+
+    // File Browser Config
+    fileBrowserConfig?: FileBrowserConfig
 
     // Custom button
 

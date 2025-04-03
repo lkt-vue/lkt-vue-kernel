@@ -41,6 +41,7 @@ export class Table extends LktItem implements TableConfig {
         'createButton',
         'dropButton',
         'editButton',
+        'groupButton',
         'wrapContentTag',
         'wrapContentClass',
         'itemsContainerClass',
@@ -103,6 +104,7 @@ export class Table extends LktItem implements TableConfig {
     dropButton?: ButtonConfig = {};
     editButton?: ButtonConfig = {};
     hiddenSave?: boolean = false;
+    groupButton?: ButtonConfig|boolean = false;
 
 
     wrapContentTag?: string = 'div';
