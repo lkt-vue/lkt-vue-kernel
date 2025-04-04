@@ -17,7 +17,6 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
         'parent',
         'children',
         'events',
-        'onClick',
     ];
 
     key?: string = '';
@@ -37,15 +36,13 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
 
     isOpened?: boolean = false;
     isActive?: boolean = false;
+    keepOpenOnChildClick?: boolean = false;
     parent?: MenuEntryConfig|undefined = undefined;
 
     children?: MenuEntryConfig[]
 
     // Events
     events?: EventsConfig|undefined = {};
-
-    // Deprecated
-    onClick?: Function|undefined = undefined;
 
     constructor(data: Partial<MenuEntryConfig> = {}) {
         super();

@@ -22,6 +22,7 @@ export interface MenuEntryConfig {
     isActiveChecker?: Function|undefined
     isOpened?: boolean
     isActive?: boolean
+    keepOpenOnChildClick?: boolean
 
     // Related entries
     parent?: MenuEntryConfig|undefined
@@ -29,7 +30,4 @@ export interface MenuEntryConfig {
 
     // Events
     events?: EventsConfig|undefined
-
-    // Deprecated
-    onClick?: Function|undefined
 }

@@ -370,6 +370,9 @@ interface BooleanFieldConfig {
 
 interface FileBrowserConfig {
     http?: HttpCallConfig;
+    entityCreateButton?: ButtonConfig;
+    entityUpdateButton?: ButtonConfig;
+    entityDropButton?: ButtonConfig;
 }
 
 interface FieldConfig {
@@ -835,10 +838,10 @@ interface MenuEntryConfig {
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
+    keepOpenOnChildClick?: boolean;
     parent?: MenuEntryConfig | undefined;
     children?: MenuEntryConfig[];
     events?: EventsConfig | undefined;
-    onClick?: Function | undefined;
 }
 
 interface MenuConfig {
@@ -1389,10 +1392,10 @@ declare class MenuEntry extends LktItem implements MenuEntryConfig {
     isActiveChecker?: Function | undefined;
     isOpened?: boolean;
     isActive?: boolean;
+    keepOpenOnChildClick?: boolean;
     parent?: MenuEntryConfig | undefined;
     children?: MenuEntryConfig[];
     events?: EventsConfig | undefined;
-    onClick?: Function | undefined;
     constructor(data?: Partial<MenuEntryConfig>);
     doClose(): void;
 }
