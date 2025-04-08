@@ -175,6 +175,11 @@ export {ValidTextValue} from './types/ValidTextValue.ts';
 export {SafeString} from './value-objects/SafeString.ts';
 
 /**
+ * Export arguments
+ */
+export {ClickEventArgs} from './arguments/ClickEventArgs.ts';
+
+/**
  * Export functions
  */
 export {getAnchorHref} from "./functions/anchor-functions.ts";
