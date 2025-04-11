@@ -79,6 +79,7 @@ export {Column} from './instances/Column.ts';
 export {DocPage} from './instances/DocPage.ts';
 export {Field} from './instances/Field.ts';
 export {FieldValidation} from './instances/FieldValidation.ts';
+export {FileEntity} from './instances/FileEntity.ts';
 export {Header} from './instances/Header.ts';
 export {Icon} from './instances/Icon.ts';
 export {Image} from './instances/Image.ts';

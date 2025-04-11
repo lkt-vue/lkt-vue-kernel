@@ -4,5 +4,6 @@ export interface FileEntityConfig {
     id?: number|string|undefined
     type: FileEntityType
     name: string
+    src: string
     children?: FileEntityConfig[]
 }
