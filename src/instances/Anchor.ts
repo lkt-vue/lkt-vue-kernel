@@ -8,6 +8,7 @@ import {LktObject} from "../interfaces/LktObject.ts";
 import {EventsConfig} from "../config/EventsConfig.ts";
 import {getAnchorHref} from "../functions/anchor-functions.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
+import {IconConfig} from "../config/IconConfig.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
@@ -28,6 +29,7 @@ export class Anchor extends LktItem implements AnchorConfig {
         'external',
         'events',
         'text',
+        'icon',
     ];
 
     type: AnchorType = AnchorType.RouterLink;
@@ -42,7 +44,8 @@ export class Anchor extends LktItem implements AnchorConfig {
     confirmData: LktObject = {};
     imposter: boolean = false;
     external: boolean = false;
-    text?: ValidTextValue
+    text?: ValidTextValue = '';
+    icon?: IconConfig|string = '';
 
     // Event management
     events?: EventsConfig|undefined = {};

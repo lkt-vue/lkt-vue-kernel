@@ -90,6 +90,25 @@ interface EventsConfig {
 
 type ValidTextValue = string | number | undefined;
 
+declare enum IconType {
+    NotDefined = "",
+    Button = "button"
+}
+
+declare enum IconPosition {
+    Start = "start",
+    End = "end"
+}
+
+interface IconConfig {
+    icon?: ValidTextValue;
+    text?: ValidTextValue;
+    class?: ValidTextValue;
+    type?: IconType;
+    position?: IconPosition;
+    events?: EventsConfig | undefined;
+}
+
 interface AnchorConfig {
     type?: AnchorType;
     to?: RouteLocationRaw | string;
@@ -103,6 +122,7 @@ interface AnchorConfig {
     imposter?: boolean;
     external?: boolean;
     text?: ValidTextValue;
+    icon?: IconConfig | string;
     events?: EventsConfig | undefined;
     onClick?: Function | undefined;
 }
@@ -373,11 +393,179 @@ interface BooleanFieldConfig {
     labelIcon?: ValidTextValue;
 }
 
+declare enum TableType {
+    Table = "table",
+    Item = "item",
+    Ul = "ul",
+    Ol = "ol",
+    Carousel = "carousel"
+}
+
+declare enum TablePermission {
+    Create = "create",
+    Update = "update",// Save changes
+    Edit = "edit",// Displays edit button
+    Drop = "drop",// Displays drop button
+    Sort = "sort",// Sort
+    SwitchEditMode = "switch-edit-mode",
+    InlineEdit = "inline-edit",// Be able to edit columns inside the table
+    InlineCreate = "inline-create",// Be able to append a new editable row (needs InlineEdit in order to be editable)
+    ModalCreate = "modal-create",// Be able to append a new row after save a modal form
+    InlineCreateEver = "inline-create-ever"
+}
+
+type ValidTablePermission = TablePermission | string;
+
+declare enum HeaderTag {
+    H1 = "h1",
+    H2 = "h2",
+    H3 = "h3",
+    H4 = "h4",
+    H5 = "h5",
+    H6 = "h6"
+}
+
+interface HeaderConfig {
+    tag?: HeaderTag;
+    class?: string;
+    text?: string;
+    icon?: string;
+}
+
+declare enum TableRowType {
+    Auto = 0,
+    PreferItem = 1,
+    PreferCustomItem = 2,
+    PreferColumns = 3
+}
+
+type ValidTableRowTypeValue = TableRowType | ((...args: any[]) => TableRowType) | undefined;
+
+type ValidDrag = boolean | ((item: LktObject) => boolean);
+
+interface DragConfig {
+    enabled: boolean;
+    isDraggable?: ValidDrag;
+    isValid?: ValidDrag;
+    isDisabled?: boolean | Function;
+    canRender?: boolean | Function;
+    dragKey?: string;
+}
+
+type ValidDragConfig = DragConfig | undefined;
+
+declare enum PaginatorType {
+    Pages = "pages",
+    PrevNext = "prev-next",
+    PagesPrevNext = "pages-prev-next",
+    PagesPrevNextFirstLast = "pages-prev-next-first-last",
+    LoadMore = "load-more",
+    Infinite = "infinite"
+}
+
+interface PaginatorConfig {
+    type?: PaginatorType;
+    modelValue?: number;
+    class?: string;
+    resource?: string;
+    resourceData?: LktObject;
+    readOnly?: boolean;
+    loading?: boolean;
+}
+
+type ValidPaginatorConfig = PaginatorConfig | undefined;
+
+interface CarouselConfig {
+    currentSlide?: number;
+    itemsToShow?: number;
+    itemsToScroll?: number;
+    autoplay?: number;
+    infinite?: boolean;
+    mouseDrag?: boolean;
+    touchDrag?: boolean;
+    pauseAutoplayOnHover?: boolean;
+    dir?: 'ltr' | 'rtl';
+    snapAlign?: 'start' | 'end' | 'center' | 'center-odd' | 'center-even';
+}
+
+declare enum ColumnType {
+    None = "",
+    Field = "field",
+    Button = "button",
+    Anchor = "anchor"
+}
+
+type ValidColSpan = Function | boolean | number | undefined;
+
+interface ColumnConfig {
+    type: ColumnType;
+    key: string;
+    label?: string;
+    sortable?: boolean;
+    hidden?: boolean;
+    editable?: boolean;
+    formatter?: Function | undefined;
+    checkEmpty?: Function | undefined;
+    colspan?: ValidColSpan;
+    preferSlot?: Function | boolean;
+    isForRowKey?: boolean;
+    extractTitleFromColumn?: string;
+    slotData?: LktObject;
+    field?: FieldConfig | undefined;
+    anchor?: AnchorConfig | undefined;
+    button?: ButtonConfig | undefined;
+}
+
+interface TableConfig {
+    modelValue?: LktObject[];
+    type?: TableType;
+    columns?: Array<ColumnConfig>;
+    noResultsText?: string;
+    hideEmptyColumns?: boolean;
+    hideTableHeader?: boolean;
+    itemDisplayChecker?: Function;
+    rowDisplayType?: ValidTableRowTypeValue;
+    slotItemVar?: string;
+    loading?: boolean;
+    page?: number;
+    perms?: ValidTablePermission[];
+    editMode?: boolean;
+    dataStateConfig?: LktObject;
+    sortable?: boolean;
+    sorter?: Function;
+    initialSorting?: boolean;
+    drag?: ValidDragConfig;
+    paginator?: ValidPaginatorConfig;
+    carousel?: CarouselConfig;
+    header?: HeaderConfig;
+    title?: string;
+    titleTag?: string;
+    titleIcon?: string;
+    headerClass?: string;
+    editModeButton?: ButtonConfig;
+    saveButton?: ButtonConfig;
+    createButton?: ButtonConfig;
+    dropButton?: ButtonConfig;
+    editButton?: ButtonConfig;
+    hiddenSave?: boolean;
+    groupButton?: ButtonConfig | boolean;
+    requiredItemsForTopCreate?: number;
+    requiredItemsForBottomCreate?: number;
+    addNavigation?: boolean;
+    newValueGenerator?: Function;
+    wrapContentTag?: string;
+    wrapContentClass?: string;
+    itemsContainerClass?: string;
+    itemContainerClass?: string | Function;
+    createEnabledValidator?: Function;
+}
+
 interface FileBrowserConfig {
     http?: HttpCallConfig;
     entityCreateButton?: ButtonConfig;
     entityUpdateButton?: ButtonConfig;
     entityDropButton?: ButtonConfig;
+    listConfig?: TableConfig;
 }
 
 interface FieldConfig {
@@ -604,59 +792,12 @@ interface AccordionConfig {
     toggleIconAtEnd?: boolean;
 }
 
-declare enum IconType {
-    NotDefined = "",
-    Button = "button"
-}
-
-declare enum IconPosition {
-    Start = "start",
-    End = "end"
-}
-
-interface IconConfig {
-    icon?: ValidTextValue;
-    text?: ValidTextValue;
-    class?: ValidTextValue;
-    type?: IconType;
-    position?: IconPosition;
-    events?: EventsConfig | undefined;
-}
-
 interface BoxConfig {
     title?: string;
     iconAtEnd?: boolean;
     style?: string;
     class?: string;
     icon?: IconConfig | string;
-}
-
-declare enum ColumnType {
-    None = "",
-    Field = "field",
-    Button = "button",
-    Anchor = "anchor"
-}
-
-type ValidColSpan = Function | boolean | number | undefined;
-
-interface ColumnConfig {
-    type: ColumnType;
-    key: string;
-    label?: string;
-    sortable?: boolean;
-    hidden?: boolean;
-    editable?: boolean;
-    formatter?: Function | undefined;
-    checkEmpty?: Function | undefined;
-    colspan?: ValidColSpan;
-    preferSlot?: Function | boolean;
-    isForRowKey?: boolean;
-    extractTitleFromColumn?: string;
-    slotData?: LktObject;
-    field?: FieldConfig | undefined;
-    anchor?: AnchorConfig | undefined;
-    button?: ButtonConfig | undefined;
 }
 
 declare enum DocPageSize {
@@ -680,17 +821,6 @@ interface DocPageConfig {
     title?: string;
     img?: string;
     icon?: string;
-}
-
-type ValidDrag = boolean | ((item: LktObject) => boolean);
-
-interface DragConfig {
-    enabled: boolean;
-    isDraggable?: ValidDrag;
-    isValid?: ValidDrag;
-    isDisabled?: boolean | Function;
-    canRender?: boolean | Function;
-    dragKey?: string;
 }
 
 interface MultiLangValue {
@@ -720,12 +850,26 @@ declare enum FileEntityType {
     File = "file"
 }
 
+declare class FileEntity extends LktItem implements FileEntityConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof FileEntityConfig)[];
+    id?: number | string | undefined;
+    type: FileEntityType;
+    name: string;
+    src: string;
+    children: FileEntity[];
+    isPicked: boolean;
+    parent?: FileEntity;
+    constructor(data?: Partial<FileEntityConfig>);
+}
+
 interface FileEntityConfig {
     id?: number | string | undefined;
     type: FileEntityType;
     name: string;
     src: string;
     children?: FileEntityConfig[];
+    parent?: FileEntity;
 }
 
 interface FormFieldConfig {
@@ -737,22 +881,6 @@ interface PolymorphicElementConfig {
     tag: string;
     class: string;
     props: LktObject;
-}
-
-declare enum HeaderTag {
-    H1 = "h1",
-    H2 = "h2",
-    H3 = "h3",
-    H4 = "h4",
-    H5 = "h5",
-    H6 = "h6"
-}
-
-interface HeaderConfig {
-    tag?: HeaderTag;
-    class?: string;
-    text?: string;
-    icon?: string;
 }
 
 interface FormConfig {
@@ -809,21 +937,6 @@ declare enum NotificationType {
     Inline = "inline"
 }
 
-declare enum TablePermission {
-    Create = "create",
-    Update = "update",// Save changes
-    Edit = "edit",// Displays edit button
-    Drop = "drop",// Displays drop button
-    Sort = "sort",// Sort
-    SwitchEditMode = "switch-edit-mode",
-    InlineEdit = "inline-edit",// Be able to edit columns inside the table
-    InlineCreate = "inline-create",// Be able to append a new editable row (needs InlineEdit in order to be editable)
-    ModalCreate = "modal-create",// Be able to append a new row after save a modal form
-    InlineCreateEver = "inline-create-ever"
-}
-
-type ValidTablePermission = TablePermission | string;
-
 interface ItemCrudConfig {
     modelValue?: LktObject;
     editing?: boolean;
@@ -879,25 +992,6 @@ interface MenuConfig {
     http?: HttpCallConfig;
 }
 
-declare enum PaginatorType {
-    Pages = "pages",
-    PrevNext = "prev-next",
-    PagesPrevNext = "pages-prev-next",
-    PagesPrevNextFirstLast = "pages-prev-next-first-last",
-    LoadMore = "load-more",
-    Infinite = "infinite"
-}
-
-interface PaginatorConfig {
-    type?: PaginatorType;
-    modelValue?: number;
-    class?: string;
-    resource?: string;
-    resourceData?: LktObject;
-    readOnly?: boolean;
-    loading?: boolean;
-}
-
 declare enum ProgressType {
     None = "",
     Incremental = "incremental",
@@ -920,84 +1014,6 @@ interface ProgressConfig {
     header?: string;
     valueFormat?: ProgressValueFormat;
     palette?: string;
-}
-
-declare enum TableType {
-    Table = "table",
-    Item = "item",
-    Ul = "ul",
-    Ol = "ol",
-    Carousel = "carousel"
-}
-
-declare enum TableRowType {
-    Auto = 0,
-    PreferItem = 1,
-    PreferCustomItem = 2,
-    PreferColumns = 3
-}
-
-type ValidTableRowTypeValue = TableRowType | ((...args: any[]) => TableRowType) | undefined;
-
-type ValidDragConfig = DragConfig | undefined;
-
-type ValidPaginatorConfig = PaginatorConfig | undefined;
-
-interface CarouselConfig {
-    currentSlide?: number;
-    itemsToShow?: number;
-    itemsToScroll?: number;
-    autoplay?: number;
-    infinite?: boolean;
-    mouseDrag?: boolean;
-    touchDrag?: boolean;
-    pauseAutoplayOnHover?: boolean;
-    dir?: 'ltr' | 'rtl';
-    snapAlign?: 'start' | 'end' | 'center' | 'center-odd' | 'center-even';
-}
-
-interface TableConfig {
-    modelValue?: LktObject[];
-    type?: TableType;
-    columns?: Array<ColumnConfig>;
-    noResultsText?: string;
-    hideEmptyColumns?: boolean;
-    hideTableHeader?: boolean;
-    itemDisplayChecker?: Function;
-    rowDisplayType?: ValidTableRowTypeValue;
-    slotItemVar?: string;
-    loading?: boolean;
-    page?: number;
-    perms?: ValidTablePermission[];
-    editMode?: boolean;
-    dataStateConfig?: LktObject;
-    sortable?: boolean;
-    sorter?: Function;
-    initialSorting?: boolean;
-    drag?: ValidDragConfig;
-    paginator?: ValidPaginatorConfig;
-    carousel?: CarouselConfig;
-    header?: HeaderConfig;
-    title?: string;
-    titleTag?: string;
-    titleIcon?: string;
-    headerClass?: string;
-    editModeButton?: ButtonConfig;
-    saveButton?: ButtonConfig;
-    createButton?: ButtonConfig;
-    dropButton?: ButtonConfig;
-    editButton?: ButtonConfig;
-    hiddenSave?: boolean;
-    groupButton?: ButtonConfig | boolean;
-    requiredItemsForTopCreate?: number;
-    requiredItemsForBottomCreate?: number;
-    addNavigation?: boolean;
-    newValueGenerator?: Function;
-    wrapContentTag?: string;
-    wrapContentClass?: string;
-    itemsContainerClass?: string;
-    itemContainerClass?: string | Function;
-    createEnabledValidator?: Function;
 }
 
 interface TabsConfig {
@@ -1127,6 +1143,7 @@ declare class Anchor extends LktItem implements AnchorConfig {
     imposter: boolean;
     external: boolean;
     text?: ValidTextValue;
+    icon?: IconConfig | string;
     events?: EventsConfig | undefined;
     getHref(): string;
     constructor(data?: Partial<AnchorConfig>);
@@ -1345,18 +1362,6 @@ declare class FieldValidation {
     static createMinChars(min: number, status?: ValidationStatus): FieldValidation;
     static createMaxChars(max: number, status?: ValidationStatus): FieldValidation;
     static createEqualTo(value: number | string, status?: ValidationStatus): FieldValidation;
-}
-
-declare class FileEntity extends LktItem implements FileEntityConfig {
-    static lktAllowUndefinedProps: string[];
-    static lktDefaultValues: (keyof FileEntityConfig)[];
-    id?: number | string | undefined;
-    type: FileEntityType;
-    name: string;
-    src: string;
-    children?: FileEntityConfig[];
-    isPicked: boolean;
-    constructor(data?: Partial<FileEntityConfig>);
 }
 
 declare class Header extends LktItem implements HeaderConfig {

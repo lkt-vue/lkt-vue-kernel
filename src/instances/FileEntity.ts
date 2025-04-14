@@ -14,19 +14,24 @@ export class FileEntity extends LktItem implements FileEntityConfig {
         'name',
         'src',
         'children',
+        'parent',
     ];
 
     id?: number|string|undefined = undefined;
     type: FileEntityType = FileEntityType.Image;
     name: string = '';
     src: string = '';
-    children?: FileEntityConfig[] = [];
+    children: FileEntity[] = [];
 
     isPicked: boolean = false;
+    parent?:FileEntity = undefined;
 
 
     constructor(data: Partial<FileEntityConfig> = {}) {
         super();
         this.feed(data);
+
+        if (!this.children) this.children = [];
+        this.children?.map(child => new FileEntity({...child, parent: this}));
     }
 }

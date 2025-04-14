@@ -5,6 +5,7 @@ import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {ModalConfig} from "./ModalConfig.ts";
 import {EventsConfig} from "./EventsConfig.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
+import {IconConfig} from "./IconConfig.ts";
 
 export interface AnchorConfig {
     type?: AnchorType
@@ -19,6 +20,7 @@ export interface AnchorConfig {
     imposter?: boolean
     external?: boolean
     text?: ValidTextValue
+    icon?: IconConfig|string
 
     // Events
     events?: EventsConfig|undefined
