@@ -7,5 +7,5 @@ export interface FileEntityConfig {
     name: string
     src: string
     children?: FileEntityConfig[]
-    parent?:FileEntity
+    parent?:number|string|undefined
 }

@@ -850,26 +850,13 @@ declare enum FileEntityType {
     File = "file"
 }
 
-declare class FileEntity extends LktItem implements FileEntityConfig {
-    static lktAllowUndefinedProps: string[];
-    static lktDefaultValues: (keyof FileEntityConfig)[];
-    id?: number | string | undefined;
-    type: FileEntityType;
-    name: string;
-    src: string;
-    children: FileEntity[];
-    isPicked: boolean;
-    parent?: FileEntity;
-    constructor(data?: Partial<FileEntityConfig>);
-}
-
 interface FileEntityConfig {
     id?: number | string | undefined;
     type: FileEntityType;
     name: string;
     src: string;
     children?: FileEntityConfig[];
-    parent?: FileEntity;
+    parent?: number | string | undefined;
 }
 
 interface FormFieldConfig {
@@ -1362,6 +1349,19 @@ declare class FieldValidation {
     static createMinChars(min: number, status?: ValidationStatus): FieldValidation;
     static createMaxChars(max: number, status?: ValidationStatus): FieldValidation;
     static createEqualTo(value: number | string, status?: ValidationStatus): FieldValidation;
+}
+
+declare class FileEntity extends LktItem implements FileEntityConfig {
+    static lktAllowUndefinedProps: string[];
+    static lktDefaultValues: (keyof FileEntityConfig)[];
+    id?: number | string | undefined;
+    type: FileEntityType;
+    name: string;
+    src: string;
+    children: FileEntity[];
+    isPicked: boolean;
+    parent?: number | string | undefined;
+    constructor(data?: Partial<FileEntityConfig>);
 }
 
 declare class Header extends LktItem implements HeaderConfig {

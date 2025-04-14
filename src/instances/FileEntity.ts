@@ -24,7 +24,7 @@ export class FileEntity extends LktItem implements FileEntityConfig {
     children: FileEntity[] = [];
 
     isPicked: boolean = false;
-    parent?:FileEntity = undefined;
+    parent?:number|string|undefined = undefined;
 
 
     constructor(data: Partial<FileEntityConfig> = {}) {
@@ -32,6 +32,6 @@ export class FileEntity extends LktItem implements FileEntityConfig {
         this.feed(data);
 
         if (!this.children) this.children = [];
-        this.children?.map(child => new FileEntity({...child, parent: this}));
+        this.children = this.children.map(child => new FileEntity({...child, parent: this.id}));
     }
 }
