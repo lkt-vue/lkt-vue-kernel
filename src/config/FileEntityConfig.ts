@@ -1,5 +1,4 @@
 import {FileEntityType} from "../enums/FileEntityType.ts";
-import {FileEntity} from "../instances/FileEntity.ts";
 
 export interface FileEntityConfig {
     id?: number|string|undefined
