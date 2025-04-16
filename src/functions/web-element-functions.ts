@@ -1,6 +1,6 @@
 import {WebElementType} from "../enums/WebElementType.ts";
 import {WebElementConfig} from "../config/WebElementConfig.ts";
-import {AccordionType, LktObject, MultiLangValue, WebElementLayoutType} from "../index.ts";
+import {AccordionType, BannerType, LktObject, MultiLangValue, WebElementLayoutType} from "../index.ts";
 import {getAvailableLanguages} from "lkt-i18n";
 
 export const getDefaultLktTextWebElement = (text: string = 'Time to create'): WebElementConfig => {
@@ -322,4 +322,49 @@ export const getDefaultLktImageWebElement = (): WebElementConfig => {
             justifySelf: [],
         }
     }
+}
+
+export const getDefaultLktTextBannerWebElement = (): WebElementConfig => {
+
+    let header: MultiLangValue = {},
+        subHeader: MultiLangValue = {},
+        text: MultiLangValue = {};
+
+    const availableLanguages = getAvailableLanguages();
+
+    availableLanguages.forEach(lang => {
+        //@ts-ignore
+        header[lang] = 'Title goes here';
+        //@ts-ignore
+        subHeader[lang] = 'Subtitle goes here';
+        // @ts-ignore
+        text[lang] = 'Content goes here';
+    })
+
+    return <WebElementConfig>{
+        id: 0,
+        type: WebElementType.LktTextBanner,
+        props: {
+            header,
+            subHeader,
+            text,
+            art: {},
+            media: {},
+            opacity: 0,
+            type: BannerType.Static
+        },
+        config: {
+            hasHeader: true,
+            hasSubHeader: true,
+            hasIcon: true,
+            amountOfCallToActions: 0,
+            callToActions: [],
+        },
+        children: [],
+        layout: {
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
+    };
 }

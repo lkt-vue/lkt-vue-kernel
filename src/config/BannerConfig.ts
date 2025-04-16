@@ -7,5 +7,6 @@ export interface BannerConfig {
     header?: PolymorphicElementConfig
     subHeader?: PolymorphicElementConfig
     art?: ImageConfig
+    media?: ImageConfig
     opacity?: string|number
 }

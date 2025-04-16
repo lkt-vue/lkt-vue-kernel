@@ -199,7 +199,8 @@ export {
     getDefaultLktImageWebElement,
     getDefaultLktButtonWebElement,
     getDefaultLktLayoutWebElement,
-    getDefaultLktHeaderWebElement
+    getDefaultLktHeaderWebElement,
+    getDefaultLktTextBannerWebElement
 } from "./functions/web-element-functions.ts";
 export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";

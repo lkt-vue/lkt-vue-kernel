@@ -18,6 +18,7 @@ export class Banner extends LktItem implements BannerConfig {
     header?: PolymorphicElementConfig = undefined;
     subHeader?: PolymorphicElementConfig = undefined;
     art?: ImageConfig = undefined;
+    media?: ImageConfig = undefined;
     opacity?: string|number = undefined;
 
     constructor(data: Partial<BannerConfig> = {}) {

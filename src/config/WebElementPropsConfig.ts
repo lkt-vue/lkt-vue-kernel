@@ -5,5 +5,6 @@ export interface WebElementPropsConfig extends LktObject {
     class?: string,
     icon?: string,
     header?: MultiLangValue
+    subHeader?: MultiLangValue
     text?: MultiLangValue
 }

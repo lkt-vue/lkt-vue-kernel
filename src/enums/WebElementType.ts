@@ -4,6 +4,8 @@ export enum WebElementType {
     LktTextAccordion = 'lkt-text-accordion',
     LktLayoutBox = 'lkt-layout-box',
     LktTextBox = 'lkt-text-box',
+    LktLayoutBanner = 'lkt-layout-banner',
+    LktTextBanner = 'lkt-text-banner',
     LktButton = 'lkt-button',
     LktLayout = 'lkt-layout',
     LktHeader = 'lkt-header',
