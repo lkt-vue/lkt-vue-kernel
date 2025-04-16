@@ -26,6 +26,7 @@ export {
  */
 export {AccordionConfig} from './config/AccordionConfig.ts';
 export {AnchorConfig} from './config/AnchorConfig.ts';
+export {BannerConfig} from './config/BannerConfig.ts';
 export {BooleanFieldConfig} from './config/BooleanFieldConfig.ts';
 export {BoxConfig} from './config/BoxConfig.ts';
 export {ButtonConfig} from './config/ButtonConfig.ts';
@@ -73,6 +74,7 @@ export {LktStrictItem} from './instances/LktStrictItem.ts';
 export {LktColor} from './instances/LktColor.ts';
 export {Accordion} from './instances/Accordion.ts';
 export {Anchor} from './instances/Anchor.ts';
+export {Banner} from './instances/Banner.ts';
 export {Box} from './instances/Box.ts';
 export {Button} from './instances/Button.ts';
 export {Column} from './instances/Column.ts';
@@ -104,6 +106,7 @@ export {WebElement} from './instances/WebElement.ts';
 export {AccordionToggleMode} from './enums/AccordionToggleMode.ts';
 export {AccordionType} from './enums/AccordionType.ts';
 export {AnchorType} from './enums/AnchorType.ts';
+export {BannerType} from './enums/BannerType.ts';
 export {ButtonType} from './enums/ButtonType.ts';
 export {ColumnType} from './enums/ColumnType.ts';
 export {DocPageSize} from './enums/DocPageSize.ts';
