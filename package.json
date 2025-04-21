@@ -1,6 +1,6 @@
 {
   "name": "lkt-vue-kernel",
-  "version": "1.0.75",
+  "version": "1.0.76",
   "description": "LKT Vue Kernel",
   "keywords": [
     "lkt",
@@ -41,5 +41,9 @@
     "lkt-string-tools": "^1.0.8",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "dependencies": {
+    "lkt-date-tools": "^1.0.4",
+    "lkt-object-tools": "^1.0.3"
   }
 }

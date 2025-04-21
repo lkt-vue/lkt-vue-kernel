@@ -65,6 +65,7 @@ export {TagConfig} from './config/TagConfig.ts';
 export {ToastConfig} from './config/ToastConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
 export {WebElementConfig} from './config/WebElementConfig.ts';
+export {WebPageConfig} from './config/WebPageConfig.ts';
 
 /**
  * Export instances
@@ -99,6 +100,7 @@ export {Tag} from './instances/Tag.ts';
 export {Toast} from './instances/Toast.ts';
 export {Tooltip} from './instances/Tooltip.ts';
 export {WebElement} from './instances/WebElement.ts';
+export {WebPage} from './instances/WebPage.ts';
 
 /**
  * Export enums
@@ -145,6 +147,7 @@ export {ValidationCode} from './enums/ValidationCode.ts';
 export {ValidationStatus} from './enums/ValidationStatus.ts';
 export {WebElementLayoutType} from './enums/WebElementLayoutType.ts';
 export {WebElementType} from './enums/WebElementType.ts';
+export {WebParentType} from './enums/WebParentType.ts';
 
 /**
  * Export types
@@ -206,6 +209,13 @@ export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-fun
 export {lktDebug} from "./functions/debug-functions.ts";
 export {addModal, closeModal, openModal} from "./functions/modal-functions.ts";
 export {createColumn} from "./functions/table-functions.ts";
+export {
+    applyTextFormat,
+    applyTextAlignment,
+    changeBackgroundColor,
+    changeFontFamily,
+    changeTextColor
+} from "./functions/wysiwyg-functions.ts";
 
 /**
  * Export controllers

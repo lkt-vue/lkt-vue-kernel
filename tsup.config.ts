@@ -11,6 +11,7 @@ export default defineConfig({
         'lkt-control-tools',
         'lkt-http-client',
         'lkt-string-tools',
+        'lkt-date-tools',
         'lkt-i18n',
     ],
 });

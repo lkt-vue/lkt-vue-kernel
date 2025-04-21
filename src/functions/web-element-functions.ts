@@ -1,9 +1,8 @@
 import {WebElementType} from "../enums/WebElementType.ts";
-import {WebElementConfig} from "../config/WebElementConfig.ts";
-import {AccordionType, BannerType, LktObject, MultiLangValue, WebElementLayoutType} from "../index.ts";
+import {AccordionType, BannerType, LktObject, MultiLangValue, WebElement, WebElementLayoutType} from "../index.ts";
 import {getAvailableLanguages} from "lkt-i18n";
 
-export const getDefaultLktTextWebElement = (text: string = 'Time to create'): WebElementConfig => {
+export const getDefaultLktTextWebElement = (text: string = 'Time to create'): WebElement => {
     let translations: LktObject = {};
 
     const availableLanguages = getAvailableLanguages();
@@ -11,8 +10,7 @@ export const getDefaultLktTextWebElement = (text: string = 'Time to create'): We
     availableLanguages.forEach(lang => {
         translations[lang] = text;
     })
-
-    return {
+    return new WebElement({
         id: 0,
         type: WebElementType.LktText,
         props: {
@@ -24,10 +22,10 @@ export const getDefaultLktTextWebElement = (text: string = 'Time to create'): We
             alignSelf: [],
             justifySelf: [],
         }
-    };
+    });
 }
 
-export const getDefaultLktAnchorWebElement = (): WebElementConfig => {
+export const getDefaultLktAnchorWebElement = (): WebElement => {
 
     let text: LktObject = {};
 
@@ -36,8 +34,7 @@ export const getDefaultLktAnchorWebElement = (): WebElementConfig => {
     availableLanguages.forEach(lang => {
         text[lang] = 'Title goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktAnchor,
         props: {
@@ -47,10 +44,10 @@ export const getDefaultLktAnchorWebElement = (): WebElementConfig => {
             hasHeader: true,
             hasIcon: true,
         },
-    };
+    });
 }
 
-export const getDefaultLktButtonWebElement = (): WebElementConfig => {
+export const getDefaultLktButtonWebElement = (): WebElement => {
 
     let text: LktObject = {};
 
@@ -59,8 +56,7 @@ export const getDefaultLktButtonWebElement = (): WebElementConfig => {
     availableLanguages.forEach(lang => {
         text[lang] = 'Title goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktButton,
         props: {
@@ -78,18 +74,16 @@ export const getDefaultLktButtonWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    };
+    });
 }
 
-export const getDefaultLktLayoutWebElement = (): WebElementConfig => {
-    return <WebElementConfig>{
+export const getDefaultLktLayoutWebElement = (): WebElement => {
+    return new WebElement({
         id: 0,
         type: WebElementType.LktLayout,
         props: {},
         config: {},
-        children: [
-            getDefaultLktTextWebElement('Content goes here'),
-        ],
+        children: [],
         layout: {
             type: WebElementLayoutType.Grid,
             amountOfItems: [],
@@ -99,10 +93,10 @@ export const getDefaultLktLayoutWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         },
-    };
+    });
 }
 
-export const getDefaultLktTextBoxWebElement = (): WebElementConfig => {
+export const getDefaultLktTextBoxWebElement = (): WebElement => {
 
     let header: MultiLangValue = {},
         text: MultiLangValue = {};
@@ -115,8 +109,7 @@ export const getDefaultLktTextBoxWebElement = (): WebElementConfig => {
         // @ts-ignore
         text[lang] = 'Content goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktTextBox,
         props: {
@@ -133,10 +126,10 @@ export const getDefaultLktTextBoxWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    };
+    });
 }
 
-export const getDefaultLktLayoutBoxWebElement = (): WebElementConfig => {
+export const getDefaultLktLayoutBoxWebElement = (): WebElement => {
 
     let header: LktObject = {};
 
@@ -145,8 +138,7 @@ export const getDefaultLktLayoutBoxWebElement = (): WebElementConfig => {
     availableLanguages.forEach(lang => {
         header[lang] = 'Title goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktLayoutBox,
         props: {
@@ -168,10 +160,10 @@ export const getDefaultLktLayoutBoxWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    };
+    });
 }
 
-export const getDefaultLktLayoutAccordionWebElement = (): WebElementConfig => {
+export const getDefaultLktLayoutAccordionWebElement = (): WebElement => {
 
     let header: LktObject = {};
 
@@ -180,8 +172,7 @@ export const getDefaultLktLayoutAccordionWebElement = (): WebElementConfig => {
     availableLanguages.forEach(lang => {
         header[lang] = 'Title goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktLayoutAccordion,
         props: {
@@ -204,10 +195,10 @@ export const getDefaultLktLayoutAccordionWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    }
+    })
 }
 
-export const getDefaultLktTextAccordionWebElement = (): WebElementConfig => {
+export const getDefaultLktTextAccordionWebElement = (): WebElement => {
 
     let header: LktObject = {},
         text: LktObject = {};
@@ -218,8 +209,7 @@ export const getDefaultLktTextAccordionWebElement = (): WebElementConfig => {
         header[lang] = 'Title goes here';
         text[lang] = 'Content goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktTextAccordion,
         props: {
@@ -237,10 +227,10 @@ export const getDefaultLktTextAccordionWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    }
+    })
 }
 
-export const getDefaultLktHeaderWebElement = (): WebElementConfig => {
+export const getDefaultLktHeaderWebElement = (): WebElement => {
 
     let text: LktObject = {};
 
@@ -249,8 +239,7 @@ export const getDefaultLktHeaderWebElement = (): WebElementConfig => {
     availableLanguages.forEach(lang => {
         text[lang] = 'Title goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktHeader,
         props: {
@@ -265,10 +254,10 @@ export const getDefaultLktHeaderWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    }
+    })
 }
 
-export const getDefaultLktIconWebElement = (): WebElementConfig => {
+export const getDefaultLktIconWebElement = (): WebElement => {
 
     let text: LktObject = {};
 
@@ -277,8 +266,7 @@ export const getDefaultLktIconWebElement = (): WebElementConfig => {
     availableLanguages.forEach(lang => {
         text[lang] = 'Content goes here';
     })
-
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktIcon,
         props: {
@@ -293,24 +281,30 @@ export const getDefaultLktIconWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    }
+    })
 }
 
-export const getDefaultLktImageWebElement = (): WebElementConfig => {
+export const getDefaultLktImageWebElement = (): WebElement => {
 
-    let text: LktObject = {};
+    let text: LktObject = {},
+        alt: LktObject = {},
+        title: LktObject = {};
 
     const availableLanguages = getAvailableLanguages();
 
     availableLanguages.forEach(lang => {
         text[lang] = 'Image description goes here';
+        alt[lang] = '';
+        title[lang] = '';
     })
 
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktImage,
         props: {
             text,
+            alt,
+            title,
         },
         config: {
             hasHeader: true,
@@ -321,10 +315,10 @@ export const getDefaultLktImageWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    }
+    })
 }
 
-export const getDefaultLktTextBannerWebElement = (): WebElementConfig => {
+export const getDefaultLktTextBannerWebElement = (): WebElement => {
 
     let header: MultiLangValue = {},
         subHeader: MultiLangValue = {},
@@ -341,7 +335,7 @@ export const getDefaultLktTextBannerWebElement = (): WebElementConfig => {
         text[lang] = 'Content goes here';
     })
 
-    return <WebElementConfig>{
+    return new WebElement({
         id: 0,
         type: WebElementType.LktTextBanner,
         props: {
@@ -366,5 +360,5 @@ export const getDefaultLktTextBannerWebElement = (): WebElementConfig => {
             alignSelf: [],
             justifySelf: [],
         }
-    };
+    });
 }
