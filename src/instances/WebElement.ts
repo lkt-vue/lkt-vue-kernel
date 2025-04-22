@@ -6,12 +6,11 @@ import {WebElementLayoutConfig} from "../config/WebElementLayoutConfig.ts";
 import {WebElementLayoutType} from "../enums/WebElementLayoutType.ts";
 import {BannerType} from "../enums/BannerType.ts";
 import {WebElementConfiguration} from "../config/WebElementConfiguration.ts";
-import {generateRandomString} from "lkt-string-tools";
-import {time} from "lkt-date-tools";
 import {
     getDefaultLktAnchorWebElement,
     getDefaultLktButtonWebElement,
     getDefaultLktHeaderWebElement,
+    getDefaultLktIconsWebElement,
     getDefaultLktIconWebElement,
     getDefaultLktImageWebElement,
     getDefaultLktLayoutAccordionWebElement,
@@ -34,6 +33,7 @@ export class WebElement extends LktItem implements WebElementConfig {
         'children',
         'layout',
         'config',
+        'subElements',
     ];
 
     id?: number|string|undefined = 0;
@@ -47,6 +47,7 @@ export class WebElement extends LktItem implements WebElementConfig {
         text: {},
     }
     children: WebElement[] = [];
+    subElements: WebElement[] = [];
     layout: WebElementLayoutConfig = {
         type: WebElementLayoutType.Grid,
         amountOfItems: [],
@@ -64,8 +65,8 @@ export class WebElement extends LktItem implements WebElementConfig {
         callToActions: [],
     }
 
-    keyMoment: string = '';
-    uid: string = '';
+    // keyMoment: string = '';
+    // uid: string = '';
 
     constructor(data: Partial<WebElementConfig> = {}) {
         super();
@@ -94,12 +95,16 @@ export class WebElement extends LktItem implements WebElementConfig {
 
         if (this.type === WebElementType.LktTextBanner) {
             if (!this.props.subHeader) this.props.subHeader = {};
-            if (!this.props.art) this.props.art = {
-                src: '',
-            };
-            if (!this.props.media) this.props.media = {
-                src: ''
-            };
+            if (!this.props.art || typeof this.props.art !== 'object' || Object.keys(this.props.art).length === 0) {
+                this.props.art = {
+                    src: '',
+                };
+            }
+            if (!this.props.media || typeof this.props.media !== 'object' || Object.keys(this.props.media).length === 0) {
+                this.props.media = {
+                    src: ''
+                };
+            }
             if (!this.props.opacity) this.props.opacity = 0;
             if (!this.props.type) this.props.type = BannerType.Static;
         }
@@ -114,18 +119,11 @@ export class WebElement extends LktItem implements WebElementConfig {
             this.config.callToActions = this.config.callToActions.map(cfg => new WebElement(cfg));
         }
 
-        this.uid = `${generateRandomString(6)}-${this.id}`;
-        this.updateKeyMoment();
-
         if (!Array.isArray(this.children)){
             this.children = [];
         }
         this.children = this.children.map(child => new WebElement(child));
-    }
-
-    updateKeyMoment() {
-        this.keyMoment = `${this.uid}-${time()}`;
-        return this;
+        this.subElements = this.subElements.map(child => new WebElement(child));
     }
 
     addChild(child: WebElement, index: number|undefined = undefined) {
@@ -170,6 +168,9 @@ export class WebElement extends LktItem implements WebElementConfig {
             case WebElementType.LktIcon:
                 return getDefaultLktIconWebElement();
 
+            case WebElementType.LktIcons:
+                return getDefaultLktIconsWebElement();
+
             case WebElementType.LktImage:
                 return getDefaultLktImageWebElement();
 
@@ -193,5 +194,15 @@ export class WebElement extends LktItem implements WebElementConfig {
         }
 
         return new WebElement();
+    }
+
+    addSubElement() {
+        switch (this.type) {
+            case WebElementType.LktIcons:
+                this.subElements.push(getDefaultLktIconWebElement());
+                break;
+        }
+
+        return this;
     }
 }

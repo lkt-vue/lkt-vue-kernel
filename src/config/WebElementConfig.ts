@@ -11,4 +11,5 @@ export interface WebElementConfig {
     children?: WebElementConfig[]
     layout: WebElementLayoutConfig
     config: WebElementConfiguration
+    subElements: WebElementConfig[]
 }

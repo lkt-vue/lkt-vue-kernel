@@ -10,6 +10,7 @@ export enum WebElementType {
     LktLayout = 'lkt-layout',
     LktHeader = 'lkt-header',
     LktIcon = 'lkt-icon',
+    LktIcons = 'lkt-icons',
     LktImage = 'lkt-image',
     LktText = 'lkt-text',
 }

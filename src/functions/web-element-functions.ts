@@ -362,3 +362,47 @@ export const getDefaultLktTextBannerWebElement = (): WebElement => {
         }
     });
 }
+
+export const getDefaultLktIconsWebElement = (): WebElement => {
+
+    let header: MultiLangValue = {},
+        subHeader: MultiLangValue = {},
+        text: MultiLangValue = {};
+
+    const availableLanguages = getAvailableLanguages();
+
+    availableLanguages.forEach(lang => {
+        //@ts-ignore
+        header[lang] = 'Title goes here';
+        //@ts-ignore
+        subHeader[lang] = 'Subtitle goes here';
+        // @ts-ignore
+        text[lang] = 'Content goes here';
+    })
+
+    return new WebElement({
+        id: 0,
+        type: WebElementType.LktIcons,
+        props: {
+            header,
+            subHeader,
+            text,
+        },
+        config: {
+            hasHeader: true,
+            hasSubHeader: true,
+            hasIcon: true,
+            amountOfCallToActions: 0,
+            callToActions: [],
+        },
+        subElements: [
+            getDefaultLktIconWebElement(),
+        ],
+        layout: {
+            type: WebElementLayoutType.FlexRows,
+            columns: [],
+            alignSelf: [],
+            justifySelf: [],
+        }
+    });
+}

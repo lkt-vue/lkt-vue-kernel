@@ -1063,6 +1063,7 @@ declare enum WebElementType {
     LktLayout = "lkt-layout",
     LktHeader = "lkt-header",
     LktIcon = "lkt-icon",
+    LktIcons = "lkt-icons",
     LktImage = "lkt-image",
     LktText = "lkt-text"
 }
@@ -1091,15 +1092,14 @@ declare class WebElement extends LktItem implements WebElementConfig {
     component?: string;
     props: WebElementPropsConfig;
     children: WebElement[];
+    subElements: WebElement[];
     layout: WebElementLayoutConfig;
     config: WebElementConfiguration;
-    keyMoment: string;
-    uid: string;
     constructor(data?: Partial<WebElementConfig>);
-    updateKeyMoment(): this;
     addChild(child: WebElement, index?: number | undefined): this;
     getClone(): WebElement;
     static createByType(type: WebElementType): WebElement;
+    addSubElement(): this;
 }
 
 interface WebElementConfiguration {
@@ -1118,6 +1118,7 @@ interface WebElementConfig {
     children?: WebElementConfig[];
     layout: WebElementLayoutConfig;
     config: WebElementConfiguration;
+    subElements: WebElementConfig[];
 }
 
 interface WebPageConfig {
