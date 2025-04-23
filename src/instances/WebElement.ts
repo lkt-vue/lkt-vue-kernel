@@ -22,6 +22,8 @@ import {
     getDefaultLktTextWebElement
 } from "../functions/web-element-functions.ts";
 import {cloneObject} from "lkt-object-tools";
+import {generateRandomString} from "lkt-string-tools";
+import {time} from "lkt-date-tools";
 
 export class WebElement extends LktItem implements WebElementConfig {
 
@@ -65,8 +67,8 @@ export class WebElement extends LktItem implements WebElementConfig {
         callToActions: [],
     }
 
-    // keyMoment: string = '';
-    // uid: string = '';
+    keyMoment: string = '';
+    uid: string = '';
 
     constructor(data: Partial<WebElementConfig> = {}) {
         super();
@@ -124,6 +126,13 @@ export class WebElement extends LktItem implements WebElementConfig {
         }
         this.children = this.children.map(child => new WebElement(child));
         this.subElements = this.subElements.map(child => new WebElement(child));
+
+        this.uid = [this.id, generateRandomString(6)].join('-');
+        this.updateKeyMoment();
+    }
+
+    updateKeyMoment() {
+        this.keyMoment = [this.uid, time()].join('-');
     }
 
     addChild(child: WebElement, index: number|undefined = undefined) {

@@ -4,6 +4,7 @@ import {RenderModalConfig} from "./config/RenderModalConfig.ts";
 import {ModalRegister} from "./config/ModalRegister.ts";
 import {ModalConfig} from "../config/ModalConfig.ts";
 import {ModalCanvasInterface} from "./controller-canvas/ModalCanvasInterface.ts";
+import {ValidModalKey} from "../types/ValidModalKey.ts";
 
 export class ModalController {
     private static config: Array<ModalRegister> = [];
@@ -14,6 +15,22 @@ export class ModalController {
 
     static addModal(modalConfig: ModalRegister) {
         ModalController.config.push(modalConfig);
+        return ModalController;
+    }
+
+    static updateModalKey(modalConfig: ModalConfig, newKey: ValidModalKey) {
+        console.log('updateModalKey: ', modalConfig, newKey);
+        let oldIndex = ModalController.getInstanceIndex(modalConfig);
+        let newIndex = ModalController.getInstanceIndex({
+            modalName: modalConfig.modalName,
+            modalKey: newKey,
+        });
+        ModalController.components[newIndex] = ModalController.components[oldIndex];
+        ModalController.components[newIndex].modalConfig.modalKey = newKey;
+        ModalController.components[newIndex].legacyData.props.modalConfig.modalKey = newKey;
+        ModalController.components[newIndex].legacyData.props.modalKey = newKey;
+        delete ModalController.components[oldIndex];
+        ModalController.canvas?.refresh();
         return ModalController;
     }
 

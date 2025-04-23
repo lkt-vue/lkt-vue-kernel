@@ -1095,7 +1095,10 @@ declare class WebElement extends LktItem implements WebElementConfig {
     subElements: WebElement[];
     layout: WebElementLayoutConfig;
     config: WebElementConfiguration;
+    keyMoment: string;
+    uid: string;
     constructor(data?: Partial<WebElementConfig>);
+    updateKeyMoment(): void;
     addChild(child: WebElement, index?: number | undefined): this;
     getClone(): WebElement;
     static createByType(type: WebElementType): WebElement;
@@ -1772,6 +1775,7 @@ declare class ModalController {
     private static zIndex;
     static canvas?: ModalCanvasInterface | undefined;
     static addModal(modalConfig: ModalRegister): typeof ModalController;
+    static updateModalKey(modalConfig: ModalConfig, newKey: ValidModalKey): typeof ModalController;
     private static findConfig;
     private static getInstanceIndex;
     private static getModalInfo;
