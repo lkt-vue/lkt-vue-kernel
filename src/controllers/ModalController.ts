@@ -5,6 +5,9 @@ import {ModalRegister} from "./config/ModalRegister.ts";
 import {ModalConfig} from "../config/ModalConfig.ts";
 import {ModalCanvasInterface} from "./controller-canvas/ModalCanvasInterface.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
+import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
+import {ModalCallbackAction} from "../enums/ModalCallbackAction.ts";
+import {nextTick} from "vue";
 
 export class ModalController {
     private static config: Array<ModalRegister> = [];
@@ -15,22 +18,6 @@ export class ModalController {
 
     static addModal(modalConfig: ModalRegister) {
         ModalController.config.push(modalConfig);
-        return ModalController;
-    }
-
-    static updateModalKey(modalConfig: ModalConfig, newKey: ValidModalKey) {
-        console.log('updateModalKey: ', modalConfig, newKey);
-        let oldIndex = ModalController.getInstanceIndex(modalConfig);
-        let newIndex = ModalController.getInstanceIndex({
-            modalName: modalConfig.modalName,
-            modalKey: newKey,
-        });
-        ModalController.components[newIndex] = ModalController.components[oldIndex];
-        ModalController.components[newIndex].modalConfig.modalKey = newKey;
-        ModalController.components[newIndex].legacyData.props.modalConfig.modalKey = newKey;
-        ModalController.components[newIndex].legacyData.props.modalKey = newKey;
-        delete ModalController.components[oldIndex];
-        ModalController.canvas?.refresh();
         return ModalController;
     }
 
@@ -180,5 +167,87 @@ export class ModalController {
 
             ModalController.canvas?.refresh();
         }
+    }
+
+    static reOpen (config: ModalConfig, componentProps: LktObject = {}, legacy: boolean = false) {
+        if (!ModalController.canvas) {
+            console.warn('ModalCanvas not defined');
+            return;
+        }
+        ModalController.close(config);
+        ModalController.canvas?.refresh();
+        nextTick(() => {
+            ModalController.open(config, componentProps, legacy);
+            //@ts-ignore
+            ModalController.canvas?.refresh();
+        });
+    };
+
+    static execModal (config: ModalConfig, method: string, componentProps: LktObject = {}) {
+        if (!ModalController.canvas) {
+            console.warn('ModalCanvas not defined');
+            return;
+        }
+        ModalController.canvas?.execModal(config.modalName, config.modalKey, method, componentProps);
+        ModalController.canvas?.refresh();
+    }
+
+    static refresh (config: ModalConfig, componentProps: LktObject = {}) {
+        if (!ModalController.canvas) {
+            console.warn('ModalCanvas not defined');
+            return;
+        }
+        ModalController.canvas?.refreshModal(config.modalName, config.modalKey, componentProps);
+        ModalController.canvas?.refresh();
+    }
+
+    static runModalCallback (cfg: ModalCallbackConfig) {
+        let modalKey = cfg.modalKey ? cfg.modalKey : '_',
+            args = cfg.args ? cfg.args : {};
+
+        let config = {
+            modalName: cfg.modalName,
+            modalKey,
+        }
+
+        switch (cfg.action) {
+            case ModalCallbackAction.ReOpen:
+                return ModalController.reOpen(config, args);
+
+            case ModalCallbackAction.Open:
+                return ModalController.open(config, args);
+
+            case ModalCallbackAction.Close:
+                return ModalController.close(config);
+
+            case ModalCallbackAction.Refresh:
+                return ModalController.refresh(config, args);
+
+            case ModalCallbackAction.Exec:
+                let method = cfg.method;
+                if (!method) return;
+                return ModalController.execModal(config, method, args);
+
+        }
+    }
+
+    static updateModalKey(modalConfig: ModalConfig, newKey: ValidModalKey) {
+        if (!ModalController.canvas) {
+            console.warn('ModalCanvas not defined');
+            return;
+        }
+
+        let oldIndex = ModalController.getInstanceIndex(modalConfig);
+        let newIndex = ModalController.getInstanceIndex({
+            modalName: modalConfig.modalName,
+            modalKey: newKey,
+        });
+        ModalController.components[newIndex] = ModalController.components[oldIndex];
+        ModalController.components[newIndex].modalConfig.modalKey = newKey;
+        ModalController.components[newIndex].legacyData.props.modalConfig.modalKey = newKey;
+        ModalController.components[newIndex].legacyData.props.modalKey = newKey;
+        delete ModalController.components[oldIndex];
+        ModalController.canvas?.refresh();
+        return ModalController;
     }
 }
