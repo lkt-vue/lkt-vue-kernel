@@ -1751,11 +1751,17 @@ interface ModalRegister {
     config?: Partial<ModalConfig>;
 }
 
+interface ModalCanvasInterface {
+    refresh: Function;
+    refreshModal: Function;
+    execModal: Function;
+}
+
 declare const addModal: (config: ModalRegister) => void;
 declare const addConfirm: (modalConfig: ModalRegister) => void;
 declare const openModal: (modalConfig: ModalConfig, componentProps: LktObject) => void;
 declare const closeModal: (modalConfig: ModalConfig) => void;
-declare const setModalCanvas: (canvas: any) => void;
+declare const setModalCanvas: (canvas: ModalCanvasInterface) => void;
 declare const openConfirm: (modalConfig: ModalConfig, componentProps: LktObject) => void;
 declare const closeConfirm: (modalConfig: ModalConfig) => void;
 declare const runModalCallback: (cfg: ModalCallbackConfig) => void;
@@ -1767,12 +1773,6 @@ declare const applyTextAlignment: (alignment: string) => void;
 declare const changeTextColor: (color: string) => void;
 declare const changeBackgroundColor: (color: string) => void;
 declare const changeFontFamily: (event: Event, fontFamily: string) => void;
-
-interface ModalCanvasInterface {
-    refresh: Function;
-    refreshModal: Function;
-    execModal: Function;
-}
 
 declare class ModalController {
     private static config;

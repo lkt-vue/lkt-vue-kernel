@@ -4,6 +4,7 @@ import {ModalController} from "../controllers/ModalController.ts";
 import {ModalRegister} from "../controllers/config/ModalRegister.ts";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
+import {ModalCanvasInterface} from "../controllers/controller-canvas/ModalCanvasInterface.ts";
 
 export const getConfirmModalName = (name?: ValidModalName) => {
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) {
@@ -34,7 +35,7 @@ export const closeModal = (modalConfig: ModalConfig) => {
     ModalController.canvas?.refresh();
 }
 
-export const setModalCanvas = (canvas: any) => {
+export const setModalCanvas = (canvas: ModalCanvasInterface) => {
     ModalController.canvas = canvas;
 }
 
