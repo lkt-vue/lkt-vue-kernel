@@ -25,6 +25,7 @@ export interface ItemCrudConfig {
     createButton?: ButtonConfig|false
     updateButton?: ButtonConfig|false
     groupButton?: ButtonConfig|boolean
+    groupButtonAsModalActions?: boolean
 
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition

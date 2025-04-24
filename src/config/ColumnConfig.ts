@@ -17,6 +17,7 @@ export interface ColumnConfig {
     colspan?: ValidColSpan
     preferSlot?: Function | boolean
     isForRowKey?: boolean
+    isForAccordionHeader?: boolean
     extractTitleFromColumn?: string
     slotData?: LktObject
 

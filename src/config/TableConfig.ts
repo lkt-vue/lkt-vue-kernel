@@ -8,6 +8,7 @@ import {ValidDragConfig} from "../types/ValidDragConfig.ts";
 import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 import {CarouselConfig} from "./CarouselConfig.ts";
 import {ColumnConfig} from "./ColumnConfig.ts";
+import {AccordionConfig} from "./AccordionConfig.ts";
 
 export interface TableConfig {
 
@@ -44,6 +45,9 @@ export interface TableConfig {
 
     // Carousel
     carousel?: CarouselConfig;
+
+    // Accordion
+    accordion?: AccordionConfig;
 
     // New proposed prop: header
     header?: HeaderConfig

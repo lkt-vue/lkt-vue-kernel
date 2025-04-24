@@ -398,7 +398,8 @@ declare enum TableType {
     Item = "item",
     Ul = "ul",
     Ol = "ol",
-    Carousel = "carousel"
+    Carousel = "carousel",
+    Accordion = "accordion"
 }
 
 declare enum TablePermission {
@@ -509,11 +510,43 @@ interface ColumnConfig {
     colspan?: ValidColSpan;
     preferSlot?: Function | boolean;
     isForRowKey?: boolean;
+    isForAccordionHeader?: boolean;
     extractTitleFromColumn?: string;
     slotData?: LktObject;
     field?: FieldConfig | undefined;
     anchor?: AnchorConfig | undefined;
     button?: ButtonConfig | undefined;
+}
+
+declare enum AccordionToggleMode {
+    Transform = "transform",
+    Height = "height",
+    Display = "display"
+}
+
+declare enum AccordionType {
+    Auto = "auto",// Default accordion flow
+    Always = "always",// Always opened
+    Lazy = "lazy",// Lazy content, only after fist open
+    Ever = "ever"
+}
+
+interface AccordionConfig {
+    modelValue?: boolean;
+    type?: AccordionType;
+    toggleMode?: AccordionToggleMode;
+    actionButton?: ButtonConfig;
+    toggleButton?: ButtonConfig;
+    toggleOnClickIntro?: boolean;
+    toggleTimeout?: number;
+    title?: string;
+    icon?: string;
+    class?: string;
+    contentClass?: string;
+    iconRotation?: '90' | '180' | '-90' | '-180';
+    minHeight?: number | undefined;
+    iconAtEnd?: boolean;
+    toggleIconAtEnd?: boolean;
 }
 
 interface TableConfig {
@@ -537,6 +570,7 @@ interface TableConfig {
     drag?: ValidDragConfig;
     paginator?: ValidPaginatorConfig;
     carousel?: CarouselConfig;
+    accordion?: AccordionConfig;
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
@@ -761,37 +795,6 @@ declare const booleanFieldTypes: FieldType[];
 declare const fieldsWithMultipleMode: FieldType[];
 declare const textFieldTypes: FieldType[];
 
-declare enum AccordionToggleMode {
-    Transform = "transform",
-    Height = "height",
-    Display = "display"
-}
-
-declare enum AccordionType {
-    Auto = "auto",// Default accordion flow
-    Always = "always",// Always opened
-    Lazy = "lazy",// Lazy content, only after fist open
-    Ever = "ever"
-}
-
-interface AccordionConfig {
-    modelValue?: boolean;
-    type?: AccordionType;
-    toggleMode?: AccordionToggleMode;
-    actionButton?: ButtonConfig;
-    toggleButton?: ButtonConfig;
-    toggleOnClickIntro?: boolean;
-    toggleTimeout?: number;
-    title?: string;
-    icon?: string;
-    class?: string;
-    contentClass?: string;
-    iconRotation?: '90' | '180' | '-90' | '-180';
-    minHeight?: number | undefined;
-    iconAtEnd?: boolean;
-    toggleIconAtEnd?: boolean;
-}
-
 interface PolymorphicElementConfig {
     tag?: string;
     class?: string;
@@ -952,6 +955,7 @@ interface ItemCrudConfig {
     createButton?: ButtonConfig | false;
     updateButton?: ButtonConfig | false;
     groupButton?: ButtonConfig | boolean;
+    groupButtonAsModalActions?: boolean;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
     modalConfig?: ModalConfig;
@@ -1273,6 +1277,7 @@ declare class Column extends LktItem implements ColumnConfig {
     colspan: ValidColSpan;
     preferSlot: Function | boolean;
     isForRowKey: boolean;
+    isForAccordionHeader: boolean;
     extractTitleFromColumn: string;
     slotData: LktObject;
     field: FieldConfig | undefined;
@@ -1472,6 +1477,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     createButton: ButtonConfig | false;
     updateButton: ButtonConfig | false;
     groupButton: ButtonConfig | boolean;
+    groupButtonAsModalActions: boolean;
     modalConfig: ModalConfig;
     saveConfig: SaveConfig;
     title: string;
@@ -1589,6 +1595,7 @@ declare class Table extends LktItem implements TableConfig {
     drag?: ValidDragConfig;
     paginator?: ValidPaginatorConfig;
     carousel?: CarouselConfig;
+    accordion?: AccordionConfig;
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;

@@ -31,6 +31,7 @@ export class Column extends LktItem implements ColumnConfig{
         'colspan',
         'preferSlot',
         'isForRowKey',
+        'isForAccordionHeader',
         'extractTitleFromColumn',
         'slotData',
         'field',
@@ -49,6 +50,7 @@ export class Column extends LktItem implements ColumnConfig{
     colspan: ValidColSpan = undefined;
     preferSlot: Function | boolean = true;
     isForRowKey: boolean = false;
+    isForAccordionHeader: boolean = false;
     extractTitleFromColumn: string = '';
     slotData: LktObject = {};
 

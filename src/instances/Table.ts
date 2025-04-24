@@ -11,6 +11,7 @@ import {ValidDragConfig} from "../types/ValidDragConfig.ts";
 import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 import {CarouselConfig} from "../config/CarouselConfig.ts";
 import {ColumnConfig} from "../config/ColumnConfig.ts";
+import {AccordionConfig} from "../config/AccordionConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -54,6 +55,7 @@ export class Table extends LktItem implements TableConfig {
         'requiredItemsForBottomCreate',
         'slotItemVar',
         'carousel',
+        'accordion',
         'hideTableHeader',
     ];
 
@@ -87,6 +89,9 @@ export class Table extends LktItem implements TableConfig {
     // Pagination
     paginator?: ValidPaginatorConfig = undefined;
     carousel?: CarouselConfig = {};
+
+    // Accordion
+    accordion?: AccordionConfig = {};
 
     // New proposed prop: header
     header?: HeaderConfig

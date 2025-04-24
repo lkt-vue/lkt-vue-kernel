@@ -29,6 +29,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'createButton',
         'updateButton',
         'groupButton',
+        'groupButtonAsModalActions',
         'modalConfig',
         'saveConfig',
         'title',
@@ -56,6 +57,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     createButton: ButtonConfig|false = {};
     updateButton: ButtonConfig|false = {};
     groupButton: ButtonConfig|boolean = false;
+    groupButtonAsModalActions: boolean = false;
 
     // Config if type === modal
     modalConfig: ModalConfig = {};
