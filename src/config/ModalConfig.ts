@@ -25,4 +25,5 @@ export interface ModalConfig extends LktObject {
     item?: LktObject
     confirmButton?: Partial<ButtonConfig>
     cancelButton?: Partial<ButtonConfig>
+    headerActionsButton?: Partial<ButtonConfig>
 }

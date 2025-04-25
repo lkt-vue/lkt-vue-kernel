@@ -77,6 +77,7 @@ interface ModalConfig extends LktObject {
     item?: LktObject;
     confirmButton?: Partial<ButtonConfig>;
     cancelButton?: Partial<ButtonConfig>;
+    headerActionsButton?: Partial<ButtonConfig>;
 }
 
 interface ClickEventArgs {
@@ -1544,6 +1545,7 @@ declare class Modal extends LktItem implements ModalConfig {
     item: LktObject;
     confirmButton?: Partial<ButtonConfig>;
     cancelButton?: Partial<ButtonConfig>;
+    headerActionsButton?: Partial<ButtonConfig>;
     type: ModalType;
     constructor(data?: Partial<ModalConfig>);
 }

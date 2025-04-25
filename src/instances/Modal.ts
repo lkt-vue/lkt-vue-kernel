@@ -28,6 +28,9 @@ export class Modal extends LktItem implements ModalConfig {
         'beforeClose',
         'item',
         'type',
+        'confirmButton',
+        'cancelButton',
+        'headerActionsButton',
     ];
 
     size: string = '';
@@ -48,6 +51,7 @@ export class Modal extends LktItem implements ModalConfig {
     item: LktObject = {};
     confirmButton?: Partial<ButtonConfig> = {};
     cancelButton?: Partial<ButtonConfig> = {};
+    headerActionsButton?: Partial<ButtonConfig> = {};
     type: ModalType = ModalType.Modal;
 
     constructor(data: Partial<ModalConfig> = {}) {
