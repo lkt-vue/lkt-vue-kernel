@@ -220,10 +220,10 @@ export {
 /**
  * Export controllers
  */
-export {ModalController} from "./controllers/ModalController.ts";
-export {RenderModalConfig} from "./controllers/config/RenderModalConfig.ts";
-export {ModalRegister} from "./controllers/config/ModalRegister.ts";
-export {ModalRegisterType} from "./controllers/enums/ModalRegisterType.ts";
+export {ModalController} from "./controllers/modal-controller/ModalController.ts";
+export {RenderModalConfig} from "./controllers/modal-controller/config/RenderModalConfig.ts";
+export {ModalRegister} from "./controllers/modal-controller/config/ModalRegister.ts";
+export {ModalRegisterType} from "./controllers/modal-controller/enums/ModalRegisterType.ts";
 
 export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
     const instance = new cls();

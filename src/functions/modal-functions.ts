@@ -1,10 +1,10 @@
 import {ModalConfig} from "../config/ModalConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
-import {ModalController} from "../controllers/ModalController.ts";
-import {ModalRegister} from "../controllers/config/ModalRegister.ts";
+import {ModalController} from "../controllers/modal-controller/ModalController.ts";
+import {ModalRegister} from "../controllers/modal-controller/config/ModalRegister.ts";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
-import {ModalCanvasInterface} from "../controllers/controller-canvas/ModalCanvasInterface.ts";
+import {ModalCanvasInterface} from "../controllers/modal-controller/controller-canvas/ModalCanvasInterface.ts";
 
 export const getConfirmModalName = (name?: ValidModalName) => {
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) {

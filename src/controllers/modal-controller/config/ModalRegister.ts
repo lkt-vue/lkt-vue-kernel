@@ -1,7 +1,7 @@
-import {ValidModalName} from "../../types/ValidModalName.ts";
-import {ModalConfig} from "../../config/ModalConfig.ts";
+import {ValidModalName} from "../../../types/ValidModalName.ts";
+import {ModalConfig} from "../../../config/ModalConfig.ts";
 import {ModalRegisterType} from "../enums/ModalRegisterType.ts";
-import {ValidModalComponent} from "../../types/ValidModalComponent.ts";
+import {ValidModalComponent} from "../../../types/ValidModalComponent.ts";
 
 export interface ModalRegister {
     name: ValidModalName
