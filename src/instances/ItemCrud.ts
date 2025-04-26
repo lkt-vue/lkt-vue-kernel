@@ -40,6 +40,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'buttonNavPosition',
         'buttonNavVisibility',
         'notificationType',
+        'enabledSaveWithoutChanges',
     ];
 
 
@@ -79,6 +80,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     // Notifications
     notificationType?: NotificationType = NotificationType.Toast;
 
+    enabledSaveWithoutChanges: boolean = false;
     constructor(data: Partial<ItemCrudConfig> = {}) {
         super();
         this.feed(data);

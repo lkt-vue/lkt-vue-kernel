@@ -218,12 +218,19 @@ export {
 } from "./functions/wysiwyg-functions.ts";
 
 /**
- * Export controllers
+ * Export Modal Controller
  */
 export {ModalController} from "./controllers/modal-controller/ModalController.ts";
 export {RenderModalConfig} from "./controllers/modal-controller/config/RenderModalConfig.ts";
 export {ModalRegister} from "./controllers/modal-controller/config/ModalRegister.ts";
 export {ModalRegisterType} from "./controllers/modal-controller/enums/ModalRegisterType.ts";
+
+/**
+ * Export WebElement Controller
+ */
+export {WebElementSettings} from "./controllers/web-element-controller/config/WebElementSettings.ts";
+export {WebElementController} from "./controllers/web-element-controller/WebElementController.ts";
+
 
 export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
     const instance = new cls();

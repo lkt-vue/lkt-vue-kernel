@@ -24,6 +24,7 @@ import {
 import {cloneObject} from "lkt-object-tools";
 import {generateRandomString} from "lkt-string-tools";
 import {time} from "lkt-date-tools";
+import {WebElementController} from "../controllers/web-element-controller/WebElementController.ts";
 
 export class WebElement extends LktItem implements WebElementConfig {
 
@@ -202,7 +203,9 @@ export class WebElement extends LktItem implements WebElementConfig {
                 return getDefaultLktTextBannerWebElement();
         }
 
-        return new WebElement();
+        return new WebElement({
+            type,
+        });
     }
 
     addSubElement() {
@@ -213,5 +216,13 @@ export class WebElement extends LktItem implements WebElementConfig {
         }
 
         return this;
+    }
+
+    isCustom() {
+        return this.type.startsWith('custom:');
+    }
+
+    getCustomSettings() {
+        return WebElementController.getCustomWebElementSettings(this.type);
     }
 }

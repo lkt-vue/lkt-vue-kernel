@@ -52,4 +52,6 @@ export interface ItemCrudConfig {
 
     // Notifications
     notificationType?: NotificationType
+
+    enabledSaveWithoutChanges?: boolean
 }
