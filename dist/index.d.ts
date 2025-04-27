@@ -1,6 +1,6 @@
 import { VueElement, Component } from 'vue';
-import { RouteLocationRaw } from 'vue-router';
 import { HTTPResponse } from 'lkt-http-client';
+import { RouteLocationRaw } from 'vue-router';
 import { DataState, DataStateConfig } from 'lkt-data-state';
 
 interface LktObject {
@@ -110,9 +110,11 @@ interface IconConfig {
     events?: EventsConfig | undefined;
 }
 
+type ValidAnchorTo = RouteLocationRaw | string | ((data: LktObject) => RouteLocationRaw | string);
+
 interface AnchorConfig {
     type?: AnchorType;
-    to?: RouteLocationRaw | string;
+    to?: ValidAnchorTo;
     class?: string;
     isActive?: boolean;
     downloadFileName?: string;
@@ -125,6 +127,7 @@ interface AnchorConfig {
     text?: ValidTextValue;
     icon?: IconConfig | string;
     events?: EventsConfig | undefined;
+    prop?: LktObject;
     onClick?: Function | undefined;
 }
 
@@ -1179,7 +1182,7 @@ declare class Anchor extends LktItem implements AnchorConfig {
     static lktAllowUndefinedProps: string[];
     static lktDefaultValues: (keyof AnchorConfig)[];
     type: AnchorType;
-    to?: RouteLocationRaw | string;
+    to?: ValidAnchorTo;
     class: string;
     isActive: boolean;
     downloadFileName: string;
@@ -1192,6 +1195,7 @@ declare class Anchor extends LktItem implements AnchorConfig {
     external: boolean;
     text?: ValidTextValue;
     icon?: IconConfig | string;
+    prop: LktObject;
     events?: EventsConfig | undefined;
     getHref(): string;
     constructor(data?: Partial<AnchorConfig>);

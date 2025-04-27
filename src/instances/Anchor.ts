@@ -9,6 +9,7 @@ import {EventsConfig} from "../config/EventsConfig.ts";
 import {getAnchorHref} from "../functions/anchor-functions.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {IconConfig} from "../config/IconConfig.ts";
+import {ValidAnchorTo} from "../types/ValidAnchorTo.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
@@ -30,10 +31,11 @@ export class Anchor extends LktItem implements AnchorConfig {
         'events',
         'text',
         'icon',
+        'prop',
     ];
 
     type: AnchorType = AnchorType.RouterLink;
-    to?: RouteLocationRaw | string = '';
+    to?: ValidAnchorTo = '';
     class: string = '';
     isActive: boolean = false;
     downloadFileName: string = '';
@@ -46,6 +48,9 @@ export class Anchor extends LktItem implements AnchorConfig {
     external: boolean = false;
     text?: ValidTextValue = '';
     icon?: IconConfig|string = '';
+
+    // Extract data
+    prop: LktObject = {};
 
     // Event management
     events?: EventsConfig|undefined = {};

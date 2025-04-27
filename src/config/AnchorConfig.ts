@@ -1,15 +1,16 @@
 import {AnchorType} from "../enums/AnchorType.ts";
-import {RouteLocationRaw} from "vue-router";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {ModalConfig} from "./ModalConfig.ts";
 import {EventsConfig} from "./EventsConfig.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {IconConfig} from "./IconConfig.ts";
+import {ValidAnchorTo} from "../types/ValidAnchorTo.ts";
+import {LktObject} from "../interfaces/LktObject.ts";
 
 export interface AnchorConfig {
     type?: AnchorType
-    to?: RouteLocationRaw | string
+    to?: ValidAnchorTo
     class?: string
     isActive?: boolean
     downloadFileName?: string
@@ -24,6 +25,9 @@ export interface AnchorConfig {
 
     // Events
     events?: EventsConfig|undefined
+
+    // Extract data
+    prop?: LktObject
 
     // Deprecated:
     onClick?: Function | undefined
