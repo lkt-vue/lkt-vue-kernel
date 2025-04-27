@@ -4,13 +4,14 @@ import {ValidColSpan} from "../types/ValidColSpan.ts";
 import {FieldConfig} from "./FieldConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {AnchorConfig} from "./AnchorConfig.ts";
+import {ConditionalColumnArgs} from "../arguments/ConditionalColumnArgs.ts";
 
 export interface ColumnConfig {
     type: ColumnType
     key: string
     label?: string
     sortable?: boolean
-    hidden?: boolean
+    hidden?: boolean | ((data: ConditionalColumnArgs) => boolean)
     editable?: boolean
     formatter?: Function | undefined
     checkEmpty?: Function | undefined

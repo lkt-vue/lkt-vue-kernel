@@ -502,12 +502,16 @@ declare enum ColumnType {
 
 type ValidColSpan = Function | boolean | number | undefined;
 
+interface ConditionalColumnArgs {
+    perms: Array<TablePermission>;
+}
+
 interface ColumnConfig {
     type: ColumnType;
     key: string;
     label?: string;
     sortable?: boolean;
-    hidden?: boolean;
+    hidden?: boolean | ((data: ConditionalColumnArgs) => boolean);
     editable?: boolean;
     formatter?: Function | undefined;
     checkEmpty?: Function | undefined;
@@ -971,6 +975,8 @@ interface ItemCrudConfig {
     beforeEmitUpdate?: Function | undefined;
     notificationType?: NotificationType;
     enabledSaveWithoutChanges?: boolean;
+    redirectOnCreate?: string | ((id: number | string) => string);
+    redirectOnDrop?: string | (() => string);
 }
 
 interface LoginConfig {
@@ -1278,7 +1284,7 @@ declare class Column extends LktItem implements ColumnConfig {
     key: string;
     label: string;
     sortable: boolean;
-    hidden: boolean;
+    hidden: boolean | ((data: ConditionalColumnArgs) => boolean);
     editable: boolean;
     formatter: Function | undefined;
     checkEmpty: Function | undefined;
@@ -1497,6 +1503,8 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
     notificationType?: NotificationType;
     enabledSaveWithoutChanges: boolean;
+    redirectOnCreate?: string | ((id: number | string) => string);
+    redirectOnDrop?: string | (() => string);
     constructor(data?: Partial<ItemCrudConfig>);
 }
 

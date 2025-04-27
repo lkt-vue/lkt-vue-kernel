@@ -41,6 +41,8 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'buttonNavVisibility',
         'notificationType',
         'enabledSaveWithoutChanges',
+        'redirectOnCreate',
+        'redirectOnDrop',
     ];
 
 
@@ -81,6 +83,10 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     notificationType?: NotificationType = NotificationType.Toast;
 
     enabledSaveWithoutChanges: boolean = false;
+
+    redirectOnCreate?: string | ((id: number|string) => string) = undefined;
+    redirectOnDrop?: string | (() => string) = undefined;
+
     constructor(data: Partial<ItemCrudConfig> = {}) {
         super();
         this.feed(data);

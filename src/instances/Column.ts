@@ -6,6 +6,7 @@ import {ColumnConfig} from "../config/ColumnConfig.ts";
 import {FieldConfig} from "../config/FieldConfig.ts";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {ConditionalColumnArgs} from "../arguments/ConditionalColumnArgs.ts";
 
 export class Column extends LktItem implements ColumnConfig{
     lktExcludedProps = ['field', 'anchor', 'button'];
@@ -43,7 +44,7 @@ export class Column extends LktItem implements ColumnConfig{
     key: string = '';
     label: string = '';
     sortable: boolean = true;
-    hidden: boolean = false
+    hidden: boolean | ((data: ConditionalColumnArgs) => boolean) = false
     editable: boolean = false;
     formatter: Function|undefined = undefined;
     checkEmpty: Function|undefined = undefined;

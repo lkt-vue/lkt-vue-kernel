@@ -54,4 +54,7 @@ export interface ItemCrudConfig {
     notificationType?: NotificationType
 
     enabledSaveWithoutChanges?: boolean
+
+    redirectOnCreate?: string | ((id: number|string) => string)
+    redirectOnDrop?: string | (() => string)
 }
