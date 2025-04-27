@@ -77,6 +77,8 @@ export interface TableConfig {
     itemsContainerClass?: string
     itemContainerClass?: string|Function
 
+    skipTableItemsContainer?: boolean
+
     // Deprecated props (use saveButton.disabled):
     createEnabledValidator?: Function
 }

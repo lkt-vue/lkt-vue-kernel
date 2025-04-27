@@ -57,6 +57,7 @@ export class Table extends LktItem implements TableConfig {
         'carousel',
         'accordion',
         'hideTableHeader',
+        'skipTableItemsContainer',
     ];
 
     // Data
@@ -116,6 +117,8 @@ export class Table extends LktItem implements TableConfig {
     wrapContentClass?: string = '';
     itemsContainerClass?: string = '';
     itemContainerClass?: string|Function
+
+    skipTableItemsContainer?: boolean
 
     addNavigation?: boolean = false;
     createEnabledValidator?: Function = undefined;

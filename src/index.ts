@@ -231,6 +231,12 @@ export {ModalRegisterType} from "./controllers/modal-controller/enums/ModalRegis
 export {WebElementSettings} from "./controllers/web-element-controller/config/WebElementSettings.ts";
 export {WebElementController} from "./controllers/web-element-controller/WebElementController.ts";
 
+/**
+ * Export WebPAge Controller
+ */
+export {WebPageSettings} from "./controllers/web-page-controller/config/WebPageSettings.ts";
+export {WebPageController} from "./controllers/web-page-controller/WebPageController.ts";
+
 
 export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
     const instance = new cls();
