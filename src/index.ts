@@ -60,6 +60,7 @@ export {PaginatorConfig} from './config/PaginatorConfig.ts';
 export {ProgressConfig} from './config/ProgressConfig.ts';
 export {SaveConfig} from './config/SaveConfig.ts';
 export {StepProcessConfig} from './config/StepProcessConfig.ts';
+export {StepProcessStepConfig} from './config/StepProcessStepConfig.ts';
 export {TableConfig} from './config/TableConfig.ts';
 export {TabsConfig} from './config/TabsConfig.ts';
 export {TagConfig} from './config/TagConfig.ts';

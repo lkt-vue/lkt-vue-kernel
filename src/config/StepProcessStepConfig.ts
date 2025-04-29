@@ -4,8 +4,8 @@ export interface StepProcessStepConfig {
     key: string,
 
     nextButton?: ButtonConfig,
-    nextHidden?: boolean,
+    nextHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean),
 
     prevButton?: ButtonConfig,
-    prevHidden?: boolean,
+    prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean),
 }
