@@ -3,9 +3,9 @@ import {ButtonConfig} from "./ButtonConfig.ts";
 export interface StepProcessStepConfig {
     key: string,
 
-    nextButton?: ButtonConfig,
+    nextButton?: ButtonConfig|false,
     nextHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean),
 
-    prevButton?: ButtonConfig,
+    prevButton?: ButtonConfig|false,
     prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean),
 }

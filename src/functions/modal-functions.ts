@@ -9,9 +9,8 @@ import {ModalCanvasInterface} from "../controllers/modal-controller/controller-c
 export const getConfirmModalName = (name?: ValidModalName) => {
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) {
         name = name.substring(9);
-        return 'confirm__'+name;
     }
-    return name;
+    return 'confirm__' + name;
 }
 
 export const addModal = (config: ModalRegister) => {
@@ -19,7 +18,7 @@ export const addModal = (config: ModalRegister) => {
 }
 
 export const addConfirm = (modalConfig: ModalRegister) => {
-    addModal({
+    ModalController.addModal({
         ...modalConfig,
         name: getConfirmModalName(modalConfig.name),
     });
@@ -41,7 +40,6 @@ export const setModalCanvas = (canvas: ModalCanvasInterface) => {
 
 
 export const openConfirm = (modalConfig: ModalConfig, componentProps: LktObject) => {
-    let name = getConfirmModalName(modalConfig.modalName);
     openModal({
         ...modalConfig,
         modalName: getConfirmModalName(modalConfig.modalName),

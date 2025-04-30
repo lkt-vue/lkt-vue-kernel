@@ -12,6 +12,8 @@ import {TooltipConfig} from "./TooltipConfig.ts";
 import {ValidButtonDot} from "../types/ValidButtonDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {EventsConfig} from "./EventsConfig.ts";
+import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
+import {HTTPResponse} from "lkt-http-client";
 
 export interface ButtonConfig {
 
@@ -80,5 +82,9 @@ export interface ButtonConfig {
 
     // Event management
     clickRef?: Element | VueElement
-    events?: EventsConfig|undefined
+    events?: {
+        click?: (data: ClickEventArgs) => void|undefined,
+        httpStart?: undefined | Function,
+        httpEnd?: (data: ClickEventArgs) => void|undefined,
+    }
 }

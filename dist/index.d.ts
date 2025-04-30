@@ -242,7 +242,11 @@ interface ButtonConfig {
     tabindex?: ValidTabIndex;
     prop?: LktObject;
     clickRef?: Element | VueElement;
-    events?: EventsConfig | undefined;
+    events?: {
+        click?: (data: ClickEventArgs) => void | undefined;
+        httpStart?: undefined | Function;
+        httpEnd?: (data: ClickEventArgs) => void | undefined;
+    };
 }
 
 declare enum FieldType {
@@ -1038,9 +1042,9 @@ interface ProgressConfig {
 
 interface StepProcessStepConfig {
     key: string;
-    nextButton?: ButtonConfig;
+    nextButton?: ButtonConfig | false;
     nextHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean);
-    prevButton?: ButtonConfig;
+    prevButton?: ButtonConfig | false;
     prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean);
 }
 
