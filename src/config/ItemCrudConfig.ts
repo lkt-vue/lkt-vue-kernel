@@ -9,11 +9,13 @@ import {SaveConfig} from "./SaveConfig.ts";
 import {DataStateConfig} from "lkt-data-state";
 import {NotificationType} from "../enums/NotificationType.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
+import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
     editing?: boolean
     perms?: ValidTablePermission[]
+    customData?: LktObject
 
     // Global config
     mode?: ItemCrudMode
@@ -57,4 +59,9 @@ export interface ItemCrudConfig {
 
     redirectOnCreate?: string | ((id: number|string) => string)
     redirectOnDrop?: string | (() => string)
+
+    events?: {
+        httpStart?: undefined | Function,
+        httpEnd?: (data: ClickEventArgs) => void|undefined,
+    }
 }

@@ -22,6 +22,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'modelValue',
         'editing',
         'perms',
+        'customData',
         'mode',
         'view',
         'editModeButton',
@@ -43,12 +44,14 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'enabledSaveWithoutChanges',
         'redirectOnCreate',
         'redirectOnDrop',
+        'events',
     ];
 
 
     modelValue: LktObject = {};
     editing: boolean = false;
     perms: ValidTablePermission[] = [];
+    customData?: LktObject = {};
 
     // Global config
     mode: ItemCrudMode = ItemCrudMode.Read;
@@ -86,6 +89,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
 
     redirectOnCreate?: string | ((id: number|string) => string) = undefined;
     redirectOnDrop?: string | (() => string) = undefined;
+    events: LktObject = {}
 
     constructor(data: Partial<ItemCrudConfig> = {}) {
         super();

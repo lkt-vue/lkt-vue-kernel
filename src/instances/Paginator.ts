@@ -2,6 +2,7 @@ import {LktItem} from "./LktItem.ts";
 import {PaginatorConfig} from "../config/PaginatorConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {PaginatorType} from "../enums/PaginatorType.ts";
+import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 
 export class Paginator extends LktItem implements PaginatorConfig {
 
@@ -16,6 +17,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
         'readOnly',
         'loading',
         'resourceData',
+        'events',
     ];
 
     type?: PaginatorType = PaginatorType.PagesPrevNext;
@@ -25,6 +27,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
     readOnly?: boolean = false;
     loading?: boolean = false;
     resourceData?: LktObject = {};
+    events: LktObject = {}
 
     constructor(data: Partial<PaginatorConfig> = {}) {
         super();

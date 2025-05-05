@@ -480,6 +480,10 @@ interface PaginatorConfig {
     resourceData?: LktObject;
     readOnly?: boolean;
     loading?: boolean;
+    events?: {
+        httpStart?: undefined | Function;
+        httpEnd?: (data: ClickEventArgs) => void | undefined;
+    };
 }
 
 type ValidPaginatorConfig = PaginatorConfig | undefined;
@@ -961,6 +965,7 @@ interface ItemCrudConfig {
     modelValue?: LktObject;
     editing?: boolean;
     perms?: ValidTablePermission[];
+    customData?: LktObject;
     mode?: ItemCrudMode;
     view?: ItemCrudView;
     editModeButton?: ButtonConfig | false;
@@ -982,6 +987,10 @@ interface ItemCrudConfig {
     enabledSaveWithoutChanges?: boolean;
     redirectOnCreate?: string | ((id: number | string) => string);
     redirectOnDrop?: string | (() => string);
+    events?: {
+        httpStart?: undefined | Function;
+        httpEnd?: (data: ClickEventArgs) => void | undefined;
+    };
 }
 
 interface LoginConfig {
@@ -1506,6 +1515,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     modelValue: LktObject;
     editing: boolean;
     perms: ValidTablePermission[];
+    customData?: LktObject;
     mode: ItemCrudMode;
     view: ItemCrudView;
     editModeButton: ButtonConfig | false;
@@ -1527,6 +1537,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     enabledSaveWithoutChanges: boolean;
     redirectOnCreate?: string | ((id: number | string) => string);
     redirectOnDrop?: string | (() => string);
+    events: LktObject;
     constructor(data?: Partial<ItemCrudConfig>);
 }
 
@@ -1598,6 +1609,7 @@ declare class Paginator extends LktItem implements PaginatorConfig {
     readOnly?: boolean;
     loading?: boolean;
     resourceData?: LktObject;
+    events: LktObject;
     constructor(data?: Partial<PaginatorConfig>);
 }
 

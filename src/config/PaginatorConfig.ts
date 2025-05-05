@@ -1,5 +1,6 @@
 import {LktObject} from "../interfaces/LktObject.ts";
 import {PaginatorType} from "../enums/PaginatorType.ts";
+import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 
 export interface PaginatorConfig {
     type?: PaginatorType
@@ -9,4 +10,8 @@ export interface PaginatorConfig {
     resourceData?: LktObject
     readOnly?: boolean
     loading?: boolean
+    events?: {
+        httpStart?: undefined | Function,
+        httpEnd?: (data: ClickEventArgs) => void|undefined,
+    }
 }
