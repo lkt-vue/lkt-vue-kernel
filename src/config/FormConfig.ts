@@ -7,6 +7,7 @@ import {LktObject} from "../interfaces/LktObject.ts";
 export interface FormConfig {
     modelValue: LktObject
     fields: Array<FormFieldConfig>
+    forms: Array<FormConfig>
     submitButton: ButtonConfig
     container?: PolymorphicElementConfig
     header?: HeaderConfig
