@@ -41,7 +41,7 @@ export {FieldValidationConfig} from './config/FieldValidationConfig.ts';
 export {FileBrowserConfig} from './config/FileBrowserConfig.ts';
 export {FileEntityConfig} from './config/FileEntityConfig.ts';
 export {FormConfig} from './config/FormConfig.ts';
-export {FormFieldConfig} from './config/FormFieldConfig.ts';
+export {FormItemConfig} from './config/FormItemConfig.ts';
 export {HttpCallConfig} from './config/HttpCallConfig.ts';
 export {HeaderConfig} from './config/HeaderConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';
@@ -189,6 +189,8 @@ export {SafeString} from './value-objects/SafeString.ts';
  * Export arguments
  */
 export {ClickEventArgs} from './arguments/ClickEventArgs.ts';
+export {ConditionalColumnArgs} from './arguments/ConditionalColumnArgs.ts';
+export {FieldValidationEndEventArgs} from './arguments/FieldValidationEndEventArgs.ts';
 
 /**
  * Export functions

@@ -66,8 +66,6 @@ export class ModalController {
 
         const modalRegister = ModalController.findConfig(modalConfig.modalName);
 
-        console.log('ModalController:open: ', modalRegister, modalConfig, componentProps, ModalController.components, ModalController.config)
-
         if (legacy) {
             if (componentProps.size) {
                 modalConfig.size = componentProps.size;

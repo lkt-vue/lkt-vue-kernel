@@ -1,5 +1,6 @@
 import { ValidationCode } from '../enums/ValidationCode';
 import { ValidationStatus } from '../enums/ValidationStatus';
+import {HTTPResponse} from "lkt-http-client";
 
 export class FieldValidation {
     code?: ValidationCode|string = undefined;
@@ -8,6 +9,7 @@ export class FieldValidation {
     min: number = 0;
     max: number = 0;
     equalToValue: number|string|undefined = undefined;
+    httpResponse?: HTTPResponse = undefined;
 
     constructor(code: ValidationCode, status: ValidationStatus) {
         this.code = code;
@@ -26,6 +28,11 @@ export class FieldValidation {
 
     setEqualToValue(val: number|string) {
         this.equalToValue = val;
+        return this;
+    }
+
+    setHTTPResponse(val: HTTPResponse) {
+        this.httpResponse = val;
         return this;
     }
 
@@ -99,5 +106,9 @@ export class FieldValidation {
 
     static createEqualTo(value: number|string, status: ValidationStatus = ValidationStatus.Ko) {
         return new FieldValidation(ValidationCode.EqualTo, status).setEqualToValue(value);
+    }
+
+    static createRemoteResponse(httpResponse: HTTPResponse, status: ValidationStatus = ValidationStatus.Ko) {
+        return new FieldValidation(ValidationCode.HTTPResponse, status).setHTTPResponse(httpResponse);
     }
 }

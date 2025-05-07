@@ -1,4 +1,5 @@
 export enum ValidationCode {
+    HTTPResponse = 'http-response',
     MinStringLength = 'min-str',
     MinNumber = 'min-num',
     MaxStringLength = 'max-str',

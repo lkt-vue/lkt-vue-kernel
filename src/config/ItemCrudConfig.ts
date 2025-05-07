@@ -10,12 +10,14 @@ import {DataStateConfig} from "lkt-data-state";
 import {NotificationType} from "../enums/NotificationType.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
+import {FormConfig} from "./FormConfig.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
     editing?: boolean
     perms?: ValidTablePermission[]
     customData?: LktObject
+    form?: FormConfig
 
     // Global config
     mode?: ItemCrudMode
