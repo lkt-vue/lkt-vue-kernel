@@ -66,6 +66,7 @@ export class Button extends LktItem implements ButtonConfig {
         'showTooltipOnHover',
         'hideTooltipOnLeave',
         'splitClass',
+        'splitButtons',
         'prop',
         'events',
     ];
@@ -109,6 +110,7 @@ export class Button extends LktItem implements ButtonConfig {
     showTooltipOnHover?: boolean = undefined;
     hideTooltipOnLeave?: boolean = undefined;
     splitClass?: string = '';
+    splitButtons?: Array<ButtonConfig> = []
     tooltip?: TooltipConfig = {};
 
     prop?: LktObject = {};

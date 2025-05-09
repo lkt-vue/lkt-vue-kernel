@@ -13,19 +13,19 @@ import {DataStateConfig} from "lkt-data-state";
 import {NotificationType} from "../enums/NotificationType.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {FormConfig} from "../config/FormConfig.ts";
+import {ModificationView} from "../enums/ModificationView.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
-    // static lktAllowUndefinedProps: string[] = [
-    // ];
-    //
     static lktDefaultValues: (keyof ItemCrudConfig)[] = [
         'modelValue',
+        'modifications',
         'editing',
         'perms',
         'customData',
         'mode',
         'view',
+        'modificationView',
         'editModeButton',
         'dropButton',
         'createButton',
@@ -50,6 +50,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
 
 
     modelValue: LktObject = {};
+    modifications: LktObject = {};
     editing: boolean = false;
     perms: ValidTablePermission[] = [];
     customData?: LktObject = {};
@@ -58,6 +59,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     // Global config
     mode: ItemCrudMode = ItemCrudMode.Read;
     view: ItemCrudView = ItemCrudView.Inline;
+    modificationView?: boolean | Array<ModificationView> = true;
 
     // Buttons
     editModeButton: ButtonConfig|false = {}; // Not sure, should test

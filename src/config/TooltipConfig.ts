@@ -6,6 +6,7 @@ export interface TooltipConfig {
     modelValue?: boolean
     alwaysOpen?: boolean
     class?: string
+    contentClass?: string
     text?: string
     icon?: string
     iconAtEnd?: boolean

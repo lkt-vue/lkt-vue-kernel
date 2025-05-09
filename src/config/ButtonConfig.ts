@@ -73,6 +73,7 @@ export interface ButtonConfig {
     showTooltipOnHoverDelay?: number
     hideTooltipOnLeave?: boolean
     splitClass?: string
+    splitButtons?: Array<ButtonConfig>
 
     // Accessibility
     tabindex?: ValidTabIndex

@@ -11,9 +11,11 @@ import {NotificationType} from "../enums/NotificationType.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 import {FormConfig} from "./FormConfig.ts";
+import {ModificationView} from "../enums/ModificationView.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
+    modifications?: LktObject
     editing?: boolean
     perms?: ValidTablePermission[]
     customData?: LktObject
@@ -22,6 +24,7 @@ export interface ItemCrudConfig {
     // Global config
     mode?: ItemCrudMode
     view?: ItemCrudView
+    modificationView?: boolean | Array<ModificationView>
 
     // Buttons
     editModeButton?: ButtonConfig|false

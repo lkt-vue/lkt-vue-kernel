@@ -10,6 +10,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'modelValue',
         'alwaysOpen',
         'class',
+        'contentClass',
         'text',
         'icon',
         'iconAtEnd',
@@ -29,6 +30,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     modelValue: boolean = false;
     alwaysOpen: boolean = false;
     class: string = '';
+    contentClass: string = '';
     text: string = '';
     icon: string = '';
     iconAtEnd: boolean = false;

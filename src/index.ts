@@ -2,6 +2,7 @@
  * Export common interfaces
  */
 export {LktObject} from './interfaces/LktObject.ts';
+export {RenderAndDisplayProps} from './interfaces/RenderAndDisplayProps.ts';
 
 /**
  * Export settings
@@ -129,6 +130,7 @@ export {ItemCrudMode} from './enums/ItemCrudMode.ts';
 export {ItemCrudView} from './enums/ItemCrudView.ts';
 export {MenuEntryType} from './enums/MenuEntryType.ts';
 export {ModalCallbackAction} from './enums/ModalCallbackAction.ts';
+export {ModificationView} from './enums/ModificationView.ts';
 export {ModalType} from './enums/ModalType.ts';
 export {MultipleOptionsDisplay} from './enums/MultipleOptionsDisplay.ts';
 export {NotificationType} from './enums/NotificationType.ts';
