@@ -27,7 +27,8 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'customData',
         'mode',
         'view',
-        'modificationView',
+        'visibleView',
+        'modificationViews',
         'editModeButton',
         'dropButton',
         'createButton',
@@ -62,7 +63,8 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     // Global config
     mode: ItemCrudMode = ItemCrudMode.Read;
     view: ItemCrudView = ItemCrudView.Inline;
-    modificationView?: boolean | Array<ModificationView> = true;
+    visibleView?: ModificationView = ModificationView.Current;
+    modificationViews?: boolean | Array<ModificationView> = true;
 
     // Buttons
     editModeButton: ButtonConfig|false = {}; // Not sure, should test

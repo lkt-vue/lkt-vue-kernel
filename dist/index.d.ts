@@ -933,6 +933,7 @@ interface FormItemConfig extends RenderAndDisplayProps {
     key?: string;
     type?: 'field' | 'component' | 'form';
     field?: FieldConfig;
+    modificationsField?: FieldConfig;
     form?: FormConfig;
     component?: FormComponentConfig;
     supportedModifications?: boolean | ModificationView[];
@@ -1006,7 +1007,8 @@ interface ItemCrudConfig {
     form?: FormConfig;
     mode?: ItemCrudMode;
     view?: ItemCrudView;
-    modificationView?: boolean | Array<ModificationView>;
+    visibleView?: ModificationView;
+    modificationViews?: boolean | Array<ModificationView>;
     editModeButton?: ButtonConfig | false;
     dropButton?: ButtonConfig | false;
     createButton?: ButtonConfig | false;
@@ -1575,7 +1577,8 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     form?: FormConfig;
     mode: ItemCrudMode;
     view: ItemCrudView;
-    modificationView?: boolean | Array<ModificationView>;
+    visibleView?: ModificationView;
+    modificationViews?: boolean | Array<ModificationView>;
     editModeButton: ButtonConfig | false;
     dropButton: ButtonConfig | false;
     createButton: ButtonConfig | false;

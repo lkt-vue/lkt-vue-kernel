@@ -8,6 +8,7 @@ export interface FormItemConfig extends RenderAndDisplayProps{
     key?: string
     type?: 'field'|'component'|'form'
     field?: FieldConfig
+    modificationsField?: FieldConfig
     form?: FormConfig
     component?: FormComponentConfig
     supportedModifications?: boolean | ModificationView[]

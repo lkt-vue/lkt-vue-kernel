@@ -26,7 +26,8 @@ export interface ItemCrudConfig {
     // Global config
     mode?: ItemCrudMode
     view?: ItemCrudView
-    modificationView?: boolean | Array<ModificationView>
+    visibleView?: ModificationView
+    modificationViews?: boolean | Array<ModificationView>
 
     // Buttons
     editModeButton?: ButtonConfig|false
