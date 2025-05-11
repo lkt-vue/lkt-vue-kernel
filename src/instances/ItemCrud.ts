@@ -14,6 +14,8 @@ import {NotificationType} from "../enums/NotificationType.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {FormConfig} from "../config/FormConfig.ts";
 import {ModificationView} from "../enums/ModificationView.ts";
+import {TableConfig} from "../config/TableConfig.ts";
+import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -45,6 +47,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'enabledSaveWithoutChanges',
         'redirectOnCreate',
         'redirectOnDrop',
+        'differencesTableConfig',
         'events',
     ];
 
@@ -93,6 +96,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
 
     redirectOnCreate?: string | ((id: number|string) => string) = undefined;
     redirectOnDrop?: string | (() => string) = undefined;
+    differencesTableConfig?: TableConfig | TableConfigReturnFunction = {};
     events: LktObject = {}
 
     constructor(data: Partial<ItemCrudConfig> = {}) {

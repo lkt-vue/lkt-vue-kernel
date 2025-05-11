@@ -43,6 +43,8 @@ export {FileBrowserConfig} from './config/FileBrowserConfig.ts';
 export {FileEntityConfig} from './config/FileEntityConfig.ts';
 export {FormConfig} from './config/FormConfig.ts';
 export {FormItemConfig} from './config/FormItemConfig.ts';
+export {FormComponentConfig} from './config/FormComponentConfig.ts';
+export {FormUiConfig} from './config/FormUiConfig.ts';
 export {HttpCallConfig} from './config/HttpCallConfig.ts';
 export {HeaderConfig} from './config/HeaderConfig.ts';
 export {IconConfig} from './config/IconConfig.ts';

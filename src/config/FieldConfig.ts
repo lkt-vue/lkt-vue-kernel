@@ -72,7 +72,7 @@ export interface FieldConfig {
     configOff?: BooleanFieldConfig
 
     // Read mode API
-    readMode?: boolean
+    readMode?: boolean | (() => boolean)
     allowReadModeSwitch?: boolean
     readModeConfig?: FieldReadModeConfig
 

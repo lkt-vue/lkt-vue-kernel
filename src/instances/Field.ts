@@ -138,7 +138,7 @@ export class Field extends LktItem implements FieldConfig {
     configOff?: BooleanFieldConfig = {};
 
     // Read mode API
-    readMode?: boolean
+    readMode?: boolean | (() => boolean) = false;
     allowReadModeSwitch: boolean = false;
     readModeConfig?: FieldReadModeConfig
 

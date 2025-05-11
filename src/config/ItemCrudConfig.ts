@@ -12,6 +12,8 @@ import {ValidTablePermission} from "../types/ValidTablePermission.ts";
 import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 import {FormConfig} from "./FormConfig.ts";
 import {ModificationView} from "../enums/ModificationView.ts";
+import {TableConfig} from "./TableConfig.ts";
+import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
@@ -64,6 +66,8 @@ export interface ItemCrudConfig {
 
     redirectOnCreate?: string | ((id: number|string) => string)
     redirectOnDrop?: string | (() => string)
+
+    differencesTableConfig?: TableConfig | TableConfigReturnFunction
 
     events?: {
         httpStart?: undefined | Function,

@@ -13,6 +13,7 @@ export interface ColumnConfig {
     sortable?: boolean
     hidden?: boolean | ((data: ConditionalColumnArgs) => boolean)
     editable?: boolean
+    ensureFieldLabel?: boolean
     formatter?: Function | undefined
     checkEmpty?: Function | undefined
     colspan?: ValidColSpan
