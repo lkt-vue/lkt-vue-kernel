@@ -62,8 +62,6 @@ export interface TableConfig {
     editModeButton?: ButtonConfig
     saveButton?: ButtonConfig
     createButton?: ButtonConfig
-    dropButton?: ButtonConfig
-    editButton?: ButtonConfig
     hiddenSave?: boolean
     groupButton?: ButtonConfig|boolean
     requiredItemsForTopCreate?: number

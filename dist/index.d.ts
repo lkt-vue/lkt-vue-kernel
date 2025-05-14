@@ -141,7 +141,7 @@ type ValidTabIndex = string | number | undefined;
 interface IsDisabledCheckerArgs {
     value?: any;
     dataState?: DataState;
-    prop: LktObject;
+    prop?: LktObject;
 }
 
 type IsDisabledChecker = ((args?: IsDisabledCheckerArgs) => boolean);
@@ -525,6 +525,7 @@ interface ColumnConfig {
     type: ColumnType;
     key: string;
     label?: string;
+    class?: string;
     sortable?: boolean;
     hidden?: boolean | ((data: ConditionalColumnArgs) => boolean);
     editable?: boolean;
@@ -603,8 +604,6 @@ interface TableConfig {
     editModeButton?: ButtonConfig;
     saveButton?: ButtonConfig;
     createButton?: ButtonConfig;
-    dropButton?: ButtonConfig;
-    editButton?: ButtonConfig;
     hiddenSave?: boolean;
     groupButton?: ButtonConfig | boolean;
     requiredItemsForTopCreate?: number;
@@ -693,6 +692,9 @@ interface FieldConfig {
     events?: {
         validationStart?: undefined | Function;
         validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean);
+        updatedOptions?: ((data: {
+            options: Array<OptionConfig>;
+        }) => void);
     };
 }
 
@@ -1357,6 +1359,7 @@ declare class Column extends LktItem implements ColumnConfig {
     type: ColumnType;
     key: string;
     label: string;
+    class: string;
     sortable: boolean;
     ensureFieldLabel: boolean;
     hidden: boolean | ((data: ConditionalColumnArgs) => boolean);
@@ -1729,8 +1732,6 @@ declare class Table extends LktItem implements TableConfig {
     editModeButton?: ButtonConfig;
     saveButton?: ButtonConfig;
     createButton?: ButtonConfig;
-    dropButton?: ButtonConfig;
-    editButton?: ButtonConfig;
     hiddenSave?: boolean;
     groupButton?: ButtonConfig | boolean;
     wrapContentTag?: string;

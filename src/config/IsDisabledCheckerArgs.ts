@@ -4,5 +4,5 @@ import {LktObject} from "../interfaces/LktObject.ts";
 export interface IsDisabledCheckerArgs {
     value?: any,
     dataState?: DataState,
-    prop: LktObject,
+    prop?: LktObject,
 }

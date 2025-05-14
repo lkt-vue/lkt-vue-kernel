@@ -24,6 +24,7 @@ export class Column extends LktItem implements ColumnConfig{
         'type',
         'key',
         'label',
+        'class',
         'sortable',
         'ensureFieldLabel',
         'hidden',
@@ -44,6 +45,7 @@ export class Column extends LktItem implements ColumnConfig{
     type: ColumnType = ColumnType.None;
     key: string = '';
     label: string = '';
+    class: string = '';
     sortable: boolean = true;
     ensureFieldLabel: boolean = false;
     hidden: boolean | ((data: ConditionalColumnArgs) => boolean) = false

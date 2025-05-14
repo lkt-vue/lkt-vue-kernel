@@ -22,5 +22,12 @@ export class FormInstance extends LktItem implements FormConfig {
     constructor(data: Partial<FormConfig> = {}) {
         super();
         this.feed(data);
+
+        this.items = this.items.map((item) => {
+            if (item.type === 'field' && typeof item.modificationsField === 'undefined') {
+                item.modificationsField = {options: []};
+            }
+            return item;
+        })
     }
 }

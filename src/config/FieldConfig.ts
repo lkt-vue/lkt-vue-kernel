@@ -107,5 +107,6 @@ export interface FieldConfig {
     events?: {
         validationStart?: undefined | Function
         validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean)
+        updatedOptions?: ((data: {options: Array<OptionConfig>}) => void)
     }
 }

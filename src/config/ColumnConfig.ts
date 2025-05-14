@@ -10,6 +10,7 @@ export interface ColumnConfig {
     type: ColumnType
     key: string
     label?: string
+    class?: string
     sortable?: boolean
     hidden?: boolean | ((data: ConditionalColumnArgs) => boolean)
     editable?: boolean
