@@ -970,6 +970,8 @@ interface FormUiConfig {
     form: FormConfig;
     valid?: boolean;
     disabled?: boolean;
+    class?: string;
+    formClass?: string;
     visibleView?: ModificationView;
     editableViews?: ModificationView[];
     modificationDataState?: DataState;
@@ -1021,6 +1023,7 @@ interface ItemCrudConfig {
     perms?: ValidTablePermission[];
     customData?: LktObject;
     form?: FormConfig;
+    formUiConfig?: Partial<FormUiConfig>;
     mode?: ItemCrudMode;
     view?: ItemCrudView;
     visibleView?: ModificationView;
@@ -1603,6 +1606,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     perms: ValidTablePermission[];
     customData?: LktObject;
     form?: FormConfig;
+    formUiConfig?: Partial<FormUiConfig>;
     mode: ItemCrudMode;
     view: ItemCrudView;
     visibleView?: ModificationView;

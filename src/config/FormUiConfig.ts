@@ -11,6 +11,8 @@ export interface FormUiConfig {
     form: FormConfig
     valid?: boolean
     disabled?: boolean
+    class?: string
+    formClass?: string
     visibleView?: ModificationView
     editableViews?: ModificationView[]
     modificationDataState?: DataState

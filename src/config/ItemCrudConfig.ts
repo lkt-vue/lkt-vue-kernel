@@ -14,6 +14,7 @@ import {FormConfig} from "./FormConfig.ts";
 import {ModificationView} from "../enums/ModificationView.ts";
 import {TableConfig} from "./TableConfig.ts";
 import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
+import {FormUiConfig} from "./FormUiConfig.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
@@ -22,6 +23,7 @@ export interface ItemCrudConfig {
     perms?: ValidTablePermission[]
     customData?: LktObject
     form?: FormConfig
+    formUiConfig?: Partial<FormUiConfig>
 
     // Global config
     mode?: ItemCrudMode

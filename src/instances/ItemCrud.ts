@@ -16,6 +16,7 @@ import {FormConfig} from "../config/FormConfig.ts";
 import {ModificationView} from "../enums/ModificationView.ts";
 import {TableConfig} from "../config/TableConfig.ts";
 import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
+import {FormUiConfig} from "../config/FormUiConfig.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -50,6 +51,8 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'redirectOnDrop',
         'differencesTableConfig',
         'events',
+        'form',
+        'formUiConfig',
     ];
 
 
@@ -59,6 +62,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     perms: ValidTablePermission[] = [];
     customData?: LktObject = {};
     form?: FormConfig = {};
+    formUiConfig?: Partial<FormUiConfig> = {};
 
     // Global config
     mode: ItemCrudMode = ItemCrudMode.Read;
