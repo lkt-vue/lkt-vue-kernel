@@ -7,6 +7,7 @@ export interface BoxConfig {
     iconAtEnd?: boolean
     style?: string
     class?: string
+    contentClass?: string
 
     // Icon
     icon?: IconConfig|string

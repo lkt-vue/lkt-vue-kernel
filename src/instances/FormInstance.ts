@@ -5,6 +5,10 @@ import {FormItemConfig} from "../config/FormItemConfig.ts";
 import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 import {HeaderConfig} from "../config/HeaderConfig.ts";
 import {FormUiConfig} from "../config/FormUiConfig.ts";
+import {FieldConfig} from "../config/FieldConfig.ts";
+import {RenderAndDisplayProps} from "../interfaces/RenderAndDisplayProps.ts";
+import {FormComponentConfig} from "../config/FormComponentConfig.ts";
+import {LktObject} from "../interfaces/LktObject.ts";
 
 export class FormInstance extends LktItem implements FormConfig {
 
@@ -32,5 +36,39 @@ export class FormInstance extends LktItem implements FormConfig {
             }
             return item;
         })
+    }
+
+    static mkFieldItemConfig(key: string, field: FieldConfig, modificationsField: FieldConfig = {}, displayConfig: RenderAndDisplayProps = {}) {
+        return <FormItemConfig>{
+            type: 'field',
+            key,
+            field,
+            modificationsField,
+            ...displayConfig
+        }
+    }
+
+    static mkFormItemConfig(form: FormConfig, displayConfig: RenderAndDisplayProps = {}) {
+        return <FormItemConfig>{
+            type: 'form',
+            form,
+            ...displayConfig
+        }
+    }
+
+    static mkComponentItemConfig(component: FormComponentConfig, displayConfig: RenderAndDisplayProps = {}) {
+        return <FormItemConfig>{
+            type: 'component',
+            component,
+            ...displayConfig
+        }
+    }
+
+    static mkSlotItemConfig(key: string, slotData: LktObject = {}) {
+        return <FormItemConfig>{
+            type: 'slot',
+            key,
+            slotData,
+        }
     }
 }

@@ -9,6 +9,7 @@ export class Box extends LktItem implements BoxConfig {
         'iconAtEnd',
         'style',
         'class',
+        'contentClass',
         'icon',
     ];
 
@@ -16,6 +17,7 @@ export class Box extends LktItem implements BoxConfig {
     iconAtEnd: boolean = false;
     style: string = '';
     class: string = '';
+    contentClass?: string
 
     // Icon
     icon: IconConfig|string = '';

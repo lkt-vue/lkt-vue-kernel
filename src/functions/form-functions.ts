@@ -35,3 +35,27 @@ export const getFormFieldsKeys = (form: FormConfig): string[] => {
     }
     return r;
 };
+
+export const getFormSlotKeys = (form: FormConfig): string[] => {
+    if (form.items === undefined) return [];
+    if (form.items.length === 0) return [];
+    let r = <Array<string>>[];
+    for (let i in form.items) {
+        let item = form.items[i];
+        switch (item.type) {
+            case 'slot':
+                if (item.key !== undefined) {
+                    r.push(item.key);
+                }
+                break;
+
+            case 'form':
+                if (item.form) {
+                    r = [...r, ...getFormSlotKeys(item.form)];
+                }
+                break;
+        }
+
+    }
+    return r;
+}
