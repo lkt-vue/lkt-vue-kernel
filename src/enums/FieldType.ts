@@ -10,6 +10,8 @@ export enum FieldType {
     Textarea = 'textarea',
     Html = 'html',
     Date = 'date',
+    Time = 'time',
+    DateTime = 'datetime',
     File = 'file',
     Image = 'image',
     Select = 'select',
@@ -17,5 +19,4 @@ export enum FieldType {
     Switch = 'switch',
     Calc = 'calc',
     Card = 'card',
-    Elements = 'elements',
 }

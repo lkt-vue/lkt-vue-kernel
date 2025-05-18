@@ -158,6 +158,7 @@ export {ValidationCode} from './enums/ValidationCode.ts';
 export {ValidationStatus} from './enums/ValidationStatus.ts';
 export {WebElementLayoutType} from './enums/WebElementLayoutType.ts';
 export {WebElementType} from './enums/WebElementType.ts';
+export {WebPageStatus} from './enums/WebPageStatus.ts';
 export {WebParentType} from './enums/WebParentType.ts';
 
 /**
