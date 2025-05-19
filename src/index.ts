@@ -117,6 +117,7 @@ export {WebPage} from './instances/WebPage.ts';
 export {AccordionToggleMode} from './enums/AccordionToggleMode.ts';
 export {AccordionType} from './enums/AccordionType.ts';
 export {AnchorType} from './enums/AnchorType.ts';
+export {AppSize} from './enums/AppSize.ts';
 export {BannerType} from './enums/BannerType.ts';
 export {ButtonType} from './enums/ButtonType.ts';
 export {ColumnType} from './enums/ColumnType.ts';

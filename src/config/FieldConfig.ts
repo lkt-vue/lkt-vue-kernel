@@ -15,8 +15,9 @@ import {BooleanFieldConfig} from "./BooleanFieldConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {OptionConfig} from "./OptionConfig.ts";
 import {FileBrowserConfig} from "./FileBrowserConfig.ts";
+import {RenderAndDisplayProps} from "../interfaces/RenderAndDisplayProps.ts";
 
-export interface FieldConfig {
+export interface FieldConfig extends RenderAndDisplayProps{
     modelValue?: ValidFieldValue
     type?: FieldType
     valid?: boolean | undefined

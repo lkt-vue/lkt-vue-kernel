@@ -22,6 +22,7 @@ export class Table extends LktItem implements TableConfig {
         'noResultsText',
         'hideEmptyColumns',
         'itemDisplayChecker',
+        'customItemSlotName',
         'loading',
         'page',
         'perms',
@@ -68,6 +69,7 @@ export class Table extends LktItem implements TableConfig {
     hideTableHeader?: boolean = false;
     hideEmptyColumns?: boolean = false;
     itemDisplayChecker?: Function = undefined;
+    customItemSlotName?: Function = undefined;
     rowDisplayType?: ValidTableRowTypeValue = TableRowType.Auto;
 
     // State

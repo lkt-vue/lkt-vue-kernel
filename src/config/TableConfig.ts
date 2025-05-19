@@ -22,6 +22,7 @@ export interface TableConfig {
     hideEmptyColumns?: boolean
     hideTableHeader?: boolean
     itemDisplayChecker?: Function
+    customItemSlotName?: Function
     rowDisplayType?: ValidTableRowTypeValue
     slotItemVar?: string
 

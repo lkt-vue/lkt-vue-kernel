@@ -81,6 +81,8 @@ export class Field extends LktItem implements FieldConfig {
         'readModeConfig',
         'configOn',
         'configOff',
+        'canRender',
+        'canDisplay',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -157,6 +159,9 @@ export class Field extends LktItem implements FieldConfig {
 
     // File Browser Config
     fileBrowserConfig?: FileBrowserConfig = {};
+
+    canRender: boolean = true;
+    canDisplay: boolean = true;
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();
