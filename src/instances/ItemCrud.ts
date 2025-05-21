@@ -53,6 +53,10 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'events',
         'form',
         'formUiConfig',
+        'navStartButtons',
+        'navStartButtonsEditing',
+        'navEndButtons',
+        'navEndButtonsEditing',
     ];
 
 
@@ -103,6 +107,12 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     redirectOnCreate?: string | ((id: number|string) => string) = undefined;
     redirectOnDrop?: string | (() => string) = undefined;
     differencesTableConfig?: TableConfig | TableConfigReturnFunction = {};
+
+    navStartButtons?: Array<ButtonConfig> = [];
+    navStartButtonsEditing?: Array<ButtonConfig> = [];
+    navEndButtons?: Array<ButtonConfig> = [];
+    navEndButtonsEditing?: Array<ButtonConfig> = [];
+
     events: LktObject = {}
 
     constructor(data: Partial<ItemCrudConfig> = {}) {

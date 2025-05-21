@@ -1059,6 +1059,10 @@ interface ItemCrudConfig {
     redirectOnCreate?: string | ((id: number | string) => string);
     redirectOnDrop?: string | (() => string);
     differencesTableConfig?: TableConfig | TableConfigReturnFunction;
+    navStartButtons?: Array<ButtonConfig>;
+    navStartButtonsEditing?: Array<ButtonConfig>;
+    navEndButtons?: Array<ButtonConfig>;
+    navEndButtonsEditing?: Array<ButtonConfig>;
     events?: {
         httpStart?: undefined | Function;
         httpEnd?: (data: ClickEventArgs) => void | undefined;
@@ -1659,6 +1663,10 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     redirectOnCreate?: string | ((id: number | string) => string);
     redirectOnDrop?: string | (() => string);
     differencesTableConfig?: TableConfig | TableConfigReturnFunction;
+    navStartButtons?: Array<ButtonConfig>;
+    navStartButtonsEditing?: Array<ButtonConfig>;
+    navEndButtons?: Array<ButtonConfig>;
+    navEndButtonsEditing?: Array<ButtonConfig>;
     events: LktObject;
     constructor(data?: Partial<ItemCrudConfig>);
 }

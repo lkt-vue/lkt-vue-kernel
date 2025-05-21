@@ -72,6 +72,11 @@ export interface ItemCrudConfig {
 
     differencesTableConfig?: TableConfig | TableConfigReturnFunction
 
+    navStartButtons?: Array<ButtonConfig>
+    navStartButtonsEditing?: Array<ButtonConfig>
+    navEndButtons?: Array<ButtonConfig>
+    navEndButtonsEditing?: Array<ButtonConfig>
+
     events?: {
         httpStart?: undefined | Function,
         httpEnd?: (data: ClickEventArgs) => void|undefined,
