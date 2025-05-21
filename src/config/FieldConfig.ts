@@ -109,5 +109,6 @@ export interface FieldConfig extends RenderAndDisplayProps{
         validationStart?: undefined | Function
         validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean)
         updatedOptions?: ((data: {options: Array<OptionConfig>}) => void)
+        clickOption?: ((data: {option: OptionConfig}) => void)
     }
 }

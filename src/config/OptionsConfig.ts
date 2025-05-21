@@ -12,4 +12,5 @@ export interface OptionsConfig {
     filter?: Function
     labelFormatter?: Function|undefined
     http?: HttpCallConfig
+    autoPickFirstOptionIfEmpty?: boolean
 }

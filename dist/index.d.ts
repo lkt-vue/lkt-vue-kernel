@@ -397,6 +397,7 @@ interface OptionsConfig {
     filter?: Function;
     labelFormatter?: Function | undefined;
     http?: HttpCallConfig;
+    autoPickFirstOptionIfEmpty?: boolean;
 }
 
 interface FieldReadModeConfig {
@@ -697,6 +698,9 @@ interface FieldConfig extends RenderAndDisplayProps {
         updatedOptions?: ((data: {
             options: Array<OptionConfig>;
         }) => void);
+        clickOption?: ((data: {
+            option: OptionConfig;
+        }) => void);
     };
 }
 
@@ -825,7 +829,7 @@ declare const fieldsWithMultipleMode: FieldType[];
 declare const textFieldTypes: FieldType[];
 
 interface PolymorphicElementConfig {
-    tag?: string;
+    tag?: string | Component;
     class?: string;
     text?: string;
     title?: string;
@@ -1878,13 +1882,13 @@ declare class WebPage extends LktItem implements WebPageConfig {
 }
 
 declare enum AppSize {
-    XXS = "xxs",// Tiny devices
-    XS = "xs",// Small phones
-    SM = "sm",// Large Phones
-    MD = "md",// Tablets
-    LG = "lg",// Large laptops
-    XL = "xl",//  Desktop
-    XXL = "xxl"
+    XXS = 1,// Tiny devices
+    XS = 2,// Small phones
+    SM = 3,// Large Phones
+    MD = 4,// Tablets
+    LG = 5,// Large laptops
+    XL = 6,//  Desktop
+    XXL = 7
 }
 
 declare enum SortDirection {

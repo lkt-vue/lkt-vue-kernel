@@ -1,9 +1,9 @@
 export enum AppSize {
-    XXS = 'xxs', // Tiny devices
-    XS = 'xs', // Small phones
-    SM = 'sm', // Large Phones
-    MD = 'md', // Tablets
-    LG = 'lg', // Large laptops
-    XL = 'xl', //  Desktop
-    XXL = 'xxl', // Large Desktop
+    XXS = 1, // Tiny devices
+    XS =  2, // Small phones
+    SM = 3, // Large Phones
+    MD = 4, // Tablets
+    LG = 5, // Large laptops
+    XL = 6, //  Desktop
+    XXL = 7, // Large Desktop
 }
