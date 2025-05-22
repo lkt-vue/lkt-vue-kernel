@@ -200,6 +200,7 @@ export {SafeString} from './value-objects/SafeString.ts';
 export {ClickEventArgs} from './arguments/ClickEventArgs.ts';
 export {ConditionalColumnArgs} from './arguments/ConditionalColumnArgs.ts';
 export {FieldValidationEndEventArgs} from './arguments/FieldValidationEndEventArgs.ts';
+export {FieldLoadOptionsEndEventArgs} from './arguments/FieldLoadOptionsEndEventArgs.ts';
 
 /**
  * Export functions

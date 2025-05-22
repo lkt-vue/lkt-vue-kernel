@@ -16,6 +16,7 @@ import {ButtonConfig} from "./ButtonConfig.ts";
 import {OptionConfig} from "./OptionConfig.ts";
 import {FileBrowserConfig} from "./FileBrowserConfig.ts";
 import {RenderAndDisplayProps} from "../interfaces/RenderAndDisplayProps.ts";
+import {FieldLoadOptionsEndEventArgs} from "../arguments/FieldLoadOptionsEndEventArgs.ts";
 
 export interface FieldConfig extends RenderAndDisplayProps{
     modelValue?: ValidFieldValue
@@ -108,6 +109,8 @@ export interface FieldConfig extends RenderAndDisplayProps{
     events?: {
         validationStart?: undefined | Function
         validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean)
+        loadOptionsStart?: undefined | Function
+        loadOptionsEnd?: undefined | ((data: FieldLoadOptionsEndEventArgs) => void)
         updatedOptions?: ((data: {options: Array<OptionConfig>}) => void)
         clickOption?: ((data: {option: OptionConfig}) => void)
     }

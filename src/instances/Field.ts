@@ -83,6 +83,7 @@ export class Field extends LktItem implements FieldConfig {
         'configOff',
         'canRender',
         'canDisplay',
+        'events',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -162,6 +163,8 @@ export class Field extends LktItem implements FieldConfig {
 
     canRender: boolean = true;
     canDisplay: boolean = true;
+
+    events?: LktObject = {}
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();
