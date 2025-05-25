@@ -249,10 +249,16 @@ export {WebElementSettings} from "./controllers/web-element-controller/config/We
 export {WebElementController} from "./controllers/web-element-controller/WebElementController.ts";
 
 /**
- * Export WebPAge Controller
+ * Export WebPage Controller
  */
 export {WebPageSettings} from "./controllers/web-page-controller/config/WebPageSettings.ts";
 export {WebPageController} from "./controllers/web-page-controller/WebPageController.ts";
+
+/**
+ * Export WebItems Controller
+ */
+export {WebItemConfig} from "./controllers/web-items-controller/config/WebItemConfig.ts";
+export {WebItemsController} from "./controllers/web-items-controller/WebItemsController.ts";
 
 
 export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
