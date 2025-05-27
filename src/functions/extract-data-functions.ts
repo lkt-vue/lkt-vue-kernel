@@ -4,8 +4,21 @@ import {__} from 'lkt-i18n';
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 
 export const extractPropValue = (needle: ValidScanPropTarget, haystack: LktObject): ValidScanPropTarget => {
-    if (typeof needle === 'string' && needle.startsWith('prop:')) {
-        return haystack[needle.substring(5)];
+    if (typeof needle === 'string') {
+        if (needle === 'prop:') return haystack;
+
+        if (needle.startsWith('prop:')) {
+            return haystack[needle.substring(5)];
+        }
+
+        if (needle.includes('feed{')) {
+            const regex = /\bfeed{(.*?)}/g;
+            const result = needle.replace(regex, (_, key) => {
+                return haystack[key.trim()] || '';
+            });
+            console.log('result: ', result);
+            return result;
+        }
     }
     return needle;
 }

@@ -389,6 +389,7 @@ interface HttpCallConfig {
 interface OptionsConfig {
     autoloadResource?: boolean | 'feed';
     download?: string | Function;
+    anchor?: AnchorConfig | Function;
     modal?: string | Function;
     modalData?: LktObject | Function;
     text?: string | Function;
@@ -1922,7 +1923,7 @@ declare enum WebParentType {
     Element = "element"
 }
 
-type ScanPropTarget = string | number | undefined | Function;
+type ScanPropTarget = string | number | undefined | Function | LktObject;
 
 type ValidCustomSlot = string | Component | undefined;
 
