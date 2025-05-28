@@ -1061,6 +1061,7 @@ interface ItemCrudConfig {
     readResource?: string;
     readData?: LktObject;
     title?: string;
+    header?: HeaderConfig;
     beforeEmitUpdate?: Function | undefined;
     notificationType?: NotificationType;
     enabledSaveWithoutChanges?: boolean;
@@ -1661,6 +1662,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     modalConfig: ModalConfig;
     saveConfig: SaveConfig;
     title: string;
+    header?: HeaderConfig;
     readResource: string;
     readData: LktObject;
     beforeEmitUpdate: Function | undefined;

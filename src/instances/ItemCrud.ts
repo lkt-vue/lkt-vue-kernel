@@ -17,6 +17,7 @@ import {ModificationView} from "../enums/ModificationView.ts";
 import {TableConfig} from "../config/TableConfig.ts";
 import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
 import {FormUiConfig} from "../config/FormUiConfig.ts";
+import {HeaderConfig} from "../config/HeaderConfig.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -92,6 +93,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
 
 
     title: string = '';
+    header?: HeaderConfig = {};
     readResource: string = '';
     readData: LktObject = {};
     beforeEmitUpdate: Function | undefined = undefined;

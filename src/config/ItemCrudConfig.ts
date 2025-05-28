@@ -15,6 +15,7 @@ import {ModificationView} from "../enums/ModificationView.ts";
 import {TableConfig} from "./TableConfig.ts";
 import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
 import {FormUiConfig} from "./FormUiConfig.ts";
+import {HeaderConfig} from "./HeaderConfig.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
@@ -58,6 +59,7 @@ export interface ItemCrudConfig {
 
     // Title (only if view === inline)
     title?: string
+    header?: HeaderConfig
 
     // Events
     beforeEmitUpdate?: Function | undefined
