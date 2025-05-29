@@ -23,7 +23,7 @@ export interface ItemCrudConfig {
     editing?: boolean
     perms?: ValidTablePermission[]
     customData?: LktObject
-    form?: FormConfig
+    form?: FormConfig|Function
     formUiConfig?: Partial<FormUiConfig>
 
     // Global config

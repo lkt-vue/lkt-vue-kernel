@@ -66,7 +66,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     editing: boolean = false;
     perms: ValidTablePermission[] = [];
     customData?: LktObject = {};
-    form?: FormConfig = {};
+    form?: FormConfig|Function = {};
     formUiConfig?: Partial<FormUiConfig> = {};
 
     // Global config

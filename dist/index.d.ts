@@ -288,8 +288,8 @@ declare enum TagType {
 
 interface TagConfig {
     class?: string;
-    text?: string;
-    featuredText?: string;
+    text?: ValidTextValue;
+    featuredText?: ValidTextValue;
     icon?: string;
     iconAtEnd?: boolean;
     featuredAtStart?: boolean;
@@ -399,6 +399,7 @@ interface OptionsConfig {
     labelFormatter?: Function | undefined;
     http?: HttpCallConfig;
     autoPickFirstOptionIfEmpty?: boolean;
+    zeroMeansEmpty?: boolean;
 }
 
 interface FieldReadModeConfig {
@@ -1041,7 +1042,7 @@ interface ItemCrudConfig {
     editing?: boolean;
     perms?: ValidTablePermission[];
     customData?: LktObject;
-    form?: FormConfig;
+    form?: FormConfig | Function;
     formUiConfig?: Partial<FormUiConfig>;
     mode?: ItemCrudMode;
     view?: ItemCrudView;
@@ -1647,7 +1648,7 @@ declare class ItemCrud extends LktItem implements ItemCrudConfig {
     editing: boolean;
     perms: ValidTablePermission[];
     customData?: LktObject;
-    form?: FormConfig;
+    form?: FormConfig | Function;
     formUiConfig?: Partial<FormUiConfig>;
     mode: ItemCrudMode;
     view: ItemCrudView;
@@ -1839,8 +1840,8 @@ declare class Tabs extends LktItem implements TabsConfig {
 declare class Tag extends LktItem implements TagConfig {
     static lktDefaultValues: (keyof TagConfig)[];
     class?: string;
-    text?: string;
-    featuredText?: string;
+    text?: ValidTextValue;
+    featuredText?: ValidTextValue;
     icon?: string;
     iconAtEnd?: boolean;
     featuredAtStart?: boolean;
@@ -2071,6 +2072,9 @@ interface WebPageSettings {
 
 declare class WebPageController {
     private static pages;
+    private static defaultPageEnabled;
+    static setDefaultPageEnabled(status: boolean): typeof WebPageController;
+    static hasDefaultPageEnabled(): boolean;
     static addWebPage(element: WebPageSettings): typeof WebPageController;
     static getPages(): WebPageSettings[];
     static getCustomWebPageSettings(needle: string): WebPageSettings | undefined;

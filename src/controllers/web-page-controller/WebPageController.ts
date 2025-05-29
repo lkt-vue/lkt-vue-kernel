@@ -2,6 +2,16 @@ import {WebPageSettings} from "./config/WebPageSettings.ts";
 
 export class WebPageController {
     private static pages: Array<WebPageSettings> = [];
+    private static defaultPageEnabled: boolean = true;
+
+    static setDefaultPageEnabled(status: boolean){
+        WebPageController.defaultPageEnabled = status;
+        return WebPageController;
+    }
+
+    static hasDefaultPageEnabled(){
+        return WebPageController.defaultPageEnabled;
+    }
 
     static addWebPage(element: WebPageSettings) {
         WebPageController.pages.push(element);

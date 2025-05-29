@@ -16,7 +16,6 @@ export const extractPropValue = (needle: ValidScanPropTarget, haystack: LktObjec
             const result = needle.replace(regex, (_, key) => {
                 return haystack[key.trim()] || '';
             });
-            console.log('result: ', result);
             return result;
         }
     }
