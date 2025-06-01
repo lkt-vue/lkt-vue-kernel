@@ -6,6 +6,7 @@ import {WebElement} from "./WebElement.ts";
 import {MultiLangValue} from "../config/MultiLangValue.ts";
 import {ItemCrudConfig} from "../config/ItemCrudConfig.ts";
 import {WebPageStatus} from "../enums/WebPageStatus.ts";
+import {getAvailableLanguages, getCurrentLanguage} from "lkt-i18n";
 
 export class WebPage extends LktItem implements WebPageConfig {
 
@@ -22,10 +23,11 @@ export class WebPage extends LktItem implements WebPageConfig {
 
     id: number|string|undefined = 0;
     name: string = '';
+    nameData: MultiLangValue = {};
     slug: string = '';
+    slugData: MultiLangValue = {};
     status?: WebPageStatus = WebPageStatus.Draft;
     scheduledDate?: Date = undefined;
-    nameData?: MultiLangValue = {};
     webElements: Array<WebElement> = [];
 
     crudConfig: ItemCrudConfig = {};
@@ -36,7 +38,12 @@ export class WebPage extends LktItem implements WebPageConfig {
 
         this.keyMoment = generateRandomString(4) + this.id + time();
 
-        if (this.name && this.name !== '' && !this.slug) {
+        if (Array.isArray(this.slugData)) {
+            this.slugData = {};
+            this.updateSlug();
+        }
+
+        if (!this.slugData) {
             this.updateSlug();
         }
     }
@@ -47,5 +54,12 @@ export class WebPage extends LktItem implements WebPageConfig {
 
     updateSlug() {
         this.slug = getUrlSlug(this.name);
+
+        let languages = getAvailableLanguages();
+        for (let i in languages) {
+            let lang = languages[i];
+            //@ts-ignore
+            this.slugData[lang] = getUrlSlug(String(this.nameData[lang]));
+        }
     }
 }

@@ -203,6 +203,8 @@ interface TooltipConfig {
     showOnReferrerHoverDelay?: number;
     hideOnReferrerLeave?: boolean;
     hideOnReferrerLeaveDelay?: number;
+    compensationX?: number;
+    compensationY?: number;
 }
 
 type ValidButtonDot = boolean | string | number;
@@ -1882,6 +1884,8 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     showOnReferrerHoverDelay: number;
     hideOnReferrerLeave: boolean;
     hideOnReferrerLeaveDelay: number;
+    compensationX: number;
+    compensationY: number;
     constructor(data?: Partial<TooltipConfig>);
 }
 
@@ -1890,10 +1894,11 @@ declare class WebPage extends LktItem implements WebPageConfig {
     keyMoment: string;
     id: number | string | undefined;
     name: string;
+    nameData: MultiLangValue;
     slug: string;
+    slugData: MultiLangValue;
     status?: WebPageStatus;
     scheduledDate?: Date;
-    nameData?: MultiLangValue;
     webElements: Array<WebElement>;
     crudConfig: ItemCrudConfig;
     constructor(data?: Partial<WebPageConfig>);

@@ -21,5 +21,7 @@ export interface TooltipConfig {
     showOnReferrerHoverDelay?: number
     hideOnReferrerLeave?: boolean
     hideOnReferrerLeaveDelay?: number
+    compensationX?: number
+    compensationY?: number
 }
 
