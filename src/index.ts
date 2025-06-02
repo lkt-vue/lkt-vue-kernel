@@ -52,6 +52,7 @@ export {IconConfig} from './config/IconConfig.ts';
 export {ImageConfig} from './config/ImageConfig.ts';
 export {IsDisabledCheckerArgs} from './config/IsDisabledCheckerArgs.ts';
 export {ItemCrudConfig} from './config/ItemCrudConfig.ts';
+export {ItemSlotComponentConfig} from './config/ItemSlotComponentConfig.ts';
 export {LoginConfig} from './config/LoginConfig.ts';
 export {MenuConfig} from './config/MenuConfig.ts';
 export {MenuEntryConfig} from './config/MenuEntryConfig.ts';

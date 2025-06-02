@@ -7,4 +7,5 @@ export interface CounterConfig {
     step?: number
     timeout?: number
     dateFormat?: string
+    seconds?: number
 }

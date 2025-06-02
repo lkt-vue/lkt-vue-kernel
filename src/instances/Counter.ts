@@ -19,6 +19,7 @@ export class Counter extends LktItem implements CounterConfig {
     step?: number = 1;
     timeout?: number = 1000;
     dateFormat?: string = ':dd :hh :mm :ss';
+    seconds?: number = 60
 
     constructor(data: Partial<CounterConfig> = {}) {
         super();

@@ -9,6 +9,7 @@ import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 import {CarouselConfig} from "./CarouselConfig.ts";
 import {ColumnConfig} from "./ColumnConfig.ts";
 import {AccordionConfig} from "./AccordionConfig.ts";
+import {Component} from "vue";
 
 export interface TableConfig {
 
@@ -25,6 +26,8 @@ export interface TableConfig {
     customItemSlotName?: Function
     rowDisplayType?: ValidTableRowTypeValue
     slotItemVar?: string
+    itemSlotComponent?: string | Function | Component
+    itemSlotData?: LktObject | Function
 
     // State
     loading?: boolean

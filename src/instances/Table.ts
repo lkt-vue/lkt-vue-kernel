@@ -12,6 +12,7 @@ import {ValidPaginatorConfig} from "../types/ValidPaginatorConfig.ts";
 import {CarouselConfig} from "../config/CarouselConfig.ts";
 import {ColumnConfig} from "../config/ColumnConfig.ts";
 import {AccordionConfig} from "../config/AccordionConfig.ts";
+import {Component} from "vue";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -125,6 +126,8 @@ export class Table extends LktItem implements TableConfig {
     requiredItemsForBottomCreate?: number = 0;
 
     slotItemVar?: string = 'item';
+    itemSlotComponent?: string | Function | Component = undefined;
+    itemSlotData?: LktObject | Function = {};
 
 
     constructor(data: Partial<TableConfig> = {}) {
