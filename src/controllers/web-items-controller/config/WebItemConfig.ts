@@ -6,6 +6,6 @@ export interface WebItemConfig {
     icon?: string
     labelSingle: string
     labelMany: string
-    many: TableConfig
+    many: TableConfig|false
     single: ItemCrudConfig
 }

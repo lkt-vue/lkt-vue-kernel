@@ -3,6 +3,7 @@
  */
 export {LktObject} from './interfaces/LktObject.ts';
 export {RenderAndDisplayProps} from './interfaces/RenderAndDisplayProps.ts';
+export {RouteConfig} from './interfaces/RouteConfig.ts';
 
 /**
  * Export settings

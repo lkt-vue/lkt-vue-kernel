@@ -83,6 +83,7 @@ export class Field extends LktItem implements FieldConfig {
         'configOff',
         'canRender',
         'canDisplay',
+        'createButton',
         'events',
     ];
 
@@ -154,6 +155,8 @@ export class Field extends LktItem implements FieldConfig {
     // File upload config
     fileUploadHttp?: HttpCallConfig = {};
     fileUploadButton: ButtonConfig = {};
+
+    createButton?: ButtonConfig|false = false;
 
     // Tooltip API
     tooltipConfig?: TooltipConfig = {};

@@ -105,6 +105,8 @@ export interface FieldConfig extends RenderAndDisplayProps{
     customButtonText?: string
     customButtonClass?: string
 
+    createButton?: ButtonConfig|false
+
     // Events
     events?: {
         validationStart?: undefined | Function
@@ -113,5 +115,6 @@ export interface FieldConfig extends RenderAndDisplayProps{
         loadOptionsEnd?: undefined | ((data: FieldLoadOptionsEndEventArgs) => void)
         updatedOptions?: ((data: {options: Array<OptionConfig>}) => void)
         clickOption?: ((data: {option: OptionConfig}) => void)
+        itemCreated?: undefined | Function
     }
 }
