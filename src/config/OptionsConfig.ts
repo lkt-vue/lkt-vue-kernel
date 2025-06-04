@@ -1,6 +1,7 @@
 import {LktObject} from "../interfaces/LktObject.ts";
 import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {AnchorConfig} from "./AnchorConfig.ts";
+import {TableConfig} from "./TableConfig.ts";
 
 export interface OptionsConfig {
     autoloadResource?: boolean | 'feed'
@@ -16,4 +17,5 @@ export interface OptionsConfig {
     http?: HttpCallConfig
     autoPickFirstOptionIfEmpty?: boolean
     zeroMeansEmpty?: boolean
+    table?: TableConfig
 }

@@ -345,7 +345,8 @@ type ValidFieldValue = string | number | boolean | LktObject | Option[];
 declare enum MultipleOptionsDisplay {
     List = "list",
     Inline = "inline",
-    Count = "count"
+    Count = "count",
+    Table = "table"
 }
 
 type ValidFieldMinMax = number | string | undefined;
@@ -394,32 +395,6 @@ interface HttpCallConfig {
         onStart?: Function | undefined;
         onEnd?: Function | undefined;
     };
-}
-
-interface OptionsConfig {
-    autoloadResource?: boolean | 'feed';
-    download?: string | Function;
-    anchor?: AnchorConfig | Function;
-    modal?: string | Function;
-    modalData?: LktObject | Function;
-    text?: string | Function;
-    icon?: string | Function;
-    class?: string | Function;
-    filter?: Function;
-    labelFormatter?: Function | undefined;
-    http?: HttpCallConfig;
-    autoPickFirstOptionIfEmpty?: boolean;
-    zeroMeansEmpty?: boolean;
-}
-
-interface FieldReadModeConfig {
-    textMaxLength?: number;
-}
-
-interface BooleanFieldConfig {
-    label?: ValidTextValue;
-    icon?: ValidTextValue;
-    labelIcon?: ValidTextValue;
 }
 
 declare enum TableType {
@@ -633,6 +608,33 @@ interface TableConfig {
     itemContainerClass?: string | Function;
     skipTableItemsContainer?: boolean;
     createEnabledValidator?: Function;
+}
+
+interface OptionsConfig {
+    autoloadResource?: boolean | 'feed';
+    download?: string | Function;
+    anchor?: AnchorConfig | Function;
+    modal?: string | Function;
+    modalData?: LktObject | Function;
+    text?: string | Function;
+    icon?: string | Function;
+    class?: string | Function;
+    filter?: Function;
+    labelFormatter?: Function | undefined;
+    http?: HttpCallConfig;
+    autoPickFirstOptionIfEmpty?: boolean;
+    zeroMeansEmpty?: boolean;
+    table?: TableConfig;
+}
+
+interface FieldReadModeConfig {
+    textMaxLength?: number;
+}
+
+interface BooleanFieldConfig {
+    label?: ValidTextValue;
+    icon?: ValidTextValue;
+    labelIcon?: ValidTextValue;
 }
 
 interface FileBrowserConfig {
@@ -2118,6 +2120,7 @@ interface WebItemConfig {
     labelMany: string;
     many: TableConfig | false;
     single: ItemCrudConfig;
+    itemGenerator?: ((data: LktObject) => LktObject);
 }
 
 interface WebItemsStack {
