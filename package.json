@@ -39,11 +39,9 @@
     "lkt-http-client": "^1.0.34",
     "lkt-i18n": "^1.0.6",
     "lkt-string-tools": "^1.0.8",
+    "lkt-date-tools": "^1.0.4",
+    "lkt-object-tools": "^1.0.3",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
-  },
-  "dependencies": {
-    "lkt-date-tools": "^1.0.4",
-    "lkt-object-tools": "^1.0.3"
   }
 }
