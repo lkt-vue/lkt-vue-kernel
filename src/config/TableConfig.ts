@@ -28,6 +28,7 @@ export interface TableConfig {
     slotItemVar?: string
     itemSlotComponent?: string | Function | Component
     itemSlotData?: LktObject | Function
+    itemSlotEvents?: LktObject | Function
 
     // State
     loading?: boolean

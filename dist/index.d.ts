@@ -576,6 +576,7 @@ interface TableConfig {
     slotItemVar?: string;
     itemSlotComponent?: string | Function | Component;
     itemSlotData?: LktObject | Function;
+    itemSlotEvents?: LktObject | Function;
     loading?: boolean;
     page?: number;
     perms?: ValidTablePermission[];
@@ -1103,6 +1104,7 @@ interface ItemSlotComponentConfig {
     index?: number;
     perms?: Array<TablePermission>;
     data?: LktObject;
+    events?: LktObject;
 }
 
 interface LoginConfig {
@@ -1853,6 +1855,7 @@ declare class Table extends LktItem implements TableConfig {
     slotItemVar?: string;
     itemSlotComponent?: string | Function | Component;
     itemSlotData?: LktObject | Function;
+    itemSlotEvents?: LktObject | Function;
     constructor(data?: Partial<TableConfig>);
 }
 

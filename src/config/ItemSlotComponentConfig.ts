@@ -7,4 +7,5 @@ export interface ItemSlotComponentConfig {
     index?: number
     perms?: Array<TablePermission>
     data?: LktObject
+    events?: LktObject
 }

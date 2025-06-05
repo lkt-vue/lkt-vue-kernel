@@ -128,6 +128,7 @@ export class Table extends LktItem implements TableConfig {
     slotItemVar?: string = 'item';
     itemSlotComponent?: string | Function | Component = undefined;
     itemSlotData?: LktObject | Function = {};
+    itemSlotEvents?: LktObject | Function = {};
 
 
     constructor(data: Partial<TableConfig> = {}) {
