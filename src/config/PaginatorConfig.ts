@@ -13,5 +13,6 @@ export interface PaginatorConfig {
     events?: {
         httpStart?: undefined | Function,
         httpEnd?: (data: ClickEventArgs) => void|undefined,
+        parseResults?: (data: LktObject[]) => void|undefined,
     }
 }

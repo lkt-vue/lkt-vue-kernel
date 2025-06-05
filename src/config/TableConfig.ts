@@ -84,6 +84,10 @@ export interface TableConfig {
 
     // Deprecated props (use saveButton.disabled):
     createEnabledValidator?: Function
+
+    events?: {
+        parseResults?: (data: LktObject[]) => void|undefined,
+    }
 }
 
 

@@ -58,6 +58,7 @@ export class Table extends LktItem implements TableConfig {
         'accordion',
         'hideTableHeader',
         'skipTableItemsContainer',
+        'events',
     ];
 
     // Data
@@ -129,6 +130,7 @@ export class Table extends LktItem implements TableConfig {
     itemSlotComponent?: string | Function | Component = undefined;
     itemSlotData?: LktObject | Function = {};
     itemSlotEvents?: LktObject | Function = {};
+    events?: LktObject = {};
 
 
     constructor(data: Partial<TableConfig> = {}) {

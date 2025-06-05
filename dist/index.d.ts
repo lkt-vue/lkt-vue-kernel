@@ -479,6 +479,7 @@ interface PaginatorConfig {
     events?: {
         httpStart?: undefined | Function;
         httpEnd?: (data: ClickEventArgs) => void | undefined;
+        parseResults?: (data: LktObject[]) => void | undefined;
     };
 }
 
@@ -609,6 +610,9 @@ interface TableConfig {
     itemContainerClass?: string | Function;
     skipTableItemsContainer?: boolean;
     createEnabledValidator?: Function;
+    events?: {
+        parseResults?: (data: LktObject[]) => void | undefined;
+    };
 }
 
 interface OptionsConfig {
@@ -1856,6 +1860,7 @@ declare class Table extends LktItem implements TableConfig {
     itemSlotComponent?: string | Function | Component;
     itemSlotData?: LktObject | Function;
     itemSlotEvents?: LktObject | Function;
+    events?: LktObject;
     constructor(data?: Partial<TableConfig>);
 }
 
