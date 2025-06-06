@@ -9,6 +9,8 @@ export {RouteConfig} from './interfaces/RouteConfig.ts';
  * Export settings
  */
 export {LktSettings} from './settings/LktSettings.ts';
+export {TooltipSettings} from './component-settings/interfaces/TooltipSettings.ts';
+export {TooltipSettingsController} from './component-settings/controllers/TooltipSettingsController.ts';
 
 /**
  * Export constants
