@@ -27,6 +27,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'hideOnReferrerLeaveDelay',
         'compensationX',
         'compensationY',
+        'compensateGlobalContainers',
     ];
 
     modelValue: boolean = false;
@@ -49,6 +50,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     hideOnReferrerLeaveDelay: number = 0;
     compensationX: number = 0;
     compensationY: number = 0;
+    compensateGlobalContainers: boolean = true;
 
     constructor(data: Partial<TooltipConfig> = {}) {
         super();

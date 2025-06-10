@@ -213,6 +213,7 @@ interface TooltipConfig {
     hideOnReferrerLeaveDelay?: number;
     compensationX?: number;
     compensationY?: number;
+    compensateGlobalContainers?: boolean;
 }
 
 type ValidButtonDot = boolean | string | number;
@@ -1931,6 +1932,7 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     hideOnReferrerLeaveDelay: number;
     compensationX: number;
     compensationY: number;
+    compensateGlobalContainers: boolean;
     constructor(data?: Partial<TooltipConfig>);
 }
 

@@ -23,5 +23,6 @@ export interface TooltipConfig {
     hideOnReferrerLeaveDelay?: number
     compensationX?: number
     compensationY?: number
+    compensateGlobalContainers?: boolean
 }
 
