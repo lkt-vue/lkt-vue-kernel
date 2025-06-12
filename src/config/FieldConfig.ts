@@ -116,5 +116,6 @@ export interface FieldConfig extends RenderAndDisplayProps{
         updatedOptions?: ((data: {options: Array<OptionConfig>}) => void)
         clickOption?: ((data: {option: OptionConfig}) => void)
         itemCreated?: undefined | Function
+        changed?: undefined | Function
     }
 }

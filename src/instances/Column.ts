@@ -28,7 +28,6 @@ export class Column extends LktItem implements ColumnConfig{
         'sortable',
         'ensureFieldLabel',
         'hidden',
-        'editable',
         'formatter',
         'checkEmpty',
         'colspan',
@@ -49,7 +48,6 @@ export class Column extends LktItem implements ColumnConfig{
     sortable: boolean = true;
     ensureFieldLabel: boolean = false;
     hidden: boolean | ((data: ConditionalColumnArgs) => boolean) = false
-    editable: boolean = false;
     formatter: Function|undefined = undefined;
     checkEmpty: Function|undefined = undefined;
     colspan: ValidColSpan = undefined;

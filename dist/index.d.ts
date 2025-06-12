@@ -519,7 +519,6 @@ interface ColumnConfig {
     class?: string;
     sortable?: boolean;
     hidden?: boolean | ((data: ConditionalColumnArgs) => boolean);
-    editable?: boolean;
     ensureFieldLabel?: boolean;
     formatter?: Function | undefined;
     checkEmpty?: Function | undefined;
@@ -631,6 +630,7 @@ interface OptionsConfig {
     autoPickFirstOptionIfEmpty?: boolean;
     zeroMeansEmpty?: boolean;
     table?: TableConfig;
+    canRenderDropdown?: boolean;
 }
 
 interface FieldReadModeConfig {
@@ -732,6 +732,7 @@ interface FieldConfig extends RenderAndDisplayProps {
             option: OptionConfig;
         }) => void);
         itemCreated?: undefined | Function;
+        changed?: undefined | Function;
     };
 }
 
@@ -1457,7 +1458,6 @@ declare class Column extends LktItem implements ColumnConfig {
     sortable: boolean;
     ensureFieldLabel: boolean;
     hidden: boolean | ((data: ConditionalColumnArgs) => boolean);
-    editable: boolean;
     formatter: Function | undefined;
     checkEmpty: Function | undefined;
     colspan: ValidColSpan;

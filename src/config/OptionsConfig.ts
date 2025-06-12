@@ -18,4 +18,5 @@ export interface OptionsConfig {
     autoPickFirstOptionIfEmpty?: boolean
     zeroMeansEmpty?: boolean
     table?: TableConfig
+    canRenderDropdown?: boolean
 }
