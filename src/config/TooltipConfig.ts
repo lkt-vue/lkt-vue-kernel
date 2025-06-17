@@ -24,5 +24,6 @@ export interface TooltipConfig {
     compensationX?: number
     compensationY?: number
     compensateGlobalContainers?: boolean
+    remoteControl?: boolean
 }
 

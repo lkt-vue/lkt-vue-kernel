@@ -86,7 +86,7 @@ export interface TableConfig {
     createEnabledValidator?: Function
 
     events?: {
-        parseResults?: (data: LktObject[]) => void|undefined,
+        parseResults?: (data: LktObject[]) => void|undefined|LktObject[],
     }
 }
 

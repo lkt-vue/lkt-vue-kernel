@@ -214,6 +214,7 @@ interface TooltipConfig {
     compensationX?: number;
     compensationY?: number;
     compensateGlobalContainers?: boolean;
+    remoteControl?: boolean;
 }
 
 type ValidButtonDot = boolean | string | number;
@@ -611,7 +612,7 @@ interface TableConfig {
     skipTableItemsContainer?: boolean;
     createEnabledValidator?: Function;
     events?: {
-        parseResults?: (data: LktObject[]) => void | undefined;
+        parseResults?: (data: LktObject[]) => void | undefined | LktObject[];
     };
 }
 
@@ -1933,6 +1934,7 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     compensationX: number;
     compensationY: number;
     compensateGlobalContainers: boolean;
+    remoteControl: boolean;
     constructor(data?: Partial<TooltipConfig>);
 }
 
