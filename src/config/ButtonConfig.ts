@@ -9,7 +9,7 @@ import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
-import {ValidButtonDot} from "../types/ValidButtonDot.ts";
+import {ValidIconDot} from "../types/ValidIconDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {EventsConfig} from "./EventsConfig.ts";
 import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
@@ -48,7 +48,7 @@ export interface ButtonConfig {
     iconEndOff?: ValidTextValue
 
     // Dot config
-    dot?: ValidButtonDot
+    dot?: ValidIconDot
 
     // Anchor integration
     anchor?: AnchorConfig

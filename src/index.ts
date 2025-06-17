@@ -174,7 +174,7 @@ export {ScanPropTarget} from './types/ScanPropTarget.ts';
 export {EmptyModalKey} from './types/EmptyModalKey.ts';
 export {IsDisabledChecker} from './types/IsDisabledChecker.ts';
 export {ValidBeforeCloseModal} from './types/ValidBeforeCloseModal.ts';
-export {ValidButtonDot} from './types/ValidButtonDot.ts';
+export {ValidIconDot} from './types/ValidIconDot.ts';
 export {ValidCustomSlot} from './types/ValidCustomSlot.ts';
 export {ValidDragConfig} from './types/ValidDragConfig.ts';
 export {ValidFieldValue} from './types/ValidFieldValue.ts';

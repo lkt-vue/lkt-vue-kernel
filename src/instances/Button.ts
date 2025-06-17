@@ -12,7 +12,7 @@ import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {ValidIsDisabledValue} from "../types/ValidIsDisabledValue.ts";
 import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
-import {ValidButtonDot} from "../types/ValidButtonDot.ts";
+import {ValidIconDot} from "../types/ValidIconDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {EventsConfig} from "../config/EventsConfig.ts";
 
@@ -97,7 +97,7 @@ export class Button extends LktItem implements ButtonConfig {
     iconEndOn: ValidTextValue = undefined;
     iconEndOff: ValidTextValue = undefined;
     icon: string = '';
-    dot: ValidButtonDot = false;
+    dot: ValidIconDot = false;
     iconEnd: string = '';
     img: string = '';
     showTooltipOnHoverDelay: number = 0;
