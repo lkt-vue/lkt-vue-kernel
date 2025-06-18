@@ -290,7 +290,8 @@ declare enum FieldType {
     Check = "check",
     Switch = "switch",
     Calc = "calc",
-    Card = "card"
+    Card = "card",
+    Table = "table"
 }
 
 type ValidOptionValue = string | number | undefined;
@@ -506,7 +507,8 @@ declare enum ColumnType {
     None = "",
     Field = "field",
     Button = "button",
-    Anchor = "anchor"
+    Anchor = "anchor",
+    InlineDrop = "inline-drop"
 }
 
 type ValidColSpan = Function | boolean | number | undefined;
