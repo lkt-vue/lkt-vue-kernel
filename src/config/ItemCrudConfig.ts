@@ -36,6 +36,7 @@ export interface ItemCrudConfig {
     editModeButton?: ButtonConfig|false
     dropButton?: ButtonConfig|false
     createButton?: ButtonConfig|false
+    createAndNewButton?: ButtonConfig|false
     updateButton?: ButtonConfig|false
     groupButton?: ButtonConfig|boolean
     groupButtonAsModalActions?: boolean

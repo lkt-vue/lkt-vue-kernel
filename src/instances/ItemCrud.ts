@@ -34,6 +34,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'editModeButton',
         'dropButton',
         'createButton',
+        'createAndNewButton',
         'updateButton',
         'groupButton',
         'groupButtonAsModalActions',
@@ -79,6 +80,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     editModeButton: ButtonConfig|false = {}; // Not sure, should test
     dropButton: ButtonConfig|false = {};
     createButton: ButtonConfig|false = {};
+    createAndNewButton: ButtonConfig|false = false;
     updateButton: ButtonConfig|false = {};
     groupButton: ButtonConfig|boolean = false;
     groupButtonAsModalActions: boolean = false;
