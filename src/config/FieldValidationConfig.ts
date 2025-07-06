@@ -2,10 +2,12 @@ import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
 import {FieldValidationType} from "../enums/FieldValidationType.ts";
+import {FieldReportType} from "../enums/FieldReportType.ts";
 
 export interface FieldValidationConfig {
     type?: FieldValidationType
     trigger?: FieldAutoValidationTrigger
+    report?: FieldReportType|false,
     stack?: string
 
     resource?: string

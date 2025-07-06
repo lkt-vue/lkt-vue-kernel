@@ -128,6 +128,7 @@ export {ColumnType} from './enums/ColumnType.ts';
 export {CounterType} from './enums/CounterType.ts';
 export {DocPageSize} from './enums/DocPageSize.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
+export {FieldReportType} from './enums/FieldReportType.ts';
 export {FieldType} from './enums/FieldType.ts';
 export {FieldValidationType} from './enums/FieldValidationType.ts';
 export {FileEntityType} from './enums/FileEntityType.ts';
