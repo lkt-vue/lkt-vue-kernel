@@ -20,4 +20,5 @@ export enum FieldType {
     Calc = 'calc',
     Card = 'card',
     Table = 'table',
+    Radio = 'radio',
 }

@@ -291,7 +291,8 @@ declare enum FieldType {
     Switch = "switch",
     Calc = "calc",
     Card = "card",
-    Table = "table"
+    Table = "table",
+    Radio = "radio"
 }
 
 type ValidOptionValue = string | number | undefined;
@@ -640,6 +641,7 @@ interface OptionsConfig {
     http?: HttpCallConfig;
     autoPickFirstOptionIfEmpty?: boolean;
     zeroMeansEmpty?: boolean;
+    typeCasting?: false | 'int';
     table?: TableConfig;
     canRenderDropdown?: boolean;
 }

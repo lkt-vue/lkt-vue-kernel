@@ -17,6 +17,7 @@ export interface OptionsConfig {
     http?: HttpCallConfig
     autoPickFirstOptionIfEmpty?: boolean
     zeroMeansEmpty?: boolean
+    typeCasting?: false|'int'
     table?: TableConfig
     canRenderDropdown?: boolean
 }
