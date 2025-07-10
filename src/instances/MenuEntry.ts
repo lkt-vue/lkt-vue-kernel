@@ -4,6 +4,7 @@ import {EventsConfig} from "../config/EventsConfig.ts";
 import {MenuEntryType} from "../enums/MenuEntryType.ts";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {HeaderConfig} from "../config/HeaderConfig.ts";
 
 export class MenuEntry extends LktItem implements MenuEntryConfig {
 
@@ -17,6 +18,9 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
         'parent',
         'children',
         'events',
+        'anchor',
+        'button',
+        'header',
     ];
 
     key?: string = '';
@@ -31,6 +35,9 @@ export class MenuEntry extends LktItem implements MenuEntryConfig {
 
     // Button config
     button?: ButtonConfig = {};
+
+    // Header config
+    header?: HeaderConfig = {};
 
     isActiveChecker?: Function|undefined = undefined;
 

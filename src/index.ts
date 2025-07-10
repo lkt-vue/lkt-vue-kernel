@@ -210,6 +210,7 @@ export {FieldLoadOptionsEndEventArgs} from './arguments/FieldLoadOptionsEndEvent
 /**
  * Export functions
  */
+export {getAdminMenuEntries} from "./functions/admin-functions.ts";
 export {getAnchorHref} from "./functions/anchor-functions.ts";
 export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
 export {
