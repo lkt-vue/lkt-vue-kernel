@@ -14,6 +14,7 @@ import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {EventsConfig} from "./EventsConfig.ts";
 import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 import {HTTPResponse} from "lkt-http-client";
+import {IconConfig} from "./IconConfig.ts";
 
 export interface ButtonConfig {
 
@@ -34,20 +35,21 @@ export interface ButtonConfig {
 
     // Content
     text?: ValidTextValue
-    icon?: string
-    iconEnd?: string
+    icon?: IconConfig|string
+    iconEnd?: IconConfig|string
     img?: string
 
     // Check button
     checked?: boolean
     textOn?: ValidTextValue
     textOff?: ValidTextValue
-    iconOn?: ValidTextValue
-    iconOff?: ValidTextValue
-    iconEndOn?: ValidTextValue
-    iconEndOff?: ValidTextValue
+    iconOn?: IconConfig|ValidTextValue
+    iconOff?: IconConfig|ValidTextValue
+    iconEndOn?: IconConfig|ValidTextValue
+    iconEndOff?: IconConfig|ValidTextValue
 
     // Dot config
+    // @deprecated use icon config instead
     dot?: ValidIconDot
 
     // Anchor integration

@@ -232,16 +232,16 @@ interface ButtonConfig {
     containerClass?: string;
     wrapContent?: boolean;
     text?: ValidTextValue;
-    icon?: string;
-    iconEnd?: string;
+    icon?: IconConfig | string;
+    iconEnd?: IconConfig | string;
     img?: string;
     checked?: boolean;
     textOn?: ValidTextValue;
     textOff?: ValidTextValue;
-    iconOn?: ValidTextValue;
-    iconOff?: ValidTextValue;
-    iconEndOn?: ValidTextValue;
-    iconEndOff?: ValidTextValue;
+    iconOn?: IconConfig | ValidTextValue;
+    iconOff?: IconConfig | ValidTextValue;
+    iconEndOn?: IconConfig | ValidTextValue;
+    iconEndOff?: IconConfig | ValidTextValue;
     dot?: ValidIconDot;
     anchor?: AnchorConfig;
     resource?: string;
@@ -515,7 +515,8 @@ declare enum ColumnType {
     Field = "field",
     Button = "button",
     Anchor = "anchor",
-    InlineDrop = "inline-drop"
+    InlineDrop = "inline-drop",
+    ColumnIndex = "column-index"
 }
 
 type ValidColSpan = Function | boolean | number | undefined;

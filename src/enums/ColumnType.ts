@@ -9,4 +9,5 @@ export enum ColumnType {
 
     // Built-in behaviours
     InlineDrop = 'inline-drop',
+    ColumnIndex = 'column-index',
 }
