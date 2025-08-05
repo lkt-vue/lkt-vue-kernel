@@ -292,7 +292,8 @@ declare enum FieldType {
     Calc = "calc",
     Card = "card",
     Table = "table",
-    Radio = "radio"
+    Radio = "radio",
+    ToggleButtonGroup = "toggle-button-group"
 }
 
 type ValidOptionValue = string | number | undefined;

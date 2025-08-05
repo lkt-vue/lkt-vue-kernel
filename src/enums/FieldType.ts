@@ -21,4 +21,5 @@ export enum FieldType {
     Card = 'card',
     Table = 'table',
     Radio = 'radio',
+    ToggleButtonGroup = 'toggle-button-group',
 }
