@@ -17,6 +17,7 @@ import {OptionConfig} from "./OptionConfig.ts";
 import {FileBrowserConfig} from "./FileBrowserConfig.ts";
 import {RenderAndDisplayProps} from "../interfaces/RenderAndDisplayProps.ts";
 import {FieldLoadOptionsEndEventArgs} from "../arguments/FieldLoadOptionsEndEventArgs.ts";
+import {IconConfig} from "./IconConfig.ts";
 
 export interface FieldConfig extends RenderAndDisplayProps{
     modelValue?: ValidFieldValue
@@ -61,7 +62,7 @@ export interface FieldConfig extends RenderAndDisplayProps{
     multipleDisplayEdition?: MultipleOptionsDisplay
     searchable?: boolean
 
-    icon?: string | Function
+    icon?: string | Function | IconConfig
     download?: string | Function
     modal?: string | Function
     modalKey?: string | number | Function

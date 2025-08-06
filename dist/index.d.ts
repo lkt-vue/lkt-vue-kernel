@@ -713,7 +713,7 @@ interface FieldConfig extends RenderAndDisplayProps {
     multipleDisplay?: MultipleOptionsDisplay;
     multipleDisplayEdition?: MultipleOptionsDisplay;
     searchable?: boolean;
-    icon?: string | Function;
+    icon?: string | Function | IconConfig;
     download?: string | Function;
     modal?: string | Function;
     modalKey?: string | number | Function;
@@ -1559,7 +1559,7 @@ declare class Field extends LktItem implements FieldConfig {
     multipleDisplay: MultipleOptionsDisplay;
     multipleDisplayEdition: MultipleOptionsDisplay;
     searchable: boolean;
-    icon: string | Function;
+    icon: string | Function | IconConfig;
     download: string | Function;
     modal: string | Function;
     modalKey: string | number | Function;

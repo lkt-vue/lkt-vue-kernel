@@ -17,6 +17,7 @@ import {BooleanFieldConfig} from "../config/BooleanFieldConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {OptionConfig} from "../config/OptionConfig.ts";
 import {FileBrowserConfig} from "../config/FileBrowserConfig.ts";
+import {IconConfig} from "../config/IconConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -130,7 +131,7 @@ export class Field extends LktItem implements FieldConfig {
     multipleDisplay: MultipleOptionsDisplay = MultipleOptionsDisplay.List;
     multipleDisplayEdition: MultipleOptionsDisplay = MultipleOptionsDisplay.Inline;
     searchable: boolean = false;
-    icon: string | Function = '';
+    icon: string | Function | IconConfig = '';
     download: string | Function = '';
     modal: string | Function = '';
     modalKey: string | number | Function = '';
