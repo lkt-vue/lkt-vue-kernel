@@ -13,6 +13,10 @@ export class StepProcess extends LktItem implements StepProcessConfig {
         'loading',
         'steps',
         'header',
+        'nextButton',
+        'prevButton',
+        'buttonNavPosition',
+        'buttonNavVisibility',
     ];
 
 
