@@ -1211,6 +1211,8 @@ interface StepProcessConfig {
     header?: HeaderConfig;
     nextButton?: ButtonConfig;
     prevButton?: ButtonConfig;
+    buttonNavPosition?: ItemCrudButtonNavPosition;
+    buttonNavVisibility?: ItemCrudButtonNavVisibility;
 }
 
 interface TabsConfig {
@@ -1840,6 +1842,8 @@ declare class StepProcess extends LktItem implements StepProcessConfig {
     header?: HeaderConfig;
     nextButton?: ButtonConfig;
     prevButton?: ButtonConfig;
+    buttonNavPosition?: ItemCrudButtonNavPosition;
+    buttonNavVisibility?: ItemCrudButtonNavVisibility;
     constructor(data?: Partial<StepProcessConfig>);
 }
 
