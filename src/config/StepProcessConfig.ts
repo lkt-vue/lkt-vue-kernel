@@ -17,4 +17,8 @@ export interface StepProcessConfig {
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition
     buttonNavVisibility?: ItemCrudButtonNavVisibility
+
+    // Navigation
+    dots?: boolean
+    dotsNumbers?: boolean
 }

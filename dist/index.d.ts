@@ -1218,6 +1218,8 @@ interface StepProcessConfig {
     prevButton?: ButtonConfig;
     buttonNavPosition?: ItemCrudButtonNavPosition;
     buttonNavVisibility?: ItemCrudButtonNavVisibility;
+    dots?: boolean;
+    dotsNumbers?: boolean;
 }
 
 interface TabsConfig {
