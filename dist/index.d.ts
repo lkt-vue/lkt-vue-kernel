@@ -447,7 +447,10 @@ interface HeaderConfig {
     tag?: HeaderTag;
     class?: string;
     text?: string;
-    icon?: string;
+    icon?: string | IconConfig;
+    topStartButtons?: Array<ButtonConfig>;
+    topEndButtons?: Array<ButtonConfig>;
+    bottomButtons?: Array<ButtonConfig>;
 }
 
 declare enum TableRowType {
@@ -1694,7 +1697,10 @@ declare class Header extends LktItem implements HeaderConfig {
     tag?: HeaderTag;
     class?: string;
     text?: string;
-    icon?: string;
+    icon?: string | IconConfig;
+    topStartButtons?: Array<ButtonConfig>;
+    topEndButtons?: Array<ButtonConfig>;
+    bottomButtons?: Array<ButtonConfig>;
     constructor(data?: Partial<HeaderConfig>);
 }
 
