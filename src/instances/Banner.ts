@@ -1,8 +1,9 @@
 import {LktItem} from "./LktItem.ts";
 import {BannerConfig} from "../config/BannerConfig.ts";
 import {BannerType} from "../enums/BannerType.ts";
-import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 import {ImageConfig} from "../config/ImageConfig.ts";
+import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {HeaderConfig} from "../config/HeaderConfig.ts";
 
 export class Banner extends LktItem implements BannerConfig {
 
@@ -12,14 +13,18 @@ export class Banner extends LktItem implements BannerConfig {
         'subHeader',
         'art',
         'opacity',
+        'globalButton',
+        'navButtons',
     ];
 
     type: BannerType = BannerType.Static;
-    header?: PolymorphicElementConfig = undefined;
-    subHeader?: PolymorphicElementConfig = undefined;
+    header?: HeaderConfig = undefined;
+    subHeader?: HeaderConfig = undefined;
     art?: ImageConfig = undefined;
     media?: ImageConfig = undefined;
     opacity?: string|number = undefined;
+    globalButton?: ButtonConfig|undefined = undefined;
+    navButtons?: Array<ButtonConfig> = [];
 
     constructor(data: Partial<BannerConfig> = {}) {
         super();
