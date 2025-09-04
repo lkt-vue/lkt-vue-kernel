@@ -1,4 +1,7 @@
+import {TrackConfig} from "./TrackConfig.ts";
+
 export interface CircleConfig {
-    radius?: number
-    strokeWidth?: number
+    radius: number
+    track?: TrackConfig
+    ball?: CircleConfig
 }

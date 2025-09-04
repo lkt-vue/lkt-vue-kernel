@@ -1,5 +1,4 @@
 export enum ProgressType {
-    None = '',
-    Incremental = 'incremental',
-    Decremental = 'decremental',
+    Bar = 'bar',
+    Circle = 'circle',
 }

@@ -76,6 +76,7 @@ export {TabsConfig} from './config/TabsConfig.ts';
 export {TagConfig} from './config/TagConfig.ts';
 export {ToastConfig} from './config/ToastConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
+export {TrackConfig} from './config/TrackConfig.ts';
 export {WebElementConfig} from './config/WebElementConfig.ts';
 export {WebPageConfig} from './config/WebPageConfig.ts';
 
@@ -149,8 +150,8 @@ export {ModalType} from './enums/ModalType.ts';
 export {MultipleOptionsDisplay} from './enums/MultipleOptionsDisplay.ts';
 export {NotificationType} from './enums/NotificationType.ts';
 export {PaginatorType} from './enums/PaginatorType.ts';
-export {ProgressInterface} from './enums/ProgressInterface.ts';
 export {ProgressType} from './enums/ProgressType.ts';
+export {ProgressAnimation} from './enums/ProgressAnimation.ts';
 export {ProgressValueFormat} from './enums/ProgressValueFormat.ts';
 export {SaveType} from './enums/SaveType.ts';
 export {SortDirection} from './enums/SortDirection.ts';

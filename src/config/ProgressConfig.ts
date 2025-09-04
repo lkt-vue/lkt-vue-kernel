@@ -1,6 +1,6 @@
-import {ProgressType} from "../enums/ProgressType.ts";
+import {ProgressAnimation} from "../enums/ProgressAnimation.ts";
 import {ProgressValueFormat} from "../enums/ProgressValueFormat.ts";
-import {ProgressInterface} from "../enums/ProgressInterface.ts";
+import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "./CircleConfig.ts";
 
 export interface ProgressConfig {
@@ -9,8 +9,9 @@ export interface ProgressConfig {
 
     // Percentage control (increment and decrement)
     type?: ProgressType
-    interface?: ProgressInterface
+    animation?: ProgressAnimation
     duration?: number
+    direction?: 'right' | 'left'
     pauseOnHover?: boolean
 
     // Content
@@ -18,8 +19,5 @@ export interface ProgressConfig {
     valueFormat?: ProgressValueFormat
 
     // Circle
-    circle?: CircleConfig,
-
-    // Styles
-    palette?: string
+    circle?: CircleConfig
 }

@@ -1,33 +1,33 @@
 import {LktItem} from "./LktItem.ts";
 import {ProgressConfig} from "../config/ProgressConfig.ts";
-import {ProgressType} from "../enums/ProgressType.ts";
+import {ProgressAnimation} from "../enums/ProgressAnimation.ts";
 import {ProgressValueFormat} from "../enums/ProgressValueFormat.ts";
-import {ProgressInterface} from "../enums/ProgressInterface.ts";
+import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "../config/CircleConfig.ts";
 
 export class Progress extends LktItem implements ProgressConfig {
 
     static lktAllowUndefinedProps: string[] = [
+        'circle',
     ];
 
     static lktDefaultValues: (keyof ProgressConfig)[] = [
         'modelValue',
+        'animation',
         'type',
-        'interface',
         'duration',
         'pauseOnHover',
         'header',
         'valueFormat',
         'circle',
-        'palette',
     ];
 
     // Main value (current percentage)
     modelValue?: number = 0;
 
     // Percentage control (increment and decrement)
-    type?: ProgressType = ProgressType.None;
-    interface?: ProgressInterface = ProgressInterface.Bar;
+    animation?: ProgressAnimation = ProgressAnimation.None;
+    type?: ProgressType = ProgressType.Bar;
     duration?: number = 4000;
     pauseOnHover?: boolean = false;
 
@@ -36,10 +36,7 @@ export class Progress extends LktItem implements ProgressConfig {
     valueFormat?: ProgressValueFormat = ProgressValueFormat.Auto;
 
     // Circle
-    circle?: CircleConfig = {};
-
-    // Styles
-    palette?: string = '';
+    circle?: CircleConfig = undefined;
 
     constructor(data: Partial<ProgressConfig> = {}) {
         super();
