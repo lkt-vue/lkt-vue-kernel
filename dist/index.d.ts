@@ -1225,7 +1225,7 @@ interface ProgressConfig {
     direction?: 'right' | 'left';
     pauseOnHover?: boolean;
     unit?: string | UnitConfig;
-    header?: string;
+    header?: HeaderConfig;
     valueFormat?: ProgressValueFormat;
     circle?: CircleConfig;
 }
@@ -1879,7 +1879,7 @@ declare class Progress extends LktItem implements ProgressConfig {
     duration?: number;
     pauseOnHover?: boolean;
     unit?: UnitConfig;
-    header?: string;
+    header?: HeaderConfig;
     valueFormat?: ProgressValueFormat;
     circle?: CircleConfig;
     constructor(data?: Partial<ProgressConfig>);

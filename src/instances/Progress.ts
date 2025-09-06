@@ -5,6 +5,7 @@ import {ProgressValueFormat} from "../enums/ProgressValueFormat.ts";
 import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "../config/CircleConfig.ts";
 import {UnitConfig} from "../config/UnitConfig.ts";
+import {HeaderConfig} from "../config/HeaderConfig.ts";
 
 export class Progress extends LktItem implements ProgressConfig {
 
@@ -36,7 +37,7 @@ export class Progress extends LktItem implements ProgressConfig {
     unit?: UnitConfig = undefined;
 
     // Content
-    header?: string = '';
+    header?: HeaderConfig = {};
     valueFormat?: ProgressValueFormat = ProgressValueFormat.Auto;
 
     // Circle

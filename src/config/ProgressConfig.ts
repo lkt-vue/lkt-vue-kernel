@@ -3,6 +3,7 @@ import {ProgressValueFormat} from "../enums/ProgressValueFormat.ts";
 import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "./CircleConfig.ts";
 import {UnitConfig} from "./UnitConfig.ts";
+import {HeaderConfig} from "./HeaderConfig.ts";
 
 export interface ProgressConfig {
     // Main value (current percentage)
@@ -17,7 +18,7 @@ export interface ProgressConfig {
     unit?: string | UnitConfig
 
     // Content
-    header?: string
+    header?: HeaderConfig
     valueFormat?: ProgressValueFormat
 
     // Circle
