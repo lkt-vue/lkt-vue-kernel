@@ -77,6 +77,7 @@ export {TagConfig} from './config/TagConfig.ts';
 export {ToastConfig} from './config/ToastConfig.ts';
 export {TooltipConfig} from './config/TooltipConfig.ts';
 export {TrackConfig} from './config/TrackConfig.ts';
+export {UnitConfig} from './config/UnitConfig.ts';
 export {WebElementConfig} from './config/WebElementConfig.ts';
 export {WebPageConfig} from './config/WebPageConfig.ts';
 
@@ -198,6 +199,11 @@ export {ValidTabIndex} from './types/ValidTabIndex.ts';
 export {ValidTablePermission} from './types/ValidTablePermission.ts';
 export {ValidTableRowTypeValue} from './types/ValidTableRowTypeValue.ts';
 export {ValidTextValue} from './types/ValidTextValue.ts';
+
+/**
+ * Export slot args
+ */
+export {ProgressTextSlot} from './slots/ProgressTextSlot.ts';
 
 /**
  * Export value objects

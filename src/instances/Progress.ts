@@ -4,11 +4,13 @@ import {ProgressAnimation} from "../enums/ProgressAnimation.ts";
 import {ProgressValueFormat} from "../enums/ProgressValueFormat.ts";
 import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "../config/CircleConfig.ts";
+import {UnitConfig} from "../config/UnitConfig.ts";
 
 export class Progress extends LktItem implements ProgressConfig {
 
     static lktAllowUndefinedProps: string[] = [
         'circle',
+        'unit',
     ];
 
     static lktDefaultValues: (keyof ProgressConfig)[] = [
@@ -20,6 +22,7 @@ export class Progress extends LktItem implements ProgressConfig {
         'header',
         'valueFormat',
         'circle',
+        'unit',
     ];
 
     // Main value (current percentage)
@@ -30,6 +33,7 @@ export class Progress extends LktItem implements ProgressConfig {
     type?: ProgressType = ProgressType.Bar;
     duration?: number = 4000;
     pauseOnHover?: boolean = false;
+    unit?: UnitConfig = undefined;
 
     // Content
     header?: string = '';
