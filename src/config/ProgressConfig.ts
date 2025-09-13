@@ -4,6 +4,7 @@ import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "./CircleConfig.ts";
 import {UnitConfig} from "./UnitConfig.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
+import {ProgressAnimationConfig} from "./ProgressAnimationConfig.ts";
 
 export interface ProgressConfig {
     // Main value (current percentage)
@@ -11,7 +12,7 @@ export interface ProgressConfig {
 
     // Percentage control (increment and decrement)
     type?: ProgressType
-    animation?: ProgressAnimation
+    animation?: ProgressAnimation | ProgressAnimationConfig
     duration?: number
     direction?: 'right' | 'left'
     pauseOnHover?: boolean

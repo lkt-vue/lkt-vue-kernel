@@ -68,6 +68,7 @@ export {OptionConfig} from './config/OptionConfig.ts';
 export {OptionsConfig} from './config/OptionsConfig.ts';
 export {PaginatorConfig} from './config/PaginatorConfig.ts';
 export {ProgressConfig} from './config/ProgressConfig.ts';
+export {ProgressAnimationConfig} from './config/ProgressAnimationConfig.ts';
 export {SaveConfig} from './config/SaveConfig.ts';
 export {StepProcessConfig} from './config/StepProcessConfig.ts';
 export {StepProcessStepConfig} from './config/StepProcessStepConfig.ts';
