@@ -35,7 +35,8 @@ declare const enum ButtonType {
     TooltipLazy = "tooltip-lazy",// Tooltip button, contents generated after first open
     TooltipEver = "tooltip-ever",// Tooltip button, contents generated each time it's clicked
     FileUpload = "file-upload",// File upload mode. Enables HTTP upload by lkt-field
-    ImageUpload = "image-upload"
+    ImageUpload = "image-upload",// Image upload mode. Enables HTTP upload by lkt-field
+    InvisibleWrapper = "invisible-wrapper"
 }
 
 declare enum AnchorType {
@@ -376,6 +377,66 @@ declare enum FieldReportType {
     Inline = "inline"
 }
 
+declare enum ValidationCode {
+    HTTPResponse = "http-response",
+    MinStringLength = "min-str",
+    MinNumber = "min-num",
+    MaxStringLength = "max-str",
+    MaxNumber = "max-num",
+    Email = "email",
+    Empty = "empty",
+    EqualTo = "equal-to",
+    MinNumbers = "min-numbers",
+    MaxNumbers = "max-numbers",
+    MinChars = "min-chars",
+    MaxChars = "max-chars",
+    MinUpperChars = "min-upper-chars",
+    MaxUpperChars = "max-upper-chars",
+    MinLowerChars = "min-lower-chars",
+    MaxLowerChars = "max-lower-chars",
+    MinSpecialChars = "min-special-chars",
+    MaxSpecialChars = "max-special-chars"
+}
+
+declare enum ValidationStatus {
+    Ok = "ok",
+    Ko = "ko",
+    Info = "info"
+}
+
+declare class FieldValidation {
+    code?: ValidationCode | string;
+    status: ValidationStatus;
+    min: number;
+    max: number;
+    equalToValue: number | string | undefined;
+    httpResponse?: HTTPResponse;
+    constructor(code: ValidationCode, status: ValidationStatus);
+    setMin(n: number): this;
+    setMax(n: number): this;
+    setEqualToValue(val: number | string): this;
+    setHTTPResponse(val: HTTPResponse): this;
+    static createEmpty(status?: ValidationStatus): FieldValidation;
+    static createEmail(status?: ValidationStatus): FieldValidation;
+    static createMinStr(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxStr(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinNum(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxNum(max: number, status?: ValidationStatus): FieldValidation;
+    static createNumBetween(min: number, max: number, status?: ValidationStatus): FieldValidation;
+    static createMinNumbers(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxNumbers(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinUpperChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxUpperChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinLowerChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxLowerChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinSpecialChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxSpecialChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createMinChars(min: number, status?: ValidationStatus): FieldValidation;
+    static createMaxChars(max: number, status?: ValidationStatus): FieldValidation;
+    static createEqualTo(value: number | string, status?: ValidationStatus): FieldValidation;
+    static createRemoteResponse(httpResponse: HTTPResponse, status?: ValidationStatus): FieldValidation;
+}
+
 interface FieldValidationConfig {
     type?: FieldValidationType;
     trigger?: FieldAutoValidationTrigger;
@@ -394,6 +455,7 @@ interface FieldValidationConfig {
     minSpecialChars?: ValidFieldMinMax;
     maxSpecialChars?: ValidFieldMinMax;
     checkEqualTo?: ValidFieldMinMax;
+    defaultValue?: FieldValidation[];
 }
 
 interface FieldValidationEndEventArgs {
@@ -1649,66 +1711,6 @@ declare class FormInstance extends LktItem implements FormConfig {
     static mkFormItemConfig(form: FormConfig, displayConfig?: RenderAndDisplayProps): FormItemConfig;
     static mkComponentItemConfig(component: FormComponentConfig, displayConfig?: RenderAndDisplayProps): FormItemConfig;
     static mkSlotItemConfig(key: string, slotData?: LktObject): FormItemConfig;
-}
-
-declare enum ValidationCode {
-    HTTPResponse = "http-response",
-    MinStringLength = "min-str",
-    MinNumber = "min-num",
-    MaxStringLength = "max-str",
-    MaxNumber = "max-num",
-    Email = "email",
-    Empty = "empty",
-    EqualTo = "equal-to",
-    MinNumbers = "min-numbers",
-    MaxNumbers = "max-numbers",
-    MinChars = "min-chars",
-    MaxChars = "max-chars",
-    MinUpperChars = "min-upper-chars",
-    MaxUpperChars = "max-upper-chars",
-    MinLowerChars = "min-lower-chars",
-    MaxLowerChars = "max-lower-chars",
-    MinSpecialChars = "min-special-chars",
-    MaxSpecialChars = "max-special-chars"
-}
-
-declare enum ValidationStatus {
-    Ok = "ok",
-    Ko = "ko",
-    Info = "info"
-}
-
-declare class FieldValidation {
-    code?: ValidationCode | string;
-    status: ValidationStatus;
-    min: number;
-    max: number;
-    equalToValue: number | string | undefined;
-    httpResponse?: HTTPResponse;
-    constructor(code: ValidationCode, status: ValidationStatus);
-    setMin(n: number): this;
-    setMax(n: number): this;
-    setEqualToValue(val: number | string): this;
-    setHTTPResponse(val: HTTPResponse): this;
-    static createEmpty(status?: ValidationStatus): FieldValidation;
-    static createEmail(status?: ValidationStatus): FieldValidation;
-    static createMinStr(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxStr(max: number, status?: ValidationStatus): FieldValidation;
-    static createMinNum(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxNum(max: number, status?: ValidationStatus): FieldValidation;
-    static createNumBetween(min: number, max: number, status?: ValidationStatus): FieldValidation;
-    static createMinNumbers(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxNumbers(max: number, status?: ValidationStatus): FieldValidation;
-    static createMinUpperChars(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxUpperChars(max: number, status?: ValidationStatus): FieldValidation;
-    static createMinLowerChars(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxLowerChars(max: number, status?: ValidationStatus): FieldValidation;
-    static createMinSpecialChars(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxSpecialChars(max: number, status?: ValidationStatus): FieldValidation;
-    static createMinChars(min: number, status?: ValidationStatus): FieldValidation;
-    static createMaxChars(max: number, status?: ValidationStatus): FieldValidation;
-    static createEqualTo(value: number | string, status?: ValidationStatus): FieldValidation;
-    static createRemoteResponse(httpResponse: HTTPResponse, status?: ValidationStatus): FieldValidation;
 }
 
 declare class FileEntity extends LktItem implements FileEntityConfig {

@@ -14,4 +14,5 @@ export const enum ButtonType {
     TooltipEver = 'tooltip-ever', // Tooltip button, contents generated each time it's clicked
     FileUpload = 'file-upload', // File upload mode. Enables HTTP upload by lkt-field
     ImageUpload = 'image-upload', // Image upload mode. Enables HTTP upload by lkt-field
+    InvisibleWrapper = 'invisible-wrapper', // Able to wrap another element without styles
 }

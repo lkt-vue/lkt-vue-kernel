@@ -3,6 +3,7 @@ import {LktObject} from "../interfaces/LktObject.ts";
 import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts";
 import {FieldValidationType} from "../enums/FieldValidationType.ts";
 import {FieldReportType} from "../enums/FieldReportType.ts";
+import {FieldValidation} from "../instances/FieldValidation.ts";
 
 export interface FieldValidationConfig {
     type?: FieldValidationType
@@ -25,4 +26,5 @@ export interface FieldValidationConfig {
     maxSpecialChars?: ValidFieldMinMax
 
     checkEqualTo?: ValidFieldMinMax
+    defaultValue?: FieldValidation[]
 }
