@@ -404,14 +404,15 @@ declare enum ValidationStatus {
     Info = "info"
 }
 
-declare class FieldValidation {
+declare class FieldValidation extends LktItem {
     code?: ValidationCode | string;
     status: ValidationStatus;
+    icon?: IconConfig | string | false;
     min: number;
     max: number;
     equalToValue: number | string | undefined;
     httpResponse?: HTTPResponse;
-    constructor(code: ValidationCode, status: ValidationStatus);
+    constructor(data: LktObject);
     setMin(n: number): this;
     setMax(n: number): this;
     setEqualToValue(val: number | string): this;
@@ -456,6 +457,7 @@ interface FieldValidationConfig {
     maxSpecialChars?: ValidFieldMinMax;
     checkEqualTo?: ValidFieldMinMax;
     defaultValue?: FieldValidation[];
+    defaultValueOverrides?: ValidationCode[];
 }
 
 interface FieldValidationEndEventArgs {

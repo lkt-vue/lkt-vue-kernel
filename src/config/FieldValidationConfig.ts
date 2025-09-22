@@ -4,6 +4,7 @@ import {FieldAutoValidationTrigger} from "../enums/FieldAutoValidationTrigger.ts
 import {FieldValidationType} from "../enums/FieldValidationType.ts";
 import {FieldReportType} from "../enums/FieldReportType.ts";
 import {FieldValidation} from "../instances/FieldValidation.ts";
+import {ValidationCode} from "../enums/ValidationCode.ts";
 
 export interface FieldValidationConfig {
     type?: FieldValidationType
@@ -27,4 +28,5 @@ export interface FieldValidationConfig {
 
     checkEqualTo?: ValidFieldMinMax
     defaultValue?: FieldValidation[]
+    defaultValueOverrides?: ValidationCode[]
 }
