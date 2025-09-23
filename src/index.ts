@@ -253,6 +253,11 @@ export {
 } from "./functions/wysiwyg-functions.ts";
 
 /**
+ * Export Menu Controller
+ */
+export {MenuController} from "./controllers/menu-controller/MenuController.ts";
+
+/**
  * Export Modal Controller
  */
 export {ModalController} from "./controllers/modal-controller/ModalController.ts";
