@@ -1,7 +1,6 @@
 import {LktItem} from "./LktItem.ts";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {AnchorType} from "../enums/AnchorType.ts";
-import {RouteLocationRaw} from "vue-router";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
