@@ -69,6 +69,7 @@ export class Button extends LktItem implements ButtonConfig {
         'splitButtons',
         'prop',
         'events',
+        'menuKey',
     ];
 
     type: ButtonType = ButtonType.Button;
@@ -89,6 +90,10 @@ export class Button extends LktItem implements ButtonConfig {
     confirmModalKey: ValidModalKey = '_';
     confirmData: Partial<ModalConfig> = {};
     modalCallbacks?: Array<ModalCallbackConfig> = [];
+
+    // Menu integration
+    menuKey?: ValidModalKey = undefined;
+
     text: ValidTextValue = '';
     textOn: ValidTextValue = undefined;
     textOff: ValidTextValue = undefined;

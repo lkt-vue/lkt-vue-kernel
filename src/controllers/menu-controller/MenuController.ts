@@ -16,7 +16,7 @@ export class MenuController {
         if (typeof MenuController.config[k] === 'undefined') return undefined;
 
         MenuController.config[k].value = !MenuController.config[k].value;
-        return MenuController.config[k];
+        return MenuController.config[k].value;
     }
 
     static closeMenu(key: ValidModalKey) {
@@ -24,7 +24,7 @@ export class MenuController {
         if (typeof MenuController.config[k] === 'undefined') return undefined;
 
         MenuController.config[k].value = false;
-        return MenuController.config[k];
+        return MenuController.config[k].value;
     }
 
     static openMenu(key: ValidModalKey) {
@@ -32,14 +32,12 @@ export class MenuController {
         if (typeof MenuController.config[k] === 'undefined') return undefined;
 
         MenuController.config[k].value = true;
-        return MenuController.config[k];
+        return MenuController.config[k].value;
     }
 
     static getMenuStatus(key: ValidModalKey) {
         let k = typeof key === 'function' ? key() : key;
         if (typeof MenuController.config[k] === 'undefined') return undefined;
-
-        console.log('getMenuStatus: ', MenuController.config[k].value)
 
         return MenuController.config[k].value;
     }

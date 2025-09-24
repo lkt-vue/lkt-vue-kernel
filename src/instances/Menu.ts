@@ -12,12 +12,17 @@ export class Menu extends LktItem implements MenuConfig {
         'http',
         'type',
         'menuKey',
+        'hiddenPosition',
+        'closeOnClickOutside',
     ];
 
     modelValue?: MenuEntryConfig[] = [];
     type?: MenuType = MenuType.Always;
     menuKey?: ValidModalKey = '_';
     http?: HttpCallConfig = {};
+    closeOnClickOutside?: boolean = true;
+    hiddenPosition?: 'left' | 'right' = 'left';
+
     constructor(data: Partial<MenuConfig> = {}) {
         super();
         this.feed(data);

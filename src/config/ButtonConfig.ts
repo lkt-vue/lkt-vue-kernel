@@ -68,6 +68,9 @@ export interface ButtonConfig {
     confirmData?: Partial<ModalConfig>
     modalCallbacks?: Array<ModalCallbackConfig>
 
+    // Menu integration
+    menuKey?: ValidModalKey
+
     // Tooltip and split
     tooltip?: TooltipConfig
     splitIcon?: string
