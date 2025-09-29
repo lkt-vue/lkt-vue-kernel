@@ -406,6 +406,14 @@ declare enum ValidationStatus {
     Info = "info"
 }
 
+interface PolymorphicElementConfig {
+    tag?: string | Component;
+    class?: string;
+    text?: string;
+    title?: string;
+    props?: LktObject;
+}
+
 declare class FieldValidation extends LktItem {
     code?: ValidationCode | string;
     status: ValidationStatus;
@@ -414,6 +422,7 @@ declare class FieldValidation extends LktItem {
     max: number;
     equalToValue: number | string | undefined;
     httpResponse?: HTTPResponse;
+    element?: PolymorphicElementConfig;
     constructor(data: LktObject);
     setMin(n: number): this;
     setMax(n: number): this;
@@ -1076,14 +1085,6 @@ interface FileEntityConfig {
     src: string;
     children?: FileEntityConfig[];
     parent?: number | string | undefined;
-}
-
-interface PolymorphicElementConfig {
-    tag?: string | Component;
-    class?: string;
-    text?: string;
-    title?: string;
-    props?: LktObject;
 }
 
 interface FormComponentConfig extends PolymorphicElementConfig {

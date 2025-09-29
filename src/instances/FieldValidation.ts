@@ -4,6 +4,7 @@ import {HTTPResponse} from "lkt-http-client";
 import {LktItem} from "./LktItem.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {IconConfig} from "../config/IconConfig.ts";
+import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 
 export class FieldValidation extends LktItem {
     code?: ValidationCode|string = undefined;
@@ -14,6 +15,8 @@ export class FieldValidation extends LktItem {
     max: number = 0;
     equalToValue: number|string|undefined = undefined;
     httpResponse?: HTTPResponse = undefined;
+
+    element?: PolymorphicElementConfig = undefined;
 
     constructor(data: LktObject) {
         super();
