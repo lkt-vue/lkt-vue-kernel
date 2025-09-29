@@ -16,4 +16,5 @@ export const enum ButtonType {
     ImageUpload = 'image-upload', // Image upload mode. Enables HTTP upload by lkt-field
     InvisibleWrapper = 'invisible-wrapper', // Able to wrap another element without styles
     Menu = 'menu', // Toggles menu state
+    Tab = 'tab', // Tab component
 }

@@ -1,6 +1,8 @@
 import {LktItem} from "./LktItem.ts";
 import {TabsConfig} from "../config/TabsConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
+import {TabConfig} from "../config/TabConfig.ts";
+import {ButtonConfig} from "../config/ButtonConfig.ts";
 
 export class Tabs extends LktItem implements TabsConfig {
 
@@ -9,16 +11,20 @@ export class Tabs extends LktItem implements TabsConfig {
         'id',
         'useSession',
         'cacheLifetime',
-        'contentPad',
-        'titles',
+        'tabs',
+        'navStartButtons',
+        'navEndButtons',
     ];
 
     modelValue: string|number = '';
     id?: string = '';
     useSession?: boolean = false;
     cacheLifetime?: number = 5;
-    contentPad?: string
-    titles?: LktObject
+
+    // Tabs
+    tabs: Array<TabConfig> = [];
+    navStartButtons?: Array<ButtonConfig> = [];
+    navEndButtons?: Array<ButtonConfig> = [];
 
     constructor(data: Partial<TabsConfig> = {}) {
         super();

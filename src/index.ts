@@ -30,6 +30,7 @@ export {
  */
 export {AccordionConfig} from './config/AccordionConfig.ts';
 export {AnchorConfig} from './config/AnchorConfig.ts';
+export {AriaConfig} from './config/AriaConfig.ts';
 export {BannerConfig} from './config/BannerConfig.ts';
 export {BooleanFieldConfig} from './config/BooleanFieldConfig.ts';
 export {BoxConfig} from './config/BoxConfig.ts';
@@ -73,6 +74,7 @@ export {SaveConfig} from './config/SaveConfig.ts';
 export {StepProcessConfig} from './config/StepProcessConfig.ts';
 export {StepProcessStepConfig} from './config/StepProcessStepConfig.ts';
 export {TableConfig} from './config/TableConfig.ts';
+export {TabConfig} from './config/TabConfig.ts';
 export {TabsConfig} from './config/TabsConfig.ts';
 export {TagConfig} from './config/TagConfig.ts';
 export {ToastConfig} from './config/ToastConfig.ts';
@@ -197,6 +199,7 @@ export {ValidColSpan} from './types/ValidColSpan.ts';
 export {ValidFieldMinMax} from './types/ValidFieldMinMax.ts';
 export {ValidSafeStringValue} from './types/ValidSafeStringValue.ts';
 export {ValidScanPropTarget} from './types/ValidScanPropTarget.ts';
+export {ValidTabKey} from './types/ValidTabKey.ts';
 export {ValidTabIndex} from './types/ValidTabIndex.ts';
 export {ValidTablePermission} from './types/ValidTablePermission.ts';
 export {ValidTableRowTypeValue} from './types/ValidTableRowTypeValue.ts';

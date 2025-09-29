@@ -34,7 +34,7 @@ export class Button extends LktItem implements ButtonConfig {
         'value',
         'disabled',
         'loading',
-        'wrapContent',
+        'wrapButton',
         'splitIcon',
         'resource',
         'resourceData',
@@ -79,7 +79,7 @@ export class Button extends LktItem implements ButtonConfig {
     value: string = '';
     disabled: ValidIsDisabledValue = false;
     loading: boolean = false;
-    wrapContent: boolean = false;
+    wrapButton: boolean = false;
     splitIcon: string = 'lkt-icn-angle-bottom';
     resource: string = '';
     resourceData: LktObject = {};

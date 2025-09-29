@@ -15,6 +15,7 @@ import {EventsConfig} from "./EventsConfig.ts";
 import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 import {HTTPResponse} from "lkt-http-client";
 import {IconConfig} from "./IconConfig.ts";
+import {AriaConfig} from "./AriaConfig.ts";
 
 export interface ButtonConfig {
 
@@ -31,7 +32,7 @@ export interface ButtonConfig {
     // Styling
     class?: string
     containerClass?: string
-    wrapContent?: boolean
+    wrapButton?: boolean
 
     // Content
     text?: ValidTextValue
@@ -85,6 +86,9 @@ export interface ButtonConfig {
 
     // Extract data
     prop?: LktObject
+
+    //Accessibility
+    aria?: AriaConfig
 
     // Event management
     clickRef?: Element | VueElement
