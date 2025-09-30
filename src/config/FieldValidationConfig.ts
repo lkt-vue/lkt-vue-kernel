@@ -5,10 +5,12 @@ import {FieldValidationType} from "../enums/FieldValidationType.ts";
 import {FieldReportType} from "../enums/FieldReportType.ts";
 import {FieldValidation} from "../instances/FieldValidation.ts";
 import {ValidationCode} from "../enums/ValidationCode.ts";
+import {ButtonConfig} from "./ButtonConfig.ts";
+import {FieldReportLevel} from "../enums/FieldReportLevel.ts";
 
 export interface FieldValidationConfig {
     type?: FieldValidationType
-    trigger?: FieldAutoValidationTrigger
+    trigger?: FieldAutoValidationTrigger|false
     report?: FieldReportType|false,
     stack?: string
 
@@ -26,7 +28,11 @@ export interface FieldValidationConfig {
     minSpecialChars?: ValidFieldMinMax
     maxSpecialChars?: ValidFieldMinMax
 
-    checkEqualTo?: ValidFieldMinMax
+    checkEqualTo?: ValidFieldMinMax|Function
     defaultValue?: FieldValidation[]
     defaultValueOverrides?: ValidationCode[]
+
+    reportLevel?: FieldReportLevel
+    groupConstraints?: boolean
+    groupConstraintsButton?: ButtonConfig
 }

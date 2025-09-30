@@ -29,6 +29,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'compensationY',
         'compensateGlobalContainers',
         'remoteControl',
+        'teleport',
     ];
 
     modelValue: boolean = false;
@@ -53,6 +54,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     compensationY: number = 0;
     compensateGlobalContainers: boolean = true;
     remoteControl: boolean = false;
+    teleport: string = '';
 
     constructor(data: Partial<TooltipConfig> = {}) {
         super();

@@ -7,4 +7,5 @@ export interface PolymorphicElementConfig {
     text?: string
     title?: string
     props?: LktObject
+    vModels?: LktObject
 }
