@@ -9,6 +9,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     static lktDefaultValues: (keyof TooltipConfig)[] = [
         'modelValue',
         'alwaysOpen',
+        'indicator',
         'class',
         'contentClass',
         'text',
@@ -34,6 +35,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
 
     modelValue: boolean = false;
     alwaysOpen: boolean = false;
+    indicator: boolean = false;
     class: string = '';
     contentClass: string = '';
     text: string = '';

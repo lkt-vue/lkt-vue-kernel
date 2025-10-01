@@ -202,6 +202,7 @@ declare enum TooltipPositionEngine {
 interface TooltipConfig {
     modelValue?: boolean;
     alwaysOpen?: boolean;
+    indicator?: boolean;
     class?: string;
     contentClass?: string;
     text?: string;
@@ -2060,6 +2061,7 @@ declare class Tooltip extends LktItem implements TooltipConfig {
     static lktDefaultValues: (keyof TooltipConfig)[];
     modelValue: boolean;
     alwaysOpen: boolean;
+    indicator: boolean;
     class: string;
     contentClass: string;
     text: string;

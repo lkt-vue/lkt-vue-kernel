@@ -5,6 +5,7 @@ import {TooltipPositionEngine} from '../enums/TooltipPositionEngine.ts';
 export interface TooltipConfig {
     modelValue?: boolean
     alwaysOpen?: boolean
+    indicator?: boolean
     class?: string
     contentClass?: string
     text?: string
