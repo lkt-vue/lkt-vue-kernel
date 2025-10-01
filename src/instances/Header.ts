@@ -3,6 +3,7 @@ import {HeaderConfig} from "../config/HeaderConfig.ts";
 import {HeaderTag} from "../enums/HeaderTag.ts";
 import {IconConfig} from "../config/IconConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 
 export class Header extends LktItem implements HeaderConfig {
 
@@ -16,7 +17,9 @@ export class Header extends LktItem implements HeaderConfig {
         'text',
         'icon',
         'topStartButtons',
+        'topStartContent',
         'topEndButtons',
+        'topEndContent',
         'bottomButtons',
     ];
 
@@ -26,7 +29,11 @@ export class Header extends LktItem implements HeaderConfig {
     icon?: string|IconConfig = '';
 
     topStartButtons?: Array<ButtonConfig> = [];
+    topStartContent?: Array<PolymorphicElementConfig> = [];
+
     topEndButtons?: Array<ButtonConfig> = [];
+    topEndContent?: Array<PolymorphicElementConfig> = [];
+
     bottomButtons?: Array<ButtonConfig> = [];
 
     constructor(data: Partial<HeaderConfig> = {}) {

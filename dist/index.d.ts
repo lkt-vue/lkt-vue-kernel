@@ -422,6 +422,7 @@ interface PolymorphicElementConfig {
     title?: string;
     props?: LktObject;
     vModels?: LktObject;
+    content?: Array<PolymorphicElementConfig>;
 }
 
 declare class FieldValidation extends LktItem {
@@ -543,7 +544,9 @@ interface HeaderConfig {
     text?: string;
     icon?: string | IconConfig;
     topStartButtons?: Array<ButtonConfig>;
+    topStartContent?: Array<PolymorphicElementConfig>;
     topEndButtons?: Array<ButtonConfig>;
+    topEndContent?: Array<PolymorphicElementConfig>;
     bottomButtons?: Array<ButtonConfig>;
 }
 
@@ -1791,7 +1794,9 @@ declare class Header extends LktItem implements HeaderConfig {
     text?: string;
     icon?: string | IconConfig;
     topStartButtons?: Array<ButtonConfig>;
+    topStartContent?: Array<PolymorphicElementConfig>;
     topEndButtons?: Array<ButtonConfig>;
+    topEndContent?: Array<PolymorphicElementConfig>;
     bottomButtons?: Array<ButtonConfig>;
     constructor(data?: Partial<HeaderConfig>);
 }
