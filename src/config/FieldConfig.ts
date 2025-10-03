@@ -107,6 +107,7 @@ export interface FieldConfig extends RenderAndDisplayProps{
     customButtonClass?: string
 
     createButton?: ButtonConfig|false
+    callToActionButton?: ButtonConfig|false
 
     // Events
     events?: {

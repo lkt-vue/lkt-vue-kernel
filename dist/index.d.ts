@@ -835,6 +835,7 @@ interface FieldConfig extends RenderAndDisplayProps {
     customButtonText?: string;
     customButtonClass?: string;
     createButton?: ButtonConfig | false;
+    callToActionButton?: ButtonConfig | false;
     events?: {
         validationStart?: undefined | Function;
         validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean);
@@ -1751,6 +1752,7 @@ declare class Field extends LktItem implements FieldConfig {
     fileUploadHttp?: HttpCallConfig;
     fileUploadButton: ButtonConfig;
     createButton?: ButtonConfig | false;
+    callToActionButton?: ButtonConfig | false;
     tooltipConfig?: TooltipConfig;
     fileBrowserConfig?: FileBrowserConfig;
     canRender: boolean;
