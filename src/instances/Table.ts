@@ -13,6 +13,7 @@ import {CarouselConfig} from "../config/CarouselConfig.ts";
 import {ColumnConfig} from "../config/ColumnConfig.ts";
 import {AccordionConfig} from "../config/AccordionConfig.ts";
 import {Component} from "vue";
+import {TableTypeSwitchButtonsConfig} from "../config/TableTypeSwitchButtonsConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -59,6 +60,9 @@ export class Table extends LktItem implements TableConfig {
         'hideTableHeader',
         'skipTableItemsContainer',
         'events',
+        'switchableTypes',
+        'switchableTypesButtons',
+        'useItemSlot',
     ];
 
     // Data
@@ -131,6 +135,12 @@ export class Table extends LktItem implements TableConfig {
     itemSlotData?: LktObject | Function = {};
     itemSlotEvents?: LktObject | Function = {};
     events?: LktObject = {};
+
+    // Switch between table types
+    switchableTypes?: Array<TableType> = [];
+    switchableTypesButtons?: TableTypeSwitchButtonsConfig = {};
+
+    useItemSlot: boolean = false;
 
 
     constructor(data: Partial<TableConfig> = {}) {

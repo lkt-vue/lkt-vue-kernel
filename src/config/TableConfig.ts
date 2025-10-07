@@ -10,6 +10,7 @@ import {CarouselConfig} from "./CarouselConfig.ts";
 import {ColumnConfig} from "./ColumnConfig.ts";
 import {AccordionConfig} from "./AccordionConfig.ts";
 import {Component} from "vue";
+import {TableTypeSwitchButtonsConfig} from "./TableTypeSwitchButtonsConfig.ts";
 
 export interface TableConfig {
 
@@ -84,6 +85,12 @@ export interface TableConfig {
 
     // Deprecated props (use saveButton.disabled):
     createEnabledValidator?: Function
+
+    // Switch between table types
+    switchableTypes?: Array<TableType>
+    switchableTypesButtons?: TableTypeSwitchButtonsConfig
+
+    useItemSlot?: boolean | ((args: {item: LktObject, index: number}) => boolean)
 
     events?: {
         parseResults?: (data: LktObject[]) => void|undefined|LktObject[],
