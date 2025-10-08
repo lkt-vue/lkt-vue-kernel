@@ -3,6 +3,7 @@ import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {TooltipLocationY} from "../enums/TooltipLocationY.ts";
 import {TooltipLocationX} from "../enums/TooltipLocationX.ts";
+import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 
 export class Tooltip extends LktItem implements TooltipConfig {
 
@@ -31,6 +32,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'compensateGlobalContainers',
         'remoteControl',
         'teleport',
+        'content',
     ];
 
     modelValue: boolean = false;
@@ -57,6 +59,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     compensateGlobalContainers: boolean = true;
     remoteControl: boolean = false;
     teleport: string = '';
+    content?: Array<PolymorphicElementConfig> = [];
 
     constructor(data: Partial<TooltipConfig> = {}) {
         super();

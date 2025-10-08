@@ -1,6 +1,7 @@
 import {TooltipLocationY} from '../enums/TooltipLocationY.ts';
 import {TooltipLocationX} from '../enums/TooltipLocationX.ts';
 import {TooltipPositionEngine} from '../enums/TooltipPositionEngine.ts';
+import {PolymorphicElementConfig} from "./PolymorphicElementConfig.ts";
 
 export interface TooltipConfig {
     modelValue?: boolean
@@ -27,5 +28,6 @@ export interface TooltipConfig {
     compensateGlobalContainers?: boolean
     remoteControl?: boolean
     teleport?: string
+    content?: Array<PolymorphicElementConfig>
 }
 
