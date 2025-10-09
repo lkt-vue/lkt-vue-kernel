@@ -6,5 +6,6 @@ export interface TableTypeSwitchButtonsConfig {
     ul?: ButtonConfig
     ol?: ButtonConfig
     carousel?: ButtonConfig
+    calendar?: ButtonConfig
     accordion?: ButtonConfig
 }

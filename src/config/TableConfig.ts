@@ -11,6 +11,8 @@ import {ColumnConfig} from "./ColumnConfig.ts";
 import {AccordionConfig} from "./AccordionConfig.ts";
 import {Component} from "vue";
 import {TableTypeSwitchButtonsConfig} from "./TableTypeSwitchButtonsConfig.ts";
+import {CalendarConfig} from "./CalendarConfig.ts";
+import {CalendarGroupsConfig} from "./CalendarGroupsConfig.ts";
 
 export interface TableConfig {
 
@@ -47,13 +49,17 @@ export interface TableConfig {
     drag?: ValidDragConfig
 
     // Pagination
-    paginator?: ValidPaginatorConfig;
+    paginator?: ValidPaginatorConfig
 
     // Carousel
-    carousel?: CarouselConfig;
+    carousel?: CarouselConfig
+
+    // Calendar
+    calendar?: CalendarConfig
+    calendarGroups?: CalendarGroupsConfig
 
     // Accordion
-    accordion?: AccordionConfig;
+    accordion?: AccordionConfig
 
     // New proposed prop: header
     header?: HeaderConfig

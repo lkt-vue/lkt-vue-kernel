@@ -40,6 +40,7 @@ export {CalendarDisabledConfig} from './config/CalendarDisabledConfig.ts';
 export {CalendarEventConfig} from './config/CalendarEventConfig.ts';
 export {CalendarNavBarConfig} from './config/CalendarNavBarConfig.ts';
 export {CalendarNavigationConfig} from './config/CalendarNavigationConfig.ts';
+export {CalendarGroupsConfig} from './config/CalendarGroupsConfig.ts';
 export {CircleConfig} from './config/CircleConfig.ts';
 export {ColumnConfig} from './config/ColumnConfig.ts';
 export {CounterConfig} from './config/CounterConfig.ts';

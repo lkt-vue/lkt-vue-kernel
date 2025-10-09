@@ -14,6 +14,8 @@ import {ColumnConfig} from "../config/ColumnConfig.ts";
 import {AccordionConfig} from "../config/AccordionConfig.ts";
 import {Component} from "vue";
 import {TableTypeSwitchButtonsConfig} from "../config/TableTypeSwitchButtonsConfig.ts";
+import {CalendarConfig} from "../config/CalendarConfig.ts";
+import {CalendarGroupsConfig} from "../config/CalendarGroupsConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -56,6 +58,8 @@ export class Table extends LktItem implements TableConfig {
         'requiredItemsForBottomCreate',
         'slotItemVar',
         'carousel',
+        'calendar',
+        'calendarGroups',
         'accordion',
         'hideTableHeader',
         'skipTableItemsContainer',
@@ -95,7 +99,13 @@ export class Table extends LktItem implements TableConfig {
 
     // Pagination
     paginator?: ValidPaginatorConfig = undefined;
+
+    // Carousel
     carousel?: CarouselConfig = {};
+
+    // Calendar
+    calendar?: CalendarConfig = {};
+    calendarGroups?: CalendarGroupsConfig = {};
 
     // Accordion
     accordion?: AccordionConfig = {};

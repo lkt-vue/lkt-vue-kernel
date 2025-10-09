@@ -20,6 +20,8 @@ export interface ColumnConfig {
     preferSlot?: Function | boolean
     isForRowKey?: boolean
     isForAccordionHeader?: boolean
+    isCalendarDate?: boolean
+    isCalendarGroup?: boolean
     extractTitleFromColumn?: string
     slotData?: LktObject
 

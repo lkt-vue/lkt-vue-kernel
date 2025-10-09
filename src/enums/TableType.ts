@@ -5,4 +5,5 @@ export enum TableType {
     Ol = 'ol',
     Carousel = 'carousel',
     Accordion = 'accordion',
+    Calendar = 'calendar',
 }

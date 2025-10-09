@@ -34,6 +34,8 @@ export class Column extends LktItem implements ColumnConfig{
         'preferSlot',
         'isForRowKey',
         'isForAccordionHeader',
+        'isCalendarDate',
+        'isCalendarGroup',
         'extractTitleFromColumn',
         'slotData',
         'field',
@@ -54,6 +56,8 @@ export class Column extends LktItem implements ColumnConfig{
     preferSlot: Function | boolean = true;
     isForRowKey: boolean = false;
     isForAccordionHeader: boolean = false;
+    isCalendarDate?: boolean = false;
+    isCalendarGroup?: boolean = false;
     extractTitleFromColumn: string = '';
     slotData: LktObject = {};
 
