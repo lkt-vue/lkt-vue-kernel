@@ -21,7 +21,7 @@ export class Menu extends LktItem implements MenuConfig {
     menuKey?: ValidModalKey = '_';
     http?: HttpCallConfig = {};
     closeOnClickOutside?: boolean = true;
-    hiddenPosition?: 'left' | 'right' = 'left';
+    hiddenPosition?: 'left' | 'right' | 'bottom' | 'top' = 'left';
 
     constructor(data: Partial<MenuConfig> = {}) {
         super();

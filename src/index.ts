@@ -37,7 +37,7 @@ export {BoxConfig} from './config/BoxConfig.ts';
 export {ButtonConfig} from './config/ButtonConfig.ts';
 export {CalendarConfig} from './config/CalendarConfig.ts';
 export {CalendarDisabledConfig} from './config/CalendarDisabledConfig.ts';
-export {CalendarEventConfig} from './config/CalendarEventConfig.ts';
+export {CalendarItemConfig} from './config/CalendarItemConfig.ts';
 export {CalendarNavBarConfig} from './config/CalendarNavBarConfig.ts';
 export {CalendarNavigationConfig} from './config/CalendarNavigationConfig.ts';
 export {CalendarGroupsConfig} from './config/CalendarGroupsConfig.ts';

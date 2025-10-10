@@ -7,7 +7,7 @@ export interface MenuConfig {
     modelValue?: MenuEntryConfig[]
     type?: MenuType
     menuKey?: ValidModalKey
-    hiddenPosition?: 'left' | 'right'
+    hiddenPosition?: 'left' | 'right' | 'bottom' | 'top'
     closeOnClickOutside?: boolean
 
     // Http config
