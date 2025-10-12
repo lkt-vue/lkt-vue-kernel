@@ -17,6 +17,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
         'readOnly',
         'loading',
         'resourceData',
+        'dateKey',
         'events',
     ];
 
@@ -27,6 +28,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
     readOnly?: boolean = false;
     loading?: boolean = false;
     resourceData?: LktObject = {};
+    dateKey?: string = '';
     events: LktObject = {}
 
     constructor(data: Partial<PaginatorConfig> = {}) {

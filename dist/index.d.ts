@@ -580,7 +580,10 @@ declare enum PaginatorType {
     PagesPrevNext = "pages-prev-next",
     PagesPrevNextFirstLast = "pages-prev-next-first-last",
     LoadMore = "load-more",
-    Infinite = "infinite"
+    Infinite = "infinite",
+    TimelineAsc = "timeline-asc",
+    TimelineDesc = "timeline-desc",
+    TimelineAscDesc = "timeline-asc-desc"
 }
 
 interface PaginatorConfig {
@@ -591,6 +594,10 @@ interface PaginatorConfig {
     resourceData?: LktObject;
     readOnly?: boolean;
     loading?: boolean;
+    dateKey?: string;
+    timelineOldestDate?: Date | undefined;
+    timelineNewestDate?: Date | undefined;
+    timelineVisibleDate?: Date | undefined;
     events?: {
         httpStart?: undefined | Function;
         httpEnd?: (data: ClickEventArgs) => void | undefined;
@@ -2026,6 +2033,7 @@ declare class Paginator extends LktItem implements PaginatorConfig {
     readOnly?: boolean;
     loading?: boolean;
     resourceData?: LktObject;
+    dateKey?: string;
     events: LktObject;
     constructor(data?: Partial<PaginatorConfig>);
 }

@@ -5,4 +5,7 @@ export enum PaginatorType {
     PagesPrevNextFirstLast = 'pages-prev-next-first-last',
     LoadMore = 'load-more',
     Infinite = 'infinite',
+    TimelineAsc = 'timeline-asc',
+    TimelineDesc = 'timeline-desc',
+    TimelineAscDesc = 'timeline-asc-desc',
 }

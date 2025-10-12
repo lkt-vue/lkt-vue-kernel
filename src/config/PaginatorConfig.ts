@@ -10,6 +10,10 @@ export interface PaginatorConfig {
     resourceData?: LktObject
     readOnly?: boolean
     loading?: boolean
+    dateKey?: string
+    timelineOldestDate?: Date|undefined
+    timelineNewestDate?: Date|undefined
+    timelineVisibleDate?: Date|undefined
     events?: {
         httpStart?: undefined | Function,
         httpEnd?: (data: ClickEventArgs) => void|undefined,
