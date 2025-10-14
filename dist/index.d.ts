@@ -811,6 +811,7 @@ interface TableConfig {
     wrapContentClass?: string;
     itemsContainerClass?: string;
     itemContainerClass?: string | Function;
+    itemContainerStyle?: string | Function;
     skipTableItemsContainer?: boolean;
     createEnabledValidator?: Function;
     switchableTypes?: Array<TableType>;
@@ -821,6 +822,7 @@ interface TableConfig {
     }) => boolean);
     events?: {
         parseResults?: (data: LktObject[]) => void | undefined | LktObject[];
+        viewChanged?: (view: TableType) => void;
     };
 }
 
@@ -2105,6 +2107,7 @@ declare class Table extends LktItem implements TableConfig {
     wrapContentClass?: string;
     itemsContainerClass?: string;
     itemContainerClass?: string | Function;
+    itemContainerStyle?: string | Function;
     skipTableItemsContainer?: boolean;
     addNavigation?: boolean;
     createEnabledValidator?: Function;

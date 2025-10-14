@@ -50,6 +50,7 @@ export class Table extends LktItem implements TableConfig {
         'wrapContentClass',
         'itemsContainerClass',
         'itemContainerClass',
+        'itemContainerStyle',
         'hiddenSave',
         'addNavigation',
         'createEnabledValidator',
@@ -131,6 +132,7 @@ export class Table extends LktItem implements TableConfig {
     wrapContentClass?: string = '';
     itemsContainerClass?: string = '';
     itemContainerClass?: string|Function
+    itemContainerStyle?: string|Function
 
     skipTableItemsContainer?: boolean
 

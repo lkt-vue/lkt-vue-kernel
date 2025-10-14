@@ -86,6 +86,7 @@ export interface TableConfig {
     wrapContentClass?: string
     itemsContainerClass?: string
     itemContainerClass?: string|Function
+    itemContainerStyle?: string|Function
 
     skipTableItemsContainer?: boolean
 
@@ -100,6 +101,7 @@ export interface TableConfig {
 
     events?: {
         parseResults?: (data: LktObject[]) => void|undefined|LktObject[],
+        viewChanged?: (view: TableType) => void
     }
 }
 
