@@ -13,6 +13,7 @@ import {Component} from "vue";
 import {TableTypeSwitchButtonsConfig} from "./TableTypeSwitchButtonsConfig.ts";
 import {CalendarConfig} from "./CalendarConfig.ts";
 import {CalendarGroupsConfig} from "./CalendarGroupsConfig.ts";
+import {FormConfig} from "./FormConfig.ts";
 
 export interface TableConfig {
 
@@ -98,6 +99,8 @@ export interface TableConfig {
     switchableTypesButtons?: TableTypeSwitchButtonsConfig
 
     useItemSlot?: boolean | ((args: {item: LktObject, index: number}) => boolean)
+
+    filtersForm?: FormConfig
 
     events?: {
         parseResults?: (data: LktObject[]) => void|undefined|LktObject[],

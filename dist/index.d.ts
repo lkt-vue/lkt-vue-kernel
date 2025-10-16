@@ -765,6 +765,54 @@ interface CalendarGroupsConfig {
     [key: string | number]: DotConfig;
 }
 
+interface FormComponentConfig extends PolymorphicElementConfig {
+    form?: FormConfig;
+}
+
+declare enum ModificationView {
+    Current = "current",
+    Modifications = "modifications",
+    SplitView = "split-view",
+    Differences = "differences"
+}
+
+interface FormItemConfig extends RenderAndDisplayProps {
+    key?: string;
+    type?: 'field' | 'component' | 'form' | 'slot';
+    field?: FieldConfig;
+    modificationsField?: FieldConfig;
+    form?: FormConfig;
+    component?: FormComponentConfig;
+    supportedModifications?: boolean | ModificationView[];
+    slotData?: LktObject;
+}
+
+type TableConfigReturnFunction = (config: TableConfig) => TableConfig;
+
+interface FormUiConfig {
+    modelValue: LktObject;
+    modifications?: LktObject;
+    form: FormConfig;
+    valid?: boolean;
+    disabled?: boolean;
+    changed?: boolean;
+    class?: string;
+    formClass?: string;
+    visibleView?: ModificationView;
+    editableViews?: ModificationView[];
+    modificationDataState?: DataState;
+    differencesTableConfig?: TableConfig | TableConfigReturnFunction;
+    dataStateConfig?: DataStateConfig;
+}
+
+interface FormConfig {
+    items?: Array<FormItemConfig>;
+    submitButton?: ButtonConfig | false;
+    container?: PolymorphicElementConfig;
+    header?: HeaderConfig;
+    uiConfig?: Partial<FormUiConfig>;
+}
+
 interface TableConfig {
     modelValue?: LktObject[];
     type?: TableType;
@@ -820,6 +868,7 @@ interface TableConfig {
         item: LktObject;
         index: number;
     }) => boolean);
+    filtersForm?: FormConfig;
     events?: {
         parseResults?: (data: LktObject[]) => void | undefined | LktObject[];
         viewChanged?: (view: TableType) => void;
@@ -1200,54 +1249,6 @@ interface FileEntityConfig {
     src: string;
     children?: FileEntityConfig[];
     parent?: number | string | undefined;
-}
-
-interface FormComponentConfig extends PolymorphicElementConfig {
-    form?: FormConfig;
-}
-
-declare enum ModificationView {
-    Current = "current",
-    Modifications = "modifications",
-    SplitView = "split-view",
-    Differences = "differences"
-}
-
-interface FormItemConfig extends RenderAndDisplayProps {
-    key?: string;
-    type?: 'field' | 'component' | 'form' | 'slot';
-    field?: FieldConfig;
-    modificationsField?: FieldConfig;
-    form?: FormConfig;
-    component?: FormComponentConfig;
-    supportedModifications?: boolean | ModificationView[];
-    slotData?: LktObject;
-}
-
-type TableConfigReturnFunction = (config: TableConfig) => TableConfig;
-
-interface FormUiConfig {
-    modelValue: LktObject;
-    modifications?: LktObject;
-    form: FormConfig;
-    valid?: boolean;
-    disabled?: boolean;
-    changed?: boolean;
-    class?: string;
-    formClass?: string;
-    visibleView?: ModificationView;
-    editableViews?: ModificationView[];
-    modificationDataState?: DataState;
-    differencesTableConfig?: TableConfig | TableConfigReturnFunction;
-    dataStateConfig?: DataStateConfig;
-}
-
-interface FormConfig {
-    items?: Array<FormItemConfig>;
-    submitButton?: ButtonConfig | false;
-    container?: PolymorphicElementConfig;
-    header?: HeaderConfig;
-    uiConfig?: Partial<FormUiConfig>;
 }
 
 declare enum ItemCrudView {
@@ -2122,6 +2123,7 @@ declare class Table extends LktItem implements TableConfig {
     switchableTypes?: Array<TableType>;
     switchableTypesButtons?: TableTypeSwitchButtonsConfig;
     useItemSlot: boolean;
+    filtersForm?: FormConfig;
     constructor(data?: Partial<TableConfig>);
 }
 

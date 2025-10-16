@@ -16,6 +16,7 @@ import {Component} from "vue";
 import {TableTypeSwitchButtonsConfig} from "../config/TableTypeSwitchButtonsConfig.ts";
 import {CalendarConfig} from "../config/CalendarConfig.ts";
 import {CalendarGroupsConfig} from "../config/CalendarGroupsConfig.ts";
+import {FormConfig} from "../config/FormConfig.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -68,6 +69,7 @@ export class Table extends LktItem implements TableConfig {
         'switchableTypes',
         'switchableTypesButtons',
         'useItemSlot',
+        'filtersForm',
     ];
 
     // Data
@@ -153,6 +155,8 @@ export class Table extends LktItem implements TableConfig {
     switchableTypesButtons?: TableTypeSwitchButtonsConfig = {};
 
     useItemSlot: boolean = false;
+
+    filtersForm?: FormConfig = {};
 
 
     constructor(data: Partial<TableConfig> = {}) {
