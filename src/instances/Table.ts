@@ -101,7 +101,7 @@ export class Table extends LktItem implements TableConfig {
     drag?: ValidDragConfig = undefined;
 
     // Pagination
-    paginator?: ValidPaginatorConfig = undefined;
+    paginator?: ValidPaginatorConfig = {};
 
     // Carousel
     carousel?: CarouselConfig = {};
