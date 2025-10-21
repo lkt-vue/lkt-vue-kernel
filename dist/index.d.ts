@@ -2419,6 +2419,8 @@ interface WebItemConfig {
     labelMany: string;
     many: TableConfig | false;
     single: ItemCrudConfig;
+    appHeaderSingle?: HeaderConfig | ((data: LktObject) => HeaderConfig);
+    appHeaderMany?: HeaderConfig;
     itemGenerator?: ((data: LktObject) => LktObject);
 }
 
