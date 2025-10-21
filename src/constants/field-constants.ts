@@ -24,6 +24,7 @@ export const fieldsWithMultipleMode = [
     FieldType.Select,
     FieldType.Color,
     FieldType.Card,
+    FieldType.Image,
 ];
 
 export const textFieldTypes = [
