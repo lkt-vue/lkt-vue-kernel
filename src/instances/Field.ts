@@ -18,6 +18,7 @@ import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {OptionConfig} from "../config/OptionConfig.ts";
 import {FileBrowserConfig} from "../config/FileBrowserConfig.ts";
 import {IconConfig} from "../config/IconConfig.ts";
+import {FieldEvents} from "../config/events/FieldEvents.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -170,7 +171,7 @@ export class Field extends LktItem implements FieldConfig {
     canRender: boolean = true;
     canDisplay: boolean = true;
 
-    events?: LktObject = {}
+    events?: FieldEvents = {}
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

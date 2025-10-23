@@ -4,11 +4,11 @@ import {AnchorType} from "../enums/AnchorType.ts";
 import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidModalKey} from "../types/ValidModalKey.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
-import {EventsConfig} from "../config/EventsConfig.ts";
 import {getAnchorHref} from "../functions/anchor-functions.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {IconConfig} from "../config/IconConfig.ts";
 import {ValidAnchorTo} from "../types/ValidAnchorTo.ts";
+import {AnchorEvents} from "../config/events/AnchorEvents.ts";
 
 export class Anchor extends LktItem implements AnchorConfig {
 
@@ -52,7 +52,7 @@ export class Anchor extends LktItem implements AnchorConfig {
     prop: LktObject = {};
 
     // Event management
-    events?: EventsConfig|undefined = {};
+    events?: AnchorEvents|undefined = {};
 
     getHref() {
         return getAnchorHref(this);

@@ -1,6 +1,6 @@
 import {LktObject} from "../interfaces/LktObject.ts";
 import {PaginatorType} from "../enums/PaginatorType.ts";
-import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
+import {PaginatorEvents} from "./events/PaginatorEvents.ts";
 
 export interface PaginatorConfig {
     type?: PaginatorType
@@ -14,9 +14,5 @@ export interface PaginatorConfig {
     timelineOldestDate?: Date|undefined
     timelineNewestDate?: Date|undefined
     timelineVisibleDate?: Date|undefined
-    events?: {
-        httpStart?: undefined | Function,
-        httpEnd?: (data: ClickEventArgs) => void|undefined,
-        parseResults?: (data: LktObject[]) => void|undefined,
-    }
+    events?: PaginatorEvents
 }

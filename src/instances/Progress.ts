@@ -12,6 +12,7 @@ export class Progress extends LktItem implements ProgressConfig {
     static lktAllowUndefinedProps: string[] = [
         'circle',
         'unit',
+        'text',
     ];
 
     static lktDefaultValues: (keyof ProgressConfig)[] = [
@@ -24,6 +25,7 @@ export class Progress extends LktItem implements ProgressConfig {
         'valueFormat',
         'circle',
         'unit',
+        'text',
     ];
 
     // Main value (current percentage)
@@ -39,6 +41,7 @@ export class Progress extends LktItem implements ProgressConfig {
     // Content
     header?: HeaderConfig = {};
     valueFormat?: ProgressValueFormat = ProgressValueFormat.Auto;
+    text?: string|Function = undefined;
 
     // Circle
     circle?: CircleConfig = undefined;

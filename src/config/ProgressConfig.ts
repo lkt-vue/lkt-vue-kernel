@@ -21,6 +21,7 @@ export interface ProgressConfig {
     // Content
     header?: HeaderConfig
     valueFormat?: ProgressValueFormat
+    text?: string|Function
 
     // Circle
     circle?: CircleConfig

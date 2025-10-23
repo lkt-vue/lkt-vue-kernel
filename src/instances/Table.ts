@@ -17,6 +17,7 @@ import {TableTypeSwitchButtonsConfig} from "../config/TableTypeSwitchButtonsConf
 import {CalendarConfig} from "../config/CalendarConfig.ts";
 import {CalendarGroupsConfig} from "../config/CalendarGroupsConfig.ts";
 import {FormConfig} from "../config/FormConfig.ts";
+import {TableEvents} from "../config/events/TableEvents.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -148,7 +149,7 @@ export class Table extends LktItem implements TableConfig {
     itemSlotComponent?: string | Function | Component = undefined;
     itemSlotData?: LktObject | Function = {};
     itemSlotEvents?: LktObject | Function = {};
-    events?: LktObject = {};
+    events?: TableEvents = {};
 
     // Switch between table types
     switchableTypes?: Array<TableType> = [];

@@ -6,7 +6,6 @@ import {MultipleOptionsDisplay} from "../enums/MultipleOptionsDisplay.ts";
 import {ValidTabIndex} from "../types/ValidTabIndex.ts";
 import {ValidFieldMinMax} from "../types/ValidFieldMinMax.ts";
 import {FieldValidationConfig} from "./FieldValidationConfig.ts";
-import {FieldValidationEndEventArgs} from "../arguments/FieldValidationEndEventArgs.ts";
 import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {OptionsConfig} from "./OptionsConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
@@ -16,8 +15,8 @@ import {ButtonConfig} from "./ButtonConfig.ts";
 import {OptionConfig} from "./OptionConfig.ts";
 import {FileBrowserConfig} from "./FileBrowserConfig.ts";
 import {RenderAndDisplayProps} from "../interfaces/RenderAndDisplayProps.ts";
-import {FieldLoadOptionsEndEventArgs} from "../arguments/FieldLoadOptionsEndEventArgs.ts";
 import {IconConfig} from "./IconConfig.ts";
+import {FieldEvents} from "./events/FieldEvents.ts";
 
 export interface FieldConfig extends RenderAndDisplayProps{
     modelValue?: ValidFieldValue
@@ -110,14 +109,5 @@ export interface FieldConfig extends RenderAndDisplayProps{
     callToActionButton?: ButtonConfig|false
 
     // Events
-    events?: {
-        validationStart?: undefined | Function
-        validationEnd?: undefined | ((data: FieldValidationEndEventArgs) => boolean)
-        loadOptionsStart?: undefined | Function
-        loadOptionsEnd?: undefined | ((data: FieldLoadOptionsEndEventArgs) => void)
-        updatedOptions?: ((data: {options: Array<OptionConfig>}) => void)
-        clickOption?: ((data: {option: OptionConfig}) => void)
-        itemCreated?: undefined | Function
-        changed?: undefined | Function
-    }
+    events?: FieldEvents
 }

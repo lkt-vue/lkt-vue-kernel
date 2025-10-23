@@ -9,13 +9,13 @@ import {SaveConfig} from "./SaveConfig.ts";
 import {DataStateConfig} from "lkt-data-state";
 import {NotificationType} from "../enums/NotificationType.ts";
 import {ValidTablePermission} from "../types/ValidTablePermission.ts";
-import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
 import {FormConfig} from "./FormConfig.ts";
 import {ModificationView} from "../enums/ModificationView.ts";
 import {TableConfig} from "./TableConfig.ts";
 import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
 import {FormUiConfig} from "./FormUiConfig.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
+import {ItemCrudEvents} from "./events/ItemCrudEvents.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
@@ -80,8 +80,5 @@ export interface ItemCrudConfig {
     navEndButtons?: Array<ButtonConfig>
     navEndButtonsEditing?: Array<ButtonConfig>
 
-    events?: {
-        httpStart?: undefined | Function,
-        httpEnd?: (data: ClickEventArgs) => void|undefined,
-    }
+    events?: ItemCrudEvents
 }

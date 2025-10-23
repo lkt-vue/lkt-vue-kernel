@@ -14,7 +14,7 @@ import {ModalCallbackConfig} from "../config/ModalCallbackConfig.ts";
 import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {ValidIconDot} from "../types/ValidIconDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
-import {EventsConfig} from "../config/EventsConfig.ts";
+import {ButtonEvents} from "../config/events/ButtonEvents.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -121,7 +121,7 @@ export class Button extends LktItem implements ButtonConfig {
     prop?: LktObject = {};
 
     // Event management
-    events?: EventsConfig|undefined = {};
+    events?: ButtonEvents|undefined = {};
 
     constructor(data: Partial<ButtonConfig> = {}) {
         super();

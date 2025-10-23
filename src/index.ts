@@ -144,6 +144,7 @@ export {ButtonType} from './enums/ButtonType.ts';
 export {CalendarNavBarElements} from './enums/CalendarNavBarElements.ts';
 export {ColumnType} from './enums/ColumnType.ts';
 export {CounterType} from './enums/CounterType.ts';
+export {CounterView} from './enums/CounterView.ts';
 export {DocPageSize} from './enums/DocPageSize.ts';
 export {FieldAutoValidationTrigger} from './enums/FieldAutoValidationTrigger.ts';
 export {FieldReportLevel} from './enums/FieldReportLevel.ts';
@@ -188,6 +189,19 @@ export {WebElementLayoutType} from './enums/WebElementLayoutType.ts';
 export {WebElementType} from './enums/WebElementType.ts';
 export {WebPageStatus} from './enums/WebPageStatus.ts';
 export {WebParentType} from './enums/WebParentType.ts';
+
+/**
+ * Export events config interfaces
+ */
+export {AnchorEvents} from './config/events/AnchorEvents.ts';
+export {ButtonEvents} from './config/events/ButtonEvents.ts';
+export {CalendarEvents} from './config/events/CalendarEvents.ts';
+export {CounterEvents} from './config/events/CounterEvents.ts';
+export {FieldEvents} from './config/events/FieldEvents.ts';
+export {HttpCallEvents} from './config/events/HttpCallEvents.ts';
+export {ItemCrudEvents} from './config/events/ItemCrudEvents.ts';
+export {PaginatorEvents} from './config/events/PaginatorEvents.ts';
+export {TableEvents} from './config/events/TableEvents.ts';
 
 /**
  * Export types

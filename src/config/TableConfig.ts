@@ -14,6 +14,7 @@ import {TableTypeSwitchButtonsConfig} from "./TableTypeSwitchButtonsConfig.ts";
 import {CalendarConfig} from "./CalendarConfig.ts";
 import {CalendarGroupsConfig} from "./CalendarGroupsConfig.ts";
 import {FormConfig} from "./FormConfig.ts";
+import {TableEvents} from "./events/TableEvents.ts";
 
 export interface TableConfig {
 
@@ -102,10 +103,7 @@ export interface TableConfig {
 
     filtersForm?: FormConfig
 
-    events?: {
-        parseResults?: (data: LktObject[]) => void|undefined|LktObject[],
-        viewChanged?: (view: TableType) => void
-    }
+    events?: TableEvents
 }
 
 

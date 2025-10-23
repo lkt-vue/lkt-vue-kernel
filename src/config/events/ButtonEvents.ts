@@ -1,0 +1,7 @@
+import {ClickEventArgs} from "../../arguments/ClickEventArgs.ts";
+
+export interface ButtonEvents {
+    click?: (data: ClickEventArgs) => void|undefined,
+    httpStart?: undefined | Function,
+    httpEnd?: (data: ClickEventArgs) => void|undefined,
+}

@@ -2,7 +2,7 @@ import {LktItem} from "./LktItem.ts";
 import {PaginatorConfig} from "../config/PaginatorConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {PaginatorType} from "../enums/PaginatorType.ts";
-import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
+import {PaginatorEvents} from "../config/events/PaginatorEvents.ts";
 
 export class Paginator extends LktItem implements PaginatorConfig {
 
@@ -29,7 +29,7 @@ export class Paginator extends LktItem implements PaginatorConfig {
     loading?: boolean = false;
     resourceData?: LktObject = {};
     dateKey?: string = '';
-    events: LktObject = {}
+    events?: PaginatorEvents = {}
 
     constructor(data: Partial<PaginatorConfig> = {}) {
         super();

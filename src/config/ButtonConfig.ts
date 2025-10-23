@@ -11,11 +11,9 @@ import {ModalCallbackConfig} from "./ModalCallbackConfig.ts";
 import {TooltipConfig} from "./TooltipConfig.ts";
 import {ValidIconDot} from "../types/ValidIconDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
-import {EventsConfig} from "./EventsConfig.ts";
-import {ClickEventArgs} from "../arguments/ClickEventArgs.ts";
-import {HTTPResponse} from "lkt-http-client";
 import {IconConfig} from "./IconConfig.ts";
 import {AriaConfig} from "./AriaConfig.ts";
+import {ButtonEvents} from "./events/ButtonEvents.ts";
 
 export interface ButtonConfig {
 
@@ -92,9 +90,5 @@ export interface ButtonConfig {
 
     // Event management
     clickRef?: Element | VueElement
-    events?: {
-        click?: (data: ClickEventArgs) => void|undefined,
-        httpStart?: undefined | Function,
-        httpEnd?: (data: ClickEventArgs) => void|undefined,
-    }
+    events?: ButtonEvents
 }
