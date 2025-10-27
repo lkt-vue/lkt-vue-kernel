@@ -1247,6 +1247,7 @@ declare enum CounterView {
 }
 
 interface CounterEvents {
+    onChange?: (value: number | string) => void;
     onEnd?: () => void;
 }
 
