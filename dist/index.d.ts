@@ -1,6 +1,7 @@
 import { Component, VueElement, Ref } from 'vue';
 import { HTTPResponse } from 'lkt-http-client';
 import { DataState, DataStateConfig } from 'lkt-data-state';
+import { Router, RouterHistory, RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router';
 
 interface LktObject {
     [key: string | number]: any;
@@ -2261,6 +2262,16 @@ declare enum AppSize {
     XXL = 7
 }
 
+declare enum DayOfWeek {
+    Sunday = 0,
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 3,
+    Thursday = 4,
+    Friday = 5,
+    Saturday = 6
+}
+
 declare enum SortDirection {
     Asc = "asc",
     Desc = "desc"
@@ -2303,6 +2314,22 @@ declare const getAdminMenuEntries: (data: {
 }) => MenuEntryConfig[];
 
 declare const getAnchorHref: (anchor: AnchorConfig) => string;
+
+declare const setLktAppReady: (state: boolean) => void;
+declare const getLktAppReady: () => Ref<boolean>;
+declare const setLktAppLoading: (state: boolean) => void;
+declare const getLktAppLoading: () => Ref<boolean>;
+declare const updateMainHeader: (config: HeaderConfig) => void;
+
+interface CalendarConfigSetup {
+    firstDayOfWeek?: DayOfWeek;
+    days?: Array<string>;
+    months?: Array<string>;
+    smDays?: Array<string>;
+    smMonths?: Array<string>;
+}
+
+declare const setupCalendarConfig: (cfg: CalendarConfigSetup) => void;
 
 declare const extractPropValue: (needle: ValidScanPropTarget, haystack: LktObject) => ValidScanPropTarget;
 declare const extractI18nValue: (needle: ValidTextValue) => any;
@@ -2472,6 +2499,63 @@ declare class WebItemsController {
     static getWebItemSettings(needle: string): WebItemConfig;
 }
 
+declare class CalendarController {
+    static firstDayOfWeek: Ref<DayOfWeek>;
+    static days: Array<string>;
+    static months: Array<string>;
+    static smDays: Array<string>;
+    static smMonths: Array<string>;
+    static setup(cfg: CalendarConfigSetup): void;
+}
+
+interface AppRoutingConfig {
+    router?: Router;
+    history?: RouterHistory;
+    routes?: Array<RouteRecordRaw>;
+    beforeEachRouteCallback?: Function;
+}
+
+interface AppSetupConfig {
+    i18nResource?: string;
+    setupResource?: string;
+}
+
+interface LktAppConfig {
+    routing?: AppRoutingConfig;
+    setup?: AppSetupConfig;
+    mainMenu?: Menu;
+    bottomBar?: Menu;
+    hasMainMenu?: boolean | (() => boolean);
+    hasBottomBar?: boolean | (() => boolean);
+    hasMainHeader?: boolean | (() => boolean);
+    replaceMainMenuButtonWithBack?: boolean | (() => boolean);
+    mainHeader?: HeaderConfig;
+}
+
+declare class AppStateController {
+    static lktAppSize: Ref<AppSize>;
+    static lktAdminEnabled: Ref<boolean>;
+    static lktAppLoading: Ref<boolean>;
+    static lktAppReady: Ref<boolean>;
+    static lktAppSetup: Ref<LktObject>;
+    static lktMainMenu?: Menu;
+    static lktBottomBar?: Menu;
+    static hasMainHeader?: boolean | ((args: {
+        route: RouteLocationNormalizedLoaded;
+    }) => boolean);
+    static hasMainMenu?: boolean | ((args: {
+        route: RouteLocationNormalizedLoaded;
+    }) => boolean);
+    static hasBottomBar?: boolean | ((args: {
+        route: RouteLocationNormalizedLoaded;
+    }) => boolean);
+    static replaceMainMenuButtonWithBack?: boolean | ((args: {
+        route: RouteLocationNormalizedLoaded;
+    }) => boolean);
+    static setup?: AppSetupConfig;
+    static mainHeader: Ref<HeaderConfig | undefined>;
+}
+
 /**
  * Export common interfaces
  */
@@ -2481,4 +2565,4 @@ declare function getDefaultValues<T>(cls: {
     lktDefaultValues: (keyof T)[];
 }): Partial<T>;
 
-export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, type AnchorEvents, AnchorType, AppSize, type AriaConfig, Banner, type BannerConfig, BannerType, type BeforeCloseModalData, type BooleanFieldConfig, Box, type BoxConfig, Button, type ButtonConfig, type ButtonEvents, ButtonType, type CalendarConfig, type CalendarDisabledConfig, type CalendarEvents, type CalendarGroupsConfig, type CalendarItemConfig, type CalendarNavBarConfig, CalendarNavBarElements, type CalendarNavigationConfig, type CircleConfig, type ClickEventArgs, Column, type ColumnConfig, ColumnType, type ConditionalColumnArgs, Counter, type CounterConfig, type CounterEvents, CounterType, CounterView, DocPage, type DocPageConfig, DocPageSize, Dot, type DotConfig, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldEvents, type FieldLoadOptionsEndEventArgs, type FieldReadModeConfig, FieldReportLevel, FieldReportType, FieldType, FieldValidation, type FieldValidationConfig, type FieldValidationEndEventArgs, FieldValidationType, type FileBrowserConfig, FileEntity, type FileEntityConfig, FileEntityType, type FormComponentConfig, type FormConfig, FormInstance, type FormItemConfig, type FormUiConfig, Header, type HeaderConfig, HeaderTag, type HttpCallConfig, type HttpCallEvents, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IntervalConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, type ItemCrudEvents, ItemCrudMode, ItemCrudView, type ItemSlotComponentConfig, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Login, type LoginConfig, Menu, type MenuConfig, MenuController, MenuEntry, type MenuEntryConfig, MenuEntryType, MenuType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, ModificationView, type MultiLangValue, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, type PaginatorEvents, PaginatorType, type PolymorphicElementConfig, Progress, ProgressAnimation, type ProgressAnimationConfig, type ProgressConfig, type ProgressTextSlot, ProgressType, ProgressValueFormat, type RenderAndDisplayProps, type RenderModalConfig, type RouteConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, StepProcess, type StepProcessConfig, type StepProcessStepConfig, type TabConfig, TabType, Table, type TableConfig, type TableEvents, TablePermission, TableRowType, TableType, type TableTypeSwitchButtonsConfig, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type TooltipSettings, TooltipSettingsController, type TrackConfig, type UnitConfig, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIconDot, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTabKey, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, WebElement, type WebElementConfig, WebElementController, WebElementLayoutType, type WebElementPropsConfig, type WebElementSettings, WebElementType, type WebItemConfig, WebItemsController, WebPage, type WebPageConfig, WebPageController, type WebPageSettings, WebPageStatus, WebParentType, addConfirm, addModal, applyTextAlignment, applyTextFormat, booleanFieldTypes, changeBackgroundColor, changeFontFamily, changeTextColor, closeConfirm, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAdminMenuEntries, getAnchorHref, getDefaultLktAnchorWebElement, getDefaultLktButtonWebElement, getDefaultLktHeaderWebElement, getDefaultLktIconWebElement, getDefaultLktImageWebElement, getDefaultLktLayoutAccordionWebElement, getDefaultLktLayoutBoxWebElement, getDefaultLktLayoutWebElement, getDefaultLktTextAccordionWebElement, getDefaultLktTextBannerWebElement, getDefaultLktTextBoxWebElement, getDefaultLktTextWebElement, getDefaultValues, getFormDataState, getFormFieldsKeys, getFormSlotKeys, lktDebug, openConfirm, openModal, prepareResourceData, runModalCallback, setModalCanvas, textFieldTypes, textFieldTypesWithOptions };
+export { Accordion, type AccordionConfig, AccordionToggleMode, AccordionType, Anchor, type AnchorConfig, type AnchorEvents, AnchorType, AppSize, AppStateController, type AriaConfig, Banner, type BannerConfig, BannerType, type BeforeCloseModalData, type BooleanFieldConfig, Box, type BoxConfig, Button, type ButtonConfig, type ButtonEvents, ButtonType, type CalendarConfig, type CalendarConfigSetup, CalendarController, type CalendarDisabledConfig, type CalendarEvents, type CalendarGroupsConfig, type CalendarItemConfig, type CalendarNavBarConfig, CalendarNavBarElements, type CalendarNavigationConfig, type CircleConfig, type ClickEventArgs, Column, type ColumnConfig, ColumnType, type ConditionalColumnArgs, Counter, type CounterConfig, type CounterEvents, CounterType, CounterView, DayOfWeek, DocPage, type DocPageConfig, DocPageSize, Dot, type DotConfig, type DragConfig, type EmptyModalKey, type EventsConfig, Field, FieldAutoValidationTrigger, type FieldConfig, type FieldEvents, type FieldLoadOptionsEndEventArgs, type FieldReadModeConfig, FieldReportLevel, FieldReportType, FieldType, FieldValidation, type FieldValidationConfig, type FieldValidationEndEventArgs, FieldValidationType, type FileBrowserConfig, FileEntity, type FileEntityConfig, FileEntityType, type FormComponentConfig, type FormConfig, FormInstance, type FormItemConfig, type FormUiConfig, Header, type HeaderConfig, HeaderTag, type HttpCallConfig, type HttpCallEvents, Icon, type IconConfig, IconPosition, IconType, Image, type ImageConfig, type IntervalConfig, type IsDisabledChecker, type IsDisabledCheckerArgs, ItemCrud, ItemCrudButtonNavPosition, ItemCrudButtonNavVisibility, type ItemCrudConfig, type ItemCrudEvents, ItemCrudMode, ItemCrudView, type ItemSlotComponentConfig, type LktAppConfig, LktColor, LktItem, type LktObject, LktSettings, LktStrictItem, Login, type LoginConfig, Menu, type MenuConfig, MenuController, MenuEntry, type MenuEntryConfig, MenuEntryType, MenuType, Modal, ModalCallbackAction, type ModalCallbackConfig, type ModalConfig, ModalController, type ModalRegister, ModalRegisterType, ModalType, ModificationView, type MultiLangValue, MultipleOptionsDisplay, NotificationType, Option, type OptionConfig, type OptionsConfig, Paginator, type PaginatorConfig, type PaginatorEvents, PaginatorType, type PolymorphicElementConfig, Progress, ProgressAnimation, type ProgressAnimationConfig, type ProgressConfig, type ProgressTextSlot, ProgressType, ProgressValueFormat, type RenderAndDisplayProps, type RenderModalConfig, type RouteConfig, SafeString, type SaveConfig, SaveType, type ScanPropTarget, SortDirection, StepProcess, type StepProcessConfig, type StepProcessStepConfig, type TabConfig, TabType, Table, type TableConfig, type TableEvents, TablePermission, TableRowType, TableType, type TableTypeSwitchButtonsConfig, Tabs, type TabsConfig, Tag, type TagConfig, TagType, Toast, type ToastConfig, ToastPositionX, ToastType, ToggleMode, Tooltip, type TooltipConfig, TooltipLocationX, TooltipLocationY, TooltipPositionEngine, type TooltipSettings, TooltipSettingsController, type TrackConfig, type UnitConfig, type ValidBeforeCloseModal, type ValidColSpan, type ValidCustomSlot, type ValidDragConfig, type ValidFieldMinMax, type ValidFieldValue, type ValidIconDot, type ValidIsDisabledValue, type ValidModalComponent, type ValidModalKey, type ValidModalName, type ValidOptionValue, type ValidPaginatorConfig, type ValidSafeStringValue, type ValidScanPropTarget, type ValidTabIndex, type ValidTabKey, type ValidTablePermission, type ValidTableRowTypeValue, type ValidTextValue, ValidationCode, ValidationStatus, WebElement, type WebElementConfig, WebElementController, WebElementLayoutType, type WebElementPropsConfig, type WebElementSettings, WebElementType, type WebItemConfig, WebItemsController, WebPage, type WebPageConfig, WebPageController, type WebPageSettings, WebPageStatus, WebParentType, addConfirm, addModal, applyTextAlignment, applyTextFormat, booleanFieldTypes, changeBackgroundColor, changeFontFamily, changeTextColor, closeConfirm, closeModal, createColumn, ensureButtonConfig, ensureFieldConfig, extractI18nValue, extractPropValue, fieldTypesWithOptions, fieldTypesWithoutClear, fieldTypesWithoutUndo, fieldsWithMultipleMode, getAdminMenuEntries, getAnchorHref, getDefaultLktAnchorWebElement, getDefaultLktButtonWebElement, getDefaultLktHeaderWebElement, getDefaultLktIconWebElement, getDefaultLktImageWebElement, getDefaultLktLayoutAccordionWebElement, getDefaultLktLayoutBoxWebElement, getDefaultLktLayoutWebElement, getDefaultLktTextAccordionWebElement, getDefaultLktTextBannerWebElement, getDefaultLktTextBoxWebElement, getDefaultLktTextWebElement, getDefaultValues, getFormDataState, getFormFieldsKeys, getFormSlotKeys, getLktAppLoading, getLktAppReady, lktDebug, openConfirm, openModal, prepareResourceData, runModalCallback, setLktAppLoading, setLktAppReady, setModalCanvas, setupCalendarConfig, textFieldTypes, textFieldTypesWithOptions, updateMainHeader };
