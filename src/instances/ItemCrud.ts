@@ -18,6 +18,7 @@ import {TableConfig} from "../config/TableConfig.ts";
 import {TableConfigReturnFunction} from "../return-functions-types/TableConfigReturnFunction.ts";
 import {FormUiConfig} from "../config/FormUiConfig.ts";
 import {HeaderConfig} from "../config/HeaderConfig.ts";
+import {ItemCrudSaveConfig} from "../config/ItemCrudSaveConfig.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -59,6 +60,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
         'navStartButtonsEditing',
         'navEndButtons',
         'navEndButtonsEditing',
+        'updateConfig',
     ];
 
 
@@ -118,6 +120,10 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     navEndButtonsEditing?: Array<ButtonConfig> = [];
 
     events: LktObject = {}
+
+    updateConfig?: ItemCrudSaveConfig = {
+        executionMode: 'blocking',
+    }
 
     constructor(data: Partial<ItemCrudConfig> = {}) {
         super();

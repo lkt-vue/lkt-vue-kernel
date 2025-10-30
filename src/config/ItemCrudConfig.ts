@@ -16,6 +16,7 @@ import {TableConfigReturnFunction} from "../return-functions-types/TableConfigRe
 import {FormUiConfig} from "./FormUiConfig.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
 import {ItemCrudEvents} from "./events/ItemCrudEvents.ts";
+import {ItemCrudSaveConfig} from "./ItemCrudSaveConfig.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
@@ -81,4 +82,6 @@ export interface ItemCrudConfig {
     navEndButtonsEditing?: Array<ButtonConfig>
 
     events?: ItemCrudEvents
+
+    updateConfig?: ItemCrudSaveConfig
 }

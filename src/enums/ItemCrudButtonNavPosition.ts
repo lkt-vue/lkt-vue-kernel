@@ -1,4 +1,5 @@
 export enum ItemCrudButtonNavPosition {
   Top = 'top',
-  Bottom = 'bottom'
+  Bottom = 'bottom',
+  Hidden = 'hidden'
 }
