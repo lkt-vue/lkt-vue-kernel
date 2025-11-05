@@ -203,6 +203,7 @@ export {FieldEvents} from './config/events/FieldEvents.ts';
 export {HttpCallEvents} from './config/events/HttpCallEvents.ts';
 export {ItemCrudEvents} from './config/events/ItemCrudEvents.ts';
 export {PaginatorEvents} from './config/events/PaginatorEvents.ts';
+export {ProgressEvents} from './config/events/ProgressEvents.ts';
 export {TableEvents} from './config/events/TableEvents.ts';
 
 /**

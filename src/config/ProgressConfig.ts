@@ -5,6 +5,7 @@ import {CircleConfig} from "./CircleConfig.ts";
 import {UnitConfig} from "./UnitConfig.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
 import {ProgressAnimationConfig} from "./ProgressAnimationConfig.ts";
+import {ProgressEvents} from "./events/ProgressEvents.ts";
 
 export interface ProgressConfig {
     // Main value (current percentage)
@@ -25,4 +26,7 @@ export interface ProgressConfig {
 
     // Circle
     circle?: CircleConfig
+
+    // Events
+    events?: ProgressEvents
 }

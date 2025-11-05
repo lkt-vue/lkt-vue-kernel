@@ -22,4 +22,5 @@ export enum FieldType {
     Table = 'table',
     Radio = 'radio',
     ToggleButtonGroup = 'toggle-button-group',
+    DayOfWeek = 'day-of-week',
 }

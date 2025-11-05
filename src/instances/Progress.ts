@@ -6,6 +6,7 @@ import {ProgressType} from "../enums/ProgressType.ts";
 import {CircleConfig} from "../config/CircleConfig.ts";
 import {UnitConfig} from "../config/UnitConfig.ts";
 import {HeaderConfig} from "../config/HeaderConfig.ts";
+import {ProgressEvents} from "../config/events/ProgressEvents.ts";
 
 export class Progress extends LktItem implements ProgressConfig {
 
@@ -26,6 +27,7 @@ export class Progress extends LktItem implements ProgressConfig {
         'circle',
         'unit',
         'text',
+        'events',
     ];
 
     // Main value (current percentage)
@@ -45,6 +47,9 @@ export class Progress extends LktItem implements ProgressConfig {
 
     // Circle
     circle?: CircleConfig = undefined;
+
+    // Events
+    events?: ProgressEvents = {}
 
     constructor(data: Partial<ProgressConfig> = {}) {
         super();
