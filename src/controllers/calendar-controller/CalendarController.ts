@@ -1,6 +1,7 @@
 import {ref, Ref} from "vue";
 import {DayOfWeek} from "../../enums/DayOfWeek.ts";
 import {CalendarConfigSetup} from "./config/CalendarConfigSetup.ts";
+import {OptionConfig} from "../../config/OptionConfig.ts";
 
 export class CalendarController {
     static firstDayOfWeek: Ref<DayOfWeek> = ref(DayOfWeek.Sunday);
@@ -17,5 +18,27 @@ export class CalendarController {
         if (cfg.months) CalendarController.months = cfg.months;
         if (cfg.smDays) CalendarController.smDays = cfg.smDays;
         if (cfg.smMonths) CalendarController.smMonths = cfg.smMonths;
+    }
+
+    static getDaysAsOptions() {
+        let r: Array<OptionConfig> = [];
+        let startPoint = CalendarController.firstDayOfWeek.value;
+
+        for (let i = startPoint; i < 7; ++i) {
+            r.push({
+                value: i,
+                label: CalendarController.days[i],
+            })
+        }
+
+        --startPoint;
+        for (let i = startPoint; i >= 0; --i) {
+            r.push({
+                value: i,
+                label: CalendarController.days[i],
+            })
+        }
+
+        return r;
     }
 }

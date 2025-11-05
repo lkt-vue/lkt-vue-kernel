@@ -2524,6 +2524,7 @@ declare class CalendarController {
     static smDays: Array<string>;
     static smMonths: Array<string>;
     static setup(cfg: CalendarConfigSetup): void;
+    static getDaysAsOptions(): OptionConfig[];
 }
 
 interface AppRoutingConfig {
