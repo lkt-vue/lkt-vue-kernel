@@ -899,6 +899,7 @@ interface OptionsConfig {
     labelFormatter?: Function | undefined;
     http?: HttpCallConfig;
     autoPickFirstOptionIfEmpty?: boolean;
+    closeDropdownOnOptionClick?: boolean;
     zeroMeansEmpty?: boolean;
     typeCasting?: false | 'int';
     table?: TableConfig;
@@ -1174,12 +1175,13 @@ interface BannerConfig {
 }
 
 interface BoxConfig {
-    title?: string;
-    iconAtEnd?: boolean;
     style?: string;
     class?: string;
     contentClass?: string;
     icon?: IconConfig | string;
+    header?: HeaderConfig;
+    title?: string;
+    iconAtEnd?: boolean;
 }
 
 interface TrackConfig {
@@ -1717,12 +1719,13 @@ declare class Banner extends LktItem implements BannerConfig {
 
 declare class Box extends LktItem implements BoxConfig {
     static lktDefaultValues: (keyof BoxConfig)[];
-    title: string;
-    iconAtEnd: boolean;
     style: string;
     class: string;
     contentClass?: string;
     icon: IconConfig | string;
+    header?: HeaderConfig;
+    title?: string;
+    iconAtEnd: boolean;
     constructor(data?: Partial<BoxConfig>);
 }
 

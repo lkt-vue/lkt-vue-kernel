@@ -16,6 +16,7 @@ export interface OptionsConfig {
     labelFormatter?: Function|undefined
     http?: HttpCallConfig
     autoPickFirstOptionIfEmpty?: boolean
+    closeDropdownOnOptionClick?: boolean
     zeroMeansEmpty?: boolean
     typeCasting?: false|'int'
     table?: TableConfig
