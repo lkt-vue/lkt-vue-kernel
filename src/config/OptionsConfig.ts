@@ -2,6 +2,7 @@ import {LktObject} from "../interfaces/LktObject.ts";
 import {HttpCallConfig} from "./HttpCallConfig.ts";
 import {AnchorConfig} from "./AnchorConfig.ts";
 import {TableConfig} from "./TableConfig.ts";
+import {Component} from "vue";
 
 export interface OptionsConfig {
     autoloadResource?: boolean | 'feed'
@@ -21,4 +22,7 @@ export interface OptionsConfig {
     typeCasting?: false|'int'
     table?: TableConfig
     canRenderDropdown?: boolean
+    extendedContentSlotComponent?:string | Function | Component
+    extendedContentSlotData?: LktObject | Function
+    extendedContentSlotEvents?: LktObject | Function
 }

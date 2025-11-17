@@ -10,6 +10,8 @@ export class FieldValidation extends LktItem {
     code?: ValidationCode|string = undefined;
     status: ValidationStatus = ValidationStatus.Info;
 
+    text?: string = '';
+
     icon?: IconConfig|string|false = undefined;
     min: number = 0;
     max: number = 0;

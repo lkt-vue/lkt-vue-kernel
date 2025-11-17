@@ -399,7 +399,8 @@ declare enum FieldAutoValidationTrigger {
 declare enum FieldValidationType {
     Auto = "auto",
     Local = "local",
-    Remote = "remote"
+    Remote = "remote",
+    External = "external"
 }
 
 declare enum FieldReportType {
@@ -437,6 +438,7 @@ declare enum ValidationStatus {
 declare class FieldValidation extends LktItem {
     code?: ValidationCode | string;
     status: ValidationStatus;
+    text?: string;
     icon?: IconConfig | string | false;
     min: number;
     max: number;
@@ -904,6 +906,9 @@ interface OptionsConfig {
     typeCasting?: false | 'int';
     table?: TableConfig;
     canRenderDropdown?: boolean;
+    extendedContentSlotComponent?: string | Function | Component;
+    extendedContentSlotData?: LktObject | Function;
+    extendedContentSlotEvents?: LktObject | Function;
 }
 
 interface FieldReadModeConfig {
@@ -1236,6 +1241,7 @@ interface ProgressAnimationConfig {
 
 interface ProgressEvents {
     onEnd?: Function;
+    updatedVisibleProgress?: Function;
 }
 
 interface ProgressConfig {

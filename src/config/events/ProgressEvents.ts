@@ -3,4 +3,5 @@ import {LktObject} from "../../interfaces/LktObject.ts";
 
 export interface ProgressEvents {
     onEnd?: Function
+    updatedVisibleProgress?: Function
 }
