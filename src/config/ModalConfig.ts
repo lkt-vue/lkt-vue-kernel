@@ -4,6 +4,7 @@ import {ValidModalName} from "../types/ValidModalName.ts";
 import {ValidBeforeCloseModal} from "../types/ValidBeforeCloseModal.ts";
 import {ModalType} from "../enums/ModalType.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
+import {HeaderConfig} from "./HeaderConfig.ts";
 
 export interface ModalConfig extends LktObject {
     modalName?: ValidModalName
@@ -11,6 +12,11 @@ export interface ModalConfig extends LktObject {
     zIndex?: number
     type?: ModalType
     size?: string
+
+    // New header config
+    header?: HeaderConfig
+
+
     preTitle?: string
     preTitleIcon?: string
     title?: string
@@ -18,6 +24,7 @@ export interface ModalConfig extends LktObject {
     closeConfirm?: ValidModalName
     closeConfirmKey?: ValidModalKey
     showClose?: boolean
+
     disabledClose?: boolean
     disabledVeilClick?: boolean
     hiddenFooter?: boolean
@@ -26,4 +33,6 @@ export interface ModalConfig extends LktObject {
     confirmButton?: Partial<ButtonConfig>
     cancelButton?: Partial<ButtonConfig>
     headerActionsButton?: Partial<ButtonConfig>
+
+
 }

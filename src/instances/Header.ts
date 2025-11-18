@@ -4,6 +4,7 @@ import {HeaderTag} from "../enums/HeaderTag.ts";
 import {IconConfig} from "../config/IconConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
+import {ImageConfig} from "../config/ImageConfig.ts";
 
 export class Header extends LktItem implements HeaderConfig {
 
@@ -16,6 +17,7 @@ export class Header extends LktItem implements HeaderConfig {
         'class',
         'text',
         'icon',
+        'image',
         'topStartButtons',
         'topStartContent',
         'topEndButtons',
@@ -27,6 +29,7 @@ export class Header extends LktItem implements HeaderConfig {
     class?: string = '';
     text?: string = '';
     icon?: string|IconConfig = '';
+    image?: ImageConfig = undefined;
 
     topStartButtons?: Array<ButtonConfig> = [];
     topStartContent?: Array<PolymorphicElementConfig> = [];

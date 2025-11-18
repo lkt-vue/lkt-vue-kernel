@@ -7,11 +7,13 @@ import {ValidBeforeCloseModal} from "../types/ValidBeforeCloseModal.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {LktSettings} from "../settings/LktSettings.ts";
 import {ModalType} from "../enums/ModalType.ts";
+import {HeaderConfig} from "../config/HeaderConfig.ts";
 
 export class Modal extends LktItem implements ModalConfig {
 
     static lktDefaultValues: (keyof ModalConfig)[] = [
         'size',
+        'header',
         'preTitle',
         'preTitleIcon',
         'title',
@@ -34,6 +36,8 @@ export class Modal extends LktItem implements ModalConfig {
     ];
 
     size: string = '';
+    header?: HeaderConfig = undefined;
+
     preTitle: string = '';
     preTitleIcon: string = '';
     title: string = '';

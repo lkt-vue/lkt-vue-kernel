@@ -74,27 +74,13 @@ declare enum ModalType {
     Confirm = "confirm"
 }
 
-interface ModalConfig extends LktObject {
-    modalName?: ValidModalName;
-    modalKey?: ValidModalKey;
-    zIndex?: number;
-    type?: ModalType;
-    size?: string;
-    preTitle?: string;
-    preTitleIcon?: string;
-    title?: string;
-    closeIcon?: string;
-    closeConfirm?: ValidModalName;
-    closeConfirmKey?: ValidModalKey;
-    showClose?: boolean;
-    disabledClose?: boolean;
-    disabledVeilClick?: boolean;
-    hiddenFooter?: boolean;
-    beforeClose?: ValidBeforeCloseModal;
-    item?: LktObject;
-    confirmButton?: Partial<ButtonConfig>;
-    cancelButton?: Partial<ButtonConfig>;
-    headerActionsButton?: Partial<ButtonConfig>;
+declare enum HeaderTag {
+    H1 = "h1",
+    H2 = "h2",
+    H3 = "h3",
+    H4 = "h4",
+    H5 = "h5",
+    H6 = "h6"
 }
 
 type ValidTextValue = string | number | undefined;
@@ -129,6 +115,61 @@ interface IconConfig {
     dot?: ValidIconDot;
     position?: IconPosition;
     events?: EventsConfig | undefined;
+}
+
+interface PolymorphicElementConfig {
+    tag?: string | Component;
+    class?: string;
+    text?: string;
+    title?: string;
+    props?: LktObject;
+    vModels?: LktObject;
+    content?: Array<PolymorphicElementConfig>;
+}
+
+interface ImageConfig {
+    src?: string;
+    alt?: string;
+    text?: string;
+    class?: string;
+    imageStyle?: string | LktObject;
+}
+
+interface HeaderConfig {
+    tag?: HeaderTag;
+    class?: string;
+    text?: string;
+    icon?: string | IconConfig;
+    image?: ImageConfig;
+    topStartButtons?: Array<ButtonConfig>;
+    topStartContent?: Array<PolymorphicElementConfig>;
+    topEndButtons?: Array<ButtonConfig>;
+    topEndContent?: Array<PolymorphicElementConfig>;
+    bottomButtons?: Array<ButtonConfig>;
+}
+
+interface ModalConfig extends LktObject {
+    modalName?: ValidModalName;
+    modalKey?: ValidModalKey;
+    zIndex?: number;
+    type?: ModalType;
+    size?: string;
+    header?: HeaderConfig;
+    preTitle?: string;
+    preTitleIcon?: string;
+    title?: string;
+    closeIcon?: string;
+    closeConfirm?: ValidModalName;
+    closeConfirmKey?: ValidModalKey;
+    showClose?: boolean;
+    disabledClose?: boolean;
+    disabledVeilClick?: boolean;
+    hiddenFooter?: boolean;
+    beforeClose?: ValidBeforeCloseModal;
+    item?: LktObject;
+    confirmButton?: Partial<ButtonConfig>;
+    cancelButton?: Partial<ButtonConfig>;
+    headerActionsButton?: Partial<ButtonConfig>;
 }
 
 type ValidAnchorTo = RouteConfig | string | ((data: LktObject) => RouteConfig | string);
@@ -202,16 +243,6 @@ declare enum TooltipLocationX {
 declare enum TooltipPositionEngine {
     Fixed = "fixed",
     Absolute = "absolute"
-}
-
-interface PolymorphicElementConfig {
-    tag?: string | Component;
-    class?: string;
-    text?: string;
-    title?: string;
-    props?: LktObject;
-    vModels?: LktObject;
-    content?: Array<PolymorphicElementConfig>;
 }
 
 interface TooltipConfig {
@@ -537,27 +568,6 @@ declare enum TablePermission {
 }
 
 type ValidTablePermission = TablePermission | string;
-
-declare enum HeaderTag {
-    H1 = "h1",
-    H2 = "h2",
-    H3 = "h3",
-    H4 = "h4",
-    H5 = "h5",
-    H6 = "h6"
-}
-
-interface HeaderConfig {
-    tag?: HeaderTag;
-    class?: string;
-    text?: string;
-    icon?: string | IconConfig;
-    topStartButtons?: Array<ButtonConfig>;
-    topStartContent?: Array<PolymorphicElementConfig>;
-    topEndButtons?: Array<ButtonConfig>;
-    topEndContent?: Array<PolymorphicElementConfig>;
-    bottomButtons?: Array<ButtonConfig>;
-}
 
 declare enum TableRowType {
     Auto = 0,
@@ -1154,14 +1164,6 @@ declare const textFieldTypesWithOptions: FieldType[];
 declare const booleanFieldTypes: FieldType[];
 declare const fieldsWithMultipleMode: FieldType[];
 declare const textFieldTypes: FieldType[];
-
-interface ImageConfig {
-    src?: string;
-    alt?: string;
-    text?: string;
-    class?: string;
-    imageStyle?: string | LktObject;
-}
 
 declare enum BannerType {
     Static = "static",
@@ -1952,6 +1954,7 @@ declare class Header extends LktItem implements HeaderConfig {
     class?: string;
     text?: string;
     icon?: string | IconConfig;
+    image?: ImageConfig;
     topStartButtons?: Array<ButtonConfig>;
     topStartContent?: Array<PolymorphicElementConfig>;
     topEndButtons?: Array<ButtonConfig>;
@@ -2067,6 +2070,7 @@ declare class MenuEntry extends LktItem implements MenuEntryConfig {
 declare class Modal extends LktItem implements ModalConfig {
     static lktDefaultValues: (keyof ModalConfig)[];
     size: string;
+    header?: HeaderConfig;
     preTitle: string;
     preTitleIcon: string;
     title: string;

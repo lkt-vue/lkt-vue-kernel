@@ -2,12 +2,14 @@ import {HeaderTag} from "../enums/HeaderTag.ts";
 import {IconConfig} from "./IconConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {PolymorphicElementConfig} from "./PolymorphicElementConfig.ts";
+import {ImageConfig} from "./ImageConfig.ts";
 
 export interface HeaderConfig {
     tag?: HeaderTag
     class?: string
     text?: string
     icon?: string|IconConfig
+    image?: ImageConfig
 
     topStartButtons?: Array<ButtonConfig>
     topStartContent?: Array<PolymorphicElementConfig>
