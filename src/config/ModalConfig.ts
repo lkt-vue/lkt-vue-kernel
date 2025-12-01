@@ -30,9 +30,7 @@ export interface ModalConfig extends LktObject {
     hiddenFooter?: boolean
     beforeClose?: ValidBeforeCloseModal
     item?: LktObject
-    confirmButton?: Partial<ButtonConfig>
-    cancelButton?: Partial<ButtonConfig>
-    headerActionsButton?: Partial<ButtonConfig>
-
-
+    confirmButton?: Partial<ButtonConfig>|false
+    cancelButton?: Partial<ButtonConfig>|false
+    headerActionsButton?: Partial<ButtonConfig>|false
 }
