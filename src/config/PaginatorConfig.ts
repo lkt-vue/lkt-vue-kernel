@@ -15,4 +15,8 @@ export interface PaginatorConfig {
     timelineNewestDate?: Date|undefined
     timelineVisibleDate?: Date|undefined
     events?: PaginatorEvents
+    timeline?: {
+        accumulative?: boolean
+        // showPages?: boolean
+    }
 }

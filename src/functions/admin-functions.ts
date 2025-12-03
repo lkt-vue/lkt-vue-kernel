@@ -63,21 +63,35 @@ export const getAdminMenuEntries = (data: {
         }
     })
 
-    r.push(
-        {
-            key: 'translations',
-            type: MenuEntryType.Entry,
-            icon: 'lkt-icn-lang-picker',
-            anchor: {
-                to: '/admin/i18n',
-                text: 'Translations',
-                events: {
-                    click: () => {
-                        data.menuStatus.value = false;
-                    }
+    r.push({
+        key: 'translations',
+        type: MenuEntryType.Entry,
+        icon: 'lkt-icn-lang-picker',
+        anchor: {
+            to: '/admin/i18n',
+            text: 'Translations',
+            events: {
+                click: () => {
+                    data.menuStatus.value = false;
                 }
             }
-        })
+        }
+    })
+
+    r.push({
+        key: 'translations-many',
+        type: MenuEntryType.Entry,
+        icon: 'lkt-icn-lang-picker',
+        anchor: {
+            to: '/admin/many-i18n',
+            text: 'Dictionary',
+            events: {
+                click: () => {
+                    data.menuStatus.value = false;
+                }
+            }
+        }
+    })
 
     return r;
 }
