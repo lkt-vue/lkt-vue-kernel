@@ -722,8 +722,8 @@ interface TableTypeSwitchButtonsConfig {
 }
 
 interface DotConfig {
-    text: ValidTextValue;
-    class: string;
+    text?: ValidTextValue;
+    class?: string;
 }
 
 interface CalendarItemConfig {
