@@ -835,6 +835,7 @@ interface FormConfig {
     container?: PolymorphicElementConfig;
     header?: HeaderConfig;
     uiConfig?: Partial<FormUiConfig>;
+    postSubmitButtonContent?: Array<PolymorphicElementConfig>;
 }
 
 interface TableEvents {
@@ -1930,6 +1931,7 @@ declare class FormInstance extends LktItem implements FormConfig {
     container?: PolymorphicElementConfig;
     header?: HeaderConfig;
     uiConfig?: Partial<FormUiConfig>;
+    postSubmitButtonContent?: Array<PolymorphicElementConfig>;
     constructor(data?: Partial<FormConfig>);
     static mkFieldItemConfig(key: string, field: FieldConfig, modificationsField?: FieldConfig, displayConfig?: RenderAndDisplayProps): FormItemConfig;
     static mkFormItemConfig(form: FormConfig, displayConfig?: RenderAndDisplayProps): FormItemConfig;

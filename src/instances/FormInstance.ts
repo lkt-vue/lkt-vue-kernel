@@ -18,6 +18,7 @@ export class FormInstance extends LktItem implements FormConfig {
         'container',
         'header',
         'uiConfig',
+        'postSubmitButtonContent',
     ];
 
     items: Array<FormItemConfig> = [];
@@ -25,6 +26,7 @@ export class FormInstance extends LktItem implements FormConfig {
     container?: PolymorphicElementConfig = {};
     header?: HeaderConfig = {};
     uiConfig?: Partial<FormUiConfig> = {};
+    postSubmitButtonContent?: Array<PolymorphicElementConfig> = [];
 
     constructor(data: Partial<FormConfig> = {}) {
         super();

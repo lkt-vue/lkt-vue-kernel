@@ -10,4 +10,5 @@ export interface FormConfig {
     container?: PolymorphicElementConfig
     header?: HeaderConfig
     uiConfig?: Partial<FormUiConfig>
+    postSubmitButtonContent?: Array<PolymorphicElementConfig>
 }
