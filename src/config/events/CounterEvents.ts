@@ -1,4 +1,4 @@
 export interface CounterEvents {
-    onChange?: (value: number|string) => void,
-    onEnd?: () => void,
+    onChange?: (value: number|string) => void|any,
+    onEnd?: () => void|any,
 }

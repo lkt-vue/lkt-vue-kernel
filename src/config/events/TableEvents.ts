@@ -3,6 +3,6 @@ import {LktObject} from "../../interfaces/LktObject.ts";
 import {TableType} from "../../enums/TableType.ts";
 
 export interface TableEvents {
-    parseResults?: (data: LktObject[]) => void|undefined|LktObject[],
-    viewChanged?: (view: TableType) => void
+    parseResults?: (data: LktObject[]) => void|undefined|LktObject[]|any,
+    viewChanged?: (view: TableType) => void|any
 }

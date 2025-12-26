@@ -175,7 +175,7 @@ interface ModalConfig extends LktObject {
 type ValidAnchorTo = RouteConfig | string | ((data: LktObject) => RouteConfig | string);
 
 interface AnchorEvents {
-    click?: (data: ClickEventArgs) => void | undefined;
+    click?: (data: ClickEventArgs) => void | undefined | any;
 }
 
 interface AnchorConfig {
@@ -279,9 +279,9 @@ interface AriaConfig {
 }
 
 interface ButtonEvents {
-    click?: (data: ClickEventArgs) => void | undefined;
+    click?: (data: ClickEventArgs) => void | undefined | any;
     httpStart?: undefined | Function;
-    httpEnd?: (data: ClickEventArgs) => void | undefined;
+    httpEnd?: (data: ClickEventArgs) => void | undefined | any;
 }
 
 interface ButtonConfig {
@@ -605,8 +605,8 @@ declare enum PaginatorType {
 
 interface PaginatorEvents {
     httpStart?: undefined | Function;
-    httpEnd?: (data: ClickEventArgs) => void | undefined;
-    parseResults?: (data: LktObject[]) => void | undefined;
+    httpEnd?: (data: ClickEventArgs) => void | undefined | any;
+    parseResults?: (data: LktObject[]) => void | undefined | any;
 }
 
 interface PaginatorConfig {
@@ -839,8 +839,8 @@ interface FormConfig {
 }
 
 interface TableEvents {
-    parseResults?: (data: LktObject[]) => void | undefined | LktObject[];
-    viewChanged?: (view: TableType) => void;
+    parseResults?: (data: LktObject[]) => void | undefined | LktObject[] | any;
+    viewChanged?: (view: TableType) => void | any;
 }
 
 interface TableConfig {
@@ -1271,8 +1271,8 @@ declare enum CounterView {
 }
 
 interface CounterEvents {
-    onChange?: (value: number | string) => void;
-    onEnd?: () => void;
+    onChange?: (value: number | string) => void | any;
+    onEnd?: () => void | any;
 }
 
 interface CounterConfig {
@@ -1390,7 +1390,7 @@ declare enum NotificationType {
 
 interface ItemCrudEvents {
     httpStart?: undefined | Function;
-    httpEnd?: (data: ClickEventArgs) => void | undefined;
+    httpEnd?: (data: ClickEventArgs) => void | undefined | any;
 }
 
 interface ItemCrudSaveConfig {

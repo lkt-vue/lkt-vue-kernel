@@ -3,5 +3,5 @@ import {LktObject} from "../../interfaces/LktObject.ts";
 
 export interface ItemCrudEvents {
     httpStart?: undefined | Function,
-    httpEnd?: (data: ClickEventArgs) => void|undefined,
+    httpEnd?: (data: ClickEventArgs) => void|undefined|any,
 }
