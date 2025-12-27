@@ -331,6 +331,15 @@ export {LktAppConfig} from "./controllers/app-state-controller/config/LktAppConf
 export {AppStateController} from "./controllers/app-state-controller/AppStateController.ts";
 
 
+
+/**
+ * Export Models Config
+ */
+export {LktTranslationConfig} from "./models-config/LktTranslationConfig.ts";
+export {LktUserRoleConfig} from "./models-config/LktUserRoleConfig.ts";
+export {LktUserRolePermissions} from "./models-config/LktUserRolePermissions.ts";
+
+
 export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
     const instance = new cls();
     const result: Partial<T> = {};
