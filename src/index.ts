@@ -161,6 +161,7 @@ export {ItemCrudButtonNavPosition} from './enums/ItemCrudButtonNavPosition.ts';
 export {ItemCrudButtonNavVisibility} from './enums/ItemCrudButtonNavVisibility.ts';
 export {ItemCrudMode} from './enums/ItemCrudMode.ts';
 export {ItemCrudView} from './enums/ItemCrudView.ts';
+export {LktTranslationType} from './enums/LktTranslationType.ts';
 export {MenuType} from './enums/MenuType.ts';
 export {MenuEntryType} from './enums/MenuEntryType.ts';
 export {ModalCallbackAction} from './enums/ModalCallbackAction.ts';
