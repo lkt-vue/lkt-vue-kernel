@@ -45,7 +45,7 @@ export const getAdminMenuEntries = (data: {
     })
 
     WebItemsController.getItems().forEach((webItem: WebItemConfig) => {
-        if (webItem.many !== false) {
+        if (webItem.many !== false && webItem.code !== 'lkt-i18n' && webItem.code !== 'lkt-many-i18n') {
             r.push({
                 key: webItem.code,
                 type: MenuEntryType.Entry,
