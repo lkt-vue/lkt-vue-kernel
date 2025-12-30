@@ -21,6 +21,7 @@ import {FieldEvents} from "./events/FieldEvents.ts";
 export interface FieldConfig extends RenderAndDisplayProps{
     modelValue?: ValidFieldValue
     type?: FieldType
+    class?: string,
     valid?: boolean | undefined
     placeholder?: string
     searchPlaceholder?: string

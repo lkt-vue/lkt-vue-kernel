@@ -24,6 +24,7 @@ export class Field extends LktItem implements FieldConfig {
 
     static lktDefaultValues: (keyof FieldConfig)[] = [
         'modelValue',
+        'class',
         'type',
         'valid',
         'placeholder',
@@ -92,6 +93,7 @@ export class Field extends LktItem implements FieldConfig {
 
     modelValue: ValidFieldValue = '';
     type: FieldType = FieldType.Text;
+    class: string = '';
     valid: boolean|undefined = undefined;
     placeholder: string = '';
     searchPlaceholder: string = '';

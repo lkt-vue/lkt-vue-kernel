@@ -971,6 +971,7 @@ interface FieldEvents {
 interface FieldConfig extends RenderAndDisplayProps {
     modelValue?: ValidFieldValue;
     type?: FieldType;
+    class?: string;
     valid?: boolean | undefined;
     placeholder?: string;
     searchPlaceholder?: string;
@@ -1857,6 +1858,7 @@ declare class Field extends LktItem implements FieldConfig {
     static lktDefaultValues: (keyof FieldConfig)[];
     modelValue: ValidFieldValue;
     type: FieldType;
+    class: string;
     valid: boolean | undefined;
     placeholder: string;
     searchPlaceholder: string;
