@@ -73,9 +73,9 @@ export interface TableConfig {
     headerClass?: string
 
     // Buttons
-    editModeButton?: ButtonConfig
-    saveButton?: ButtonConfig
-    createButton?: ButtonConfig
+    editModeButton?: false|ButtonConfig
+    saveButton?: false|ButtonConfig
+    createButton?: false|ButtonConfig
     hiddenSave?: boolean
     groupButton?: ButtonConfig|boolean
     requiredItemsForTopCreate?: number

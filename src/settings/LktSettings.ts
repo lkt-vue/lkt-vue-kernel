@@ -147,6 +147,20 @@ export class LktSettings {
         return LktSettings;
     }
 
+    static defaultInlineCreateButton: Partial<ButtonConfig> = {
+        text: 'Add element',
+        icon: 'lkt-icn-more'
+    };
+
+    static setDefaultInlineCreateButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultInlineCreateButton = button;
+        } else {
+            LktSettings.defaultInlineCreateButton = ensureButtonConfig(button, LktSettings.defaultInlineCreateButton);
+        }
+        return LktSettings;
+    }
+
     static defaultUpdateButton: Partial<ButtonConfig> = {
         text: 'Update',
         icon: 'lkt-icn-save'
@@ -229,6 +243,20 @@ export class LktSettings {
             LktSettings.defaultLoadMoreButton = button;
         } else {
             LktSettings.defaultLoadMoreButton = ensureButtonConfig(button, LktSettings.defaultLoadMoreButton);
+        }
+        return LktSettings;
+    }
+
+    static defaultDetailsButton: Partial<ButtonConfig> = {
+        text: 'Details',
+        icon: 'lkt-icn-expand',
+    };
+
+    static setDefaultDetailsButton(button: Partial<ButtonConfig>, override: boolean = true) {
+        if (override) {
+            LktSettings.defaultDetailsButton = button;
+        } else {
+            LktSettings.defaultDetailsButton = ensureButtonConfig(button, LktSettings.defaultDetailsButton);
         }
         return LktSettings;
     }

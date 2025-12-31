@@ -876,9 +876,9 @@ interface TableConfig {
     titleTag?: string;
     titleIcon?: string;
     headerClass?: string;
-    editModeButton?: ButtonConfig;
-    saveButton?: ButtonConfig;
-    createButton?: ButtonConfig;
+    editModeButton?: false | ButtonConfig;
+    saveButton?: false | ButtonConfig;
+    createButton?: false | ButtonConfig;
     hiddenSave?: boolean;
     groupButton?: ButtonConfig | boolean;
     requiredItemsForTopCreate?: number;
@@ -1112,6 +1112,8 @@ declare class LktSettings {
     static setDefaultCancelButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultCreateButton: Partial<ButtonConfig>;
     static setDefaultCreateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultInlineCreateButton: Partial<ButtonConfig>;
+    static setDefaultInlineCreateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultUpdateButton: Partial<ButtonConfig>;
     static setDefaultUpdateButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultDropButton: Partial<ButtonConfig>;
@@ -1124,6 +1126,8 @@ declare class LktSettings {
     static setDefaultToggleButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultLoadMoreButton: Partial<ButtonConfig>;
     static setDefaultLoadMoreButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
+    static defaultDetailsButton: Partial<ButtonConfig>;
+    static setDefaultDetailsButton(button: Partial<ButtonConfig>, override?: boolean): typeof LktSettings;
     static defaultCloseModalIcon: string;
     static setDefaultCloseModalIcon(icon: string): typeof LktSettings;
     static defaultCloseToastIcon: string;
