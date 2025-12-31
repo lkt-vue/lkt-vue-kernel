@@ -2179,9 +2179,9 @@ declare class Table extends LktItem implements TableConfig {
     titleTag?: string;
     titleIcon?: string;
     headerClass?: string;
-    editModeButton?: ButtonConfig;
-    saveButton?: ButtonConfig;
-    createButton?: ButtonConfig;
+    editModeButton?: false | ButtonConfig;
+    saveButton?: false | ButtonConfig;
+    createButton?: false | ButtonConfig;
     hiddenSave?: boolean;
     groupButton?: ButtonConfig | boolean;
     wrapContentTag?: string;

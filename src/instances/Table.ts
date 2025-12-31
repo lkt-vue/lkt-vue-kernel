@@ -124,9 +124,9 @@ export class Table extends LktItem implements TableConfig {
     headerClass?: string = '';
 
     // Buttons
-    editModeButton?: ButtonConfig = {};
-    saveButton?: ButtonConfig = {};
-    createButton?: ButtonConfig = {};
+    editModeButton?: false|ButtonConfig = {};
+    saveButton?: false|ButtonConfig = {};
+    createButton?: false|ButtonConfig = {};
     hiddenSave?: boolean = false;
     groupButton?: ButtonConfig|boolean = false;
 
