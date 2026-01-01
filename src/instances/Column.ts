@@ -7,6 +7,7 @@ import {FieldConfig} from "../config/FieldConfig.ts";
 import {AnchorConfig} from "../config/AnchorConfig.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
 import {ConditionalColumnArgs} from "../arguments/ConditionalColumnArgs.ts";
+import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 
 export class Column extends LktItem implements ColumnConfig{
     lktExcludedProps = ['field', 'anchor', 'button'];
@@ -41,6 +42,7 @@ export class Column extends LktItem implements ColumnConfig{
         'field',
         'anchor',
         'button',
+        'content',
     ];
 
     type: ColumnType = ColumnType.None;
@@ -64,6 +66,7 @@ export class Column extends LktItem implements ColumnConfig{
     field: FieldConfig|undefined = undefined;
     anchor: AnchorConfig|undefined = undefined;
     button: ButtonConfig|undefined = undefined;
+    content?: Array<PolymorphicElementConfig|((data: {item: LktObject}) => PolymorphicElementConfig)> | undefined
 
     constructor(data: Partial<ColumnConfig> = {}) {
         super();

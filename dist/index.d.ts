@@ -647,6 +647,7 @@ declare enum ColumnType {
     Field = "field",
     Button = "button",
     Anchor = "anchor",
+    Content = "content",
     InlineDrop = "inline-drop",
     ColumnIndex = "column-index"
 }
@@ -678,6 +679,9 @@ interface ColumnConfig {
     field?: FieldConfig | undefined;
     anchor?: AnchorConfig | undefined;
     button?: ButtonConfig | undefined;
+    content?: Array<PolymorphicElementConfig | ((data: {
+        item: LktObject;
+    }) => PolymorphicElementConfig)> | undefined;
 }
 
 declare enum AccordionToggleMode {
@@ -1820,6 +1824,9 @@ declare class Column extends LktItem implements ColumnConfig {
     field: FieldConfig | undefined;
     anchor: AnchorConfig | undefined;
     button: ButtonConfig | undefined;
+    content?: Array<PolymorphicElementConfig | ((data: {
+        item: LktObject;
+    }) => PolymorphicElementConfig)> | undefined;
     constructor(data?: Partial<ColumnConfig>);
 }
 

@@ -6,6 +6,7 @@ export enum ColumnType {
     Field = 'field',
     Button = 'button',
     Anchor = 'anchor',
+    Content = 'content',
 
     // Built-in behaviours
     InlineDrop = 'inline-drop',

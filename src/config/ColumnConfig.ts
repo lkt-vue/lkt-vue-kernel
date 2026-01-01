@@ -5,6 +5,7 @@ import {FieldConfig} from "./FieldConfig.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {AnchorConfig} from "./AnchorConfig.ts";
 import {ConditionalColumnArgs} from "../arguments/ConditionalColumnArgs.ts";
+import {PolymorphicElementConfig} from "./PolymorphicElementConfig.ts";
 
 export interface ColumnConfig {
     type: ColumnType
@@ -28,4 +29,5 @@ export interface ColumnConfig {
     field?: FieldConfig | undefined
     anchor?: AnchorConfig | undefined
     button?: ButtonConfig | undefined
+    content?: Array<PolymorphicElementConfig|((data: {item: LktObject}) => PolymorphicElementConfig)> | undefined
 }
