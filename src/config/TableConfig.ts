@@ -62,6 +62,9 @@ export interface TableConfig {
 
     // Accordion
     accordion?: AccordionConfig
+    accordionList?: {
+        limitOpened?: boolean
+    }
 
     // New proposed prop: header
     header?: HeaderConfig

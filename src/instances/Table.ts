@@ -64,6 +64,7 @@ export class Table extends LktItem implements TableConfig {
         'calendar',
         'calendarGroups',
         'accordion',
+        'accordionList',
         'hideTableHeader',
         'skipTableItemsContainer',
         'events',
@@ -113,6 +114,9 @@ export class Table extends LktItem implements TableConfig {
 
     // Accordion
     accordion?: AccordionConfig = {};
+    accordionList?: {
+        limitOpened?: boolean
+    } = {};
 
     // New proposed prop: header
     header?: HeaderConfig

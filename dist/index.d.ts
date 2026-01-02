@@ -875,6 +875,9 @@ interface TableConfig {
     calendar?: CalendarConfig;
     calendarGroups?: CalendarGroupsConfig;
     accordion?: AccordionConfig;
+    accordionList?: {
+        limitOpened?: boolean;
+    };
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
@@ -2181,6 +2184,9 @@ declare class Table extends LktItem implements TableConfig {
     calendar?: CalendarConfig;
     calendarGroups?: CalendarGroupsConfig;
     accordion?: AccordionConfig;
+    accordionList?: {
+        limitOpened?: boolean;
+    };
     header?: HeaderConfig;
     title?: string;
     titleTag?: string;
