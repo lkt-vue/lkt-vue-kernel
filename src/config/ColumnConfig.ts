@@ -29,5 +29,5 @@ export interface ColumnConfig {
     field?: FieldConfig | undefined
     anchor?: AnchorConfig | undefined
     button?: ButtonConfig | undefined
-    content?: Array<PolymorphicElementConfig|((data: {item: LktObject}) => PolymorphicElementConfig)> | undefined
+    content?: Array<PolymorphicElementConfig|((data: {item: LktObject, index: number}) => PolymorphicElementConfig)> | undefined
 }

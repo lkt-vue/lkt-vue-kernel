@@ -66,7 +66,7 @@ export class Column extends LktItem implements ColumnConfig{
     field: FieldConfig|undefined = undefined;
     anchor: AnchorConfig|undefined = undefined;
     button: ButtonConfig|undefined = undefined;
-    content?: Array<PolymorphicElementConfig|((data: {item: LktObject}) => PolymorphicElementConfig)> | undefined
+    content?: Array<PolymorphicElementConfig|((data: {item: LktObject, index: number}) => PolymorphicElementConfig)> | undefined
 
     constructor(data: Partial<ColumnConfig> = {}) {
         super();

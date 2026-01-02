@@ -2,9 +2,12 @@ import {TooltipLocationY} from '../enums/TooltipLocationY.ts';
 import {TooltipLocationX} from '../enums/TooltipLocationX.ts';
 import {TooltipPositionEngine} from '../enums/TooltipPositionEngine.ts';
 import {PolymorphicElementConfig} from "./PolymorphicElementConfig.ts";
+import {TooltipType} from "../enums/TooltipType.ts";
+import {ButtonConfig} from "./ButtonConfig.ts";
 
 export interface TooltipConfig {
     modelValue?: boolean
+    type?: TooltipType
     alwaysOpen?: boolean
     indicator?: boolean
     class?: string
@@ -29,5 +32,6 @@ export interface TooltipConfig {
     remoteControl?: boolean
     teleport?: string
     content?: Array<PolymorphicElementConfig>
+    closeButton?: false|ButtonConfig
 }
 

@@ -4,11 +4,14 @@ import {TooltipPositionEngine} from "../enums/TooltipPositionEngine.ts";
 import {TooltipLocationY} from "../enums/TooltipLocationY.ts";
 import {TooltipLocationX} from "../enums/TooltipLocationX.ts";
 import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
+import {TooltipType} from "../enums/TooltipType.ts";
+import {ButtonConfig} from "../config/ButtonConfig.ts";
 
 export class Tooltip extends LktItem implements TooltipConfig {
 
     static lktDefaultValues: (keyof TooltipConfig)[] = [
         'modelValue',
+        'type',
         'alwaysOpen',
         'indicator',
         'class',
@@ -33,9 +36,11 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'remoteControl',
         'teleport',
         'content',
+        'closeButton',
     ];
 
     modelValue: boolean = false;
+    type?: TooltipType = TooltipType.Relative;
     alwaysOpen: boolean = false;
     indicator: boolean = false;
     class: string = '';
@@ -60,6 +65,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     remoteControl: boolean = false;
     teleport: string = '';
     content?: Array<PolymorphicElementConfig> = [];
+    closeButton?: false|ButtonConfig = false;
 
     constructor(data: Partial<TooltipConfig> = {}) {
         super();

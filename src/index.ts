@@ -182,6 +182,7 @@ export {TableType} from './enums/TableType.ts';
 export {TagType} from './enums/TagType.ts';
 export {ToastPositionX} from './enums/ToastPositionX.ts';
 export {ToastType} from './enums/ToastType.ts';
+export {TooltipType} from './enums/TooltipType.ts';
 export {ToggleMode} from './enums/ToggleMode.ts';
 export {TooltipLocationY} from './enums/TooltipLocationY.ts';
 export {TooltipLocationX} from './enums/TooltipLocationX.ts';
