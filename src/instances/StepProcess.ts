@@ -26,8 +26,8 @@ export class StepProcess extends LktItem implements StepProcessConfig {
     steps?: Array<StepProcessStepConfig> = [];
 
     header?: HeaderConfig = {};
-    nextButton?: ButtonConfig = {};
-    prevButton?: ButtonConfig = {};
+    nextButton?: false|ButtonConfig = {};
+    prevButton?: false|ButtonConfig = {};
 
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition = ItemCrudButtonNavPosition.Top;

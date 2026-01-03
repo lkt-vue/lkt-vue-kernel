@@ -175,6 +175,7 @@ export {ProgressAnimation} from './enums/ProgressAnimation.ts';
 export {ProgressValueFormat} from './enums/ProgressValueFormat.ts';
 export {SaveType} from './enums/SaveType.ts';
 export {SortDirection} from './enums/SortDirection.ts';
+export {StepRenderType} from './enums/StepRenderType.ts';
 export {TabType} from './enums/TabType.ts';
 export {TablePermission} from './enums/TablePermission.ts';
 export {TableRowType} from './enums/TableRowType.ts';

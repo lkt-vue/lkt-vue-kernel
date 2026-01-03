@@ -11,8 +11,8 @@ export interface StepProcessConfig {
     steps?: Array<StepProcessStepConfig>
 
     header?: HeaderConfig
-    nextButton?: ButtonConfig,
-    prevButton?: ButtonConfig,
+    nextButton?: false|ButtonConfig,
+    prevButton?: false|ButtonConfig,
 
     // Nav
     buttonNavPosition?: ItemCrudButtonNavPosition
