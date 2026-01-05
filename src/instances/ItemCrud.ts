@@ -19,6 +19,7 @@ import {TableConfigReturnFunction} from "../return-functions-types/TableConfigRe
 import {FormUiConfig} from "../config/FormUiConfig.ts";
 import {HeaderConfig} from "../config/HeaderConfig.ts";
 import {ItemCrudSaveConfig} from "../config/ItemCrudSaveConfig.ts";
+import {ItemCrudFormConfigGetter} from "../types/ItemCrudFormConfigGetter.ts";
 
 export class ItemCrud extends LktItem implements ItemCrudConfig {
 
@@ -69,7 +70,7 @@ export class ItemCrud extends LktItem implements ItemCrudConfig {
     editing: boolean = false;
     perms: ValidTablePermission[] = [];
     customData?: LktObject = {};
-    form?: FormConfig|Function = {};
+    form?: FormConfig|ItemCrudFormConfigGetter = {};
     formUiConfig?: Partial<FormUiConfig> = {};
 
     // Global config

@@ -216,6 +216,7 @@ export {BeforeCloseModalData} from './types/BeforeCloseModalData.ts';
 export {ScanPropTarget} from './types/ScanPropTarget.ts';
 export {EmptyModalKey} from './types/EmptyModalKey.ts';
 export {IsDisabledChecker} from './types/IsDisabledChecker.ts';
+export {ItemCrudFormConfigGetter} from './types/ItemCrudFormConfigGetter.ts';
 export {ValidBeforeCloseModal} from './types/ValidBeforeCloseModal.ts';
 export {ValidIconDot} from './types/ValidIconDot.ts';
 export {ValidCustomSlot} from './types/ValidCustomSlot.ts';

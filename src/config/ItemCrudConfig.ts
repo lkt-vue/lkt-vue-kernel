@@ -17,6 +17,7 @@ import {FormUiConfig} from "./FormUiConfig.ts";
 import {HeaderConfig} from "./HeaderConfig.ts";
 import {ItemCrudEvents} from "./events/ItemCrudEvents.ts";
 import {ItemCrudSaveConfig} from "./ItemCrudSaveConfig.ts";
+import {ItemCrudFormConfigGetter} from "../types/ItemCrudFormConfigGetter.ts";
 
 export interface ItemCrudConfig {
     modelValue?: LktObject
@@ -24,7 +25,7 @@ export interface ItemCrudConfig {
     editing?: boolean
     perms?: ValidTablePermission[]
     customData?: LktObject
-    form?: FormConfig|Function
+    form?: FormConfig|ItemCrudFormConfigGetter
     formUiConfig?: Partial<FormUiConfig>
 
     // Global config
