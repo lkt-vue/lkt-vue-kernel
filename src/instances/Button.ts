@@ -15,6 +15,7 @@ import {TooltipConfig} from "../config/TooltipConfig.ts";
 import {ValidIconDot} from "../types/ValidIconDot.ts";
 import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {ButtonEvents} from "../config/events/ButtonEvents.ts";
+import {ButtonHooks} from "../config/hooks/ButtonHooks.ts";
 
 export class Button extends LktItem implements ButtonConfig {
 
@@ -70,6 +71,9 @@ export class Button extends LktItem implements ButtonConfig {
         'prop',
         'events',
         'menuKey',
+        'preventDefault',
+        'stopPropagation',
+        'hooks',
     ];
 
     type: ButtonType = ButtonType.Button;
@@ -122,6 +126,9 @@ export class Button extends LktItem implements ButtonConfig {
 
     // Event management
     events?: ButtonEvents|undefined = {};
+    preventDefault?: boolean = false;
+    stopPropagation?: boolean = false;
+    hooks?: ButtonHooks = {};
 
     constructor(data: Partial<ButtonConfig> = {}) {
         super();

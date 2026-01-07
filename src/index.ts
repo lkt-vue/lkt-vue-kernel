@@ -181,6 +181,7 @@ export {TablePermission} from './enums/TablePermission.ts';
 export {TableRowType} from './enums/TableRowType.ts';
 export {TableType} from './enums/TableType.ts';
 export {TagType} from './enums/TagType.ts';
+export {ThemeModeConfig} from './enums/ThemeModeConfig.ts';
 export {ToastPositionX} from './enums/ToastPositionX.ts';
 export {ToastType} from './enums/ToastType.ts';
 export {TooltipType} from './enums/TooltipType.ts';
@@ -217,6 +218,7 @@ export {ScanPropTarget} from './types/ScanPropTarget.ts';
 export {EmptyModalKey} from './types/EmptyModalKey.ts';
 export {IsDisabledChecker} from './types/IsDisabledChecker.ts';
 export {ItemCrudFormConfigGetter} from './types/ItemCrudFormConfigGetter.ts';
+export {ThemeMode} from './types/ThemeMode.ts';
 export {ValidBeforeCloseModal} from './types/ValidBeforeCloseModal.ts';
 export {ValidIconDot} from './types/ValidIconDot.ts';
 export {ValidCustomSlot} from './types/ValidCustomSlot.ts';
@@ -261,7 +263,19 @@ export {FieldLoadOptionsEndEventArgs} from './arguments/FieldLoadOptionsEndEvent
  */
 export {getAdminMenuEntries} from "./functions/admin-functions.ts";
 export {getAnchorHref} from "./functions/anchor-functions.ts";
-export {setLktAppReady, getLktAppReady, setLktAppLoading, getLktAppLoading, updateMainHeader} from "./functions/app-state-functions.ts";
+export {
+    setLktAppReady,
+    getLktAppReady,
+    setLktAppLoading,
+    getLktAppLoading,
+    updateMainHeader,
+    setLktAppThemeModeConfig,
+    setLktAppSize,
+    getLktAppSize,
+    setLktAdminEnabled,
+    getLktAdminEnabled,
+    getLktAppSetup
+} from "./functions/app-state-functions.ts";
 export {setupCalendarConfig} from "./functions/calendar-functions.ts";
 export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
 export {
@@ -281,7 +295,9 @@ export {
 export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
 export {getFormDataState, getFormFieldsKeys, getFormSlotKeys} from "./functions/form-functions.ts";
-export {addModal, closeModal, openModal, setModalCanvas, addConfirm, openConfirm, closeConfirm, runModalCallback} from "./functions/modal-functions.ts";
+export {
+    addModal, closeModal, openModal, setModalCanvas, addConfirm, openConfirm, closeConfirm, runModalCallback
+} from "./functions/modal-functions.ts";
 export {createColumn} from "./functions/table-functions.ts";
 export {
     applyTextFormat,
@@ -335,7 +351,6 @@ export {LktAppConfig} from "./controllers/app-state-controller/config/LktAppConf
 export {AppStateController} from "./controllers/app-state-controller/AppStateController.ts";
 
 
-
 /**
  * Export Models Config
  */
@@ -344,7 +359,7 @@ export {LktUserRoleConfig} from "./models-config/LktUserRoleConfig.ts";
 export {LktUserRolePermissions} from "./models-config/LktUserRolePermissions.ts";
 
 
-export function getDefaultValues<T>(cls: { new (): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
+export function getDefaultValues<T>(cls: { new(): T; lktDefaultValues: (keyof T)[] }): Partial<T> {
     const instance = new cls();
     const result: Partial<T> = {};
 

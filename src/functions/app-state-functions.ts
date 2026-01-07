@@ -2,6 +2,9 @@ import {AppStateController} from "../controllers/app-state-controller/AppStateCo
 import {Ref} from "vue";
 import {DataState} from "lkt-data-state";
 import {HeaderConfig} from "../config/HeaderConfig.ts";
+import {ThemeModeConfig} from "../enums/ThemeModeConfig.ts";
+import {LktObject} from "../interfaces/LktObject.ts";
+import {AppSize} from "../enums/AppSize.ts";
 
 export const setLktAppReady = (state: boolean) => {
     AppStateController.lktAppReady.value = state;
@@ -28,4 +31,28 @@ export const updateMainHeader = (config: HeaderConfig): void => {
     let dataState = new DataState(AppStateController.mainHeader.value);
     dataState.increment(config);
     AppStateController.mainHeader.value = dataState.getData();
+}
+
+export const setLktAppThemeModeConfig = (cfg: ThemeModeConfig) => {
+    AppStateController.lktAppThemeModeConfig.value =  cfg;
+}
+
+export const setLktAppSize = (size: AppSize) => {
+    AppStateController.lktAppSize.value = size;
+}
+
+export const getLktAppSize = (): Ref<AppSize> => {
+    return AppStateController.lktAppSize;
+}
+
+export const setLktAdminEnabled = (state: boolean) => {
+    AppStateController.lktAdminEnabled.value = state;
+}
+
+export const getLktAdminEnabled = (): Ref<boolean> => {
+    return AppStateController.lktAdminEnabled;
+}
+
+export const getLktAppSetup = (): Ref<LktObject> => {
+    return AppStateController.lktAppSetup;
 }

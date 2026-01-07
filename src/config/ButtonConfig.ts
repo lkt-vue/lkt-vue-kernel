@@ -14,6 +14,7 @@ import {ValidTextValue} from "../types/ValidTextValue.ts";
 import {IconConfig} from "./IconConfig.ts";
 import {AriaConfig} from "./AriaConfig.ts";
 import {ButtonEvents} from "./events/ButtonEvents.ts";
+import {ButtonHooks} from "./hooks/ButtonHooks.ts";
 
 export interface ButtonConfig {
 
@@ -88,7 +89,12 @@ export interface ButtonConfig {
     //Accessibility
     aria?: AriaConfig
 
-    // Event management
+    // Event management (custom events handling)
     clickRef?: Element | VueElement
     events?: ButtonEvents
+    preventDefault?: boolean
+    stopPropagation?: boolean
+
+    // Hooks management (Predefined events)
+    hooks?: ButtonHooks
 }

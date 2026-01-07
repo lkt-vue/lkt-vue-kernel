@@ -5,6 +5,8 @@ import {AppSize} from "../../enums/AppSize.ts";
 import {Menu} from "../../instances/Menu.ts";
 import {LktObject} from "../../interfaces/LktObject.ts";
 import {HeaderConfig} from "../../config/HeaderConfig.ts";
+import {ThemeModeConfig} from "../../enums/ThemeModeConfig.ts";
+import {ThemeMode} from "../../types/ThemeMode.ts";
 
 export class AppStateController {
 
@@ -25,4 +27,8 @@ export class AppStateController {
     static setup?: AppSetupConfig = undefined;
 
     static mainHeader: Ref<HeaderConfig|undefined> = ref(undefined);
+
+    static lktAppThemeModeConfig: Ref<ThemeModeConfig> = ref(ThemeModeConfig.Auto);
+    static lktAppThemeModeDetected: Ref<ThemeMode> = ref('light');
+    static lktAppThemeMode: Ref<ThemeMode> = ref('light');
 }
