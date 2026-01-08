@@ -17,6 +17,7 @@ import {FileBrowserConfig} from "./FileBrowserConfig.ts";
 import {RenderAndDisplayProps} from "../interfaces/RenderAndDisplayProps.ts";
 import {IconConfig} from "./IconConfig.ts";
 import {FieldEvents} from "./events/FieldEvents.ts";
+import {PolymorphicElementConfig} from "./PolymorphicElementConfig.ts";
 
 export interface FieldConfig extends RenderAndDisplayProps{
     modelValue?: ValidFieldValue
@@ -111,4 +112,6 @@ export interface FieldConfig extends RenderAndDisplayProps{
 
     // Events
     events?: FieldEvents
+
+    endContent?: Array<PolymorphicElementConfig>
 }

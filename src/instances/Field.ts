@@ -19,6 +19,7 @@ import {OptionConfig} from "../config/OptionConfig.ts";
 import {FileBrowserConfig} from "../config/FileBrowserConfig.ts";
 import {IconConfig} from "../config/IconConfig.ts";
 import {FieldEvents} from "../config/events/FieldEvents.ts";
+import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 
 export class Field extends LktItem implements FieldConfig {
 
@@ -89,6 +90,7 @@ export class Field extends LktItem implements FieldConfig {
         'createButton',
         'callToActionButton',
         'events',
+        'endContent',
     ];
 
     modelValue: ValidFieldValue = '';
@@ -174,6 +176,8 @@ export class Field extends LktItem implements FieldConfig {
     canDisplay: boolean = true;
 
     events?: FieldEvents = {}
+
+    endContent?: Array<PolymorphicElementConfig>
 
     constructor(data: Partial<FieldConfig> = {}) {
         super();

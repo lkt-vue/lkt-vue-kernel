@@ -294,7 +294,7 @@ export {
 } from "./functions/web-element-functions.ts";
 export {ensureButtonConfig, ensureFieldConfig} from "./functions/ensure-data-functions.ts";
 export {lktDebug} from "./functions/debug-functions.ts";
-export {getFormDataState, getFormFieldsKeys, getFormSlotKeys} from "./functions/form-functions.ts";
+export {getFormDataState, getFormFieldsKeys, getFormSlotKeys, getFieldConfigForWebItemTableOfContents} from "./functions/form-functions.ts";
 export {
     addModal, closeModal, openModal, setModalCanvas, addConfirm, openConfirm, closeConfirm, runModalCallback
 } from "./functions/modal-functions.ts";
@@ -357,6 +357,9 @@ export {AppStateController} from "./controllers/app-state-controller/AppStateCon
 export {LktTranslationConfig} from "./models-config/LktTranslationConfig.ts";
 export {LktUserRoleConfig} from "./models-config/LktUserRoleConfig.ts";
 export {LktUserRolePermissions} from "./models-config/LktUserRolePermissions.ts";
+
+
+export {LktMenuEntry} from "./models/LktMenuEntry.ts";
 
 
 export function getDefaultValues<T>(cls: { new(): T; lktDefaultValues: (keyof T)[] }): Partial<T> {

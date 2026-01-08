@@ -9,6 +9,7 @@ export interface MenuConfig {
     menuKey?: ValidModalKey
     hiddenPosition?: 'left' | 'right' | 'bottom' | 'top'
     closeOnClickOutside?: boolean
+    closeOnClickEntry?: boolean
 
     // Http config
     http?: HttpCallConfig

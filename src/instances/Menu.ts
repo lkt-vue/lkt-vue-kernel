@@ -14,6 +14,7 @@ export class Menu extends LktItem implements MenuConfig {
         'menuKey',
         'hiddenPosition',
         'closeOnClickOutside',
+        'closeOnClickEntry',
     ];
 
     modelValue?: MenuEntryConfig[] = [];
@@ -21,6 +22,7 @@ export class Menu extends LktItem implements MenuConfig {
     menuKey?: ValidModalKey = '_';
     http?: HttpCallConfig = {};
     closeOnClickOutside?: boolean = true;
+    closeOnClickEntry?: boolean = true;
     hiddenPosition?: 'left' | 'right' | 'bottom' | 'top' = 'left';
 
     constructor(data: Partial<MenuConfig> = {}) {
