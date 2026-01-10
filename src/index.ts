@@ -360,6 +360,7 @@ export {LktUserRolePermissions} from "./models-config/LktUserRolePermissions.ts"
 
 
 export {LktMenuEntry} from "./models/LktMenuEntry.ts";
+export {LktTranslation} from "./models/LktTranslation.ts";
 
 
 export function getDefaultValues<T>(cls: { new(): T; lktDefaultValues: (keyof T)[] }): Partial<T> {

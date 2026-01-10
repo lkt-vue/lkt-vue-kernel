@@ -1,5 +1,4 @@
 import {LktItem} from "../instances/LktItem.ts";
-import {HeaderConfig} from "../config/HeaderConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 
 export class LktMenuEntry extends LktItem {
@@ -23,7 +22,7 @@ export class LktMenuEntry extends LktItem {
     url: string = '';
     component: string = '';
 
-    constructor(data: Partial<HeaderConfig> = {}) {
+    constructor(data: Partial<LktObject> = {}) {
         super();
         this.feed(data);
     }
