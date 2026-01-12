@@ -6,6 +6,7 @@ import {Menu} from "../../instances/Menu.ts";
 import {LktObject} from "../../interfaces/LktObject.ts";
 import {HeaderConfig} from "../../config/HeaderConfig.ts";
 import {ThemeModeConfig} from "../../enums/ThemeModeConfig.ts";
+import {AppResourceStatus} from "../../enums/AppResourceStatus.ts";
 import {ThemeMode} from "../../types/ThemeMode.ts";
 
 export class AppStateController {
@@ -25,6 +26,9 @@ export class AppStateController {
     static replaceMainMenuButtonWithBack?: boolean | ((args: { route: RouteLocationNormalizedLoaded}) => boolean) = false;
 
     static setup?: AppSetupConfig = undefined;
+
+    static i18nStatus: Ref<AppResourceStatus> = ref(AppResourceStatus.NeverLoaded);
+    static setupStatus: Ref<AppResourceStatus> = ref(AppResourceStatus.NeverLoaded);
 
     static mainHeader: Ref<HeaderConfig|undefined> = ref(undefined);
 

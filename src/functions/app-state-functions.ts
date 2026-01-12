@@ -5,6 +5,7 @@ import {HeaderConfig} from "../config/HeaderConfig.ts";
 import {ThemeModeConfig} from "../enums/ThemeModeConfig.ts";
 import {LktObject} from "../interfaces/LktObject.ts";
 import {AppSize} from "../enums/AppSize.ts";
+import {AppResourceStatus} from "../enums/AppResourceStatus.ts";
 
 export const setLktAppReady = (state: boolean) => {
     AppStateController.lktAppReady.value = state;
@@ -55,4 +56,12 @@ export const getLktAdminEnabled = (): Ref<boolean> => {
 
 export const getLktAppSetup = (): Ref<LktObject> => {
     return AppStateController.lktAppSetup;
+}
+
+export const refreshAppI18n = () => {
+    AppStateController.i18nStatus.value = AppResourceStatus.RequiredRefresh;
+}
+
+export const refreshAppSetup = () => {
+    AppStateController.setupStatus.value = AppResourceStatus.RequiredRefresh;
 }

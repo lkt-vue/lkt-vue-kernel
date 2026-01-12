@@ -139,6 +139,7 @@ export {WebPage} from './instances/WebPage.ts';
 export {AccordionToggleMode} from './enums/AccordionToggleMode.ts';
 export {AccordionType} from './enums/AccordionType.ts';
 export {AnchorType} from './enums/AnchorType.ts';
+export {AppResourceStatus} from './enums/AppResourceStatus.ts';
 export {AppSize} from './enums/AppSize.ts';
 export {BannerType} from './enums/BannerType.ts';
 export {ButtonType} from './enums/ButtonType.ts';
@@ -274,7 +275,9 @@ export {
     getLktAppSize,
     setLktAdminEnabled,
     getLktAdminEnabled,
-    getLktAppSetup
+    getLktAppSetup,
+    refreshAppI18n,
+    refreshAppSetup,
 } from "./functions/app-state-functions.ts";
 export {setupCalendarConfig} from "./functions/calendar-functions.ts";
 export {extractPropValue, extractI18nValue, prepareResourceData} from "./functions/extract-data-functions.ts";
