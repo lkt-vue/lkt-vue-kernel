@@ -2669,6 +2669,11 @@ interface AppSetupConfig {
 interface LktAppConfig {
     routing?: AppRoutingConfig;
     setup?: AppSetupConfig;
+    appSetupChangedCallback?: (args: {
+        setup: LktObject;
+        route: RouteLocationNormalizedLoaded;
+        router: Router;
+    }) => void;
     mainMenu?: Menu;
     bottomBar?: Menu;
     hasMainMenu?: boolean | (() => boolean);
@@ -2684,6 +2689,11 @@ declare class AppStateController {
     static lktAppLoading: Ref<boolean>;
     static lktAppReady: Ref<boolean>;
     static lktAppSetup: Ref<LktObject>;
+    static appSetupChangedCallback?: (args: {
+        setup: LktObject;
+        route: RouteLocationNormalizedLoaded;
+        router: Router;
+    }) => void;
     static lktMainMenu?: Menu;
     static lktBottomBar?: Menu;
     static hasMainHeader?: boolean | ((args: {

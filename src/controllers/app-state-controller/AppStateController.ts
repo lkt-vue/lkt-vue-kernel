@@ -1,6 +1,6 @@
 import {ref, Ref} from "vue";
 import {AppSetupConfig} from "./config/partials/AppSetupConfig.ts";
-import {RouteLocationNormalizedLoaded} from "vue-router";
+import {RouteLocationNormalizedLoaded, Router} from "vue-router";
 import {AppSize} from "../../enums/AppSize.ts";
 import {Menu} from "../../instances/Menu.ts";
 import {LktObject} from "../../interfaces/LktObject.ts";
@@ -16,6 +16,11 @@ export class AppStateController {
     static lktAppLoading: Ref<boolean> = ref(true);
     static lktAppReady: Ref<boolean> = ref(false);
     static lktAppSetup: Ref<LktObject> = ref({});
+    static appSetupChangedCallback?: (args: {
+        setup: LktObject,
+        route: RouteLocationNormalizedLoaded,
+        router: Router,
+    }) => void = undefined;
 
     static lktMainMenu?: Menu = undefined;
     static lktBottomBar?: Menu = undefined;
