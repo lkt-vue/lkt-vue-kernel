@@ -3,6 +3,7 @@ import {IconType} from "../enums/IconType.ts";
 import {EventsConfig} from "./EventsConfig.ts";
 import {IconPosition} from "../enums/IconPosition.ts";
 import {ValidIconDot} from "../types/ValidIconDot.ts";
+import {IconVisualType} from "../enums/IconVisualType.ts";
 
 export interface IconConfig {
     icon?: ValidTextValue | (() => string)
@@ -10,6 +11,7 @@ export interface IconConfig {
     text?: ValidTextValue
     class?: ValidTextValue
     type?: IconType
+    visualType?: IconVisualType
 
     // Dot config
     dot?: ValidIconDot

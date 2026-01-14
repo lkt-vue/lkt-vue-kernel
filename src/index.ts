@@ -158,6 +158,7 @@ export {FileEntityType} from './enums/FileEntityType.ts';
 export {HeaderTag} from './enums/HeaderTag.ts';
 export {IconPosition} from './enums/IconPosition.ts';
 export {IconType} from './enums/IconType.ts';
+export {IconVisualType} from './enums/IconVisualType.ts';
 export {ItemCrudButtonNavPosition} from './enums/ItemCrudButtonNavPosition.ts';
 export {ItemCrudButtonNavVisibility} from './enums/ItemCrudButtonNavVisibility.ts';
 export {ItemCrudMode} from './enums/ItemCrudMode.ts';
