@@ -9,6 +9,7 @@ import {ButtonType} from "../enums/ButtonType.ts";
 import {AnchorType} from "../enums/AnchorType.ts";
 import {ColumnType} from "../enums/ColumnType.ts";
 import {FieldConfig} from "../config/FieldConfig.ts";
+import {ColumnConfig} from "../config/ColumnConfig.ts";
 
 export const getFormDataState = (value: LktObject, modifications: LktObject, form: FormConfig) => {
     let r = new DataState(JSON.parse(JSON.stringify(value)), {
@@ -78,8 +79,16 @@ export const getFieldConfigForWebItemTableOfContents = (
         optResource?: string
         icon?: string
         dragEnabled?: boolean
+        columns?: Array<ColumnConfig>
     }
 ) => {
+
+    let columns = Array.isArray(args.columns) ? args.columns : [{
+        key: 'label',
+        label: 'Item',
+        type: ColumnType.Field,
+    }];
+
     return <FieldConfig>{
         type: args.optResource ? FieldType.Select : FieldType.Table,
         multiple: true,
@@ -128,11 +137,7 @@ export const getFieldConfigForWebItemTableOfContents = (
                     },
                 },
                 columns: [
-                    {
-                        key: 'label',
-                        label: 'Item',
-                        type: ColumnType.Field,
-                    },
+                    ...columns,
                     {
                         key: 'details',
                         label: 'Details',

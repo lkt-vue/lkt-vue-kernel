@@ -73,6 +73,7 @@ export class Button extends LktItem implements ButtonConfig {
         'menuKey',
         'preventDefault',
         'stopPropagation',
+        'dispatchHttpNotifications',
         'hooks',
     ];
 
@@ -128,6 +129,7 @@ export class Button extends LktItem implements ButtonConfig {
     events?: ButtonEvents|undefined = {};
     preventDefault?: boolean = false;
     stopPropagation?: boolean = false;
+    dispatchHttpNotifications?: boolean = true;
     hooks?: ButtonHooks = {};
 
     constructor(data: Partial<ButtonConfig> = {}) {

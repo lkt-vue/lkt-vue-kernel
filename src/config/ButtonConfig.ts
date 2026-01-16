@@ -94,6 +94,7 @@ export interface ButtonConfig {
     events?: ButtonEvents
     preventDefault?: boolean
     stopPropagation?: boolean
+    dispatchHttpNotifications?: boolean
 
     // Hooks management (Predefined events)
     hooks?: ButtonHooks

@@ -303,6 +303,7 @@ export {
     addModal, closeModal, openModal, setModalCanvas, addConfirm, openConfirm, closeConfirm, runModalCallback
 } from "./functions/modal-functions.ts";
 export {createColumn} from "./functions/table-functions.ts";
+export {dispatchHttpNotifications} from "./functions/notifications-functions.ts";
 export {
     applyTextFormat,
     applyTextAlignment,
@@ -310,6 +311,7 @@ export {
     changeFontFamily,
     changeTextColor
 } from "./functions/wysiwyg-functions.ts";
+export {openToast, closeToast} from "./functions/toast-functions.ts";
 
 /**
  * Export Menu Controller
@@ -323,6 +325,13 @@ export {ModalController} from "./controllers/modal-controller/ModalController.ts
 export {RenderModalConfig} from "./controllers/modal-controller/config/RenderModalConfig.ts";
 export {ModalRegister} from "./controllers/modal-controller/config/ModalRegister.ts";
 export {ModalRegisterType} from "./controllers/modal-controller/enums/ModalRegisterType.ts";
+
+
+/**
+ * Export Toast Controller
+ */
+export {ToastController} from "./controllers/toast-controller/ToastController.ts";
+export {ToastCanvasInterface} from "./controllers/toast-controller/controller-canvas/ToastCanvasInterface.ts";
 
 /**
  * Export WebElement Controller
