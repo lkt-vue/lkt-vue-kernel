@@ -6,6 +6,7 @@ import {ToastPositionX} from "../enums/ToastPositionX.ts";
 export interface ToastConfig {
     type?: ToastType
     text?: ValidTextValue
+    class?: ValidTextValue
     details?: ValidTextValue
     icon?: ValidTextValue
     positionX?: ToastPositionX

@@ -10,6 +10,7 @@ export class Toast extends LktItem implements ToastConfig {
     static lktDefaultValues: (keyof ToastConfig)[] = [
         'type',
         'text',
+        'class',
         'details',
         'icon',
         'positionX',
@@ -20,6 +21,7 @@ export class Toast extends LktItem implements ToastConfig {
 
     type?: ToastType = ToastType.Message;
     text?: ValidTextValue = '';
+    class?: ValidTextValue = '';
     details?: ValidTextValue = '';
     icon?: ValidTextValue = '';
     positionX?: ToastPositionX = ToastPositionX.Right;

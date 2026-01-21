@@ -1618,6 +1618,7 @@ declare enum ToastPositionX {
 interface ToastConfig {
     type?: ToastType;
     text?: ValidTextValue;
+    class?: ValidTextValue;
     details?: ValidTextValue;
     icon?: ValidTextValue;
     positionX?: ToastPositionX;
@@ -2307,6 +2308,7 @@ declare class Toast extends LktItem implements ToastConfig {
     static lktDefaultValues: (keyof ToastConfig)[];
     type?: ToastType;
     text?: ValidTextValue;
+    class?: ValidTextValue;
     details?: ValidTextValue;
     icon?: ValidTextValue;
     positionX?: ToastPositionX;
