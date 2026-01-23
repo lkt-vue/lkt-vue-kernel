@@ -300,6 +300,7 @@ interface ButtonEvents {
 
 interface ButtonHooks {
     onSuccessRedirectTo?: ValidAnchorTo | ((data: ClickEventArgs) => ValidAnchorTo);
+    onSuccessRedirectBack?: boolean | ((data: ClickEventArgs) => boolean);
     redirectType?: 'replace' | 'push';
     onSuccessReload?: boolean | ((data: ClickEventArgs) => boolean);
     onSuccessRefreshI18n?: boolean | ((data: ClickEventArgs) => boolean);
@@ -2516,7 +2517,8 @@ declare const getFieldConfigForWebItemTableOfContents: (args: {
 
 declare enum ModalRegisterType {
     Quick = "quick",
-    Full = "full"
+    Full = "full",
+    Static = "static"
 }
 
 interface ModalRegister {
