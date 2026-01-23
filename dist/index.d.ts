@@ -1559,6 +1559,7 @@ interface StepProcessStepConfig {
     nextHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean);
     prevButton?: ButtonConfig | false;
     prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean);
+    excludedFromTotalCount?: boolean | (() => boolean);
 }
 
 interface StepProcessConfig {

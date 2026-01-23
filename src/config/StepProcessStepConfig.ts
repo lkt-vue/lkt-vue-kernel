@@ -13,4 +13,6 @@ export interface StepProcessStepConfig {
 
     prevButton?: ButtonConfig|false,
     prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean),
+
+    excludedFromTotalCount?: boolean|(() => boolean)
 }
