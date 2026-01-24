@@ -15,6 +15,7 @@ import {CalendarConfig} from "./CalendarConfig.ts";
 import {CalendarGroupsConfig} from "./CalendarGroupsConfig.ts";
 import {FormConfig} from "./FormConfig.ts";
 import {TableEvents} from "./events/TableEvents.ts";
+import {EmptySlotData} from "./EmptySlotData.ts";
 
 export interface TableConfig {
 
@@ -22,6 +23,11 @@ export interface TableConfig {
     modelValue?: LktObject[]
     type?: TableType,
     columns?: Array<ColumnConfig>
+
+    // No results config
+    noResults?: EmptySlotData,
+
+    // Replaces (deprecated)
     noResultsText?: string
 
     // Data visualization
@@ -69,7 +75,7 @@ export interface TableConfig {
     // New proposed prop: header
     header?: HeaderConfig
 
-    // Replaces:
+    // Replaces (deprecated):
     title?: string
     titleTag?: string
     titleIcon?: string

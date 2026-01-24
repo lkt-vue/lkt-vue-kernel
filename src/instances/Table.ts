@@ -18,6 +18,8 @@ import {CalendarConfig} from "../config/CalendarConfig.ts";
 import {CalendarGroupsConfig} from "../config/CalendarGroupsConfig.ts";
 import {FormConfig} from "../config/FormConfig.ts";
 import {TableEvents} from "../config/events/TableEvents.ts";
+import {IconConfig} from "../config/IconConfig.ts";
+import {EmptySlotData} from "../config/EmptySlotData.ts";
 
 export class Table extends LktItem implements TableConfig {
 
@@ -25,6 +27,7 @@ export class Table extends LktItem implements TableConfig {
         'modelValue',
         'type',
         'columns',
+        'noResults',
         'noResultsText',
         'hideEmptyColumns',
         'itemDisplayChecker',
@@ -79,6 +82,7 @@ export class Table extends LktItem implements TableConfig {
     type?: TableType = TableType.Table;
     columns: ColumnConfig[] = [];
     noResultsText?: string = '';
+    noResults?: EmptySlotData = undefined;
 
     // Data visualization
     hideTableHeader?: boolean = false;

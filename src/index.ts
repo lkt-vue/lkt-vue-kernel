@@ -47,6 +47,7 @@ export {CounterConfig} from './config/CounterConfig.ts';
 export {DocPageConfig} from './config/DocPageConfig.ts';
 export {DotConfig} from './config/DotConfig.ts';
 export {DragConfig} from './config/DragConfig.ts';
+export {EmptySlotData} from './config/EmptySlotData.ts';
 export {EventsConfig} from './config/EventsConfig.ts';
 export {FieldConfig} from './config/FieldConfig.ts';
 export {WebElementPropsConfig} from './config/WebElementPropsConfig.ts';
