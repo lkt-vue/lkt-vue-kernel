@@ -1537,6 +1537,7 @@ interface MenuConfig {
     type?: MenuType;
     menuKey?: ValidModalKey;
     hiddenPosition?: 'left' | 'right' | 'bottom' | 'top';
+    renderOutside?: boolean;
     closeOnClickOutside?: boolean;
     closeOnClickEntry?: boolean;
     http?: HttpCallConfig;
@@ -2131,6 +2132,7 @@ declare class Menu extends LktItem implements MenuConfig {
     type?: MenuType;
     menuKey?: ValidModalKey;
     http?: HttpCallConfig;
+    renderOutside?: boolean;
     closeOnClickOutside?: boolean;
     closeOnClickEntry?: boolean;
     hiddenPosition?: 'left' | 'right' | 'bottom' | 'top';

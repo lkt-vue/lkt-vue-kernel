@@ -13,6 +13,7 @@ export class Menu extends LktItem implements MenuConfig {
         'type',
         'menuKey',
         'hiddenPosition',
+        'renderOutside',
         'closeOnClickOutside',
         'closeOnClickEntry',
     ];
@@ -21,6 +22,7 @@ export class Menu extends LktItem implements MenuConfig {
     type?: MenuType = MenuType.Always;
     menuKey?: ValidModalKey = '_';
     http?: HttpCallConfig = {};
+    renderOutside?: boolean = true;
     closeOnClickOutside?: boolean = true;
     closeOnClickEntry?: boolean = true;
     hiddenPosition?: 'left' | 'right' | 'bottom' | 'top' = 'left';

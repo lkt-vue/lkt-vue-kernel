@@ -8,6 +8,7 @@ export interface MenuConfig {
     type?: MenuType
     menuKey?: ValidModalKey
     hiddenPosition?: 'left' | 'right' | 'bottom' | 'top'
+    renderOutside?: boolean
     closeOnClickOutside?: boolean
     closeOnClickEntry?: boolean
 
