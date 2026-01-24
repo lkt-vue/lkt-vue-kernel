@@ -1,5 +1,6 @@
 import {ButtonConfig} from "./ButtonConfig.ts";
 import {StepRenderType} from "../enums/StepRenderType.ts";
+import {StepProcessStepEvents} from "./events/StepProcessStepEvents.ts";
 
 export interface StepProcessStepConfig {
     key: string,
@@ -15,4 +16,6 @@ export interface StepProcessStepConfig {
     prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean),
 
     excludedFromTotalCount?: boolean|(() => boolean)
+
+    events?: StepProcessStepEvents
 }

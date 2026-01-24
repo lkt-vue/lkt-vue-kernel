@@ -1550,6 +1550,15 @@ declare enum StepRenderType {
     RendersAfterFirstActiveVisibleIfActive = 5
 }
 
+interface StepProcessStepEvents {
+    enter?: (args: {
+        from: string;
+    }) => void;
+    leave?: (args: {
+        to: string;
+    }) => void;
+}
+
 interface StepProcessStepConfig {
     key: string;
     renderType?: StepRenderType;
@@ -1560,6 +1569,7 @@ interface StepProcessStepConfig {
     prevButton?: ButtonConfig | false;
     prevHidden?: boolean | ((currentStep: StepProcessStepConfig, steps: StepProcessStepConfig[]) => boolean);
     excludedFromTotalCount?: boolean | (() => boolean);
+    events?: StepProcessStepEvents;
 }
 
 interface StepProcessConfig {
