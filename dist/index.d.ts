@@ -2660,6 +2660,11 @@ interface WebPageSettings {
     code: string;
     label?: string;
     icon?: string;
+    labelSingle?: string;
+    labelMany?: string;
+    appHeaderSingle?: HeaderConfig | ((data: LktObject) => HeaderConfig);
+    appHeaderMany?: HeaderConfig;
+    itemGenerator?: ((data: LktObject) => LktObject);
 }
 
 declare class WebPageController {
@@ -2675,8 +2680,8 @@ declare class WebPageController {
 interface WebItemConfig {
     code: string;
     icon?: string;
-    labelSingle: string;
-    labelMany: string;
+    labelSingle?: string;
+    labelMany?: string;
     many: TableConfig | false;
     single: ItemCrudConfig;
     appHeaderSingle?: HeaderConfig | ((data: LktObject) => HeaderConfig);
