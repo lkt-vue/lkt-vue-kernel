@@ -701,6 +701,8 @@ interface ColumnConfig {
     isForAccordionHeader?: boolean;
     isCalendarDate?: boolean;
     isCalendarGroup?: boolean;
+    includeBeforeItemSlot?: boolean;
+    includeAfterItemSlot?: boolean;
     extractTitleFromColumn?: string;
     slotData?: LktObject;
     field?: FieldConfig | undefined;
@@ -1894,6 +1896,8 @@ declare class Column extends LktItem implements ColumnConfig {
     isForAccordionHeader: boolean;
     isCalendarDate?: boolean;
     isCalendarGroup?: boolean;
+    includeBeforeItemSlot?: boolean;
+    includeAfterItemSlot?: boolean;
     extractTitleFromColumn: string;
     slotData: LktObject;
     field: FieldConfig | undefined;

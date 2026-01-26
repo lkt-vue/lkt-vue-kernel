@@ -23,6 +23,8 @@ export interface ColumnConfig {
     isForAccordionHeader?: boolean
     isCalendarDate?: boolean
     isCalendarGroup?: boolean
+    includeBeforeItemSlot?: boolean
+    includeAfterItemSlot?: boolean
     extractTitleFromColumn?: string
     slotData?: LktObject
 

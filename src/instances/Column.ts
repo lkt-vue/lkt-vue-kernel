@@ -37,6 +37,8 @@ export class Column extends LktItem implements ColumnConfig{
         'isForAccordionHeader',
         'isCalendarDate',
         'isCalendarGroup',
+        'includeBeforeItemSlot',
+        'includeAfterItemSlot',
         'extractTitleFromColumn',
         'slotData',
         'field',
@@ -60,6 +62,8 @@ export class Column extends LktItem implements ColumnConfig{
     isForAccordionHeader: boolean = false;
     isCalendarDate?: boolean = false;
     isCalendarGroup?: boolean = false;
+    includeBeforeItemSlot?: boolean = false;
+    includeAfterItemSlot?: boolean = false;
     extractTitleFromColumn: string = '';
     slotData: LktObject = {};
 
