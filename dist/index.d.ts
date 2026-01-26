@@ -2515,7 +2515,7 @@ declare const getDefaultLktIconWebElement: () => WebElement;
 declare const getDefaultLktImageWebElement: () => WebElement;
 declare const getDefaultLktTextBannerWebElement: () => WebElement;
 
-declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined | false, settingsConfig: Partial<ButtonConfig>) => Partial<ButtonConfig>;
+declare const ensureButtonConfig: (buttonConfig: Partial<ButtonConfig> | undefined | false, settingsConfig: Partial<ButtonConfig>, mode?: "combine" | "override") => Partial<ButtonConfig>;
 declare const ensureFieldConfig: (config: Partial<FieldConfig> | undefined, settingsConfig: Partial<FieldConfig>) => Partial<FieldConfig>;
 
 declare const lktDebug: (component: string, ...args: any[]) => void;
