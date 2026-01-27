@@ -14,8 +14,6 @@ export class LktFixedPositionDetector {
 
     detect() {
 
-        console.log('begin detect: ', this.data);
-
         if (!this.data.positionReferenceElement) return undefined;
         if (typeof this.data.location === 'undefined') return undefined;
 
@@ -180,8 +178,6 @@ export class LktFixedPositionDetector {
             bottom,
             width: this.data.adjustToReferrerWidth ? referrerWidth : undefined,
         });
-
-        console.log('detected position: ', r);
 
         return r;
     }
