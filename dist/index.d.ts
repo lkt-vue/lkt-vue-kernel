@@ -1670,20 +1670,20 @@ interface ToastConfig {
 }
 
 declare enum WebElementType {
-    LktAnchor = "lkt-anchor",
-    LktLayoutAccordion = "lkt-layout-accordion",
-    LktTextAccordion = "lkt-text-accordion",
-    LktLayoutBox = "lkt-layout-box",
-    LktTextBox = "lkt-text-box",
-    LktLayoutBanner = "lkt-layout-banner",
-    LktTextBanner = "lkt-text-banner",
-    LktButton = "lkt-button",
-    LktLayout = "lkt-layout",
-    LktHeader = "lkt-header",
-    LktIcon = "lkt-icon",
-    LktIcons = "lkt-icons",
-    LktImage = "lkt-image",
-    LktText = "lkt-text"
+    LktText = 1,
+    LktTextBox = 2,
+    LktLayout = 3,
+    LktLayoutBox = 4,
+    LktTextAccordion = 5,
+    LktLayoutAccordion = 6,
+    LktTextBanner = 7,
+    LktLayoutBanner = 8,
+    LktAnchor = 9,
+    LktButton = 10,
+    LktHeader = 11,
+    LktIcon = 12,
+    LktIcons = 13,
+    LktImage = 14
 }
 
 declare enum WebElementLayoutType {
@@ -1745,9 +1745,10 @@ interface WebElementConfig {
 }
 
 declare enum WebPageStatus {
-    Draft = "draft",
-    Public = "public",
-    Scheduled = "scheduled"
+    Public = 1,
+    Draft = 2,
+    Scheduled = 3,
+    Confidential = 4
 }
 
 interface WebPageConfig {
@@ -2669,7 +2670,7 @@ declare class ToastController {
 }
 
 interface WebElementSettings {
-    id: string;
+    id: number;
     label?: string;
     type: 'component' | 'index';
     icon?: string;
@@ -2691,7 +2692,7 @@ declare class WebElementController {
     private static customAppearance;
     static addWebElement(element: WebElementSettings): typeof WebElementController;
     static getElements(): WebElementSettings[];
-    static getCustomWebElementSettings(needle: string): WebElementSettings | undefined;
+    static getCustomWebElementSettings(type: number): WebElementSettings | undefined;
     static setCustomAppearance(config: WebElementAppearanceSettings): typeof WebElementController;
     static getCustomAppearance(component: string): any;
 }

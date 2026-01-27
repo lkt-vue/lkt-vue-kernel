@@ -15,8 +15,7 @@ export class WebElementController {
         return WebElementController.elements;
     }
 
-    static getCustomWebElementSettings(needle: string) {
-        let type = needle.startsWith('custom:') ? needle.split(':')[1] : needle;
+    static getCustomWebElementSettings(type: number) {
         return WebElementController.elements.find(element => element.id === type);
     }
 

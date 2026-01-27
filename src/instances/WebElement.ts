@@ -219,7 +219,7 @@ export class WebElement extends LktItem implements WebElementConfig {
     }
 
     isCustom() {
-        return this.type.startsWith('custom:');
+        return this.type > 1000;
     }
 
     getCustomSettings() {

@@ -3,7 +3,7 @@ import {Component} from "vue";
 import {LktObject} from "../../../interfaces/LktObject.ts";
 
 export interface WebElementSettings {
-    id: string
+    id: number
     label?: string
     type: 'component' | 'index'
     icon?: string

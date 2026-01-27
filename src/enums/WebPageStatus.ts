@@ -1,5 +1,6 @@
 export enum WebPageStatus {
-    Draft= 'draft',
-    Public = 'public',
-    Scheduled = 'scheduled',
+    Public = 1,
+    Draft= 2,
+    Scheduled = 3,
+    Confidential = 4,
 }
