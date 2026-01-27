@@ -189,6 +189,7 @@ export {ToastPositionX} from './enums/ToastPositionX.ts';
 export {ToastType} from './enums/ToastType.ts';
 export {TooltipType} from './enums/TooltipType.ts';
 export {ToggleMode} from './enums/ToggleMode.ts';
+export {TooltipLocation} from './enums/TooltipLocation.ts';
 export {TooltipLocationY} from './enums/TooltipLocationY.ts';
 export {TooltipLocationX} from './enums/TooltipLocationX.ts';
 export {TooltipPositionEngine} from './enums/TooltipPositionEngine.ts';
@@ -260,6 +261,7 @@ export {ClickEventArgs} from './arguments/ClickEventArgs.ts';
 export {ConditionalColumnArgs} from './arguments/ConditionalColumnArgs.ts';
 export {FieldValidationEndEventArgs} from './arguments/FieldValidationEndEventArgs.ts';
 export {FieldLoadOptionsEndEventArgs} from './arguments/FieldLoadOptionsEndEventArgs.ts';
+export {PositionDetectorArgs} from './arguments/PositionDetectorArgs.ts';
 
 /**
  * Export functions
@@ -375,6 +377,8 @@ export {LktUserRolePermissions} from "./models-config/LktUserRolePermissions.ts"
 
 export {LktMenuEntry} from "./models/LktMenuEntry.ts";
 export {LktTranslation} from "./models/LktTranslation.ts";
+export {LktFixedPositionDetector} from "./models/LktFixedPositionDetector.ts";
+export {LktPosition} from "./models/LktPosition.ts";
 
 
 export function getDefaultValues<T>(cls: { new(): T; lktDefaultValues: (keyof T)[] }): Partial<T> {

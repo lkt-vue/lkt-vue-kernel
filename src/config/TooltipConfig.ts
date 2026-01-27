@@ -4,6 +4,7 @@ import {TooltipPositionEngine} from '../enums/TooltipPositionEngine.ts';
 import {PolymorphicElementConfig} from "./PolymorphicElementConfig.ts";
 import {TooltipType} from "../enums/TooltipType.ts";
 import {ButtonConfig} from "./ButtonConfig.ts";
+import {TooltipLocation} from "../enums/TooltipLocation.ts";
 
 export interface TooltipConfig {
     modelValue?: boolean
@@ -20,8 +21,7 @@ export interface TooltipConfig {
     windowMargin?: number | string
     referrerWidth?: boolean
     referrer?: HTMLElement|undefined
-    locationY?: TooltipLocationY
-    locationX?: TooltipLocationX
+    location?: TooltipLocation
     showOnReferrerHover?: boolean
     showOnReferrerHoverDelay?: number
     hideOnReferrerLeave?: boolean
@@ -33,5 +33,9 @@ export interface TooltipConfig {
     teleport?: string
     content?: Array<PolymorphicElementConfig>
     closeButton?: false|ButtonConfig
+
+    // Deprecated
+    locationY?: TooltipLocationY
+    locationX?: TooltipLocationX
 }
 

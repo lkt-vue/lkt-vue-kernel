@@ -6,6 +6,7 @@ import {TooltipLocationX} from "../enums/TooltipLocationX.ts";
 import {PolymorphicElementConfig} from "../config/PolymorphicElementConfig.ts";
 import {TooltipType} from "../enums/TooltipType.ts";
 import {ButtonConfig} from "../config/ButtonConfig.ts";
+import {TooltipLocation} from "../enums/TooltipLocation.ts";
 
 export class Tooltip extends LktItem implements TooltipConfig {
 
@@ -24,6 +25,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
         'referrerMargin',
         'windowMargin',
         'referrer',
+        'location',
         'locationY',
         'locationX',
         'showOnReferrerHover',
@@ -53,6 +55,7 @@ export class Tooltip extends LktItem implements TooltipConfig {
     referrerMargin: number | string = 0;
     windowMargin: number | string = 0;
     referrer: HTMLElement|undefined = undefined;
+    location: TooltipLocation = TooltipLocation.Auto;
     locationY: TooltipLocationY = TooltipLocationY.Bottom;
     locationX: TooltipLocationX = TooltipLocationX.LeftCorner;
     showOnReferrerHover: boolean = false;
