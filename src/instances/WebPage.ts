@@ -38,6 +38,8 @@ export class WebPage extends LktItem implements WebPageConfig {
 
         this.keyMoment = generateRandomString(4) + this.id + time();
 
+        this.webElements = this.webElements.map(z => new WebElement(z));
+
         if (Array.isArray(this.slugData)) {
             this.slugData = {};
             this.updateSlug();

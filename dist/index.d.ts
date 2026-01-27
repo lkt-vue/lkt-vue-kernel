@@ -1070,7 +1070,7 @@ interface FieldConfig extends RenderAndDisplayProps {
     featuredButton?: string;
     infoButtonEllipsis?: boolean;
     fileName?: string;
-    options?: string | Option[] | OptionConfig[];
+    options?: string | string[] | Option[] | OptionConfig[];
     multiple?: boolean;
     multipleDisplay?: MultipleOptionsDisplay;
     multipleDisplayEdition?: MultipleOptionsDisplay;
